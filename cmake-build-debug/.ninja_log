@@ -1,0 +1,5 @@
+# ninja log v5
+1	58066	0	HCT/01-01-hello-world/FAKE_FILE_TO_TRICK_CMAKE_INTO_RUNNING_COMMAND_PRE_BUILD.txt	94efa3bf1abf5a04
+1	58066	0	D:/SOFTWARE_TI/Project_Game/cmake-build-debug/HCT/01-01-hello-world/FAKE_FILE_TO_TRICK_CMAKE_INTO_RUNNING_COMMAND_PRE_BUILD.txt	94efa3bf1abf5a04
+58067	58804	6641118502286921	HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/D_/SOFTWARE_TI/Project_Game/01-01-hello-world/main.cpp.obj	19f4fa98a0eb2a34
+58071	61038	6641118524617897	HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/D_/SOFTWARE_TI/hwlib/library/hwlib.cpp.obj	c5db6e60d37384b8

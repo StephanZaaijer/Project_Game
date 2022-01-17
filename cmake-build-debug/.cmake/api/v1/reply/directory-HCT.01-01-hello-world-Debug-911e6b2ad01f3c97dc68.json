@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "HCT/01-01-hello-world",
+		"source" : "D:/SOFTWARE_TI/HCT/Target_Maker"
+	}
+}

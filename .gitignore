@@ -35,3 +35,8 @@
 CMakeLists.txt
 cmake-build-debug/**
 
+_cpp_flags
+**/_linker_flags
+**/_linker_libs
+**/test
+**/Makefile.HCT

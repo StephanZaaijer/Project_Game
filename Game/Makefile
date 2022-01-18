@@ -9,13 +9,13 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := 
+SOURCES := AssetManager.cpp Game.cpp InputManager.cpp StateMachine.cpp
 
 # header files in this project
-HEADERS := 
+HEADERS := AssetManager.hpp Definitions.hpp Game.hpp GameState.hpp InputManager.hpp StateMachine.hpp
 
 # other places to look for files for this project
-SEARCH  := 
+SEARCH  :=
 
 # set REATIVE to the next higher directory 
 # and defer to the Makefile.due there

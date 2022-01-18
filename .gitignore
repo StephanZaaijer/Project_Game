@@ -35,7 +35,7 @@
 CMakeLists.txt
 cmake-build-debug/**
 
-_cpp_flags
+**/_cpp_flags
 **/_linker_flags
 **/_linker_libs
 **/test

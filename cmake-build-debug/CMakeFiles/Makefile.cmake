@@ -49,10 +49,10 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "HCT/01-01-hello-world/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "HCT/Game/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/DependInfo.cmake"
+  "HCT/Game/CMakeFiles/Game.dir/DependInfo.cmake"
   )

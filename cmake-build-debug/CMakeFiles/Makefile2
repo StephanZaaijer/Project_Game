@@ -70,49 +70,49 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: HCT/01-01-hello-world/clean
+clean: HCT/Game/clean
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory HCT/01-01-hello-world
+# Directory level rules for directory HCT/Game
 
 # Recursive "all" directory target.
-HCT/01-01-hello-world/all: HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/all
-.PHONY : HCT/01-01-hello-world/all
+HCT/Game/all: HCT/Game/CMakeFiles/Game.dir/all
+.PHONY : HCT/Game/all
 
 # Recursive "preinstall" directory target.
-HCT/01-01-hello-world/preinstall:
-.PHONY : HCT/01-01-hello-world/preinstall
+HCT/Game/preinstall:
+.PHONY : HCT/Game/preinstall
 
 # Recursive "clean" directory target.
-HCT/01-01-hello-world/clean: HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/clean
-.PHONY : HCT/01-01-hello-world/clean
+HCT/Game/clean: HCT/Game/CMakeFiles/Game.dir/clean
+.PHONY : HCT/Game/clean
 
 #=============================================================================
-# Target rules for target HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir
+# Target rules for target HCT/Game/CMakeFiles/Game.dir
 
 # All Build rule for target.
-HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/all:
-	$(MAKE) $(MAKESILENT) -f HCT\01-01-hello-world\CMakeFiles\01-01-hello-world.dir\build.make HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/depend
-	$(MAKE) $(MAKESILENT) -f HCT\01-01-hello-world\CMakeFiles\01-01-hello-world.dir\build.make HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\HU\TI_Software\Project_Game\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target 01-01-hello-world"
-.PHONY : HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/all
+HCT/Game/CMakeFiles/Game.dir/all:
+	$(MAKE) $(MAKESILENT) -f HCT\Game\CMakeFiles\Game.dir\build.make HCT/Game/CMakeFiles/Game.dir/depend
+	$(MAKE) $(MAKESILENT) -f HCT\Game\CMakeFiles\Game.dir\build.make HCT/Game/CMakeFiles/Game.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\HU\TI_Software\Project_Game\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target Game"
+.PHONY : HCT/Game/CMakeFiles/Game.dir/all
 
 # Build rule for subdir invocation for target.
-HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\HU\TI_Software\Project_Game\cmake-build-debug\CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/all
+HCT/Game/CMakeFiles/Game.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\HU\TI_Software\Project_Game\cmake-build-debug\CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 HCT/Game/CMakeFiles/Game.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\HU\TI_Software\Project_Game\cmake-build-debug\CMakeFiles 0
-.PHONY : HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/rule
+.PHONY : HCT/Game/CMakeFiles/Game.dir/rule
 
 # Convenience name for target.
-01-01-hello-world: HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/rule
-.PHONY : 01-01-hello-world
+Game: HCT/Game/CMakeFiles/Game.dir/rule
+.PHONY : Game
 
 # clean rule for target.
-HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/clean:
-	$(MAKE) $(MAKESILENT) -f HCT\01-01-hello-world\CMakeFiles\01-01-hello-world.dir\build.make HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/clean
-.PHONY : HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/clean
+HCT/Game/CMakeFiles/Game.dir/clean:
+	$(MAKE) $(MAKESILENT) -f HCT\Game\CMakeFiles\Game.dir\build.make HCT/Game/CMakeFiles/Game.dir/clean
+.PHONY : HCT/Game/CMakeFiles/Game.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

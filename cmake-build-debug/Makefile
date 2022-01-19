@@ -116,17 +116,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named 01-01-hello-world
+# Target rules for targets named Game
 
 # Build rule for target.
-01-01-hello-world: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 01-01-hello-world
-.PHONY : 01-01-hello-world
+Game: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Game
+.PHONY : Game
 
 # fast build rule for target.
-01-01-hello-world/fast:
-	$(MAKE) $(MAKESILENT) -f HCT\01-01-hello-world\CMakeFiles\01-01-hello-world.dir\build.make HCT/01-01-hello-world/CMakeFiles/01-01-hello-world.dir/build
-.PHONY : 01-01-hello-world/fast
+Game/fast:
+	$(MAKE) $(MAKESILENT) -f HCT\Game\CMakeFiles\Game.dir\build.make HCT/Game/CMakeFiles/Game.dir/build
+.PHONY : Game/fast
 
 # Help Target
 help:
@@ -136,7 +136,7 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... 01-01-hello-world
+	@echo ... Game
 .PHONY : help
 
 

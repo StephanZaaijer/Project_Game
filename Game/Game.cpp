@@ -9,7 +9,7 @@ Game::Game(const int &screen_width, const int &screen_height, const std::string 
 }
 
 void Game::start(){
-    float new_time, previous_time, frameTime;
+    float new_time, frameTime;
 
     float current_time = clock.getElapsedTime().asSeconds();
     float accumulator = 0.0;

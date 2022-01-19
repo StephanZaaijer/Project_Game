@@ -47,6 +47,7 @@ sf::Texture &AssetManager::GetTexture(const std::string &name) {
     }
     throw return_exception("Texture", name);
 }
+
 #ifdef ENABLE_FONT
 void AssetManager::loadFontFromFile(const std::string &name, const std::string &Filename){
     sf::Font temp;
@@ -64,6 +65,7 @@ sf::Font &AssetManager::GetFont(const std::string &name){
     throw return_exception("Fonts", name);
 }
 #endif //ENABLE_FONT
+
 #ifdef ENABLE_SOUND
 
 void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &Filename){

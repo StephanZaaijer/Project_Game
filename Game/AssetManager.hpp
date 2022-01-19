@@ -16,15 +16,10 @@
 
 class AssetManager {
 public:
-
-    AssetManager() {}
-    ~AssetManager() {}
-
-
     void loadTextureFromFile(const std::string &name, const std::string &Filename);
     sf::Texture &GetTexture(const std::string &name);
 
-    #ifdef ENABLE_FONT
+  #ifdef ENABLE_FONT
         void loadFontFromFile(const std::string &name, const std::string &Filename);
         sf::Font &GetFont(const std::string &name);
     #endif //ENABLE_FONT

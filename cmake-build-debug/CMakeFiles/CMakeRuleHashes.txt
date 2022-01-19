@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+8fc72a495a6e0d6522db1e31303ddc2d HCT/Game/FAKE_FILE_TO_TRICK_CMAKE_INTO_RUNNING_COMMAND_PRE_BUILD.txt

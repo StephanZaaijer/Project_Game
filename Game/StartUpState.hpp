@@ -23,6 +23,7 @@ private:
     sf::Sprite _background;
     sf::Sprite _logo;
     sf::Sprite _title;
+    sf::Sprite _banner;
 
 public:
     StarUpState(GameDataReference data);

@@ -30,7 +30,7 @@ public:
     }
 };
 
-void AssetManager::getTextureFromFile(const std::string &name, const std::string &Filename) {
+void AssetManager::loadTextureFromFile(const std::string& name, const std::string& Filename) {
     sf::Texture temp;
 
     if (temp.loadFromFile(Filename)){

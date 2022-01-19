@@ -30,8 +30,8 @@ void StateMachine::ProcessGameStateChanges() {
             else{
                 gamestates.top()->Pause();
             }
-            gamestates.push(std::move(new_state));
         }
+        gamestates.push(std::move(new_state));
         gamestates.top()->Init();
         adding=false;
     }

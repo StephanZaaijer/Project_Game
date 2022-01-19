@@ -1,15 +1,13 @@
-//
-// Created by Franky on 19-1-2022.
-//
-
 #include "MainGameState.hpp"
+
 
 MainGameState::MainGameState(GameDataReference data):
     game_data (data)
 {}
 
-void MainGameState::init(){
-
+void MainGameState::Init(){
+    game_data->assets.loadTextureFromFile("character ", CHARACTER_FRAME_1_FILEPATH);
+    character = new stick_to_wall(game_data);
 }
 
 void MainGameState::HandleInput(){
@@ -30,6 +28,6 @@ void MainGameState::Draw( float delta ){
     game_data -> window.clear();
 
     // draw something
-
+    character->Draw();
     game_data -> window.display();
 }

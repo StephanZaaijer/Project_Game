@@ -1,4 +1,4 @@
-# Install script for directory: D:/HU/TI_Software/Project_Game
+# Install script for directory: C:/Users/nickt/School_project/Project_Game
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Users/nickt/School_project/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/HU/TI_Software/Project_Game/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/nickt/School_project/Project_Game/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

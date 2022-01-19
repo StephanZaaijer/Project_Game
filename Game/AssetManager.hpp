@@ -7,7 +7,7 @@
 #include <map>
 #include <SFML/Graphics.hpp>
 #include <string.h>
-
+#include "Definitions.hpp"
 
 #ifdef ENABLE_SOUND
     #include <SFML/Audio.hpp>

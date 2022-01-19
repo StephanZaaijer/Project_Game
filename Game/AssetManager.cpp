@@ -48,22 +48,22 @@ sf::Texture &AssetManager::GetTexture(const std::string &name) {
     throw return_exception("Texture", name);
 }
 
-void AssetManager::loadFontFromFile(const std::string &name, const std::string &Filename){
-    sf::Font temp;
-    if (temp.loadFromFile(Filename)){
-        fonts[name]=temp;
-    }
-    else{
-        throw load_exception("Fonts", name, Filename);
-    }
-}
-sf::Font &AssetManager::GetFont(const std::string &name){
-    if (fonts.count(name)==1){
-        return fonts.at(name);
-    }
-    throw return_exception("Fonts", name);
-}
-//
+//void AssetManager::loadFontFromFile(const std::string &name, const std::string &Filename){
+//    sf::Font temp;
+//    if (temp.loadFromFile(Filename)){
+//        fonts[name]=temp;
+//    }
+//    else{
+//        throw load_exception("Fonts", name, Filename);
+//    }
+//}
+//sf::Font &AssetManager::GetFont(const std::string &name){
+//    if (fonts.count(name)==1){
+//        return fonts.at(name);
+//    }
+//    throw return_exception("Fonts", name);
+//}
+
 //void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &Filename){
 //    sf::SoundBuffer temp;
 //    if (temp.loadFromFile(Filename)){

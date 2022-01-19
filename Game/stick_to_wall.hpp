@@ -6,7 +6,7 @@
 #include "Definitions.hpp"
 #include "Game.hpp"
 
-class stick_to_wall: public GameState{
+class stick_to_wall{
 public:
         stick_to_wall(GameDataReference data);
         void Draw();

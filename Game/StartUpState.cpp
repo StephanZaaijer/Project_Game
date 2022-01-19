@@ -3,8 +3,16 @@
 StarUpState::StarUpState(GameDataReference data) : game_data(data) {}
 
 void StarUpState::Init() {
-    game_data->assets.loadTextureFromFile("StartUp State Background", "D:/TI_SOFTWARE/Project_Game2/Project_Game/Project_Game/Game/Assets/fire.jpg");
+    game_data->assets.loadTextureFromFile("StartUp State Background", "Assets/StartupBackground.png");
+    game_data->assets.loadTextureFromFile("StartUp State Image", "Assets/StartUpImage.png");
+    game_data->assets.loadTextureFromFile("StartUp State Banner", "Assets/UpwardsBanner.png");
+
     _background.setTexture(this->game_data->assets.GetTexture("StartUp State Background"));
+    _logo.setTexture(this->game_data->assets.GetTexture("StartUp State Image"));
+    _title.setTexture(this->game_data->assets.GetTexture("StartUp State Banner"));
+
+    _title.setPosition({(SCREEN_WIDTH/2 - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2});
+    _logo.setPosition({SCREEN_WIDTH/2, SCREEN_HEIGHT/2});
 }
 
 void StarUpState::HandleInput() {
@@ -26,5 +34,7 @@ void StarUpState::Update(float delta) {
 void StarUpState::Draw(float delta) {
     game_data->window.clear();
     game_data->window.draw(_background);
+    game_data->window.draw(_title);
+    game_data->window.draw(_logo);
     game_data->window.display();
 }

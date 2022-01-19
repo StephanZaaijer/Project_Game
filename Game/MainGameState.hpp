@@ -8,14 +8,16 @@
 #include <SFML/Graphics.hpp>
 #include "GameState.hpp"
 #include "Game.hpp"
+#include "Wall.h"
 
 class MainGameState : public GameState{
 private:
     GameDataReference game_data;
+    Wall *wall;
 
 public:
     MainGameState(GameDataReference data);
-    void init();
+    void Init();
 
     void HandleInput();
     void Update( float delta );

@@ -8,8 +8,8 @@ MainGameState::MainGameState(GameDataReference data):
     game_data (data)
 {}
 
-void MainGameState::init(){
-
+void MainGameState::Init(){
+    wall = new Wall(game_data);
 }
 
 void MainGameState::HandleInput(){
@@ -20,16 +20,18 @@ void MainGameState::HandleInput(){
             game_data -> window.close();
         }
     }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        wall ->spawn_Wall();
+    }
 }
 
 void MainGameState::Update( float delta ){
-
+    wall -> move_Wall(sf::Vector2f(0, 3));
 }
 
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
-
-    // draw something
-
+    game_data-> window.setTitle("Main Game State");
+    wall -> draw_Wall();
     game_data -> window.display();
 }

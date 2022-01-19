@@ -30,7 +30,7 @@ public:
     }
 };
 
-void AssetManager::getTextureFromFile(const std::string &name, const std::string &Filename) {
+void AssetManager::loadTextureFromFile(const std::string& name, const std::string& Filename) {
     sf::Texture temp;
 
     if (temp.loadFromFile(Filename)){
@@ -63,7 +63,7 @@ sf::Font &AssetManager::GetFont(const std::string &name){
     }
     throw return_exception("Fonts", name);
 }
-
+//
 //void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &Filename){
 //    sf::SoundBuffer temp;
 //    if (temp.loadFromFile(Filename)){

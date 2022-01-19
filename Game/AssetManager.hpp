@@ -15,14 +15,14 @@ class AssetManager {
     void loadFontFromFile(const std::string &name, const std::string &Filename);
     sf::Font &GetFont(const std::string &name);
 
-    void loadSoundBufferFromFile(const std::string &name, const std::string &Filename);
-    sf::SoundBuffer &GetSoundBuffer(const std::string &name);
+//    void loadSoundBufferFromFile(const std::string &name, const std::string &Filename);
+//    sf::SoundBuffer &GetSoundBuffer(const std::string &name);
 
 
 private:
     std::map<std::string, sf::Texture> textures;
     std::map<std::string, sf::Font> fonts;
-    std::map<std::string, sf::SoundBuffer> sounds;
+//    std::map<std::string, sf::SoundBuffer> sounds;
 };
 
 

@@ -64,18 +64,18 @@ sf::Font &AssetManager::GetFont(const std::string &name){
     throw return_exception("Fonts", name);
 }
 
-void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &Filename){
-    sf::SoundBuffer temp;
-    if (temp.loadFromFile(Filename)){
-        sounds[name]=temp;
-    }
-    else{
-        throw load_exception("Sounds", name, Filename);
-    }
-}
-sf::SoundBuffer &AssetManager::GetSoundBuffer(const std::string &name) {
-    if (sounds.count(name)==1){
-        return sounds.at(name);
-    }
-    throw return_exception("Sounds", name);
-}
+//void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &Filename){
+//    sf::SoundBuffer temp;
+//    if (temp.loadFromFile(Filename)){
+//        sounds[name]=temp;
+//    }
+//    else{
+//        throw load_exception("Sounds", name, Filename);
+//    }
+//}
+//sf::SoundBuffer &AssetManager::GetSoundBuffer(const std::string &name) {
+//    if (sounds.count(name)==1){
+//        return sounds.at(name);
+//    }
+//    throw return_exception("Sounds", name);
+//}

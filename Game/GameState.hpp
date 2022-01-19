@@ -1,7 +1,5 @@
-//
-// Created by stephan on 18-1-2022.
-//
 
+#include "stick_to_wall.hpp"
 #ifndef PROJECT_GAME_GAMESTATE_HPP
 #define PROJECT_GAME_GAMESTATE_HPP
 

@@ -10,5 +10,7 @@
 #define GAME_TITLE "Platformer groep 6"
 #define FRAMERATE 60
 
+//#define ENABLE_SOUND
+//#define ENABLE_FONT
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

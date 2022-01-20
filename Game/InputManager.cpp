@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #include "InputManager.hpp"
 bool InputManager::IsButtonPressed(sf::Sprite object, sf::Keyboard::Key key) {
     return sf::Keyboard::isKeyPressed(key);

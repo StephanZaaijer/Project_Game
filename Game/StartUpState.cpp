@@ -1,6 +1,7 @@
 #include "StartUpState.hpp"
+#include <utility>
 
-StarUpState::StarUpState(GameDataReference data) : game_data(data) {}
+StarUpState::StarUpState(GameDataReference data) : game_data(std::move(data)) {}
 
 void StarUpState::Init() {
     game_data->assets.loadTextureFromFile("StartUp State Background", "Assets/StartupBackground.png");

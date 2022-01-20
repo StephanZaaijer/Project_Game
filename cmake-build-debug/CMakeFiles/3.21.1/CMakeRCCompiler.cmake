@@ -1,4 +1,4 @@
-set(CMAKE_RC_COMPILER "D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/windres.exe")
+set(CMAKE_RC_COMPILER "D:/SOFTWARE_TI/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/windres.exe")
 set(CMAKE_RC_COMPILER_ARG1 "")
 set(CMAKE_RC_COMPILER_LOADED 1)
 set(CMAKE_RC_SOURCE_FILE_EXTENSIONS rc;RC)

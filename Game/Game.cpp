@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #include "Game.hpp"
 #include "StartUpState.hpp"
 Game::Game(const int &screen_width, const int &screen_height, const std::string &game_title) {

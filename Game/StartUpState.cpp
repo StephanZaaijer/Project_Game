@@ -1,4 +1,5 @@
 #include "StartUpState.hpp"
+#include "SoundSettingsState.hpp"
 #include "MainGameState.hpp"
 StartUpState::StartUpState(GameDataReference data) : game_data(data) {}
 
@@ -20,7 +21,6 @@ void StartUpState::Init() {
 
 void StartUpState::HandleInput() {
     sf::Event event;
-
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
@@ -29,9 +29,9 @@ void StartUpState::HandleInput() {
 }
 
 void StartUpState::Update(float delta) {
-    std::cout<<"start up";
     if (_clock.getElapsedTime().asSeconds() > 3) {
-        game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)));
+      game_data->machine.AddGameState(
+          GameStateReference(new SoundSettingsState(game_data)), false);
     }
 }
 

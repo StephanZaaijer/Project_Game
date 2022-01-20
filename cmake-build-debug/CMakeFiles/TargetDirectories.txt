@@ -1,0 +1,5 @@
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/Game.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/edit_cache.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/rebuild_cache.dir

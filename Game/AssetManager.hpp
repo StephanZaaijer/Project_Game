@@ -19,12 +19,13 @@ public:
     void loadTextureFromFile(const std::string &name, const std::string &Filename);
     sf::Texture &GetTexture(const std::string &name);
 
+
   #ifdef ENABLE_FONT
         void loadFontFromFile(const std::string &name, const std::string &Filename);
         sf::Font &GetFont(const std::string &name);
     #endif //ENABLE_FONT
 
-    #ifdef ENABLE_SOUND
+  #ifdef ENABLE_SOUND
         void loadSoundBufferFromFile(const std::string &name, const std::string &Filename);
         sf::SoundBuffer &GetSoundBuffer(const std::string &name);
     #endif //ENABLE_SOUND

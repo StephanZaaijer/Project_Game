@@ -17,15 +17,17 @@ private:
   sf::Sprite _soundButton;
   sf::Sprite _backButton;
   sf::Sprite _settingsText;
+  bool music = true; //TODO Change this to music/ sound class, and settings file?
+  bool sound = true; //TODO keep changes when pressed on back
 
 
 public:
   SoundSettingsState(GameDataReference data);
 
-  void Init();
-  void HandleInput();
-  void Update(float delta);
-  void Draw(float delta);
+  void Init() override;
+  void HandleInput() override;
+  void Update(float delta) override;
+  void Draw(float delta) override;
 };
 
 

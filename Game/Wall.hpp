@@ -4,6 +4,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+#include "Definitions.hpp"
+#include <vector>
 
 #ifndef PROJECT_GAME_WALL_H
 #define PROJECT_GAME_WALL_H
@@ -14,6 +16,9 @@ private:
     std::vector<sf::RectangleShape> walls;
 public:
     Wall(GameDataReference data);
+    void spawn_Wall();
+    void move_Wall(sf::Vector2f new_position);
+
     void draw_Wall();
 };
 

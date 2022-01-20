@@ -3,7 +3,10 @@
 #include <SFML/Graphics.hpp>
 
 class InputManager {
-    bool IsButtonPressed(sf::Sprite object, sf::Keyboard::Key key);
+public:
+    bool IsKeyPressed(sf::Keyboard::Key key);
+    bool IsButtonPressed(sf::Mouse::Button button);
+    bool IsSpriteClicked(sf::Sprite sprite, sf::Mouse::Button button, sf::RenderWindow &window);
     sf::Vector2f GetMousePosition(sf::RenderWindow &window);
 };
 

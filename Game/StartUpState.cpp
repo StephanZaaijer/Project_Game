@@ -1,5 +1,6 @@
 #include "StartUpState.hpp"
 #include "SoundSettingsState.hpp"
+#include "MainGameState.hpp"
 #include <utility>
 
 StarUpState::StarUpState(GameDataReference data) : game_data(std::move(data)) {}
@@ -30,8 +31,9 @@ void StarUpState::HandleInput() {
 }
 
 void StarUpState::Update(float delta) {
-    if (_clock.getElapsedTime().asSeconds() > 0.1) {
-        game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), true);
+    if (_clock.getElapsedTime().asSeconds() > 3) {
+      game_data->machine.AddGameState(
+          GameStateReference(new SoundSettingsState(game_data)), false);
     }
 }
 

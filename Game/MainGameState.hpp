@@ -4,12 +4,12 @@
 #include <SFML/Graphics.hpp>
 #include "GameState.hpp"
 #include "Game.hpp"
-#include "stick_to_wall.hpp"
+#include "Character.hpp"
 
 class MainGameState : public GameState{
 private:
     GameDataReference game_data;
-    stick_to_wall *character;
+    Character *character;
 public:
     MainGameState(GameDataReference data);
     void Init() override;

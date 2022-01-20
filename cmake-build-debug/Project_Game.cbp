@@ -104,6 +104,12 @@
 		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/AssetManager.hpp">
 			<Option target="Game"/>
 		</Unit>
+		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/Character.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/Character.hpp">
+			<Option target="Game"/>
+		</Unit>
 		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/Game.cpp">
 			<Option target="Game"/>
 		</Unit>
@@ -122,6 +128,12 @@
 		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/MainGameState.hpp">
 			<Option target="Game"/>
 		</Unit>
+		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/StartUpState.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/StartUpState.hpp">
+			<Option target="Game"/>
+		</Unit>
 		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/StateMachine.cpp">
 			<Option target="Game"/>
 		</Unit>
@@ -135,12 +147,6 @@
 			<Option target="Game"/>
 		</Unit>
 		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/main.cpp">
-			<Option target="Game"/>
-		</Unit>
-		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/stick_to_wall.cpp">
-			<Option target="Game"/>
-		</Unit>
-		<Unit filename="C:/Users/nickt/School_project/Project_Game/Game/stick_to_wall.hpp">
 			<Option target="Game"/>
 		</Unit>
 		<Unit filename="C:/Users/nickt/School_project/Project_Game/cmake-build-debug/HCT/Game/FAKE_FILE_TO_TRICK_CMAKE_INTO_RUNNING_COMMAND_PRE_BUILD.txt">

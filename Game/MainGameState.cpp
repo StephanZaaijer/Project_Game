@@ -6,8 +6,8 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
-    game_data->assets.loadTextureFromFile("character ", CHARACTER_FRAME_1_FILEPATH);
-    character = new stick_to_wall(game_data);
+    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
+    character = new Character(game_data);
 }
 
 void MainGameState::HandleInput(){
@@ -17,11 +17,14 @@ void MainGameState::HandleInput(){
         if(sf::Event::Closed == event.type){
             game_data -> window.close();
         }
+        if(game_data->input.IsSpriteClicked(_background, sf::Mouse::Left, game_data->window)){
+            character->Tap();
+        }
     }
 }
 
 void MainGameState::Update( float delta ){
-
+    character->Update(delta);
 }
 
 void MainGameState::Draw( float delta ){

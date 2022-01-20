@@ -47,8 +47,10 @@ cmake-build-debug/**
 
 # Visual studio code
 .vs/**
+*.pdb
 *.sln
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 readme/
+x64/

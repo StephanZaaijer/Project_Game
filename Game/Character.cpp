@@ -14,7 +14,6 @@ Character::Character(GameDataReference data): game_data(data){
 }
 void Character::Draw() {
     game_data->window.draw(_characterSprite);
-    game_data->window.display();
 }
 void Character::Update(float dt) {
     if (CHARACTER_STATE_FALLING == _characterState){

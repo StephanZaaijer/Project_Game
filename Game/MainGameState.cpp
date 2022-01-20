@@ -19,7 +19,7 @@ void MainGameState::HandleInput(){
             game_data -> window.close();
         }
     }
-    if(game_data->input.IsSpriteClicked(character->GetSprite(), sf::Mouse::Button::Left, game_data->window)){
+    if(game_data->input.IsSpriteClicked(character->GetSprite(), sf::Mouse::Button::Left, game_data->window())){
             character->Tap();
     }
 

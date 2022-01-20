@@ -11,5 +11,7 @@
 #define FRAMERATE 60
 #define CHARACTER_FRAME_1_FILEPATH "../img/character.jpg"
 
+//#define ENABLE_SOUND
+//#define ENABLE_FONT
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

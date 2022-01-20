@@ -1,14 +1,20 @@
+//
+// Created by Franky on 19-1-2022.
+//
+
 #ifndef PROJECT_GAME_MAINGAMESTATE_HPP
 #define PROJECT_GAME_MAINGAMESTATE_HPP
 
 #include <SFML/Graphics.hpp>
 #include "GameState.hpp"
 #include "Game.hpp"
+#include "Wall.hpp"
 #include "Character.hpp"
 
 class MainGameState : public GameState{
 private:
     GameDataReference game_data;
+    Wall *wall;
     Character *character;
 public:
     MainGameState(GameDataReference data);

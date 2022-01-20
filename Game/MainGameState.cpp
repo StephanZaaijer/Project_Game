@@ -1,11 +1,15 @@
-#include "MainGameState.hpp"
+//
+// Created by Franky on 19-1-2022.
+//
 
+#include "MainGameState.hpp"
 
 MainGameState::MainGameState(GameDataReference data):
     game_data (data)
 {}
 
 void MainGameState::Init(){
+    wall = new Wall(game_data);
     game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
     character = new Character(game_data);
 }
@@ -17,14 +21,19 @@ void MainGameState::HandleInput(){
         if(sf::Event::Closed == event.type){
             game_data -> window.close();
         }
-        if(game_data->input.IsSpriteClicked(_background, sf::Mouse::Left, game_data->window)){
+    }
+    if(game_data->input.IsSpriteClicked(_background, sf::Mouse::Left, game_data->window)){
             character->Tap();
-        }
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        wall ->spawn_Wall();
     }
 }
 
 void MainGameState::Update( float delta ){
     character->Update(delta);
+    wall -> move_Wall(sf::Vector2f(0, 3));
 }
 
 void MainGameState::Draw( float delta ){
@@ -32,5 +41,7 @@ void MainGameState::Draw( float delta ){
 
     // draw something
     character->Draw();
+    game_data-> window.setTitle("Main Game State");
+    wall -> draw_Wall();
     game_data -> window.display();
 }

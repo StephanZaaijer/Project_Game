@@ -21,6 +21,9 @@ private:
     sf::Clock _clock;
     sf::Texture _backgroundTexture;
     sf::Sprite _background;
+    sf::Sprite _logo;
+    sf::Sprite _title;
+    sf::Sprite _banner;
 
 public:
     StartUpState(GameDataReference data);

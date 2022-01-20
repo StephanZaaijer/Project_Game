@@ -1,7 +1,3 @@
-//
-// Created by coenc on 20/01/2022.
-//
-
 #ifndef PROJECT_GAME_ICONARRAY_HPP
 #define PROJECT_GAME_ICONARRAY_HPP
 

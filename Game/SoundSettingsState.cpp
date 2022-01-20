@@ -6,18 +6,18 @@ SoundSettingsState::SoundSettingsState(GameDataReference data)
 
 void SoundSettingsState::Init() {
     game_data->assets.loadTextureFromFile("Sound Settings Background",
-                                          "Assets/SoundSettingsBackground.png");
+                                          SOUND_SETTINGS_BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("Music Button Green",
-                                          "Assets/MusicButtonGreen.png");
+                                          MUSIC_BUTTON_GREEN_PATH);
     game_data->assets.loadTextureFromFile("Music Button Red",
-                                          "Assets/MusicButtonRed.png");
+                                          MUSIC_BUTTON_RED_PATH);
     game_data->assets.loadTextureFromFile("Sound Button Green",
-                                          "Assets/SoundButtonGreen.png");
+                                          SOUND_BUTTON_GREEN_PATH);
     game_data->assets.loadTextureFromFile("Sound Button Red",
-                                          "Assets/SoundButtonRed.png");
-    game_data->assets.loadTextureFromFile("Back Button", "Assets/BackButton.png");
+                                          SOUND_BUTTON_RED_PATH);
+    game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Settings Banner",
-                                          "Assets/SettingsBanner.png");
+                                          SETTINGS_BANNER_PATH);
 
     _background.setTexture(
             this->game_data->assets.GetTexture("Sound Settings Background"));
@@ -35,10 +35,8 @@ void SoundSettingsState::Init() {
     game_data->sound ? _soundButton.setTexture(this->game_data->assets.GetTexture("Sound Button Green")): _soundButton.setTexture(
             this->game_data->assets.GetTexture("Sound Button Red"));
 
-    _backButton.setPosition(
-            SCREEN_WIDTH / 2 - (_backButton.getGlobalBounds().width / 2),
-            SCREEN_HEIGHT - (_backButton.getGlobalBounds().height *
-                             1.1)); // TODO times ?? for good placement
+    _backButton.setPosition(SCREEN_WIDTH / 2 - (_backButton.getGlobalBounds().width / 2),
+            SCREEN_HEIGHT - (_backButton.getGlobalBounds().height * 1.1));
     _musicButton.setPosition(
             SCREEN_WIDTH / 2 - (_musicButton.getGlobalBounds().width / 2),
             SCREEN_HEIGHT - (_musicButton.getGlobalBounds().height * 2.1));
@@ -56,25 +54,20 @@ void SoundSettingsState::HandleInput() {
         if (event.type == sf::Event::Closed) {
             game_data->window.close();
         }
-        if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left,
-                                             game_data->window)) {
+        if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left,game_data->window)) {
             game_data->machine.RemoveGameState();
         }
-        if (game_data->input.IsSpriteClicked(_musicButton, sf::Mouse::Left,
-                                             game_data->window)) {
+        if (game_data->input.IsSpriteClicked(_musicButton, sf::Mouse::Left,game_data->window)) {
             // TODO actually turn off music
             if (game_data->music) {
-                _musicButton.setTexture(
-                        this->game_data->assets.GetTexture("Music Button Red"));
+                _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Red"));
                 game_data->music = false;
             } else {
-                _musicButton.setTexture(
-                        this->game_data->assets.GetTexture("Music Button Green"));
+                _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Green"));
                 game_data->music = true;
             }
         }
-        if (game_data->input.IsSpriteClicked(_soundButton, sf::Mouse::Left,
-                                             game_data->window)) {
+        if (game_data->input.IsSpriteClicked(_soundButton, sf::Mouse::Left,game_data->window)) {
             // TODO actually turn off sound
             if (game_data->sound) {
                 _soundButton.setTexture(

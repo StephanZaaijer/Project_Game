@@ -1,14 +1,10 @@
-//
-// Created by Franky on 19-1-2022.
-//
+#ifndef PROJECT_GAME_WALL_H
+#define PROJECT_GAME_WALL_H
 
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 #include "Definitions.hpp"
 #include <vector>
-
-#ifndef PROJECT_GAME_WALL_H
-#define PROJECT_GAME_WALL_H
 
 class Wall {
 private:

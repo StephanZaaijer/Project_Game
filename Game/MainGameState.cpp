@@ -29,7 +29,6 @@ void MainGameState::HandleInput(){
 }
 
 void MainGameState::Update( float delta ){
-    std::cout<<"main up";
     character->Update(delta);
     wall -> move_Wall(sf::Vector2f(0, 3));
 }

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project_Game"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\HCT\;CMake Files\..\HCT\Target_Maker\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/HU/TI_Software/Project_Game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/HU/TI_Software/Project_Game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/HU/TI_Software/Project_Game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Game">
+				<Option output="D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/Game.dir/Game.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Python36/include"/>
+					<Add directory="D:/HU/TI_Software/hwlib/library"/>
+					<Add directory="D:/HU/TI_Software/Catch2/single_include"/>
+					<Add directory="D:/HU/TI_Software/Catch2/single_include/catch2"/>
+					<Add directory="D:/HU/TI_Software/boost_1_69_0"/>
+					<Add directory="D:/HU/TI_Software/SFML-2.5.1-32/include"/>
+					<Add directory="D:/HU/TI_Software/bmptk"/>
+					<Add directory="D:/HU/TI_Software/bmptk/targets"/>
+					<Add directory="D:/HU/TI_Software/Project_Game/Game"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 Game"/>
+					<CompileFile command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Game/fast">
+				<Option output="D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/Game.dir/Game.objlib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Python36/include"/>
+					<Add directory="D:/HU/TI_Software/hwlib/library"/>
+					<Add directory="D:/HU/TI_Software/Catch2/single_include"/>
+					<Add directory="D:/HU/TI_Software/Catch2/single_include/catch2"/>
+					<Add directory="D:/HU/TI_Software/boost_1_69_0"/>
+					<Add directory="D:/HU/TI_Software/SFML-2.5.1-32/include"/>
+					<Add directory="D:/HU/TI_Software/bmptk"/>
+					<Add directory="D:/HU/TI_Software/bmptk/targets"/>
+					<Add directory="D:/HU/TI_Software/Project_Game/Game"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 Game/fast"/>
+					<CompileFile command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/HU/TI_Software/i686-7.3.0-release-posix-dwarf-rt_v5-rev0/mingw32/bin/mingw32-make.exe -f &quot;D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/AssetManager.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/AssetManager.hpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/Game.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/Game.hpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/InputManager.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/InputManager.hpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/StateMachine.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/StateMachine.hpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/Game/main.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/FAKE_FILE_TO_TRICK_CMAKE_INTO_RUNNING_COMMAND_PRE_BUILD.txt">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/cmake-build-debug/HCT/Game/FAKE_FILE_TO_TRICK_CMAKE_INTO_RUNNING_COMMAND_PRE_BUILD.txt.rule">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/hwlib/library/hwlib.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/hwlib/library/hwlib.hpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/../HCT/HCT.cmake">
+			<Option virtualFolder="CMake Files\..\HCT\"/>
+		</Unit>
+		<Unit filename="D:/HU/TI_Software/Project_Game/../HCT/Target_Maker/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\..\HCT\Target_Maker\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

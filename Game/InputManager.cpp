@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #include "InputManager.hpp"
 bool InputManager::IsKeyPressed(const sf::Keyboard::Key &key){
     return sf::Keyboard::isKeyPressed(key);
@@ -10,6 +6,7 @@ bool InputManager::IsKeyPressed(const sf::Keyboard::Key &key){
 bool InputManager::IsButtonPressed(const sf::Mouse::Button &button){
     return sf::Mouse::isButtonPressed(button);
 }
+
 
 bool InputManager::IsSpriteClicked(const sf::Sprite &sprite, const sf::Mouse::Button &button, sf::RenderWindow& window) {
     if (sf::Mouse::isButtonPressed(button)) {

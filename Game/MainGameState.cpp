@@ -1,7 +1,3 @@
-//
-// Created by Franky on 19-1-2022.
-//
-
 #include "MainGameState.hpp"
 
 MainGameState::MainGameState(GameDataReference data):

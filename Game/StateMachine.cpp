@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #include "StateMachine.hpp"
 
 void StateMachine::AddGameState(GameStateReference newState, bool isReplacing) {

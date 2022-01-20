@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #include "AssetManager.hpp"
 
 class load_exception: public std::exception{

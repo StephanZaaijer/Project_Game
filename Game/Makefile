@@ -9,7 +9,7 @@
 #############################################################################
 
 # source files in this project (main.cpp is automatically assumed)
-SOURCES := AssetManager.cpp Game.cpp InputManager.cpp StateMachine.cpp Wall.cpp StartUpState.cpp
+SOURCES := AssetManager.cpp Game.cpp InputManager.cpp StateMachine.cpp Wall.cpp MainGameState.cpp StartUpState.cpp
 
 # header files in this project
 HEADERS := AssetManager.hpp Definitions.hpp Game.hpp GameState.hpp InputManager.hpp StateMachine.hpp MainGameState.hpp Wall.hpp StartUpState.hpp

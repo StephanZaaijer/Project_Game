@@ -1,5 +1,5 @@
 #include "StartUpState.hpp"
-
+#include "MainGameState.hpp"
 StarUpState::StarUpState(GameDataReference data) : game_data(data) {}
 
 void StarUpState::Init() {
@@ -30,7 +30,7 @@ void StarUpState::HandleInput() {
 
 void StarUpState::Update(float delta) {
     if (_clock.getElapsedTime().asSeconds() > 3) {
-        std::cout << "Go to Main Menu" << std::endl;
+        game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)));
     }
 }
 

@@ -3,10 +3,10 @@
 StarUpState::StarUpState(GameDataReference data) : game_data(data) {}
 
 void StarUpState::Init() {
-    game_data->assets.loadTextureFromFile("StartUp State Background", "Assets/StartupBackground.png");
-    game_data->assets.loadTextureFromFile("StartUp State Image", "Assets/StartUpImage.png");
-    game_data->assets.loadTextureFromFile("StartUp State Banner", "Assets/JuuJuuBanner.png");
-    game_data->assets.loadTextureFromFile("StartUp State groep6 Banner", "Assets/Groep6Banner.png");
+    game_data->assets.loadTextureFromFile("StartUp State Background", BACKGROUND_PATH);
+    game_data->assets.loadTextureFromFile("StartUp State Image", GAME_IMAGE_PATH);
+    game_data->assets.loadTextureFromFile("StartUp State Banner", GAME_TITLE_PATH);
+    game_data->assets.loadTextureFromFile("StartUp State groep6 Banner", GROEP_6_BANNER);
 
     _background.setTexture(this->game_data->assets.GetTexture("StartUp State Background"));
     _logo.setTexture(this->game_data->assets.GetTexture("StartUp State Image"));
@@ -29,8 +29,9 @@ void StarUpState::HandleInput() {
 }
 
 void StarUpState::Update(float delta) {
-    if (_clock.getElapsedTime().asSeconds() > 3) {
+    if (_clock.getElapsedTime().asSeconds() > START_UP_TIME) {
         std::cout << "Go to Main Menu" << std::endl;
+        game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
     }
 }
 

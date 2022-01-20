@@ -38,8 +38,16 @@ void MainMenuState::HandleInput() {
             game_data->window.close();
         }
 
-        if(game_data->input.IsButtonPressed(_exitButton, sf::Mouse::Left)){
-            std::cout<<"test";
+        if(game_data->input.IsSpriteClicked( _exitButton, sf::Mouse::Left, game_data->window )){
+            game_data->window.close();
+        }
+
+        if(game_data->input.IsSpriteClicked( _settingsButton, sf::Mouse::Left, game_data->window )){
+            //game_data->machine.AddGameState(SettingsState(new MainGaimState(game_data)), true);
+        }
+
+        if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
+            //game_data->machine.AddGameState(GameStateReference(new MainGaimState(game_data)), true);
         }
     }
 }

@@ -12,6 +12,8 @@ struct GameData{
     sf::RenderWindow window;
     AssetManager assets;
     InputManager input;
+    bool sound = true; //TODO read from json
+    bool music = true; //TODO read from json
 };
 typedef std::shared_ptr<GameData> GameDataReference;
 

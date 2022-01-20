@@ -2,7 +2,7 @@
 // Created by Franky on 19-1-2022.
 //
 
-#include "Wall.h"
+#include "Wall.hpp"
 
 Wall::Wall(GameDataReference data):
     game_data (data)

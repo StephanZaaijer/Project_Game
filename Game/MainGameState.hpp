@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameState.hpp"
 #include "Game.hpp"
-#include "Wall.h"
+#include "Wall.hpp"
 
 class MainGameState : public GameState{
 private:

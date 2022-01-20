@@ -31,12 +31,23 @@
 *.out
 *.app
 
+# Clion
 .idea/**
+
+# CMake
 CMakeLists.txt
 cmake-build-debug/**
 
+# bmptk-make
 **/_cpp_flags
 **/_linker_flags
 **/_linker_libs
 **/test
 **/Makefile.HCT
+
+# Visual studio code
+.vs/**
+*.sln
+*.vcxproj
+*.vcxproj.filters
+readme/

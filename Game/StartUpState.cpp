@@ -1,11 +1,9 @@
 #include "StartUpState.hpp"
-#include "SoundSettingsState.hpp"
-#include "MainGameState.hpp"
 #include <utility>
 
-StarUpState::StarUpState(GameDataReference data) : game_data(std::move(data)) {}
+StartUpState::StartUpState(GameDataReference data) : game_data(std::move(data)) {}
 
-void StarUpState::Init() {
+void StartUpState::Init() {
     game_data->assets.loadTextureFromFile("StartUp State Background", "Assets/StartupBackground.png");
     game_data->assets.loadTextureFromFile("StartUp State Image", "Assets/StartUpImage.png");
     game_data->assets.loadTextureFromFile("StartUp State Banner", "Assets/JuuJuuBanner.png");
@@ -21,7 +19,7 @@ void StarUpState::Init() {
     _banner.setPosition((SCREEN_WIDTH/2 - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
 }
 
-void StarUpState::HandleInput() {
+void StartUpState::HandleInput() {
     sf::Event event;
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
@@ -30,14 +28,13 @@ void StarUpState::HandleInput() {
     }
 }
 
-void StarUpState::Update(float delta) {
+void StartUpState::Update(float delta) {
     if (_clock.getElapsedTime().asSeconds() > 3) {
-      game_data->machine.AddGameState(
-          GameStateReference(new SoundSettingsState(game_data)), false);
+      game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), false);
     }
 }
 
-void StarUpState::Draw(float delta) {
+void StartUpState::Draw(float delta) {
     game_data->window.clear();
     game_data->window.draw(_background);
     game_data->window.draw(_title);

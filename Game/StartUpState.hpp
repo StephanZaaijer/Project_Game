@@ -12,7 +12,7 @@
 
 
 
-class StarUpState : public GameState {
+class StartUpState : public GameState {
 private:
     GameDataReference game_data;
     sf::Clock _clock;
@@ -22,7 +22,7 @@ private:
     sf::Sprite _banner;
 
 public:
-    StarUpState(GameDataReference data);
+    StartUpState(GameDataReference data);
 
     void Init();
     void HandleInput();

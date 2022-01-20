@@ -3,6 +3,7 @@
 //
 
 #include "MainMenuState.hpp"
+#include "SoundSettingsState.hpp"
 
 MainMenuState::MainMenuState(GameDataReference data) : game_data(data) {}
 
@@ -43,11 +44,12 @@ void MainMenuState::HandleInput() {
         }
 
         if(game_data->input.IsSpriteClicked( _settingsButton, sf::Mouse::Left, game_data->window )){
-            //game_data->machine.AddGameState(SettingsState(new MainGaimState(game_data)), true);
+            game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
         }
 
         if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
-            //game_data->machine.AddGameState(GameStateReference(new MainGaimState(game_data)), true);
+            //game_data->machine.AddGameState(GameStateReference(new (game_data)), false);
+
         }
     }
 }

@@ -11,6 +11,14 @@
 #define FRAMERATE 60
 #define CHARACTER_FRAME_1_FILEPATH "../img/character.jpg"
 
+#define CHARACTER_STATE_STIL 1
+#define CHARACTER_STATE_FALLING 2
+#define CHARACTER_STATE_JUMPING 3
+
+#define GRAVITY 350.0f
+#define JUMPING_SPEED 350.0f
+
+#define JUMP_DURATION 0.25f
 //#define ENABLE_SOUND
 //#define ENABLE_FONT
 

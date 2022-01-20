@@ -1,8 +1,8 @@
 #include "StartUpState.hpp"
 #include "MainGameState.hpp"
-StarUpState::StarUpState(GameDataReference data) : game_data(data) {}
+StartUpState::StartUpState(GameDataReference data) : game_data(data) {}
 
-void StarUpState::Init() {
+void StartUpState::Init() {
     game_data->assets.loadTextureFromFile("StartUp State Background", "Assets/StartupBackground.png");
     game_data->assets.loadTextureFromFile("StartUp State Image", "Assets/StartUpImage.png");
     game_data->assets.loadTextureFromFile("StartUp State Banner", "Assets/JuuJuuBanner.png");
@@ -18,7 +18,7 @@ void StarUpState::Init() {
     _banner.setPosition((SCREEN_WIDTH/2 - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
 }
 
-void StarUpState::HandleInput() {
+void StartUpState::HandleInput() {
     sf::Event event;
 
     while (game_data->window.pollEvent(event)) {
@@ -28,13 +28,13 @@ void StarUpState::HandleInput() {
     }
 }
 
-void StarUpState::Update(float delta) {
+void StartUpState::Update(float delta) {
     if (_clock.getElapsedTime().asSeconds() > 3) {
         game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)));
     }
 }
 
-void StarUpState::Draw(float delta) {
+void StartUpState::Draw(float delta) {
     game_data->window.clear();
     game_data->window.draw(_background);
     game_data->window.draw(_title);

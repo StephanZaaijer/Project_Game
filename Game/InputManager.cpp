@@ -7,7 +7,7 @@ bool InputManager::IsKeyPressed(sf::Keyboard::Key key){
     return sf::Keyboard::isKeyPressed(key);
 }
 
-bool InputManager::IsButtonPressed(sf::Mouse::Button button){
+bool InputManager::IsButtonPressed(sf::Mouse::Button button, sf::Mouse::Button button1) {
     return sf::Mouse::isButtonPressed(button);
 }
 

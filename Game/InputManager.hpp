@@ -9,7 +9,7 @@
 class InputManager {
 public:
     bool IsKeyPressed(sf::Keyboard::Key key);
-    bool IsButtonPressed(sf::Mouse::Button button);
+    bool IsButtonPressed(sf::Mouse::Button button, sf::Mouse::Button button1);
     bool IsSpriteClicked(sf::Sprite sprite, sf::Mouse::Button button, sf::RenderWindow window);
     sf::Vector2f GetMousePosition(sf::RenderWindow &window);
 };

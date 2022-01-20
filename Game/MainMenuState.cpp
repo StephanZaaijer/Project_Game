@@ -1,19 +1,16 @@
-//
-// Created by coenc on 20/01/2022.
-//
-
 #include "MainMenuState.hpp"
 #include "SoundSettingsState.hpp"
+#include "MainGameState.hpp"
 
 MainMenuState::MainMenuState(GameDataReference data) : game_data(data) {}
 
 void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("MainMenu State Background", BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("MainMenu State Banner", GAME_TITLE_PATH);
-    game_data->assets.loadTextureFromFile("MainMenu State groep6 Banner", GROEP_6_BANNER);
-    game_data->assets.loadTextureFromFile("MainMenu Play Button", MAIN_MENU_PLAY_BUTTON);
-    game_data->assets.loadTextureFromFile("MainMenu Settings Button", MAIN_MENU_SETTINGS_BUTTON);
-    game_data->assets.loadTextureFromFile("MainMenu Exit Button", MAIN_MENU_EXIT_BUTTON);
+    game_data->assets.loadTextureFromFile("MainMenu State groep6 Banner", GROEP_6_BANNER_PATH);
+    game_data->assets.loadTextureFromFile("MainMenu Play Button", MAIN_MENU_PLAY_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("MainMenu Settings Button", MAIN_MENU_SETTINGS_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("MainMenu Exit Button", MAIN_MENU_EXIT_BUTTON_PATH);
 
     _background.setTexture(this->game_data->assets.GetTexture("MainMenu State Background"));
     _title.setTexture(this->game_data->assets.GetTexture("MainMenu State Banner"));
@@ -28,7 +25,6 @@ void MainMenuState::Init() {
     _exitButton.setPosition({_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2});
 
     _banner.setPosition((SCREEN_WIDTH/2 - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
-
 }
 
 void MainMenuState::HandleInput() {
@@ -48,8 +44,7 @@ void MainMenuState::HandleInput() {
         }
 
         if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
-            //game_data->machine.AddGameState(GameStateReference(new (game_data)), false);
-
+            game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
         }
     }
 }

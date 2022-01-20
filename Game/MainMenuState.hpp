@@ -1,7 +1,3 @@
-//
-// Created by coenc on 20/01/2022.
-//
-
 #ifndef PROJECT_GAME_MAINMENUSTATE_HPP
 #define PROJECT_GAME_MAINMENUSTATE_HPP
 
@@ -13,8 +9,6 @@
 #include "Game.hpp"
 #include "StateMachine.hpp"
 #include "MainMenuState.hpp"
-
-
 
 class MainMenuState : public GameState {
 private:
@@ -31,8 +25,11 @@ public:
     MainMenuState(GameDataReference data);
 
     void Init();
+
     void HandleInput();
+
     void Update(float delta);
+
     void Draw(float delta);
 };
 

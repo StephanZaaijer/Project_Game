@@ -10,8 +10,6 @@
 #include "Game.hpp"
 #include "MainMenuState.hpp"
 
-
-
 class StartUpState : public GameState {
 private:
     GameDataReference game_data;

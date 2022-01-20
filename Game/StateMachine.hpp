@@ -22,10 +22,6 @@ public:
     void ProcessGameStateChanges();
 
     GameStateReference &GetActiveGameState();
-
-
-
-
 };
 
 

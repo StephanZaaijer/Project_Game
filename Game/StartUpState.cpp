@@ -29,6 +29,7 @@ void StartUpState::HandleInput() {
 }
 
 void StartUpState::Update(float delta) {
+    std::cout<<"start up";
     if (_clock.getElapsedTime().asSeconds() > 3) {
         game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)));
     }

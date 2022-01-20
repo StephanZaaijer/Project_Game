@@ -19,6 +19,11 @@ private:
     GameDataReference game_data;
     sf::Clock _clock;
     sf::Sprite _background;
+    sf::Sprite _title;
+    sf::Sprite _banner;
+    sf::Sprite _playButton;
+    sf::Sprite _settingsButton;
+    sf::Sprite _exitButton;
 
 public:
     MainMenuState(GameDataReference data);

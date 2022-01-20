@@ -11,6 +11,7 @@
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
+#include "StateMachine.hpp"
 
 
 

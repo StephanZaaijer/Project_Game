@@ -37,6 +37,10 @@ void MainMenuState::HandleInput() {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
         }
+
+        if(game_data->input.IsButtonPressed(_exitButton, sf::Mouse::Left)){
+            std::cout<<"test";
+        }
     }
 }
 

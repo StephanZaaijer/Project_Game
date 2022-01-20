@@ -16,6 +16,8 @@ private:
   sf::Sprite _musicButton;
   sf::Sprite _soundButton;
   sf::Sprite _backButton;
+  sf::Sprite _settingsText;
+
 
 public:
   SoundSettingsState(GameDataReference data);

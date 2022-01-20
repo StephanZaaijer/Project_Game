@@ -12,13 +12,14 @@ public:
         void Draw();
         void Update(float dt);
         void Tap();
-        sf::Sprite GetSprite();
+        sf::Sprite & GetSprite();
 
 
 private:
         GameDataReference game_data;
         sf::Sprite _characterSprite;
 
+        int speed = FLYING_SPEED;
         sf::Clock _clock;
         sf::Clock _movementClock;
 

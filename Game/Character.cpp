@@ -14,10 +14,11 @@ void Character::Draw() {
 }
 
 void Character::Update(float dt) {
+
     if (CHARACTER_STATE_FALLING == _characterState) {
-        _characterSprite.move(FLYING_SPEED * dt, GRAVITY * dt);
+        _characterSprite.move(speed * dt, GRAVITY * dt);
     } else if (CHARACTER_STATE_JUMPING == _characterState) {
-        _characterSprite.move(FLYING_SPEED * dt, -JUMPING_SPEED * dt);
+        _characterSprite.move(speed * dt, -JUMPING_SPEED * dt);
     }
 
     if (_movementClock.getElapsedTime().asSeconds() > JUMP_DURATION) {
@@ -31,7 +32,7 @@ void Character::Tap() {
     _characterState = CHARACTER_STATE_JUMPING;
 }
 
-sf::Sprite Character::GetSprite() {
+sf::Sprite & Character::GetSprite() {
     return _characterSprite;
 }
 

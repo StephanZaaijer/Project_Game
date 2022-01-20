@@ -29,3 +29,6 @@ void Wall::draw_Wall(){
         game_data->window.draw(walls[i]);
     }
 }
+std::vector<sf::RectangleShape> & Wall::GetWall() {
+    return walls ;
+}

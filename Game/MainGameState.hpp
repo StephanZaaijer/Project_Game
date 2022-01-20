@@ -19,7 +19,7 @@ private:
 public:
     MainGameState(GameDataReference data);
     void Init() override;
-
+    bool CollisionDetection(sf::Sprite & object1, sf::Sprite & object2);
     void HandleInput() override;
     void Update( float delta ) override;
     void Draw( float delta ) override;

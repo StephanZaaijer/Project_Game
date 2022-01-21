@@ -12,7 +12,7 @@
 SOURCES := AssetManager.cpp Game.cpp InputManager.cpp StateMachine.cpp MainGameState.cpp Wall.cpp SoundSettingsState.cpp StartupState.cpp MainMenuState.cpp GameOverState.cpp Character.cpp JsonManager.cpp jsoncpp.cpp
 
 # header files in this project
-HEADERS := AssetManager.hpp Definitions.hpp Game.hpp GameState.hpp InputManager.hpp StateMachine.hpp MainGameState.hpp Wall.hpp SoundSettingsState.hpp StartupState.hpp MainMenuState.hpp GameOverState.hpp Character.hpp JsonManager.hpp json.h json-forwards.h
+HEADERS := AssetManager.hpp Definitions.hpp Game.hpp GameState.hpp InputManager.hpp StateMachine.hpp MainGameState.hpp Wall.hpp SoundSettingsState.hpp StartupState.hpp MainMenuState.hpp GameOverState.hpp Character.hpp JsonManager.hpp json.h json-forwards.h  Exceptions.hpp
 
 # other places to look for files for this project
 SEARCH  := ../Library/JSON/json ../Library/JSON

@@ -1,5 +1,7 @@
 #include "JsonManager.hpp"
 #include <iostream>
+#include "Exceptions.hpp"
+
 JsonManager::JsonManager(std::string Gamefile):
 	Gamefile(Gamefile)
 {
@@ -16,7 +18,6 @@ void JsonManager::Get_data() {
 		json_data["Audio"]["Musiclevel"].asInt(),
 		json_data["Score"]["Highscore"].asInt(),
 	};
-	std::cout << json_data<<'\n';
 }
 
 bool JsonManager::Get_Soundstate() {
@@ -90,12 +91,13 @@ Json::Value JsonManager::Get_Json_from_file() {
 	Json::Value json_data;
 	Json::CharReaderBuilder builder;
 	Inputfile.open(Gamefile);
-
+	if (!Inputfile.is_open()) {
+		throw open_file_exception(Gamefile);
+	}
 	builder["collectComments"] = true;
 	JSONCPP_STRING errs;
 	if (!parseFromStream(builder, Inputfile, &json_data, &errs)) {
-		json_data.clear();
-		return json_data;
+		throw invalid_json_exception(errs);
 	}
 	Inputfile.close();
 	return json_data;
@@ -104,6 +106,9 @@ Json::Value JsonManager::Get_Json_from_file() {
 void JsonManager::Write_Json_to_file() {
 	std::ofstream Outputfile;
 	Outputfile.open(Gamefile);
+	if (!Outputfile.is_open()) {
+		throw open_file_exception(Gamefile);
+	}
 	Outputfile << json_data;
 	Outputfile.close();
 }

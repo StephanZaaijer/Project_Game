@@ -11,8 +11,9 @@ public:
         Character(GameDataReference data);
         void Draw();
         void Update(float dt);
+        void Collide();
         void Tap();
-        sf::Sprite & GetSprite();
+        sf::FloatRect GetSprite();
 
 
 private:

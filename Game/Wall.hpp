@@ -13,12 +13,12 @@
 class Wall {
 private:
     GameDataReference game_data;
-    std::vector<sf::RectangleShape> walls;
+    std::vector<sf::RectangleShape*> walls;
 public:
     Wall(GameDataReference data);
     void spawn_Wall();
     void move_Wall(sf::Vector2f new_position);
-    std::vector<sf::RectangleShape> & GetWall();
+    std::vector<sf::RectangleShape*> & GetWall();
     void draw_Wall();
 };
 

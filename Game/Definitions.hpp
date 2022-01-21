@@ -17,7 +17,7 @@
 
 #define GRAVITY 200.0f
 #define JUMPING_SPEED 200.0f
-#define FLYING_SPEED 300.0f
+#define FLYING_SPEED 100.0f
 #define JUMP_DURATION 0.50f
 //#define ENABLE_SOUND
 //#define ENABLE_FONT

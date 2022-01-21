@@ -31,8 +31,11 @@ void Character::Tap() {
     _movementClock.restart();
     _characterState = CHARACTER_STATE_JUMPING;
 }
-
-sf::Sprite & Character::GetSprite() {
-    return _characterSprite;
+void Character::Collide(){
+    speed = speed * -1;
 }
+sf::FloatRect Character::GetSprite() {
+    return _characterSprite.getGlobalBounds();
+}
+
 

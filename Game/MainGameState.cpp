@@ -4,12 +4,20 @@
 MainGameState::MainGameState(GameDataReference data):
     game_data (data)
 {}
-bool MainGameState::CollisionDetection(sf::Sprite &object1, sf::Sprite &object2) {
-    if(object1.getGlobalBounds().intersects(object2.getGlobalBounds())){
+bool MainGameState::CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2) {
+    if(object1.intersects(object2)){
         return true;
     }
     return false;
 }
+
+bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect object2) {
+    if(object1.intersects(object2)){
+        return true;
+    }
+    return false;
+}
+
 
 void MainGameState::Init(){
     wall = new Wall(game_data);
@@ -35,9 +43,9 @@ void MainGameState::HandleInput(){
 }
 
 void MainGameState::Update( float delta ){
-    for ( auto wallSprite : wall->GetWall()) {
-        if(CollisionDetection(character->GetSprite(),wallSprite.getGlobalBounds())){
-
+    for ( auto *wallSprite : wall->GetWall()) {
+        if(CollisionDetection(character->GetSprite(), wallSprite->getGlobalBounds())){
+            character->Collide();
         }
     }
     character->Update(delta);

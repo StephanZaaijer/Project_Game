@@ -8,9 +8,7 @@ JsonManager::JsonManager(std::string Gamefile):
 }
 
 void JsonManager::Get_data() {
-	if (json_data == NULL){
-		json_data = Get_Json_from_file();
-	}
+	json_data = Get_Json_from_file();
 	data = {
 		json_data["Audio"]["Sound"].asBool(),
 		json_data["Audio"]["Soundlevel"].asInt(),

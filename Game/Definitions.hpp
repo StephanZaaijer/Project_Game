@@ -32,6 +32,9 @@
 #define JUMPING_SPEED 350.0f
 
 #define JUMP_DURATION 0.25f
+
+#define GAME_FILE "Game.json"
+
 //#define ENABLE_SOUND
 //#define ENABLE_FONT
 

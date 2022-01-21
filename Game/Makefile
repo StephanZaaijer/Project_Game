@@ -12,7 +12,7 @@
 SOURCES := AssetManager.cpp Game.cpp InputManager.cpp StateMachine.cpp MainGameState.cpp Wall.cpp SoundSettingsState.cpp StartupState.cpp MainMenuState.cpp GameOverState.cpp
 
 # header files in this project
-HEADERS := AssetManager.hpp Definitions.hpp Game.hpp GameState.hpp InputManager.hpp StateMachine.hpp MainGameState.hpp Wall.hpp SoundSettingsState.hpp StartupState.hpp MainMenuState.hpp GameOverState.hpp
+HEADERS := AssetManager.hpp Definitions.hpp Game.hpp GameState.hpp InputManager.hpp StateMachine.hpp MainGameState.hpp Wall.hpp SoundSettingsState.hpp StartupState.hpp MainMenuState.hpp GameOverState.hpp Exceptions.hpp
 
 # other places to look for files for this project
 SEARCH  :=

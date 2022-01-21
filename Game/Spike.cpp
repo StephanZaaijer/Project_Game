@@ -28,5 +28,10 @@ void Spike::move(sf::Vector2f move_by){
 }
 void Spike::draw(){
     std::cout << "draw triangle" << std::endl;
-    game_data->window.draw(Triangle);
+    std::cout << Triangle.getRadius() << std::endl;
+    std::cout << Triangle.getPointCount () << std::endl;
+    std::cout << Triangle.getPosition().x << std::endl;
+    std::cout << Triangle.getPosition().y << std::endl;
+    game_data -> window.draw(Triangle);
+    std::cout << "draw succes" << std::endl;
 }

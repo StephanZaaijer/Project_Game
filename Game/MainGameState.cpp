@@ -41,7 +41,8 @@ void MainGameState::Draw( float delta ){
     game_data -> window.clear();
     game_data-> window.setTitle("Main Game State");
     game_data-> window.draw(background);
-    obstacles_container -> draw_Obstacle();
     wall -> draw_Wall();
+    obstacles_container -> draw_Obstacle();
+    std::cout << "Done draw" << std::endl;
     game_data -> window.display();
 }

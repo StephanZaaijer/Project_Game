@@ -3,8 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "Definitions.hpp"
 
-
-
 class InputManager {
 public:
     bool IsKeyPressed(const sf::Keyboard::Key &key);

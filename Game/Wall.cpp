@@ -9,18 +9,20 @@ Wall::Wall(GameDataReference data):
 {}
 
 void Wall::spawn_Wall(){
+
     sf::RectangleShape rectangle;
-    rectangle.setSize(sf::Vector2f(30, 250));
+    rectangle.setSize(sf::Vector2f(50, 390));
     rectangle.setPosition(sf::Vector2f(
             SCREEN_WIDTH / 2 - rectangle.getSize().x / 2,
             0 - rectangle.getSize().y));
-    rectangle.setFillColor(sf::Color::White);
+    rectangle.setFillColor(sf::Color::Green
+    );
     walls.push_back(rectangle);
 }
 
-void Wall::move_Wall(sf::Vector2f new_position){
+void Wall::move_Wall(sf::Vector2f move_by){
     for(unsigned int i = 0; i < walls.size(); i++){
-        walls[i].move(new_position);
+        walls[i].move(move_by);
     }
 }
 

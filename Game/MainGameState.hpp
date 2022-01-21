@@ -6,14 +6,18 @@
 #define PROJECT_GAME_MAINGAMESTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include "AssetManager.hpp"
 #include "GameState.hpp"
 #include "Game.hpp"
 #include "Wall.hpp"
+#include "ObstaclesContainer.hpp"
 
 class MainGameState : public GameState{
 private:
     GameDataReference game_data;
     Wall *wall;
+    sf::Sprite background;
+    Obstacle_Container *obstacles_container;
 
 public:
     MainGameState(GameDataReference data);

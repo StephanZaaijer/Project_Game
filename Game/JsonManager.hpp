@@ -26,9 +26,10 @@ public:
 	void Set_Highscore(int highscore);
 
 private:
+	bool start;
 	void Get_data();
 	JsonData data;
-	Json::Value json_data = NULL;
+	Json::Value json_data;
 	Json::Value Get_Json_from_file();
 	void Write_Json_to_file();
 	std::string Gamefile;

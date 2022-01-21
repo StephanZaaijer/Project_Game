@@ -19,6 +19,8 @@ void Character::Update(float dt) {
         _characterSprite.move(speed * dt, GRAVITY * dt);
     } else if (CHARACTER_STATE_JUMPING == _characterState) {
         _characterSprite.move(speed * dt, -JUMPING_SPEED * dt);
+    }else if(CHARACTER_STATE_STICK == _characterState){
+        _characterSprite.setPosition(_characterSprite.getPosition());
     }
 
     if (_movementClock.getElapsedTime().asSeconds() > JUMP_DURATION) {
@@ -33,8 +35,13 @@ void Character::Tap() {
 }
 void Character::Collide(bool spike){
     if(spike){
-
+        //go to game over state
     }else{
+        while(!game_data->input.IsButtonPressed(sf::Mouse::Left)){
+            _characterState = CHARACTER_STATE_STICK;
+        }
+
+        _characterState = CHARACTER_STATE_JUMPING;
         if (speed){
             _characterSprite.setPosition((_characterSprite.getPosition().x - 5),(_characterSprite.getPosition().y - 5));
         }else{

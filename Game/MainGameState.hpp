@@ -1,6 +1,3 @@
-//
-// Created by Franky on 19-1-2022.
-//
 
 #ifndef PROJECT_GAME_MAINGAMESTATE_HPP
 #define PROJECT_GAME_MAINGAMESTATE_HPP

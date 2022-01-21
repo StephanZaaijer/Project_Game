@@ -24,10 +24,10 @@ void SoundSettingsState::Init() {
     _settingsText.setOrigin(tmpRect.left + tmpRect.width/2,
                             tmpRect.top  + tmpRect.height/2);
 
-    game_data->music ? _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Green")): _musicButton.setTexture(
+    game_data->json.Get_Musicstate() ? _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Green")) : _musicButton.setTexture(
             this->game_data->assets.GetTexture("Music Button Red"));
 
-    game_data->sound ? _soundButton.setTexture(this->game_data->assets.GetTexture("Sound Button Green")): _soundButton.setTexture(
+    game_data->json.Get_Soundstate() ? _soundButton.setTexture(this->game_data->assets.GetTexture("Sound Button Green")): _soundButton.setTexture(
             this->game_data->assets.GetTexture("Sound Button Red"));
 
     _settingsText.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 8.0f);
@@ -52,24 +52,24 @@ void SoundSettingsState::HandleInput() {
         }
         if (game_data->input.IsSpriteClicked(_musicButton, sf::Mouse::Left,game_data->window)) {
             // TODO actually turn off music
-            if (game_data->music) {
+            if (game_data->json.Get_Musicstate()) {
                 _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Red"));
-                game_data->music = false;
+                game_data->json.Set_Musicstate(false);
             } else {
                 _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Green"));
-                game_data->music = true;
+                game_data->json.Set_Musicstate(true);
             }
         }
         if (game_data->input.IsSpriteClicked(_soundButton, sf::Mouse::Left,game_data->window)) {
             // TODO actually turn off sound
-            if (game_data->sound) {
+            if (game_data->json.Get_Soundstate()) {
                 _soundButton.setTexture(
                         this->game_data->assets.GetTexture("Sound Button Red"));
-                game_data->sound = false;
+                game_data->json.Set_Soundstate(false);
             } else {
                 _soundButton.setTexture(
                         this->game_data->assets.GetTexture("Sound Button Green"));
-                game_data->sound = true;
+                game_data->json.Set_Soundstate(true);
             }
         }
     }

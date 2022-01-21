@@ -1,4 +1,5 @@
 #include "MainGameState.hpp"
+#include <iostream>
 
 MainGameState::MainGameState(GameDataReference data):
     game_data (data)
@@ -6,6 +7,8 @@ MainGameState::MainGameState(GameDataReference data):
 
 void MainGameState::Init(){
     wall = new Wall(game_data);
+    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
+    character = new Character(game_data);
 }
 
 void MainGameState::HandleInput(){
@@ -16,17 +19,26 @@ void MainGameState::HandleInput(){
             game_data -> window.close();
         }
     }
+    if(game_data->input.IsSpriteClicked(character->GetSprite(), sf::Mouse::Button::Left, game_data->window)){
+            character->Tap();
+    }
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         wall ->spawn_Wall();
     }
 }
 
 void MainGameState::Update( float delta ){
+    std::cout<<"main up";
+    character->Update(delta);
     wall -> move_Wall(sf::Vector2f(0, 3));
 }
 
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
+
+    // draw something
+    character->Draw();
     game_data-> window.setTitle("Main Game State");
     wall -> draw_Wall();
     game_data -> window.display();

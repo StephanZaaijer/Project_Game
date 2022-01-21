@@ -11,13 +11,13 @@ void GameOverState::Init() {
 
     game_data->assets.loadFontFromFile("Bauhaus font", BAUHAUS_FONT_PATH);
 
-    _background.setTexture(this->game_data->assets.GetTexture("State Background"));
-    _restartButton.setTexture(this->game_data->assets.GetTexture("Restart Button"));
-    _mainMenuButton.setTexture(this->game_data->assets.GetTexture("Main Menu Button"));
+    _background.setTexture(game_data->assets.GetTexture("State Background"));
+    _restartButton.setTexture(game_data->assets.GetTexture("Restart Button"));
+    _mainMenuButton.setTexture(game_data->assets.GetTexture("Main Menu Button"));
 
-    _gameOverText.setFont(this->game_data->assets.GetFont("Bauhaus font"));
-    _score.setFont(this->game_data->assets.GetFont("Bauhaus font"));
-    _highscore.setFont(this->game_data->assets.GetFont("Bauhaus font"));
+    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _highscore.setFont( game_data->assets.GetFont("Bauhaus font"));
 
 
     _restartButton.setPosition(SCREEN_WIDTH - (_restartButton.getGlobalBounds().width * 2.9),

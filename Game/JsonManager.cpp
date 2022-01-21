@@ -63,7 +63,7 @@ void JsonManager::Set_Musicstate(bool state) {
 	if (state == data.Music) {
 		return;
 	}
-	data.Sound = state;
+	data.Music = state;
 	json_data["Audio"]["Music"] = state;
 	Write_Json_to_file();
 }

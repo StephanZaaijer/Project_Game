@@ -8,13 +8,14 @@
 #include "Definitions.hpp"
 #include "JsonManager.hpp"
 
-struct GameData{
+struct GameData {
     StateMachine machine;
     sf::RenderWindow window;
     AssetManager assets;
     InputManager input;
-    JsonManager json;
+    JsonManager json = JsonManager(GAME_FILE);
 };
+
 typedef std::shared_ptr<GameData> GameDataReference;
 
 class Game {

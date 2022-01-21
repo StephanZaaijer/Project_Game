@@ -6,8 +6,6 @@ Game::Game(const int &screen_width, const int &screen_height, const std::string 
     game_data->window.create(sf::VideoMode(screen_width, screen_height), game_title, sf::Style::Close | sf::Style::Titlebar);
     game_data->window.setIcon(50,50, iconArray);
 
-    game_data->json = JsonManager(GAME_FILE);
-
     game_data->machine.AddGameState(GameStateReference(new StartUpState(game_data)), false);
     start();
 }

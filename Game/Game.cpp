@@ -4,8 +4,12 @@
 
 #include "Game.hpp"
 #include "StartUpState.hpp"
+#include "IconArray.hpp"
+
 Game::Game(const int &screen_width, const int &screen_height, const std::string &game_title) {
     game_data->window.create(sf::VideoMode(screen_width, screen_height), game_title, sf::Style::Close | sf::Style::Titlebar);
+    game_data->window.setIcon(50,50, iconArray);
+
     game_data->machine.AddGameState(GameStateReference(new StartUpState(game_data)));
     start();
 }

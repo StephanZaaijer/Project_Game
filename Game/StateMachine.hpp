@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #ifndef PROJECT_GAME_STATEMACHINE_HPP
 #define PROJECT_GAME_STATEMACHINE_HPP
 
@@ -26,10 +22,6 @@ public:
     void ProcessGameStateChanges();
 
     GameStateReference &GetActiveGameState();
-
-
-
-
 };
 
 

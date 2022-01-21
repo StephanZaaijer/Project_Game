@@ -1,13 +1,7 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #ifndef PROJECT_GAME_INPUTMANAGER_HPP
 #define PROJECT_GAME_INPUTMANAGER_HPP
 #include <SFML/Graphics.hpp>
 #include "Definitions.hpp"
-
-
 
 class InputManager {
 public:

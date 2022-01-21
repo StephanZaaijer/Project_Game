@@ -10,6 +10,7 @@
 #include "Game.hpp"
 #include "Wall.hpp"
 #include "Character.hpp"
+#include "GameOverState.hpp"
 
 class MainGameState : public GameState{
 private:

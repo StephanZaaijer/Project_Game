@@ -1,5 +1,5 @@
-#ifndef PROJECT_GAME_STARTUPSTATE_HPP
-#define PROJECT_GAME_STARTUPSTATE_HPP
+#ifndef PROJECT_GAME_GAMEOVERSTATE_HPP
+#define PROJECT_GAME_GAMEOVERSTATE_HPP
 
 #include <iostream>
 #include <sstream>
@@ -8,19 +8,20 @@
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
-#include "MainMenuState.hpp"
 
-class StartUpState : public GameState {
+class GameOverState : public GameState {
 private:
     GameDataReference game_data;
-    sf::Clock _clock;
     sf::Sprite _background;
-    sf::Sprite _logo;
-    sf::Sprite _title;
-    sf::Sprite _banner;
+    sf::Sprite _restartButton;
+    sf::Sprite _mainMenuButton;
+
+    sf::Text _gameOverText;
+    sf::Text _score;
+    sf::Text _highscore;
 
 public:
-    StartUpState(GameDataReference data);
+    GameOverState(GameDataReference data);
 
     void Init();
     void HandleInput();
@@ -28,4 +29,4 @@ public:
     void Draw(float delta);
 };
 
-#endif //PROJECT_GAME_STARTUPSTATE_HPP
+#endif //PROJECT_GAME_GAMEOVERSTATE_HPP

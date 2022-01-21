@@ -5,6 +5,7 @@
 #include "GameState.hpp"
 #include "Game.hpp"
 #include "Wall.hpp"
+#include "GameOverState.hpp"
 
 class MainGameState : public GameState{
 private:

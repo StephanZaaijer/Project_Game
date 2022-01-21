@@ -1,8 +1,10 @@
-#include "MainMenuState.hpp"
 #include "SoundSettingsState.hpp"
-#include "MainGameState.hpp"
+#include "MainMenuState.hpp"
+//#include "MainGameState.hpp"
+#include <utility>
+#include "GameOverState.hpp"
 
-MainMenuState::MainMenuState(GameDataReference data) : game_data(data) {}
+MainMenuState::MainMenuState(GameDataReference data) : game_data(std::move(data)) {}
 
 void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("MainMenu State Background", BACKGROUND_PATH);
@@ -19,11 +21,10 @@ void MainMenuState::Init() {
     _settingsButton.setTexture(this->game_data->assets.GetTexture("MainMenu Settings Button"));
     _exitButton.setTexture(this->game_data->assets.GetTexture("MainMenu Exit Button"));
 
-    _title.setPosition({(SCREEN_WIDTH/2 - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2});
-    _playButton.setPosition({(SCREEN_WIDTH/2 - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*2});
-    _settingsButton.setPosition({_playButton.getGlobalBounds().left - _playButton.getGlobalBounds().width, _title.getGlobalBounds().height*2});
-    _exitButton.setPosition({_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2});
-
+    _title.setPosition((SCREEN_WIDTH/2 - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2);
+    _playButton.setPosition((SCREEN_WIDTH/2 - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*2);
+    _settingsButton.setPosition(_playButton.getGlobalBounds().left - _playButton.getGlobalBounds().width, _title.getGlobalBounds().height*2);
+    _exitButton.setPosition(_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2);
     _banner.setPosition((SCREEN_WIDTH/2 - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
 }
 
@@ -44,7 +45,8 @@ void MainMenuState::HandleInput() {
         }
 
         if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
-            game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
+            game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)),true);
+//            game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
         }
     }
 }
@@ -61,6 +63,5 @@ void MainMenuState::Draw(float delta) {
     game_data->window.draw(_settingsButton);
     game_data->window.draw(_exitButton);
     game_data->window.draw(_banner);
-
     game_data->window.display();
 }

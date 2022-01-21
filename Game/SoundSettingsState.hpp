@@ -8,6 +8,7 @@
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
+#include "Definitions.hpp"
 
 class SoundSettingsState : public GameState {
 private:
@@ -16,10 +17,8 @@ private:
   sf::Sprite _musicButton;
   sf::Sprite _soundButton;
   sf::Sprite _backButton;
-  sf::Sprite _settingsText;
-  bool music = true; //TODO Change this to music/ sound class, and settings file?
-  bool sound = true; //TODO keep changes when pressed on back
 
+  sf::Text _settingsText;
 
 public:
   SoundSettingsState(GameDataReference data);

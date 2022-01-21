@@ -1,10 +1,5 @@
 #include "Character.hpp"
 
-
-
-
-
-
 Character::Character(GameDataReference data): game_data(data){
     _characterSprite.setTexture(game_data->assets.GetTexture("character"));
     _characterSprite.setPosition(
@@ -14,7 +9,6 @@ Character::Character(GameDataReference data): game_data(data){
 }
 void Character::Draw() {
     game_data->window.draw(_characterSprite);
-    game_data->window.display();
 }
 void Character::Update(float dt) {
     if (CHARACTER_STATE_FALLING == _characterState){

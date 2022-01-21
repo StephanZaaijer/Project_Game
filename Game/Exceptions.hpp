@@ -37,7 +37,7 @@ public:
     open_file_exception(std::string Filename):
         error("Could open file with filename: '" + error + "'")
     {}
-    [[nodisard]] const char* what() const noexcept override {
+    [[nodiscard]] const char* what() const noexcept override {
         return error.c_str();
     }
 };

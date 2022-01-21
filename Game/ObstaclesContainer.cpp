@@ -5,9 +5,10 @@
 #include "ObstaclesContainer.hpp"
 #include <iostream>
 
-Obstacle_Container::Obstacle_Container(GameDataReference data){
+Obstacle_Container::Obstacle_Container(GameDataReference data):
+    game_data (data)
+{}
 
-}
 void Obstacle_Container::spawn_Obstacle(Obstacle_objects object){
     if(object == Spike_Object){
         obstacles.push_back(new Spike(game_data, left));

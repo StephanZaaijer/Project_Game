@@ -5,6 +5,7 @@
 StartUpState::StartUpState(GameDataReference data) : game_data(std::move(data)) {}
 
 void StartUpState::Init() {
+    game_data->assets.loadFontFromFile("Bauhaus font",BAUHAUS_FONT_PATH);
     game_data->assets.loadTextureFromFile("StartUp State Background", BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("StartUp State Image", GAME_IMAGE_PATH);
     game_data->assets.loadTextureFromFile("StartUp State Banner", GAME_TITLE_PATH);
@@ -15,13 +16,13 @@ void StartUpState::Init() {
     _title.setTexture(this->game_data->assets.GetTexture("StartUp State Banner"));
     _banner.setTexture(this->game_data->assets.GetTexture("StartUp State groep6 Banner"));
 
-    _title.setPosition({(SCREEN_WIDTH/2 - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2});
-    _logo.setPosition({SCREEN_WIDTH/2, SCREEN_HEIGHT/2});
-    _banner.setPosition((SCREEN_WIDTH/2 - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
+    _title.setPosition({(SCREEN_WIDTH/2.0f - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2});
+    _logo.setPosition({SCREEN_WIDTH/2.0f, SCREEN_HEIGHT/2.0f});
+    _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
 }
 
 void StartUpState::HandleInput() {
-    sf::Event event;
+    sf::Event event{};
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
@@ -31,8 +32,7 @@ void StartUpState::HandleInput() {
 
 void StartUpState::Update(float delta) {
     if (_clock.getElapsedTime().asSeconds() > START_UP_TIME) {
-      game_data->machine.AddGameState(
-          GameStateReference(new MainMenuState(game_data)), false);
+      game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
     }
 }
 

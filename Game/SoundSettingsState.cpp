@@ -1,33 +1,28 @@
 #include "SoundSettingsState.hpp"
 #include <utility>
 
-SoundSettingsState::SoundSettingsState(GameDataReference data)
-        : game_data(std::move(data)) {}
+SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::move(data)) {}
 
 void SoundSettingsState::Init() {
-    game_data->assets.loadTextureFromFile("Sound Settings Background",
-                                          SOUND_SETTINGS_BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("Music Button Green",
-                                          MUSIC_BUTTON_GREEN_PATH);
-    game_data->assets.loadTextureFromFile("Music Button Red",
-                                          MUSIC_BUTTON_RED_PATH);
-    game_data->assets.loadTextureFromFile("Sound Button Green",
-                                          SOUND_BUTTON_GREEN_PATH);
-    game_data->assets.loadTextureFromFile("Sound Button Red",
-                                          SOUND_BUTTON_RED_PATH);
+    game_data->assets.loadTextureFromFile("Sound Settings Background",SOUND_SETTINGS_BACKGROUND_PATH);
+    game_data->assets.loadTextureFromFile("Music Button Green",MUSIC_BUTTON_GREEN_PATH);
+    game_data->assets.loadTextureFromFile("Music Button Red",MUSIC_BUTTON_RED_PATH);
+    game_data->assets.loadTextureFromFile("Sound Button Green",SOUND_BUTTON_GREEN_PATH);
+    game_data->assets.loadTextureFromFile("Sound Button Red",SOUND_BUTTON_RED_PATH);
     game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("Settings Banner",
-                                          SETTINGS_BANNER_PATH);
 
-    _background.setTexture(
-            this->game_data->assets.GetTexture("Sound Settings Background"));
+    _background.setTexture(this->game_data->assets.GetTexture("Sound Settings Background"));
     _backButton.setTexture(this->game_data->assets.GetTexture("Back Button"));
-    _musicButton.setTexture(
-            this->game_data->assets.GetTexture("Music Button Green"));
-    _soundButton.setTexture(
-            this->game_data->assets.GetTexture("Sound Button Green"));
-    _settingsText.setTexture(
-            this->game_data->assets.GetTexture("Settings Banner"));
+    _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Green"));
+    _soundButton.setTexture(this->game_data->assets.GetTexture("Sound Button Green"));
+
+    _settingsText.setFont(this->game_data->assets.GetFont("Bauhaus font"));
+    _settingsText.setString("SETTINGS");
+    _settingsText.setCharacterSize(TEXT_TITLE_SIZE);
+    _settingsText.setFillColor(TEXT_COLOR);
+    auto tmpRect = _settingsText.getLocalBounds();
+    _settingsText.setOrigin(tmpRect.left + tmpRect.width/2,
+                            tmpRect.top  + tmpRect.height/2);
 
     game_data->json.Get_Musicstate() ? _musicButton.setTexture(this->game_data->assets.GetTexture("Music Button Green")) : _musicButton.setTexture(
             this->game_data->assets.GetTexture("Music Button Red"));
@@ -35,21 +30,19 @@ void SoundSettingsState::Init() {
     game_data->json.Get_Soundstate() ? _soundButton.setTexture(this->game_data->assets.GetTexture("Sound Button Green")): _soundButton.setTexture(
             this->game_data->assets.GetTexture("Sound Button Red"));
 
-    _backButton.setPosition(SCREEN_WIDTH / 2 - (_backButton.getGlobalBounds().width / 2),
-            SCREEN_HEIGHT - (_backButton.getGlobalBounds().height * 1.1));
-    _musicButton.setPosition(
-            SCREEN_WIDTH / 2 - (_musicButton.getGlobalBounds().width / 2),
-            SCREEN_HEIGHT - (_musicButton.getGlobalBounds().height * 2.1));
-    _soundButton.setPosition(
-            SCREEN_WIDTH / 2 - (_soundButton.getGlobalBounds().width / 2),
-            SCREEN_HEIGHT - (_soundButton.getGlobalBounds().height * 3.1));
-    _settingsText.setPosition(
-            SCREEN_WIDTH / 2 - (_settingsText.getGlobalBounds().width / 2),
-            SCREEN_HEIGHT - (_settingsText.getGlobalBounds().height * 4.2));
+    _settingsText.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 8.0f);
+    _backButton.setPosition(SCREEN_WIDTH / 2.0f - (_backButton.getGlobalBounds().width / 2),
+                            SCREEN_HEIGHT - (_backButton.getGlobalBounds().height * 1.1));
+
+    _musicButton.setPosition(SCREEN_WIDTH / 2.0f - (_musicButton.getGlobalBounds().width / 2),
+                            SCREEN_HEIGHT - (_musicButton.getGlobalBounds().height * 2.1));
+
+    _soundButton.setPosition(SCREEN_WIDTH / 2.0f - (_soundButton.getGlobalBounds().width / 2),
+                            SCREEN_HEIGHT - (_soundButton.getGlobalBounds().height * 3.1));
 }
 
 void SoundSettingsState::HandleInput() {
-    sf::Event event;
+    sf::Event event{};
     while (game_data->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             game_data->window.close();

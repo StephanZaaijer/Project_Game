@@ -3,7 +3,7 @@
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
-#define GAME_TITLE "Platformer groep 6"
+#define GAME_TITLE "JUUJUU"
 #define FRAMERATE 60
 #define CHARACTER_FRAME_1_FILEPATH "../img/character.jpg"
 
@@ -11,7 +11,10 @@
 #define CHARACTER_STATE_FALLING 2
 #define CHARACTER_STATE_JUMPING 3
 
-#define START_UP_TIME 3.0
+#define TEXT_COLOR { 59, 3, 31}
+#define TEXT_TITLE_SIZE 200
+
+#define START_UP_TIME 0.4
 #define BACKGROUND_PATH "Assets/StartupBackground.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
 #define GAME_IMAGE_PATH "Assets/StartUpImage.png"
@@ -21,12 +24,19 @@
 #define MAIN_MENU_EXIT_BUTTON_PATH "Assets/ExitButton.png"
 
 #define SOUND_SETTINGS_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
+#define SETTINGS_BANNER_PATH "Assets/SettingsBanner.png"
 #define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"
 #define MUSIC_BUTTON_RED_PATH "Assets/MusicButtonRed.png"
 #define SOUND_BUTTON_GREEN_PATH "Assets/SoundButtonGreen.png"
 #define SOUND_BUTTON_RED_PATH "Assets/SoundButtonRed.png"
 #define BACK_BUTTON_PATH "Assets/BackButton.png"
-#define SETTINGS_BANNER_PATH "Assets/SettingsBanner.png"
+
+#define RESTART_BUTTON_PATH "Assets/RestartButton.png"
+#define MAIN_MENU_BUTTON_PATH "Assets/MainMenuButton.png"
+
+#define BAUHAUS_FONT_PATH "Assets/Bauhaus.ttf"
+
+//#define GAMEOVER_BANNER_PATH "Assets/SettingsBanner.png"
 
 #define GRAVITY 350.0f
 #define JUMPING_SPEED 350.0f
@@ -36,6 +46,6 @@
 #define GAME_FILE "Game.json"
 
 //#define ENABLE_SOUND
-//#define ENABLE_FONT
+#define ENABLE_FONT
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

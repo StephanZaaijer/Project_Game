@@ -10,7 +10,6 @@ void StartUpState::Init() {
     game_data->assets.loadTextureFromFile("StartUp State Image", GAME_IMAGE_PATH);
     game_data->assets.loadTextureFromFile("StartUp State Banner", GAME_TITLE_PATH);
     game_data->assets.loadTextureFromFile("StartUp State groep6 Banner", GROEP_6_BANNER_PATH);
-
     _background.setTexture(game_data->assets.GetTexture("StartUp State Background"));
     _logo.setTexture(game_data->assets.GetTexture("StartUp State Image"));
     _title.setTexture(game_data->assets.GetTexture("StartUp State Banner"));
@@ -19,6 +18,7 @@ void StartUpState::Init() {
     _title.setPosition({(SCREEN_WIDTH/2.0f - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2});
     _logo.setPosition({SCREEN_WIDTH/2.0f, SCREEN_HEIGHT/2.0f});
     _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
+
 }
 
 void StartUpState::HandleInput() {

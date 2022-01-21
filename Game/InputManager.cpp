@@ -14,6 +14,12 @@ bool InputManager::IsSpriteClicked(const sf::Sprite &sprite, const sf::Mouse::Bu
     return false;
 }
 
+bool InputManager::IsMouseIntersectingSprite(const sf::Sprite& sprite, sf::RenderWindow& window) {
+    return (sprite.getGlobalBounds().contains(GetMousePosition(window)));
+}
+
+
+
 sf::Vector2f InputManager::GetMousePosition(sf::RenderWindow &window) {
     return static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
 }

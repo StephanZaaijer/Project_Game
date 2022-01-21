@@ -1,6 +1,6 @@
 #include "SoundSettingsState.hpp"
 #include "MainMenuState.hpp"
-//#include "MainGameState.hpp"
+#include "MainGameState.hpp"
 #include <utility>
 #include "GameOverState.hpp"
 
@@ -26,6 +26,8 @@ void MainMenuState::Init() {
     _settingsButton.setPosition(_playButton.getGlobalBounds().left - _playButton.getGlobalBounds().width, _title.getGlobalBounds().height*2);
     _exitButton.setPosition(_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2);
     _banner.setPosition((SCREEN_WIDTH/2 - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
+    arrow_cursor.loadFromSystem(sf::Cursor::Arrow);
+    hand_cursor.loadFromSystem(sf::Cursor::Hand);
 }
 
 void MainMenuState::HandleInput() {
@@ -52,7 +54,18 @@ void MainMenuState::HandleInput() {
 }
 
 void MainMenuState::Update(float delta) {
-
+    if (game_data->input.IsMouseIntersectingSprite(_playButton, game_data->window)) {
+        game_data->window.setMouseCursor(hand_cursor);
+    }
+    else if (game_data->input.IsMouseIntersectingSprite(_settingsButton, game_data->window)) {
+        game_data->window.setMouseCursor(hand_cursor);
+    }
+    else if (game_data->input.IsMouseIntersectingSprite(_exitButton, game_data->window)) {
+        game_data->window.setMouseCursor(hand_cursor);
+    }
+    else {
+        game_data->window.setMouseCursor(arrow_cursor);
+    }
 }
 
 void MainMenuState::Draw(float delta) {

@@ -18,6 +18,8 @@ private:
   sf::Sprite _soundButton;
   sf::Sprite _backButton;
   sf::Text _settingsText;
+  sf::Cursor arrow_cursor;
+  sf::Cursor hand_cursor;
 
 public:
   SoundSettingsState(GameDataReference data);

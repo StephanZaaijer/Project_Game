@@ -20,6 +20,9 @@ private:
     sf::Text _score;
     sf::Text _highscore;
 
+    sf::Cursor arrow_cursor;
+    sf::Cursor hand_cursor;
+
 public:
     GameOverState(GameDataReference data);
 

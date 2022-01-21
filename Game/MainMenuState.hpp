@@ -1,13 +1,13 @@
 #ifndef PROJECT_GAME_MAINMENUSTATE_HPP
 #define PROJECT_GAME_MAINMENUSTATE_HPP
 
-//#include <iostream>
-//#include <SFML/Graphics.hpp>
-//#include "StateMachine.hpp"
-//#include "Definitions.hpp"
-//#include "AssetManager.hpp"
-//#include "Game.hpp"
-//#include "StateMachine.hpp"
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include "StateMachine.hpp"
+#include "Definitions.hpp"
+#include "AssetManager.hpp"
+#include "Game.hpp"
+#include "StateMachine.hpp"
 
 class MainMenuState : public GameState {
 private:
@@ -19,6 +19,9 @@ private:
     sf::Sprite _playButton;
     sf::Sprite _settingsButton;
     sf::Sprite _exitButton;
+    sf::Cursor hand_cursor;
+    sf::Cursor arrow_cursor;
+
 
 public:
     MainMenuState(GameDataReference data);

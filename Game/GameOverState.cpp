@@ -50,6 +50,9 @@ void GameOverState::Init() {
     _gameOverText.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 8.0f);
     _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 3.0f);
     _highscore.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f);
+
+    arrow_cursor.loadFromSystem(sf::Cursor::Arrow);
+    hand_cursor.loadFromSystem(sf::Cursor::Hand);
 }
 
 void GameOverState::HandleInput() {
@@ -68,6 +71,15 @@ void GameOverState::HandleInput() {
 }
 
 void GameOverState::Update(float delta) {
+    if (game_data->input.IsMouseIntersectingSprite(_restartButton, game_data->window)) {
+        game_data->window.setMouseCursor(hand_cursor);
+    }
+    else if (game_data->input.IsMouseIntersectingSprite(_mainMenuButton, game_data->window)) {
+        game_data->window.setMouseCursor(hand_cursor);
+    }
+    else {
+        game_data->window.setMouseCursor(arrow_cursor);
+    }
 }
 
 void GameOverState::Draw(float delta) {

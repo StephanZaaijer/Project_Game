@@ -31,10 +31,19 @@ void Character::Tap() {
     _movementClock.restart();
     _characterState = CHARACTER_STATE_JUMPING;
 }
-void Character::Collide(){
-    speed = speed * -1;
+void Character::Collide(bool spike){
+    if(spike){
+
+    }else{
+        if (speed){
+            _characterSprite.setPosition((_characterSprite.getPosition().x - 5),(_characterSprite.getPosition().y - 5));
+        }else{
+            _characterSprite.setPosition((_characterSprite.getPosition().x + 5),(_characterSprite.getPosition().y + 5));
+        }
+        speed = speed * -1;
+    }
 }
-sf::FloatRect Character::GetSprite() {
+sf::FloatRect Character::GetBound() {
     return _characterSprite.getGlobalBounds();
 }
 

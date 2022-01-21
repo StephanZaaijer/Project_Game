@@ -43,11 +43,14 @@ void MainGameState::HandleInput(){
 }
 
 void MainGameState::Update( float delta ){
-    for ( auto *wallSprite : wall->GetWall()) {
-        if(CollisionDetection(character->GetSprite(), wallSprite->getGlobalBounds())){
-            character->Collide();
+    for ( auto *wallBound : wall->GetWall()) {
+        if(CollisionDetection(character->GetBound(), wallBound->getGlobalBounds())){
+            character->Collide(false);
         }
     }
+//    if(CollisionDetection(character->GetBound(), spike->getGlobalBounds())){
+//            character->Collide(True);
+//        }
     character->Update(delta);
     wall -> move_Wall(sf::Vector2f(0, 3));
 }

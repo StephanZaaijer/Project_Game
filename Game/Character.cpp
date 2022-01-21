@@ -1,5 +1,5 @@
 #include "Character.hpp"
-
+#include <iostream>
 
 Character::Character(GameDataReference data) : game_data(data) {
     _characterSprite.setTexture(game_data->assets.GetTexture("character"));
@@ -14,7 +14,9 @@ void Character::Draw() {
 }
 
 void Character::Update(float dt) {
-
+    if(_characterSprite.getPosition().x < 1 || game_data->window.getSize().x <_characterSprite.getPosition().x + _characterSprite.getGlobalBounds().width ){
+        Collide(false);
+    }
     if (CHARACTER_STATE_FALLING == _characterState) {
         _characterSprite.move(speed * dt, GRAVITY * dt);
     } else if (CHARACTER_STATE_JUMPING == _characterState) {
@@ -37,17 +39,19 @@ void Character::Collide(bool spike){
     if(spike){
         //go to game over state
     }else{
+
+        if (speed){
+            _characterSprite.setPosition((_characterSprite.getPosition().x - 2),(_characterSprite.getPosition().y));
+        }else{
+            _characterSprite.setPosition((_characterSprite.getPosition().x + 2),(_characterSprite.getPosition().y));
+        }
+        speed = speed * -1;
+
         while(!game_data->input.IsButtonPressed(sf::Mouse::Left)){
             _characterState = CHARACTER_STATE_STICK;
         }
+        _characterState = CHARACTER_STATE_FALLING;
 
-        _characterState = CHARACTER_STATE_JUMPING;
-        if (speed){
-            _characterSprite.setPosition((_characterSprite.getPosition().x - 5),(_characterSprite.getPosition().y - 5));
-        }else{
-            _characterSprite.setPosition((_characterSprite.getPosition().x + 5),(_characterSprite.getPosition().y + 5));
-        }
-        speed = speed * -1;
     }
 }
 sf::FloatRect Character::GetBound() {

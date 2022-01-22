@@ -14,7 +14,7 @@
 #define TEXT_COLOR { 59, 3, 31}
 #define TEXT_TITLE_SIZE 200
 
-#define START_UP_TIME 0.4
+#define START_UP_TIME 3
 #define BACKGROUND_PATH "Assets/StartupBackground.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
 #define GAME_IMAGE_PATH "Assets/StartUpImage.png"

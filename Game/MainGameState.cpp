@@ -1,5 +1,6 @@
 #include "MainGameState.hpp"
 #include <iostream>
+#include "PauseState.hpp"
 
 MainGameState::MainGameState(GameDataReference data):
     game_data (data)
@@ -25,6 +26,9 @@ void MainGameState::HandleInput(){
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         wall ->spawn_Wall();
+    }
+    if (!game_data->window.hasFocus()) {
+        game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
     }
 }
 

@@ -23,6 +23,9 @@
 #define MAIN_MENU_SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
 #define MAIN_MENU_EXIT_BUTTON_PATH "Assets/ExitButton.png"
 
+#define PAUSE_STATE_PLAY_BUTTON_PATH "Assets/PlayButton2.png"
+#define PAUSE_STATE_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
+
 #define SOUND_SETTINGS_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
 #define SETTINGS_BANNER_PATH "Assets/SettingsBanner.png"
 #define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"

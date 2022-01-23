@@ -46,8 +46,8 @@ void MainMenuState::HandleInput() {
     }
 
     if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
-        game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)),true);
-//      game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
+        //game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)),true);
+      game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
     }
 
     game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);

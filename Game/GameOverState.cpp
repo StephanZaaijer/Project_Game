@@ -50,9 +50,6 @@ void GameOverState::Init() {
     _gameOverText.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 8.0f);
     _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 3.0f);
     _highscore.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f);
-
-    arrow_cursor.loadFromSystem(sf::Cursor::Arrow);
-    hand_cursor.loadFromSystem(sf::Cursor::Hand);
 }
 
 void GameOverState::HandleInput() {
@@ -61,25 +58,17 @@ void GameOverState::HandleInput() {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
         }
-        if(game_data->input.IsSpriteClicked( _restartButton, sf::Mouse::Left, game_data->window )){
-            std::cout << "restart \n";
-        }
-        if(game_data->input.IsSpriteClicked( _mainMenuButton, sf::Mouse::Left, game_data->window )){
-            game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
-        }
     }
+    if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
+        std::cout << "restart \n";
+    }
+    if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
+        game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
+    }
+    game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
 }
 
 void GameOverState::Update(float delta) {
-    if (game_data->input.IsMouseIntersectingSprite(_restartButton, game_data->window)) {
-        game_data->window.setMouseCursor(hand_cursor);
-    }
-    else if (game_data->input.IsMouseIntersectingSprite(_mainMenuButton, game_data->window)) {
-        game_data->window.setMouseCursor(hand_cursor);
-    }
-    else {
-        game_data->window.setMouseCursor(arrow_cursor);
-    }
 }
 
 void GameOverState::Draw(float delta) {

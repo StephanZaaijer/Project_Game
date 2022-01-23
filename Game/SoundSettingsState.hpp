@@ -18,8 +18,8 @@ private:
   sf::Sprite _soundButton;
   sf::Sprite _backButton;
   sf::Text _settingsText;
-  sf::Cursor arrow_cursor;
-  sf::Cursor hand_cursor;
+  std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &_backButton };
+
 
 public:
   SoundSettingsState(GameDataReference data);

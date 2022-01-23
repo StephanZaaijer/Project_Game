@@ -4,22 +4,28 @@
 
 #include "Spike.hpp"
 #include <iostream>
+#include "Definitions.hpp"
 
-Spike::Spike(GameDataReference game_data, Spike_facing facing):
+Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position):
     game_data(game_data),
-    facing (facing)
+    facing (facing),
+    position (position)
 {spawn();}
 
+sf::Vector2f Spike::getPosition(){
+    return position;
+}
 
 void Spike::spawn(){
     if(facing == left){
-        std::cout << "init position";
-        Triangle.setPosition(sf::Vector2f(SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2));
+        Triangle.setPosition(sf::Vector2f(position.x - Triangle.getRadius(),position.y ));
         Triangle.setFillColor(sf::Color::Black);
+        Triangle.setRotation(270);
     }
     else{
-        Triangle.setPosition(sf::Vector2f(SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2));
+        Triangle.setPosition(sf::Vector2f(position.x + Triangle.getRadius(),position.y ));
         Triangle.setFillColor(sf::Color::Black);
+        Triangle.setRotation(90);
     }
 }
 
@@ -27,11 +33,5 @@ void Spike::move(sf::Vector2f move_by){
     Triangle.move(move_by);
 }
 void Spike::draw(){
-    std::cout << "draw triangle" << std::endl;
-    std::cout << Triangle.getRadius() << std::endl;
-    std::cout << Triangle.getPointCount () << std::endl;
-    std::cout << Triangle.getPosition().x << std::endl;
-    std::cout << Triangle.getPosition().y << std::endl;
     game_data -> window.draw(Triangle);
-    std::cout << "draw succes" << std::endl;
 }

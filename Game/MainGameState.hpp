@@ -14,6 +14,8 @@
 
 class MainGameState : public GameState{
 private:
+    sf::CircleShape character;
+    int char_height = 0;
     GameDataReference game_data;
     Wall *wall;
     sf::Sprite background;

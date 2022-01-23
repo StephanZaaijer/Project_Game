@@ -12,6 +12,7 @@
 
 class Obstacle {
 public:
+    virtual sf::Vector2f getPosition() = 0;
     virtual void spawn() = 0;
     virtual void move(sf::Vector2f move_by) = 0;
     virtual void draw() = 0;

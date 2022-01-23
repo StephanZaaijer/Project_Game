@@ -20,8 +20,7 @@ private:
     sf::Text _score;
     sf::Text _highscore;
 
-    sf::Cursor arrow_cursor;
-    sf::Cursor hand_cursor;
+    std::vector<sf::Sprite*> clickable_buttons = { &_restartButton, &_mainMenuButton };
 
 public:
     GameOverState(GameDataReference data);

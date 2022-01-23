@@ -8,6 +8,7 @@
 #include "AssetManager.hpp"
 #include "Game.hpp"
 #include "StateMachine.hpp"
+#include <vector>
 
 class MainMenuState : public GameState {
 private:
@@ -21,6 +22,7 @@ private:
     sf::Sprite _exitButton;
     sf::Cursor hand_cursor;
     sf::Cursor arrow_cursor;
+    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_exitButton };
 
 
 public:

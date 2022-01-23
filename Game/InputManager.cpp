@@ -1,4 +1,10 @@
 #include "InputManager.hpp"
+InputManager::InputManager() {
+    arrow_cursor.loadFromSystem(sf::Cursor::Arrow);
+    hand_cursor.loadFromSystem(sf::Cursor::Hand);
+}
+
+
 bool InputManager::IsKeyPressed(const sf::Keyboard::Key &key){
     return sf::Keyboard::isKeyPressed(key);
 }
@@ -18,7 +24,19 @@ bool InputManager::IsMouseIntersectingSprite(const sf::Sprite& sprite, sf::Rende
     return (sprite.getGlobalBounds().contains(GetMousePosition(window)));
 }
 
+bool InputManager::IsMouseIntersectingSprite(const sf::Sprite* sprite, sf::RenderWindow& window) {
+    return (sprite->getGlobalBounds().contains(GetMousePosition(window)));
+}
 
+void InputManager::ChangeMouseWhenHoveringOverButton(const std::vector<sf::Sprite*>& buttons, sf::RenderWindow& window) {
+    for (const auto& button : buttons) {
+        if (IsMouseIntersectingSprite(button, window)) {
+            window.setMouseCursor(hand_cursor);
+            return;
+        }
+    }
+    window.setMouseCursor(arrow_cursor);
+}
 
 sf::Vector2f InputManager::GetMousePosition(sf::RenderWindow &window) {
     return static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));

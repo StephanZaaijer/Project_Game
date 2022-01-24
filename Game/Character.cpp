@@ -8,6 +8,11 @@ Character::Character(GameDataReference data) : game_data(std::move(data)) {
     _characterState = CHARACTER_STATE_STIL;
 }
 
+sf::Vector2f Character::getPosition(){
+    return _characterSprite.getPosition();
+}
+
+
 void Character::Draw() {
     _characterSprite.setPosition(_position);
     game_data->window.draw(_characterSprite);

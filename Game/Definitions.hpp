@@ -51,11 +51,6 @@
 
 //#define GAMEOVER_BANNER_PATH "Assets/SettingsBanner.png"
 
-#define GRAVITY 350.0f
-#define JUMPING_SPEED 350.0f
-
-#define JUMP_DURATION 0.25f
-
 #define GAME_FILE "Game.json"
 
 #define WALL_HEIGHT 600

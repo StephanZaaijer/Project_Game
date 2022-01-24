@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #ifndef PROJECT_GAME_DEFINITIONS_HPP
 #define PROJECT_GAME_DEFINITIONS_HPP
 
@@ -9,14 +5,23 @@
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
 #define FRAMERATE 60
-#define CHARACTER_FRAME_1_FILEPATH "../img/character.jpg"
+#define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 
+
+// Change these implementations to enums
 #define CHARACTER_STATE_STIL 1
 #define CHARACTER_STATE_FALLING 2
 #define CHARACTER_STATE_JUMPING 3
 #define CHARACTER_START_HEIGHT 800
 
-#define CHARACTER_STATE_STICK 4
+enum character_states {
+	Still,
+	Falling,
+	Jumping,
+	Stick
+};
+
+
 #define GRAVITY 0.5f
 #define JUMPING_SPEED 200.0f
 #define FLYING_SPEED 400.0f
@@ -52,7 +57,7 @@
 
 //#define GAMEOVER_BANNER_PATH "Assets/SettingsBanner.png"
 
-#define GAME_FILE "Game.json"
+#define GAME_FILE "Assets/Game.json"
 
 #define WALL_HEIGHT 600
 #define WALL_WIDTH 50

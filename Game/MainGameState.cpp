@@ -1,10 +1,10 @@
 #include "MainGameState.hpp"
 #include <iostream>
+#include <utility>
 #include "PauseState.hpp"
 
-
 MainGameState::MainGameState(GameDataReference data):
-    game_data (data)
+    game_data (std::move(data))
 {}
 bool MainGameState::CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2) {
     if(object1.intersects(object2)){
@@ -22,15 +22,15 @@ bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect obje
 
 
 void MainGameState::Init(){
-    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
     character = new Character(game_data);
     character->getSpriteToChange().setTexture( game_data->assets.GetTexture("character") );
 
     wall = new Wall(game_data);
     obstacles_container = new Obstacle_Container(game_data);
-    game_data->assets.loadTextureFromFile("Game Background Image", "Assets/StartupBackground.png");
-    background.setTexture(game_data->assets.GetTexture("Game Background Image"));
+    background.setTexture(this->game_data->assets.GetTexture("Background"));
+
     wall->spawn_Wall(WALL_HEIGHT);
+
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
         obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i]);
         wall->setContainObstacleTrue(i);
@@ -38,7 +38,7 @@ void MainGameState::Init(){
 }
 
 void MainGameState::HandleInput() {
-    sf::Event event;
+    sf::Event event{};
 
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
@@ -79,19 +79,21 @@ void MainGameState::Update( float delta ){
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
         wall ->spawn_Wall();
         for(unsigned int i = 0; i < wall->getContainsObstacles().size(); i++)
-            if (wall->getContainsObstacles()[i] == false){
+            if (!wall->getContainsObstacles()[i]){
                 obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i]);
                 wall->setContainObstacleTrue(i);
             }
         character->setHeight(0);
     }
+    if (character->_death){
+        game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
+    }
+
     character->Update(delta);
 }
 
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
-
-    // draw something
     game_data-> window.setTitle("Main Game State");
     game_data-> window.draw(background);
     wall -> draw_Wall();

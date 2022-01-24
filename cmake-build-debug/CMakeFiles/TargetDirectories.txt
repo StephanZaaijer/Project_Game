@@ -1,5 +1,5 @@
-C:/Users/nickt/School_project/Project_Game/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/nickt/School_project/Project_Game/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/nickt/School_project/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/Game.dir
-C:/Users/nickt/School_project/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/edit_cache.dir
-C:/Users/nickt/School_project/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/rebuild_cache.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/Game.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/edit_cache.dir
+D:/SOFTWARE_TI/Project_Game/cmake-build-debug/HCT/Game/CMakeFiles/rebuild_cache.dir

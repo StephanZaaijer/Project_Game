@@ -28,18 +28,17 @@ void MainGameState::Init(){
 void MainGameState::HandleInput(){
     sf::Event event;
 
-    while(game_data -> window.pollEvent( event )){
-        if(sf::Event::Closed == event.type){
-            game_data -> window.close();
+    while(game_data -> window.pollEvent( event )) {
+        if (sf::Event::Closed == event.type) {
+            game_data->window.close();
+        }
+        if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+            character->Tap();
         }
     }
-    if(game_data->input.IsButtonPressed( sf::Mouse::Button::Left)){
-            character->Tap();
-    }
-
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        wall ->spawn_Wall();
-    }
+//    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+//        wall ->spawn_Wall();
+//    }
 }
 
 void MainGameState::Update( float delta ){
@@ -52,7 +51,7 @@ void MainGameState::Update( float delta ){
 //            character->Collide(True);
 //        }
     character->Update(delta);
-    wall -> move_Wall(sf::Vector2f(0, 3));
+//    wall -> move_Wall(sf::Vector2f(0, 3));
 }
 
 void MainGameState::Draw( float delta ){

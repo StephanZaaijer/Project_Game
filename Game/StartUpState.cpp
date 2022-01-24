@@ -32,7 +32,7 @@ void StartUpState::HandleInput() {
 }
 
 void StartUpState::Update(float delta) {
-    if (_clock.getElapsedTime().asSeconds() > 3) {
+    if (_clock.getElapsedTime().asSeconds() > START_UP_TIME) {
       game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
     }
 }

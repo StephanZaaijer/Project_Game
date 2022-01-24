@@ -39,7 +39,7 @@ void Character::Update(float dt) {
         (_position.x + _characterSprite.getGlobalBounds().width) >= game_data->window.getSize().x) {
         Collide(false);
     }
-    if(_characterSprite.getPosition().y < 0){
+    if(_characterSprite.getPosition().y > SCREEN_HEIGHT){
         _death = true;
     }
 

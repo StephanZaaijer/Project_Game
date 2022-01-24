@@ -1,14 +1,14 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
+		"Music" : false,
 		"Musiclevel" : 50,
-		"Sound" : true,
+		"Sound" : false,
 		"Soundlevel" : 100
 	},
 	"Player" : {},
 	"Score" : 
 	{
-		"Highscore" : 100
+		"Highscore" : 123
 	}
 }

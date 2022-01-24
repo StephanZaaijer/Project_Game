@@ -22,6 +22,8 @@ bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect obje
 
 
 void MainGameState::Init(){
+    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
+    character = new Character(game_data);
     wall = new Wall(game_data);
     obstacles_container = new Obstacle_Container(game_data);
     game_data->assets.loadTextureFromFile("Game Background Image", "Assets/StartupBackground.png");
@@ -31,8 +33,6 @@ void MainGameState::Init(){
         obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i]);
         wall->setContainObstacleTrue(i);
     }
-    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
-    character = new Character(game_data);
 }
 
 void MainGameState::HandleInput() {
@@ -72,14 +72,14 @@ void MainGameState::Update( float delta ){
 //         char_height += 5;
 //     }
 
-    if (char_height > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
+    if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
         wall ->spawn_Wall();
         for(unsigned int i = 0; i < wall->getContainsObstacles().size(); i++)
             if (wall->getContainsObstacles()[i] == false){
                 obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i]);
                 wall->setContainObstacleTrue(i);
             }
-        char_height = 0;
+        character->setHeight(0);
     }
     character->Update(delta);
     wall -> move_Wall(sf::Vector2f(0, 3));

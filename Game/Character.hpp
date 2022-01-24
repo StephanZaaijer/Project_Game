@@ -15,6 +15,9 @@ public:
         sf::FloatRect GetBound();
         sf::Vector2f getPosition();
 
+        int getHeight();
+        void setHeight(const int & value);
+
 private:
         GameDataReference game_data;
         sf::Sprite _characterSprite;
@@ -23,6 +26,7 @@ private:
         sf::Clock _clock;
         sf::Clock _movementClock;
         int _characterState;
+        int height;
 };
 
 #endif //CHARACTER_HPP

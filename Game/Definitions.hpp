@@ -9,7 +9,7 @@
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
 #define FRAMERATE 60
-#define CHARACTER_FRAME_1_FILEPATH "../img/character.jpg"
+#define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 
 #define CHARACTER_STATE_STIL 1
 #define CHARACTER_STATE_FALLING 2
@@ -51,7 +51,7 @@
 
 //#define GAMEOVER_BANNER_PATH "Assets/SettingsBanner.png"
 
-#define GAME_FILE "Game.json"
+#define GAME_FILE "Assets/Game.json"
 
 #define WALL_HEIGHT 600
 #define WALL_WIDTH 50

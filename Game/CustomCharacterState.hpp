@@ -9,12 +9,15 @@
 #include "Game.hpp"
 #include "Definitions.hpp"
 #include "GameState.hpp"
+#include "Character.hpp"
 
 class CustomCharacterState: public GameState {
 private:
     GameDataReference game_data;
     sf::Sprite _ArrowRight;
     sf::Sprite _ArrowLeft;
+    sf::Sprite _background;
+    Character *character;
     std::vector<sf::Sprite*> CharacterSelect = { &_ArrowRight, &_ArrowLeft };
 
 public:

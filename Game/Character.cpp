@@ -76,3 +76,6 @@ void Character::Collide(bool dangerous) {
 sf::FloatRect Character::GetBound() {
     return _characterSprite.getGlobalBounds();
 }
+void Character::setPosition(const sf::Vector2f &  position){
+    _position = position;
+}

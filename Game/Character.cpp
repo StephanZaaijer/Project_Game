@@ -1,5 +1,4 @@
 #include "Character.hpp"
-#include "iostream"
 #include <utility>
 
 Character::Character(GameDataReference data) : game_data(std::move(data)) {
@@ -28,7 +27,6 @@ void Character::Update(float dt) {
     } else if (CHARACTER_STATE_STICK == _characterState) {
 
     }
-
 }
 
 void Character::Tap() {
@@ -52,5 +50,3 @@ void Character::Collide(bool dangerous) {
 sf::FloatRect Character::GetBound() {
     return _characterSprite.getGlobalBounds();
 }
-
-

@@ -1,6 +1,6 @@
 #include "SoundSettingsState.hpp"
 #include "MainMenuState.hpp"
-//#include "MainGameState.hpp"
+#include "MainGameState.hpp"
 #include <utility>
 #include "GameOverState.hpp"
 
@@ -35,24 +35,25 @@ void MainMenuState::HandleInput() {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
         }
-
-        if(game_data->input.IsSpriteClicked( _exitButton, sf::Mouse::Left, game_data->window )){
-            game_data->window.close();
-        }
-
-        if(game_data->input.IsSpriteClicked( _settingsButton, sf::Mouse::Left, game_data->window )){
-            game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
-        }
-
-        if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
-            game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)),true);
-//            game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
-        }
     }
+
+    if(game_data->input.IsSpriteClicked( _exitButton, sf::Mouse::Left, game_data->window )){
+        game_data->window.close();
+    }
+
+    if(game_data->input.IsSpriteClicked( _settingsButton, sf::Mouse::Left, game_data->window )){
+        game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
+    }
+
+    if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
+        //game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)),true);
+      game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
+    }
+
+    game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
 }
 
 void MainMenuState::Update(float delta) {
-
 }
 
 void MainMenuState::Draw(float delta) {

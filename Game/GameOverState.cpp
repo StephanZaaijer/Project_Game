@@ -11,13 +11,13 @@ void GameOverState::Init() {
 
     game_data->assets.loadFontFromFile("Bauhaus font", BAUHAUS_FONT_PATH);
 
-    _background.setTexture(this->game_data->assets.GetTexture("State Background"));
-    _restartButton.setTexture(this->game_data->assets.GetTexture("Restart Button"));
-    _mainMenuButton.setTexture(this->game_data->assets.GetTexture("Main Menu Button"));
+    _background.setTexture(game_data->assets.GetTexture("State Background"));
+    _restartButton.setTexture(game_data->assets.GetTexture("Restart Button"));
+    _mainMenuButton.setTexture(game_data->assets.GetTexture("Main Menu Button"));
 
-    _gameOverText.setFont(this->game_data->assets.GetFont("Bauhaus font"));
-    _score.setFont(this->game_data->assets.GetFont("Bauhaus font"));
-    _highscore.setFont(this->game_data->assets.GetFont("Bauhaus font"));
+    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _highscore.setFont( game_data->assets.GetFont("Bauhaus font"));
 
 
     _restartButton.setPosition(SCREEN_WIDTH - (_restartButton.getGlobalBounds().width * 2.9),
@@ -58,13 +58,14 @@ void GameOverState::HandleInput() {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
         }
-        if(game_data->input.IsSpriteClicked( _restartButton, sf::Mouse::Left, game_data->window )){
-            std::cout << "restart \n";
-        }
-        if(game_data->input.IsSpriteClicked( _mainMenuButton, sf::Mouse::Left, game_data->window )){
-            game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
-        }
     }
+    if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
+        std::cout << "restart \n";
+    }
+    if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
+        game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
+    }
+    game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
 }
 
 void GameOverState::Update(float delta) {

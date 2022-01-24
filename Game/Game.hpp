@@ -6,15 +6,16 @@
 #include "AssetManager.hpp"
 #include "StateMachine.hpp"
 #include "Definitions.hpp"
+#include "JsonManager.hpp"
 
-struct GameData{
+struct GameData {
     StateMachine machine;
     sf::RenderWindow window;
     AssetManager assets;
     InputManager input;
-    bool sound = true; //TODO read from json
-    bool music = true; //TODO read from json
+    JsonManager json = JsonManager(GAME_FILE);
 };
+
 typedef std::shared_ptr<GameData> GameDataReference;
 
 class Game {

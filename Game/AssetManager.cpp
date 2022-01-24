@@ -1,30 +1,6 @@
 #include "AssetManager.hpp"
+#include "Exceptions.hpp"
 
-class load_exception: public std::exception{
-private:
-    std::string error;
-
-public:
-    load_exception(const std::string& type, const std::string& name, const std::string& filename):
-        error{"Error with loading item of type: '" + type + "' with name: '" + name + "' and filename: '" + filename + "'"}
-    {}
-    [[nodiscard]] const char *what() const noexcept override{
-        return error.c_str();
-    }
-};
-
-class return_exception: public std::exception{
-private:
-    std::string error;
-
-public:
-    return_exception(const std::string& type, const std::string& name):
-            error{"Error with returning item of type: '" + type + "' with name: '" + name + "' the item doesn't exist"}
-    {}
-    [[nodiscard]] const char *what() const noexcept override{
-        return error.c_str();
-    }
-};
 
 void AssetManager::loadTextureFromFile(const std::string& name, const std::string& Filename) {
     sf::Texture temp;

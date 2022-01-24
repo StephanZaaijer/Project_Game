@@ -17,13 +17,10 @@ public:
 private:
         GameDataReference game_data;
         sf::Sprite _characterSprite;
-
         sf::Vector2f _velocity = {5,0};
         sf::Vector2f _position;
-
         sf::Clock _clock;
         sf::Clock _movementClock;
-
         int _characterState;
 };
 

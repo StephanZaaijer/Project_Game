@@ -3,16 +3,21 @@
 #define PROJECT_GAME_MAINGAMESTATE_HPP
 
 #include <SFML/Graphics.hpp>
+#include "AssetManager.hpp"
 #include "GameState.hpp"
 #include "Game.hpp"
 #include "Wall.hpp"
+#include "ObstaclesContainer.hpp"
 #include "Character.hpp"
 #include "GameOverState.hpp"
 
 class MainGameState : public GameState{
 private:
+    int char_height = 0;
     GameDataReference game_data;
     Wall *wall;
+    sf::Sprite background;
+    Obstacle_Container *obstacles_container;
     Character *character;
 public:
     MainGameState(GameDataReference data);

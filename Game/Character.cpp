@@ -5,7 +5,7 @@ Character::Character(GameDataReference data) : game_data(std::move(data)) {
     _characterSprite.setTexture(game_data->assets.GetTexture("character"));
     _characterSprite.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
     _position = _characterSprite.getPosition();
-    _characterState = CHARACTER_STATE_STIL;
+    _characterState = character_states::Still;
 }
 
 sf::Vector2f Character::getPosition(){
@@ -32,21 +32,22 @@ void Character::Update(float dt) {
         Collide(false);
     }
 
-    if (CHARACTER_STATE_JUMPING == _characterState) {
+    
+    if (character_states::Jumping == _characterState) {
         _velocity.y += GRAVITY;
         _position.y += _velocity.y;
         _position.x += _velocity.x;
 
         height += (_velocity.y * -1);
 
-    } else if (CHARACTER_STATE_STICK == _characterState) {
+    } else if (character_states::Stick == _characterState) {
 
     }
 }
 
 void Character::Tap() {
     _movementClock.restart();
-    _characterState = CHARACTER_STATE_JUMPING;
+    _characterState = character_states::Jumping;
     _velocity.y = -12.0;
 }
 
@@ -56,9 +57,9 @@ void Character::Collide(bool dangerous) {
     } else{
         _velocity.x *= -1;
         while (!game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
-            _characterState = CHARACTER_STATE_STICK;
+            _characterState = character_states::Stick;
         }
-        _characterState = CHARACTER_STATE_JUMPING;
+        _characterState = character_states::Jumping;
     }
 }
 

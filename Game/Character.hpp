@@ -25,7 +25,7 @@ private:
         sf::Vector2f _position;
         sf::Clock _clock;
         sf::Clock _movementClock;
-        int _characterState;
+        character_states _characterState;
         int height;
 };
 

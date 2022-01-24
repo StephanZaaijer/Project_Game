@@ -16,10 +16,11 @@ void Character::moveDownByOffset(const float & y){
     _position.y += y;
 }
 
-int Character::getHeight() {
-    return height;
+int Character::getHeight() const {
+    return _height;
+}
 
-void Character::setHeight(const int & value) {
+void Character::setHeight(const int &value) {
     _height = value;
 }
 
@@ -56,7 +57,7 @@ void Character::Update(float dt) {
 
 void Character::Tap() {
     _movementClock.restart();
-    _characterState = CHARACTER_STATE_JUMPING;
+    _characterState = character_states::Jumping;
     _velocity.y = -16.0;
 }
 

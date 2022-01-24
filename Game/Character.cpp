@@ -2,22 +2,30 @@
 #include <utility>
 
 Character::Character(GameDataReference data) : game_data(std::move(data)) {
-    _characterSprite.setTexture(game_data->assets.GetTexture("character"));
-    _characterSprite.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
+    _characterSprite.setPosition(SCREEN_WIDTH / 2.0f, CHARACTER_START_HEIGHT);
     _position = _characterSprite.getPosition();
-    _characterState = character_states::Still;
+    _characterState = Still;
 }
 
 sf::Vector2f Character::getPosition(){
     return _characterSprite.getPosition();
 }
 
-int Character::getHeight() {
-    return height;
+
+void Character::moveDownByOffset(const float & y){
+    _position.y += y;
 }
 
-void Character::setHeight(const int & value) {
-    height = value;
+int Character::getHeight() const {
+    return _height;
+}
+
+void Character::setHeight(const int &value) {
+    _height = value;
+}
+
+sf::Sprite & Character::getSpriteToChange() {
+    return _characterSprite;
 }
 
 
@@ -31,35 +39,37 @@ void Character::Update(float dt) {
         (_position.x + _characterSprite.getGlobalBounds().width) >= game_data->window.getSize().x) {
         Collide(false);
     }
+    if(_characterSprite.getPosition().y > SCREEN_HEIGHT){
+        _death = true;
+    }
 
-    
-    if (character_states::Jumping == _characterState) {
+    if (Jumping == _characterState) {
         _velocity.y += GRAVITY;
         _position.y += _velocity.y;
         _position.x += _velocity.x;
 
-        height += (_velocity.y * -1);
+        _height += (_velocity.y * -1);
 
-    } else if (character_states::Stick == _characterState) {
-
+    } else if (Stick == _characterState) {
+        //do nothing
     }
 }
 
 void Character::Tap() {
     _movementClock.restart();
-    _characterState = character_states::Jumping;
-    _velocity.y = -12.0;
+    _characterState = Jumping;
+    _velocity.y = -18.0;
 }
 
 void Character::Collide(bool dangerous) {
     if (dangerous) {
-        //ga dood aub
+        _death = true;
     } else{
         _velocity.x *= -1;
         while (!game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
-            _characterState = character_states::Stick;
+            _characterState = Stick;
         }
-        _characterState = character_states::Jumping;
+        _characterState = Jumping;
     }
 }
 

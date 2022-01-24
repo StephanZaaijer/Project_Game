@@ -1,9 +1,6 @@
-//
-// Created by Franky on 19-1-2022.
-//
-
 #include "MainGameState.hpp"
 #include <iostream>
+#include "PauseState.hpp"
 
 MainGameState::MainGameState(GameDataReference data):
     game_data (data)
@@ -26,6 +23,8 @@ void MainGameState::Init(){
             SCREEN_HEIGHT - 100
             );
     character.setFillColor(sf::Color::Red);
+    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
+    character = new Character(game_data);
 }
 
 void MainGameState::HandleInput(){
@@ -36,6 +35,10 @@ void MainGameState::HandleInput(){
             game_data -> window.close();
         }
     }
+    if(game_data->input.IsSpriteClicked(character->GetSprite(), sf::Mouse::Button::Left, game_data->window)){
+            character->Tap();
+    }
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
         character.move(0, -5);
         char_height += 5;
@@ -50,6 +53,9 @@ void MainGameState::HandleInput(){
             }
         char_height = 0;
     }
+    if (!game_data->window.hasFocus()) {
+        game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+    }
 }
 
 void MainGameState::Update( float delta ){
@@ -59,10 +65,15 @@ void MainGameState::Update( float delta ){
         obstacles_container ->move_Obstacle(sf::Vector2f(0, move_down_by));
         character.move(0, move_down_by);
     }
+    character->Update(delta);
+    wall -> move_Wall(sf::Vector2f(0, 3));
 }
 
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
+
+    // draw something
+    character->Draw();
     game_data-> window.setTitle("Main Game State");
     game_data-> window.draw(background);
     wall -> draw_Wall();

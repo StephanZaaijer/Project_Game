@@ -1,7 +1,3 @@
-//
-// Created by Franky on 19-1-2022.
-//
-
 #include "Wall.hpp"
 #include "iostream"
 #include <stdlib.h>

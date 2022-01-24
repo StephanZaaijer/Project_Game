@@ -2,6 +2,7 @@
 #include <utility>
 
 Character::Character(GameDataReference data) : game_data(std::move(data)) {
+    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
     _characterSprite.setTexture(game_data->assets.GetTexture("character"));
     _characterSprite.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
     _position = _characterSprite.getPosition();
@@ -12,12 +13,12 @@ sf::Vector2f Character::getPosition(){
     return _characterSprite.getPosition();
 }
 
-int Character::getHeight() {
-    return height;
+int Character::getHeight() const {
+    return _height;
 }
 
 void Character::setHeight(const int & value) {
-    height = value;
+    _height = value;
 }
 
 
@@ -31,17 +32,19 @@ void Character::Update(float dt) {
         (_position.x + _characterSprite.getGlobalBounds().width) >= game_data->window.getSize().x) {
         Collide(false);
     }
+    if(_characterSprite.getPosition().y < 0){
+        _death = true;
+    }
 
-    
     if (character_states::Jumping == _characterState) {
         _velocity.y += GRAVITY;
         _position.y += _velocity.y;
         _position.x += _velocity.x;
 
-        height += (_velocity.y * -1);
+        _height += (_velocity.y * -1);
 
     } else if (character_states::Stick == _characterState) {
-
+        //do nothing
     }
 }
 
@@ -53,7 +56,7 @@ void Character::Tap() {
 
 void Character::Collide(bool dangerous) {
     if (dangerous) {
-        //ga dood aub
+        _death = true;
     } else{
         _velocity.x *= -1;
         while (!game_data->input.IsKeyPressed(sf::Keyboard::Space)) {

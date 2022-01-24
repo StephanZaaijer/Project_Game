@@ -26,7 +26,7 @@ void Character::Update(float dt) {
         _position.x += _velocity.x;
 
     } else if (CHARACTER_STATE_STICK == _characterState) {
-        _characterSprite.setPosition(_characterSprite.getPosition());
+
     }
 
 }

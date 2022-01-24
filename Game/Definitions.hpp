@@ -8,12 +8,19 @@
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 
 
+// Change these implementations to enums
+#define CHARACTER_STATE_STIL 1
+#define CHARACTER_STATE_FALLING 2
+#define CHARACTER_STATE_JUMPING 3
+#define CHARACTER_START_HEIGHT 800
+
 enum character_states {
 	Still,
 	Falling,
 	Jumping,
 	Stick
 };
+
 
 #define GRAVITY 0.5f
 #define JUMPING_SPEED 200.0f

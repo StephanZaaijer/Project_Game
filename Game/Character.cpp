@@ -2,9 +2,7 @@
 #include <utility>
 
 Character::Character(GameDataReference data) : game_data(std::move(data)) {
-    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
-    _characterSprite.setTexture(game_data->assets.GetTexture("character"));
-    _characterSprite.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
+    _characterSprite.setPosition(SCREEN_WIDTH / 2.0f, CHARACTER_START_HEIGHT);
     _position = _characterSprite.getPosition();
     _characterState = character_states::Still;
 }
@@ -13,12 +11,20 @@ sf::Vector2f Character::getPosition(){
     return _characterSprite.getPosition();
 }
 
-int Character::getHeight() const {
-    return _height;
+
+void Character::moveDownByOffset(const float & y){
+    _position.y += y;
 }
+
+int Character::getHeight() {
+    return height;
 
 void Character::setHeight(const int & value) {
     _height = value;
+}
+
+sf::Sprite & Character::getSpriteToChange() {
+    return _characterSprite;
 }
 
 
@@ -50,8 +56,8 @@ void Character::Update(float dt) {
 
 void Character::Tap() {
     _movementClock.restart();
-    _characterState = character_states::Jumping;
-    _velocity.y = -12.0;
+    _characterState = CHARACTER_STATE_JUMPING;
+    _velocity.y = -16.0;
 }
 
 void Character::Collide(bool dangerous) {

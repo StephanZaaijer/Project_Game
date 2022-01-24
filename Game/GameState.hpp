@@ -2,6 +2,7 @@
 #ifndef PROJECT_GAME_GAMESTATE_HPP
 #define PROJECT_GAME_GAMESTATE_HPP
 
+
 class GameState{
 public:
     virtual void Init() = 0;

@@ -1,4 +1,3 @@
-
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
@@ -11,17 +10,17 @@ public:
         Character(GameDataReference data);
         void Draw();
         void Update(float dt);
+        void Collide(bool spike);
         void Tap();
-        sf::Sprite GetSprite();
-
+        sf::FloatRect GetBound();
 
 private:
         GameDataReference game_data;
         sf::Sprite _characterSprite;
-
+        sf::Vector2f _velocity = {5,0};
+        sf::Vector2f _position;
         sf::Clock _clock;
         sf::Clock _movementClock;
-
         int _characterState;
 };
 

@@ -13,6 +13,7 @@ public:
         void Collide(bool spike);
         void Tap();
         sf::FloatRect GetBound();
+        sf::Vector2f getPosition();
 
 private:
         GameDataReference game_data;

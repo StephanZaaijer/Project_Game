@@ -7,7 +7,7 @@ Wall::Wall(GameDataReference data):
     game_data (data)
 {}
 
-std::vector<sf::RectangleShape> Wall::getWalls(){
+std::vector<sf::RectangleShape> & Wall::getWalls(){
     return walls;
 }
 
@@ -58,7 +58,7 @@ void Wall::move_Wall(sf::Vector2f move_by){
 
 void Wall::draw_Wall(){
     for(unsigned int i = 0; i < walls.size(); i++){
-        game_data->window.draw(*walls[i]);
+        game_data->window.draw(walls[i]);
     }
 }
 

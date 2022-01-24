@@ -35,10 +35,10 @@ void MainGameState::Init(){
     character = new Character(game_data);
 }
 
-void MainGameState::HandleInput(){
+void MainGameState::HandleInput() {
     sf::Event event;
 
-    while(game_data -> window.pollEvent( event )) {
+    while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
         }
@@ -49,17 +49,17 @@ void MainGameState::HandleInput(){
             game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
         }
     }
+}
 
 void MainGameState::Update( float delta ){
-    if(character.getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
-        float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character.getPosition().y;
+    if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
+        float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
-        obstacles_container ->move_Obstacle(sf::Vector2f(0, move_down_by));
-        character.move(0, move_down_by);
+        obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
     }
   
-    for ( auto *wallBound : wall->GetWall()) {
-        if(CollisionDetection(character->GetBound(), wallBound->getGlobalBounds())){
+    for ( auto &wallBound : wall->getWalls()) {
+        if(CollisionDetection(character->GetBound(), wallBound.getGlobalBounds())){
             character->Collide(false);
         }
     //    if(CollisionDetection(character->GetBound(), spike->getGlobalBounds())){
@@ -93,7 +93,6 @@ void MainGameState::Draw( float delta ){
     game_data-> window.setTitle("Main Game State");
     game_data-> window.draw(background);
     wall -> draw_Wall();
-    game_data -> window.draw(character);
     obstacles_container -> draw_Obstacle();
     game_data -> window.display();
 }

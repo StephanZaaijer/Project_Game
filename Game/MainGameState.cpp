@@ -6,12 +6,12 @@
 MainGameState::MainGameState(GameDataReference data):
     game_data (std::move(data))
 {}
-bool MainGameState::CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2) {
-    if(object1.intersects(object2)){
-        return true;
-    }
-    return false;
-}
+//bool MainGameState::CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2) {
+//    if(object1.intersects(object2)){
+//        return true;
+//    }
+//    return false;
+//}
 
 bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect object2) {
     if(object1.intersects(object2)){
@@ -33,7 +33,7 @@ void MainGameState::Init(){
     wall->spawn_Wall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
-        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i]);
+        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
         wall->setContainObstacleTrue(i);
     }
 }
@@ -64,8 +64,9 @@ void MainGameState::Update( float delta ){
 
   
     for ( auto &wallBound : wall->getWalls()) {
-        if(CollisionDetection(character->GetBound(), wallBound.getGlobalBounds())){
+        if(CollisionDetection(character->GetBound(), wallBound.wall.getGlobalBounds())){
             character->Collide(false);
+
         }
     //    if(CollisionDetection(character->GetBound(), spike->getGlobalBounds())){
 //            character->Collide(True);
@@ -79,9 +80,9 @@ void MainGameState::Update( float delta ){
 
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
         wall ->spawn_Wall();
-        for(unsigned int i = 0; i < wall->getContainsObstacles().size(); i++)
-            if (!wall->getContainsObstacles()[i]){
-                obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i]);
+        for(unsigned int i = 0; i < wall->getWalls().size(); i++)
+            if (!(wall->getWalls()[i].contains_obstacles)){
+                obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
                 wall->setContainObstacleTrue(i);
             }
         character->setHeight(0);
@@ -95,10 +96,9 @@ void MainGameState::Update( float delta ){
 
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
-    game_data-> window.setTitle("Main Game State");
     game_data-> window.draw(background);
-    wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
+    wall -> draw_Wall();
     character->Draw();
     game_data -> window.display();
 }

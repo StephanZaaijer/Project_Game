@@ -23,6 +23,7 @@ bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect obje
 
 void MainGameState::Init(){
     character = new Character(game_data);
+    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
     character->getSpriteToChange().setTexture( game_data->assets.GetTexture("character") );
 
     wall = new Wall(game_data);

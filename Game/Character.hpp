@@ -12,10 +12,8 @@ public:
 
     void Draw();
     void Update(float dt);
-
     void Tap();
     void Collide(bool spike);
-
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
 

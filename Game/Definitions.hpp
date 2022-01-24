@@ -23,7 +23,7 @@ enum character_states {
 #define TEXT_COLOR { 59, 3, 31}
 
 #define TEXT_TITLE_SIZE 200
-#define START_UP_TIME 3
+#define START_UP_TIME 0.4
 
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 #define BACKGROUND_PATH "Assets/StartupBackground.png"

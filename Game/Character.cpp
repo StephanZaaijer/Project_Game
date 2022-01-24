@@ -12,6 +12,14 @@ sf::Vector2f Character::getPosition(){
     return _characterSprite.getPosition();
 }
 
+int Character::getHeight() {
+    return height;
+}
+
+void Character::setHeight(const int & value) {
+    height = value;
+}
+
 
 void Character::Draw() {
     _characterSprite.setPosition(_position);
@@ -28,6 +36,8 @@ void Character::Update(float dt) {
         _velocity.y += GRAVITY;
         _position.y += _velocity.y;
         _position.x += _velocity.x;
+
+        height += (_velocity.y * -1);
 
     } else if (CHARACTER_STATE_STICK == _characterState) {
 

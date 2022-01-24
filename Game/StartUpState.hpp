@@ -9,6 +9,8 @@
 #include "AssetManager.hpp"
 #include "Game.hpp"
 #include "MainMenuState.hpp"
+#include "MainGameState.hpp"
+#include "CustomCharacterState.hpp"
 
 class StartUpState : public GameState {
 private:

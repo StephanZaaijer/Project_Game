@@ -1,6 +1,7 @@
 #include "StartUpState.hpp"
-#include "MainMenuState.hpp"
-#include "MainGameState.hpp"
+
+
+
 #include <utility>
 
 StartUpState::StartUpState(GameDataReference data) : game_data(std::move(data)) {}
@@ -33,7 +34,7 @@ void StartUpState::HandleInput() {
 
 void StartUpState::Update(float delta) {
     if (_clock.getElapsedTime().asSeconds() > START_UP_TIME) {
-      game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
+      game_data->machine.AddGameState(GameStateReference(new CustomCharacterState(game_data)), true);
     }
 }
 

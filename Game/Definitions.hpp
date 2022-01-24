@@ -47,6 +47,9 @@ enum character_states {
 #define SOUND_BUTTON_RED_PATH "Assets/SoundButtonRed.png"
 #define BACK_BUTTON_PATH "Assets/BackButton.png"
 
+#define ARROW_RIGHT_BUTTON "Assets/BackButton.png"
+#define ARROW_LEFT_BUTTON "Assets/BackButton.png"
+
 #define RESTART_BUTTON_PATH "Assets/RestartButton.png"
 #define MAIN_MENU_BUTTON_PATH "Assets/MainMenuButton.png"
 

@@ -1,5 +1,6 @@
 #include "GameOverState.hpp"
 #include "MainMenuState.hpp"
+#include "MainGameState.hpp"
 #include <utility>
 
 GameOverState::GameOverState(GameDataReference data) : game_data(std::move(data)){}
@@ -19,15 +20,14 @@ void GameOverState::Init() {
     _score.setFont(game_data->assets.GetFont("Bauhaus font"));
     _highscore.setFont( game_data->assets.GetFont("Bauhaus font"));
 
-
     _restartButton.setPosition(SCREEN_WIDTH - (_restartButton.getGlobalBounds().width * 2.9),
                                SCREEN_HEIGHT - (_restartButton.getGlobalBounds().height * 1.1));
     _mainMenuButton.setPosition(SCREEN_WIDTH - (_mainMenuButton.getGlobalBounds().width * 1.9),
                                SCREEN_HEIGHT - (_mainMenuButton.getGlobalBounds().height * 1.1));
 
     _gameOverText.setString("GAMEOVER!");
-    _score.setString("Score: 200");
-    _highscore.setString("Highscore: 342");
+    _score.setString("Score: 200"); //TODO score vanaf waar opvragen?
+    _highscore.setString("Highscore: " + std::to_string(game_data->json.Get_Highscore()));
 
     _gameOverText.setCharacterSize(TEXT_TITLE_SIZE);
     _score.setCharacterSize(120);
@@ -60,7 +60,7 @@ void GameOverState::HandleInput() {
         }
     }
     if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
-        std::cout << "restart \n";
+        game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
     }
     if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
         game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);

@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #ifndef PROJECT_GAME_DEFINITIONS_HPP
 #define PROJECT_GAME_DEFINITIONS_HPP
 
@@ -9,7 +5,7 @@
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
 #define FRAMERATE 60
-#define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
+#define CHARACTER_START_HEIGHT 800
 
 
 enum character_states {
@@ -18,16 +14,18 @@ enum character_states {
 	Jumping,
 	Stick
 };
+#define GRAVITY 0.6f
 
-#define GRAVITY 0.5f
+
 #define JUMPING_SPEED 200.0f
 #define FLYING_SPEED 400.0f
 #define JUMP_DURATION 0.75f
-
 #define TEXT_COLOR { 59, 3, 31}
-#define TEXT_TITLE_SIZE 200
 
-#define START_UP_TIME 3
+#define TEXT_TITLE_SIZE 200
+#define START_UP_TIME 0.4
+
+#define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 #define BACKGROUND_PATH "Assets/StartupBackground.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
 #define GAME_IMAGE_PATH "Assets/StartUpImage.png"

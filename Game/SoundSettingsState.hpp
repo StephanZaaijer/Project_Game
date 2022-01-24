@@ -9,6 +9,8 @@
 #include "AssetManager.hpp"
 #include "Game.hpp"
 #include "Definitions.hpp"
+#include "Soundslider.hpp"
+#include "Musicslider.hpp"
 
 class SoundSettingsState : public GameState {
 private:
@@ -19,11 +21,12 @@ private:
   sf::Sprite _backButton;
   sf::Text _settingsText;
   std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &_backButton };
-
+  Soundslider* soundslider;
+  Musicslider* musicslider;
 
 public:
   SoundSettingsState(GameDataReference data);
-
+  ~SoundSettingsState();
   void Init() override;
   void HandleInput() override;
   void Update(float delta) override;

@@ -1,6 +1,7 @@
 #include "SoundSettingsState.hpp"
 #include <utility>
 
+
 SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::move(data)) {}
 
 void SoundSettingsState::Init() {
@@ -40,8 +41,10 @@ void SoundSettingsState::Init() {
     _soundButton.setPosition(SCREEN_WIDTH / 2.0f - (_soundButton.getGlobalBounds().width / 2),
                             SCREEN_HEIGHT - (_soundButton.getGlobalBounds().height * 3.1));
 
-}
+    soundslider = new Soundslider(game_data, { 100, 100 }, 200, true, sf::Color::Red);
 
+    musicslider = new Musicslider(game_data, { 100, 300 }, 200, true, sf::Color::Green);
+}
 void SoundSettingsState::HandleInput() {
     sf::Event event{};
     while (game_data->window.pollEvent(event)) {
@@ -53,37 +56,42 @@ void SoundSettingsState::HandleInput() {
         }
         if (game_data->input.IsSpriteClicked(_musicButton, sf::Mouse::Left, game_data->window)) {
             // TODO actually turn off music
-            if (game_data->json.Get_Musicstate()) {
-                _musicButton.setTexture(game_data->assets.GetTexture("Music Button Red"));
-                game_data->json.Set_Musicstate(false);
-            }
-            else {
-                _musicButton.setTexture(game_data->assets.GetTexture("Music Button Green"));
-                game_data->json.Set_Musicstate(true);
-            }
+            game_data->json.Set_Musicstate(!game_data->json.Get_Musicstate());
         }
         if (game_data->input.IsSpriteClicked(_soundButton, sf::Mouse::Left, game_data->window)) {
             // TODO actually turn off sound
-            if (game_data->json.Get_Soundstate()) {
-                _soundButton.setTexture(game_data->assets.GetTexture("Sound Button Red"));
-                game_data->json.Set_Soundstate(false);
-            }
-            else {
-                _soundButton.setTexture(
-                    game_data->assets.GetTexture("Sound Button Green"));
-                game_data->json.Set_Soundstate(true);
-            }
+            game_data->json.Set_Soundstate(!game_data->json.Get_Soundstate());
         }
     }
     game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
+    soundslider->handleinput();
+    musicslider->handleinput();
 }
 
 void SoundSettingsState::Update(float delta) {
+    soundslider->update();
+    musicslider->update();
+    if (game_data->json.Get_Musicstate()) {
+        _musicButton.setTexture(game_data->assets.GetTexture("Music Button Green"));
+    }
+    else {
+        _musicButton.setTexture(game_data->assets.GetTexture("Music Button Red"));
+    }
+    if (game_data->json.Get_Soundstate()) {
+        _soundButton.setTexture(game_data->assets.GetTexture("Sound Button Green"));
+    }
+    else {
+        _soundButton.setTexture(
+            game_data->assets.GetTexture("Sound Button Red"));
+    }
+
 }
 
 void SoundSettingsState::Draw(float delta) {
     game_data->window.clear();
     game_data->window.draw(_background);
+    soundslider->Draw();
+    musicslider->Draw();
     game_data->window.draw(_musicButton);
     game_data->window.draw(_soundButton);
     game_data->window.draw(_backButton);

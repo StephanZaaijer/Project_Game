@@ -10,10 +10,10 @@
 
 # source files in this project (main.cpp is automatically assumed)
 # header files in this project
-SOURCES := AssetManager.cpp Game.cpp InputManager.cpp StateMachine.cpp MainGameState.cpp Wall.cpp SoundSettingsState.cpp StartupState.cpp MainMenuState.cpp GameOverState.cpp Character.cpp JsonManager.cpp jsoncpp.cpp Spike.cpp ObstaclesContainer.cpp
+SOURCES := AssetManager.cpp Character.cpp Game.cpp GameOverState.cpp InputManager.cpp jsoncpp.cpp JsonManager.cpp MainGameState.cpp MainMenuState.cpp ObstaclesContainer.cpp PauseState.hpp SoundSettingsState.cpp Spike.cpp StartupState.cpp StateMachine.cpp Wall.cpp
 
 # header files in this project
-HEADERS := AssetManager.hpp Definitions.hpp Game.hpp GameState.hpp InputManager.hpp StateMachine.hpp MainGameState.hpp Wall.hpp SoundSettingsState.hpp StartupState.hpp MainMenuState.hpp GameOverState.hpp Character.hpp JsonManager.hpp json.h json-forwards.h Exceptions.hpp Obstacle.hpp Spike.hpp ObstaclesContainer.hpp
+HEADERS := AssetManager.hpp Character.hpp Definitions.hpp Exceptions.hpp Game.hpp GameOverState.hpp GameState.hpp InputManager.hpp json.h json-forwards.h JsonManager.hpp MainGameState.hpp MainMenuState.hpp Obstacle.hpp ObstaclesContainer.hpp PauseState.hpp SoundSettingsState.hpp Spike.hpp StartupState.hpp StateMachine.hpp Wall.hpp
 
 # other places to look for files for this project
 SEARCH  := ../Library/JSON/json ../Library/JSON

@@ -24,10 +24,12 @@ bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect obje
 void MainGameState::Init(){
     game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
     character = new Character(game_data);
+    character->getSpriteToChange().setTexture( game_data->assets.GetTexture("character") );
+
     wall = new Wall(game_data);
     obstacles_container = new Obstacle_Container(game_data);
     game_data->assets.loadTextureFromFile("Game Background Image", "Assets/StartupBackground.png");
-    background.setTexture(this->game_data->assets.GetTexture("Game Background Image"));
+    background.setTexture(game_data->assets.GetTexture("Game Background Image"));
     wall->spawn_Wall(WALL_HEIGHT);
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
         obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i]);
@@ -45,9 +47,9 @@ void MainGameState::HandleInput() {
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             character->Tap();
         }
-        if (!game_data->window.hasFocus()) {
-            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
-        }
+//        if (!game_data->window.hasFocus()) {
+//            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+//        }
     }
 }
 
@@ -56,7 +58,9 @@ void MainGameState::Update( float delta ){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
+        character->moveDownByOffset(move_down_by);
     }
+
   
     for ( auto &wallBound : wall->getWalls()) {
         if(CollisionDetection(character->GetBound(), wallBound.getGlobalBounds())){
@@ -82,17 +86,16 @@ void MainGameState::Update( float delta ){
         character->setHeight(0);
     }
     character->Update(delta);
-    wall -> move_Wall(sf::Vector2f(0, 3));
 }
 
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
 
     // draw something
-    character->Draw();
     game_data-> window.setTitle("Main Game State");
     game_data-> window.draw(background);
     wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
+    character->Draw();
     game_data -> window.display();
 }

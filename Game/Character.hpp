@@ -12,6 +12,9 @@ public:
         void Update(float dt);
         void Collide(bool spike);
         void Tap();
+        void moveDownByOffset(const float & y);
+
+        sf::Sprite & getSpriteToChange();
         sf::FloatRect GetBound();
         sf::Vector2f getPosition();
 
@@ -21,7 +24,7 @@ public:
 private:
         GameDataReference game_data;
         sf::Sprite _characterSprite;
-        sf::Vector2f _velocity = {5,0};
+        sf::Vector2f _velocity = {10,0};
         sf::Vector2f _position;
         sf::Clock _clock;
         sf::Clock _movementClock;

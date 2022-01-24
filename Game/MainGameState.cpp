@@ -72,19 +72,15 @@ void MainGameState::Update( float delta ){
 //            character->Collide(True);
 //        }
     }
-  
-//     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-//         character.move(0, -5);
-//         char_height += 5;
-//     }
 
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
         wall ->spawn_Wall();
-        for(unsigned int i = 0; i < wall->getWalls().size(); i++)
-            if (!(wall->getWalls()[i].contains_obstacles)){
-                obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
+        for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
+            if (!(wall->getWalls()[i].contains_obstacles)) {
+                obstacles_container->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
                 wall->setContainObstacleTrue(i);
             }
+        }
         character->setHeight(0);
     }
     if (character->_death){

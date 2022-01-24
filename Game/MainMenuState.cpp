@@ -35,6 +35,7 @@ void MainMenuState::HandleInput() {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
         }
+
     }
 
     if(game_data->input.IsSpriteClicked( _exitButton, sf::Mouse::Left, game_data->window )){

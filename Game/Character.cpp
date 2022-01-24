@@ -1,4 +1,5 @@
 #include "Character.hpp"
+#include <iostream>
 #include <utility>
 
 Character::Character(GameDataReference data) : game_data(std::move(data)) {
@@ -31,6 +32,7 @@ sf::Sprite & Character::getSpriteToChange() {
 
 void Character::Draw() {
     _characterSprite.setPosition(_position);
+
     game_data->window.draw(_characterSprite);
 }
 
@@ -43,22 +45,43 @@ void Character::Update(float dt) {
         _death = true;
     }
 
-    if (Jumping == _characterState) {
+    if ( _characterState == Jumping ) {
+
+        // TELEPORT JUMP WITH CHARACTER SPRITE POSITION CHANGE
+//        sf::Vector2f pos = _characterSprite.getPosition();
+//        _velocity.y += GRAVITY;
+//        pos.y += _velocity.y;
+//        pos.x += _velocity.x;
+//        _characterSprite.setPosition(pos);
+
+        // BLOB JUMP
+//        _velocity.y += GRAVITY;
+//
+////        std::cout << _characterSprite.getPosition().y << "\t" << _position.y << "\n";
+//        _position.y = _characterSprite.getPosition().y;
+//        _position.x = _characterSprite.getPosition().x;
+//        _position.y += _velocity.y ;
+//        _position.x += _velocity.x ;
+
+        // TELEPORT JUMP
         _velocity.y += GRAVITY;
         _position.y += _velocity.y;
         _position.x += _velocity.x;
 
+
+
         _height += (_velocity.y * -1);
 
-    } else if (Stick == _characterState) {
-        //do nothing
+    } else if ( _characterState == Stick ) {
+//        _position.y = _characterSprite.getPosition().y;
+//        _position.x = _characterSprite.getPosition().x;
     }
 }
 
 void Character::Tap() {
     _movementClock.restart();
     _characterState = Jumping;
-    _velocity.y = -18.0;
+    _velocity.y = VELOCITY_Y;
 }
 
 void Character::Collide(bool dangerous) {

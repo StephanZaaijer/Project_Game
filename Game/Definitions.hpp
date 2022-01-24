@@ -15,6 +15,8 @@ enum character_states {
 	Stick
 };
 #define GRAVITY 0.6f
+#define VELOCITY_Y -18.0
+#define VELOCITY_X 8
 
 
 #define JUMPING_SPEED 200.0f

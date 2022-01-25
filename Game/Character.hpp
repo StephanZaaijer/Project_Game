@@ -16,10 +16,9 @@ public:
     void Collide(bool spike);
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
+    void setJump(const bool & set);
 
     int getHeight() const;
-
-    bool _death = false;
 
     sf::Sprite & getSpriteToChange();
 
@@ -37,6 +36,7 @@ private:
     sf::Clock _movementClock;
     character_states _characterState;
     int _height = 0;
+    bool jump;
 };
 
 #endif //CHARACTER_HPP

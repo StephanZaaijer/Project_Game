@@ -25,6 +25,10 @@ void Character::setHeight(const int &value) {
     _height = value;
 }
 
+void Character::setJump(const bool & set){
+    jump = set;
+}
+
 sf::Sprite & Character::getSpriteToChange() {
     return _characterSprite;
 }
@@ -37,14 +41,6 @@ void Character::Draw() {
 }
 
 void Character::Update(float dt) {
-    if ((_characterSprite.getPosition().x < 1) ||
-        (_position.x + _characterSprite.getGlobalBounds().width) >= game_data->window.getSize().x) {
-        Collide(false);
-    }
-    if(_characterSprite.getPosition().y > SCREEN_HEIGHT){
-        _death = true;
-    }
-
     if ( _characterState == Jumping ) {
 
         // TELEPORT JUMP WITH CHARACTER SPRITE POSITION CHANGE
@@ -64,6 +60,7 @@ void Character::Update(float dt) {
 //        _position.x += _velocity.x ;
 
         // TELEPORT JUMP
+//        std::cout << "update values" << "\n";
         _velocity.y += GRAVITY;
         _position.y += _velocity.y;
         _position.x += _velocity.x;
@@ -72,28 +69,22 @@ void Character::Update(float dt) {
 
         _height += (_velocity.y * -1);
 
-    } else if ( _characterState == Stick ) {
-//        _position.y = _characterSprite.getPosition().y;
-//        _position.x = _characterSprite.getPosition().x;
+    }
+    else if ( _characterState == Stick ) {
+
     }
 }
 
 void Character::Tap() {
+//    std::cout << "tap()" << "\n";
     _movementClock.restart();
     _characterState = Jumping;
     _velocity.y = VELOCITY_Y;
 }
 
 void Character::Collide(bool dangerous) {
-    if (dangerous) {
-        _death = true;
-    } else{
-        _velocity.x *= -1;
-        while (!game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
-            _characterState = Stick;
-        }
-        _characterState = Jumping;
-    }
+    _velocity.x *= -1;
+    _characterState = Stick;
 }
 
 sf::FloatRect Character::GetBound() {

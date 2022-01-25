@@ -46,6 +46,8 @@ void MainGameState::HandleInput() {
             game_data->window.close();
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+//            std::cout << "MainGameState: heyyyy" << "\n";
+            character->setJump(true);
             character->Tap();
         }
 //        if (!game_data->window.hasFocus()) {
@@ -64,13 +66,24 @@ void MainGameState::Update( float delta ){
 
   
     for ( auto &wallBound : wall->getWalls()) {
-        if(CollisionDetection(character->GetBound(), wallBound.wall.getGlobalBounds())){
+        if (
+                CollisionDetection(character->GetBound(), wallBound.wall.getGlobalBounds()) ||
+                (character->getPosition().x < 1) ||
+                ((character->getPosition().x + character->getSpriteToChange().getGlobalBounds().width) >=
+                 (float) game_data->window.getSize().x)
+
+                ) {
             character->Collide(false);
 
         }
-    //    if(CollisionDetection(character->GetBound(), spike->getGlobalBounds())){
+        //    if(CollisionDetection(character->GetBound(), spike->getGlobalBounds())){
 //            character->Collide(True);
 //        }
+    }
+
+
+    if(character->getSpriteToChange().getPosition().y > SCREEN_HEIGHT){
+        game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
     }
 
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
@@ -82,9 +95,6 @@ void MainGameState::Update( float delta ){
             }
         }
         character->setHeight(0);
-    }
-    if (character->_death){
-        game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
     }
 
     character->Update(delta);

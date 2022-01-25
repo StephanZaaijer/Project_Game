@@ -14,6 +14,7 @@ void MainGameState::Init(){
 
     wall = new Wall(game_data);
     obstacles_container = new Obstacle_Container(game_data);
+    wall = new Wall(game_data);
     background.setTexture(this->game_data->assets.GetTexture("Background"));
     wall->spawn_Wall(WALL_HEIGHT);
 
@@ -51,7 +52,8 @@ void MainGameState::Update( float delta ){
 
     // move walls downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
-        float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
+        int move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
+
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
         character->moveDownByOffset(move_down_by);
@@ -74,8 +76,15 @@ void MainGameState::Update( float delta ){
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
     game_data-> window.draw(background);
-    obstacles_container -> draw_Obstacle();
     wall -> draw_Wall();
+    obstacles_container -> draw_Obstacle();
     character->Draw();
     game_data -> window.display();
+}
+
+MainGameState::~MainGameState() {
+    delete character;
+    delete obstacles_container;
+    delete wall;
+    background.~Sprite();
 }

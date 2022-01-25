@@ -13,7 +13,7 @@ Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f posi
 {spawn();}
 
 sf::Vector2f Spike::getPosition(){
-    return position;
+    return Triangle.getPosition();
 }
 
 void Spike::spawn(){

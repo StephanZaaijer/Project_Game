@@ -16,6 +16,7 @@ public:
     void Collide(const std::vector<sf::RectangleShape> & Rects );
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
+
     void setJump(const bool & set);
 
     int getHeight() const;

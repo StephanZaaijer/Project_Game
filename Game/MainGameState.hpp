@@ -21,6 +21,7 @@ private:
     Character *character;
 public:
     MainGameState(GameDataReference data);
+    ~MainGameState() override;
     void Init() override;
 
     void HandleInput() override;

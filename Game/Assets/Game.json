@@ -1,12 +1,12 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
+		"Music" : true,
 		"Musiclevel" : 50,
-		"Sound" : false,
+		"Sound" : true,
 		"Soundlevel" : 100
 	},
-	"Player" : {},
+	"Player" : "Temp",
 	"Score" : 
 	{
 		"Highscore" : 123

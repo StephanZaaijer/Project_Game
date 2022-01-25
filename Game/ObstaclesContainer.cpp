@@ -7,32 +7,19 @@
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
+#include "Deathwall.hpp"
 
 Obstacle_Container::Obstacle_Container(GameDataReference data):
     game_data (data)
 {}
-
-//void Obstacle_Container::spawn_Obstacle(Obstacle_objects object){
-//    srand (time(NULL));
-////    int random_object = rand() % 2 + 1;
-//    if(object == Spike_Object){
-//        int random_facing = rand() % 2 + 1;
-//        if (random_facing == 1){
-//            obstacles.push_back(new Spike(game_data, left));
-//        }
-//        else {
-//            obstacles.push_back(new Spike(game_data, right));
-//        }
-//    }
-//}
 
 void Obstacle_Container::spawn_Obstacle_On_Wall(sf::RectangleShape wall){
 
     srand (time(NULL));
     int Wall_Left_Side = rand() % 4 + 1;
     int Wall_Right_Side = rand() % 4 + 1;
-    int Wall_Left_Side_obstacles = rand() % 1 + 1;
-    int Wall_right_Side_obstacles = rand() % 1 + 1;
+    int Wall_Left_Side_obstacles = rand() % 2 + 1;
+    int Wall_right_Side_obstacles = rand() % 2 + 1;
     std::vector<sf::Vector2f> Coordinates_Left_Obstacles;
     std::vector<sf::Vector2f> Coordinates_Right_Obstacles;
 
@@ -91,6 +78,11 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(sf::RectangleShape wall){
                     Coordinates_Left_Obstacles[i].x - SPIKE_SIZE / 2,
                     Coordinates_Left_Obstacles[i].y + SPIKE_SIZE )));
         }
+        else if (Wall_Left_Side_obstacles == 2){
+            obstacles.push_back(new Deathwall(game_data, sf::Vector2f(
+                    Coordinates_Left_Obstacles[i].x,
+                    Coordinates_Left_Obstacles[i].y - WALL_OBSTACLE_HEIGHT_1)));
+        }
     }
 
     for(unsigned int i = 0; i < Coordinates_Right_Obstacles.size(); i++) {
@@ -99,10 +91,16 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(sf::RectangleShape wall){
                     Coordinates_Right_Obstacles[i].x + SPIKE_SIZE / 2,
                     Coordinates_Right_Obstacles[i].y - SPIKE_SIZE )));
         }
+        else if (Wall_right_Side_obstacles == 2){
+            obstacles.push_back(new Deathwall(game_data, sf::Vector2f(
+                    Coordinates_Right_Obstacles[i].x - WALL_WIDTH/2,
+                    Coordinates_Right_Obstacles[i].y - WALL_OBSTACLE_HEIGHT_1)));
+        }
     }
 }
 
 void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
+    std::cout << "obsta m b " << move_by.y << std::endl;
     for (unsigned int i = 0; i < obstacles.size(); i++){
         obstacles[i] -> move(move_by);
         if (obstacles[i] -> getPosition().y >= SCREEN_HEIGHT){

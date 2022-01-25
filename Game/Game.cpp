@@ -30,11 +30,11 @@ void Game::start(){
         current_time = new_time;
         accumulator += frameTime;
 
-        while (accumulator>=delta){
+//        while (accumulator>=delta){
             game_data->machine.GetActiveGameState()->HandleInput();
             game_data->machine.GetActiveGameState()->Update(delta);
             accumulator -= delta;
-        }
+//        }
         game_data -> machine.GetActiveGameState()->Draw(accumulator / delta);
     }
 }

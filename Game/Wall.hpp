@@ -5,6 +5,7 @@
 #include "Game.hpp"
 #include "Definitions.hpp"
 #include <vector>
+#include "ObstaclesContainer.hpp"
 
 struct wall_obstacles{
     sf::RectangleShape wall;

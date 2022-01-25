@@ -8,15 +8,15 @@ Slider::Slider(GameDataReference game_data, sf::Vector2f location, int par_lengt
 	length(par_length+1)
 {
 	if (horizontal) {
-		slider.setSize({length/1.0f, 30});
+		slider.setSize({length/1.0f, 50});
 		slider.setOrigin({ 0, slider.getGlobalBounds().height / 2 });
 	}
 	else {
-		slider.setSize({ 30, length/1.0f });
+		slider.setSize({ 50, length/1.0f });
 		slider.setOrigin({ slider.getGlobalBounds().width / 2, 0 });
 
 	}
-	slider_block.setSize({ 35, 35 });
+	slider_block.setSize({ 60, 60 });
 	slider_block.setOrigin(slider_block.getGlobalBounds().width / 2, slider_block.getGlobalBounds().height / 2);
 	slider_block.setFillColor(slidercolor);
 

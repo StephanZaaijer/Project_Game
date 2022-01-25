@@ -3,22 +3,18 @@
 class Soundslider:public Slider
 {
 public:
-	Soundslider(GameDataReference game_data, sf::Vector2f location, int length, bool horizontal, sf::Color slidercolor);
+	Soundslider(GameDataReference game_data, sf::Vector2f slider_location, int length, bool horizontal, sf::Color slidercolor_on, sf::Color slidercolor_off, sf::Vector2f Textlocation, int fontsize);
 	void update() override;
 	void Draw() override;
-	~Soundslider();
 
 private:
 	GameDataReference game_data;
 	sf::Color slidercolor_on;
 	sf::Color slidercolor_off;
-	sf::Clock clock;
-	int current_soundlevel;
 	int slider_min;
 	int slider_max;
 	bool prev_state;
 	int ratio;
-	sf::Text sound;
+	sf::Text level;
 	sf::Vector2f prev_sliderblock_location;
-	bool changed = false;
 };

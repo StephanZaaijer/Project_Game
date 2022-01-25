@@ -11,6 +11,7 @@
 #include <vector>
 #include "Obstacle.hpp"
 #include "Spike.hpp"
+#include "Deathwall.hpp"
 
 class Obstacle_Container {
 private:

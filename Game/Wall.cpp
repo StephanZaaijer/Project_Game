@@ -42,6 +42,7 @@ void Wall::spawn_Wall(float start_y_offset){
 }
 
 void Wall::move_Wall(sf::Vector2f move_by){
+    std::cout << "Wall m b " << move_by.y << std::endl;
     for(unsigned int i = 0; i < walls.size(); i++){
         walls[i].wall.move(move_by);
         if (walls[i].wall.getPosition().y >= SCREEN_HEIGHT){

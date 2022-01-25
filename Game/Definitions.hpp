@@ -26,6 +26,10 @@ enum character_states {
 #define START_UP_TIME 0.4
 
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
+#define CHARACTER_2 "Assets/character_2.png"
+#define CHARACTER_3 "Assets/character_3.png"
+#define RANDOMBUTTON "Assets/randomButton.png"
+
 #define BACKGROUND_PATH "Assets/StartupBackground.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
 #define GAME_IMAGE_PATH "Assets/StartUpImage.png"

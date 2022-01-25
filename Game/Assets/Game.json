@@ -1,9 +1,9 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
+		"Music" : true,
 		"Musiclevel" : 50,
-		"Sound" : true,
+		"Sound" : false,
 		"Soundlevel" : 100
 	},
 	"Player" : {},

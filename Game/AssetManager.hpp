@@ -2,7 +2,7 @@
 #define PROJECT_GAME_ASSETMANAGER_HPP
 #include <map>
 #include <SFML/Graphics.hpp>
-#include <string.h>
+#include <cstring>
 #include "Definitions.hpp"
 
 #ifdef ENABLE_SOUND

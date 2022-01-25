@@ -15,12 +15,12 @@ class CustomCharacterState: public GameState {
 private:
     GameDataReference game_data;
     sf::Sprite _backButton;
-    sf::Sprite _ArrowRight;
-    sf::Sprite _ArrowLeft;
+    sf::Sprite _arrowRight;
+    sf::Sprite _arrowLeft;
     sf::Sprite _background;
     sf::Sprite _randomButton;
     Character *character;
-    std::vector<sf::Sprite*> CharacterSelect = { &_ArrowRight, &_ArrowLeft ,&_backButton,&_randomButton};
+    std::vector<sf::Sprite*> CharacterSelect = { &_arrowRight, &_arrowLeft ,&_backButton,&_randomButton};
     std::vector<std::string> character_lst ={"character","character_2", "character_3"};
     unsigned int counter;
 public:

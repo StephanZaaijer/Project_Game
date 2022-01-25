@@ -23,18 +23,18 @@ void CustomCharacterState::Init() {
 
     _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
     _randomButton.setTexture(game_data->assets.GetTexture("Random Button"));
-    _ArrowRight.setTexture(game_data->assets.GetTexture("Arrow Right"));
-    _ArrowLeft.setTexture(game_data->assets.GetTexture("Arrow Left"));
+    _arrowRight.setTexture(game_data->assets.GetTexture("Arrow Right"));
+    _arrowLeft.setTexture(game_data->assets.GetTexture("Arrow Left"));
     _background.setTexture(game_data->assets.GetTexture("Background"));
 
     _randomButton.setPosition(SCREEN_WIDTH / 5.0f * 3.0f, SCREEN_HEIGHT / 6.0f * 4.0f);
-    _ArrowRight.setPosition(SCREEN_WIDTH / 4.0f * 3.0f, SCREEN_HEIGHT / 2.0f);
-    _ArrowLeft.setPosition(SCREEN_WIDTH / 4.0f * 1.0f, SCREEN_HEIGHT / 2.0f);
+    _arrowRight.setPosition(SCREEN_WIDTH / 4.0f * 3.0f, SCREEN_HEIGHT / 2.0f);
+    _arrowLeft.setPosition(SCREEN_WIDTH / 4.0f * 1.0f, SCREEN_HEIGHT / 2.0f);
     _backButton.setPosition(SCREEN_WIDTH / 5.0f * 2.0f, SCREEN_HEIGHT / 5.0f * 4.0f);
 
-    _ArrowRight.setOrigin({_ArrowRight.getGlobalBounds().width / 2, _ArrowRight.getGlobalBounds().height / 2});
+    _arrowRight.setOrigin({_arrowRight.getGlobalBounds().width / 2, _arrowRight.getGlobalBounds().height / 2});
     _backButton.setOrigin({_backButton.getGlobalBounds().width / 2, _backButton.getGlobalBounds().height / 2});
-    _ArrowLeft.setOrigin({_ArrowLeft.getGlobalBounds().width / 2, _ArrowLeft.getGlobalBounds().height / 2});
+    _arrowLeft.setOrigin({_arrowLeft.getGlobalBounds().width / 2, _arrowLeft.getGlobalBounds().height / 2});
     _randomButton.setOrigin({_randomButton.getGlobalBounds().width / 2, _randomButton.getGlobalBounds().height / 2});
 
 }
@@ -45,7 +45,7 @@ void CustomCharacterState::HandleInput() {
         if (event.type == sf::Event::Closed) {
             game_data->window.close();
         }
-        if (game_data->input.IsSpriteClicked(_ArrowRight, sf::Mouse::Left, game_data->window)) {
+        if (game_data->input.IsSpriteClicked(_arrowRight, sf::Mouse::Left, game_data->window)) {
             if (counter == character_lst.size() - 1) {
                 counter = 0;
             } else { counter += 1; }
@@ -55,7 +55,7 @@ void CustomCharacterState::HandleInput() {
             counter = std::rand() % character_lst.size();
             character->getSprite().setTexture(game_data->assets.GetTexture(character_lst[counter]));
         }
-        if (game_data->input.IsSpriteClicked(_ArrowLeft, sf::Mouse::Left, game_data->window)) {
+        if (game_data->input.IsSpriteClicked(_arrowLeft, sf::Mouse::Left, game_data->window)) {
             if (counter == 0) {
                 counter = character_lst.size() - 1;
             } else { counter -= 1; }
@@ -75,8 +75,8 @@ void CustomCharacterState::Draw(float delta) {
     game_data->window.draw(_background);
     game_data->window.draw(_randomButton);
     game_data->window.draw(_backButton);
-    game_data->window.draw(_ArrowRight);
-    game_data->window.draw(_ArrowLeft);
+    game_data->window.draw(_arrowRight);
+    game_data->window.draw(_arrowLeft);
     character->Draw();
     game_data->window.display();
 }

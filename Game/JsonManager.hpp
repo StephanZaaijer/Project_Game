@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PROJECT_GAME_JSONMANAGER_HPP
+#define PROJECT_GAME_JSONMANAGER_HPP
+
 #include "Definitions.hpp"
 #include "../Library/JSON/json/json.h"
 #include <fstream>
@@ -15,12 +17,12 @@ public:
 	};
 
 	JsonManager(std::string Gamefile);
-	bool Get_Soundstate();
-	int Get_Soundvolume();
-	bool Get_Musicstate();
-	int Get_Musicvolume();
-	int Get_Highscore();
-	std::string Get_PlayerSprite();
+	bool Get_Soundstate() const;
+	int Get_Soundvolume() const;
+	bool Get_Musicstate() const;
+	int Get_Musicvolume() const;
+	int Get_Highscore() const;
+	std::string Get_PlayerSprite() const;
 	void Set_Soundstate(bool state);
 	void Set_Soundvolume(int volume);
 	void Set_Musicstate(bool state);
@@ -38,3 +40,4 @@ private:
 	std::string Gamefile;
 };
 
+#endif // PROJECT_GAME_JSONMANAGER_HPP

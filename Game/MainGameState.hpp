@@ -1,4 +1,3 @@
-
 #ifndef PROJECT_GAME_MAINGAMESTATE_HPP
 #define PROJECT_GAME_MAINGAMESTATE_HPP
 
@@ -13,7 +12,6 @@
 
 class MainGameState : public GameState{
 private:
-    int char_height = 0;
     GameDataReference game_data;
     Wall *wall;
     sf::Sprite background;

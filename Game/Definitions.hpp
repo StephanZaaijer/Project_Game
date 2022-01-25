@@ -7,15 +7,13 @@
 #define FRAMERATE 60
 #define CHARACTER_START_HEIGHT 800
 
-
 enum character_states {
 	Still,
-	Falling,
 	Jumping,
 	Stick
 };
 #define GRAVITY 0.6f
-#define VELOCITY_Y -18.0
+#define VELOCITY_Y (-18.0)
 #define VELOCITY_X 8
 
 
@@ -68,9 +66,9 @@ enum character_states {
 
 #define WALL_HEIGHT 600
 #define WALL_WIDTH 50
-#define WALL_OBSTACLE_HEIGHT_1 WALL_HEIGHT / 6
-#define WALL_OBSTACLE_HEIGHT_2 WALL_HEIGHT / 2
-#define WALL_OBSTACLE_HEIGHT_3 WALL_HEIGHT / 6 * 5
+#define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
+#define WALL_OBSTACLE_HEIGHT_2 (WALL_HEIGHT / 2.0f)
+#define WALL_OBSTACLE_HEIGHT_3 (WALL_HEIGHT / 6.0f * 5.0f)
 #define WALL_SPAWN_DISTANT 300
 #define CHARACTER_MAX_HEIGHT 700
 

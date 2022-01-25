@@ -15,10 +15,10 @@ void CustomCharacterState::Init() {
     game_data->assets.loadTextureFromFile("Arrow Left",ARROW_LEFT_BUTTON);
     game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
 
-    character->getSpriteToChange().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
-    character->setPosition({SCREEN_WIDTH / 4 * 2, SCREEN_HEIGHT / 2.0f});
-    character->getSpriteToChange().setOrigin({character->getSpriteToChange().getGlobalBounds().width/2, character->getSpriteToChange().getGlobalBounds().height/2});
-    character->getSpriteToChange().setOrigin({character->getSpriteToChange().getGlobalBounds().width/2, character->getSpriteToChange().getGlobalBounds().height/2});
+    character->getSprite().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
+    character->getSprite().setPosition({SCREEN_WIDTH / 4 * 2, SCREEN_HEIGHT / 2.0f});
+    character->getSprite().setOrigin({character->getSprite().getGlobalBounds().width/2, character->getSprite().getGlobalBounds().height/2});
+    character->getSprite().setOrigin({character->getSprite().getGlobalBounds().width/2, character->getSprite().getGlobalBounds().height/2});
 
 
     _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
@@ -48,17 +48,17 @@ void CustomCharacterState::HandleInput() {
             if(counter == character_lst.size()-1){
                 counter = 0;
             }else{ counter += 1; }
-            character->getSpriteToChange().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
+            character->getSprite().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
         }
         if(game_data->input.IsSpriteClicked(_randomButton, sf::Mouse::Left, game_data->window)){
             counter = std::rand() % character_lst.size();
-            character->getSpriteToChange().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
+            character->getSprite().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
         }
         if (game_data->input.IsSpriteClicked(_ArrowLeft, sf::Mouse::Left, game_data->window)) {
             if(counter == 0){
                 counter = character_lst.size()-1;
             }else{ counter -= 1; }
-            character->getSpriteToChange().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
+            character->getSprite().setTexture( game_data->assets.GetTexture(character_lst[counter]) );
         }
         if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)){
             game_data->machine.RemoveGameState();

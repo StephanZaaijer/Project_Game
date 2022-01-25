@@ -10,6 +10,7 @@
 
 # source files in this project (main.cpp is automatically assumed)
 # header files in this project
+
 SOURCES := AssetManager.cpp Character.cpp Deathwall.cpp Game.cpp GameOverState.cpp InputManager.cpp jsoncpp.cpp JsonManager.cpp MainGameState.cpp MainMenuState.cpp ObstaclesContainer.cpp PauseState.cpp SoundSettingsState.cpp Spike.cpp StartupState.cpp StateMachine.cpp Wall.cpp
 
 # header files in this project

@@ -19,6 +19,8 @@ private:
     std::vector<Obstacle*> obstacles;
 public:
     Obstacle_Container(GameDataReference data);
+    ~Obstacle_Container();
+//    void spawn_Obstacle(Obstacle_objects object);
     void spawn_Obstacle_On_Wall(sf::RectangleShape wall);
     void move_Obstacle(sf::Vector2f move_by);
     void draw_Obstacle();

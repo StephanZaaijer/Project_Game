@@ -3,7 +3,6 @@
 //
 
 #include "ObstaclesContainer.hpp"
-#include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
@@ -104,7 +103,9 @@ void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
     for (unsigned int i = 0; i < obstacles.size(); i++){
         obstacles[i] -> move(move_by);
         if (obstacles[i] -> getPosition().y >= SCREEN_HEIGHT){
+//            auto obstacle = obstacles[i];
             obstacles.erase(obstacles.begin() + i);
+//            delete obstacle;
         }
     }
 }
@@ -113,4 +114,10 @@ void Obstacle_Container::draw_Obstacle(){
     for(auto obstacle : obstacles){
         obstacle -> draw();
     }
+}
+
+Obstacle_Container::~Obstacle_Container() {
+//    for (auto object : obstacles) {
+//        delete object;
+//    }
 }

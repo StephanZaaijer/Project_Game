@@ -47,7 +47,6 @@ void MainGameState::HandleInput() {
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             character->Tap();
         }
-
         if (!game_data->window.hasFocus()) {
             game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
         }
@@ -55,6 +54,7 @@ void MainGameState::HandleInput() {
 }
 
 void MainGameState::Update( float delta ){
+
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
         wall ->spawn_Wall();
         for(unsigned int i = 0; i < wall->getWalls().size(); i++)
@@ -67,6 +67,7 @@ void MainGameState::Update( float delta ){
 
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         int move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
+
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
         character->moveDownByOffset(move_down_by);
@@ -94,4 +95,11 @@ void MainGameState::Draw( float delta ){
     obstacles_container -> draw_Obstacle();
     character->Draw();
     game_data -> window.display();
+}
+
+MainGameState::~MainGameState() {
+    delete character;
+    delete obstacles_container;
+    delete wall;
+    background.~Sprite();
 }

@@ -64,6 +64,27 @@ void Character::Tap() {
     _velocity.y = VELOCITY_Y;
 }
 
+
+
+bool hit_top_or_bottom(const sf::Vector2f arr_own[], const sf::Vector2f arr_target[]){
+    bool hit_top_or_bottom = false;
+    if(arr_own[2].x >= arr_target[0].x && arr_own[3].x <= arr_target[1].x ){
+        if((int) arr_own[2].y == arr_target[0].y + 1){
+            hit_top_or_bottom = true;
+        }
+    }
+    if(arr_own[0].x >= arr_target[2].x && arr_own[1].x <= arr_target[3].x ){
+        if((int) arr_own[0].y == arr_target[2].y -1){
+            return hit_top_or_bottom = true;
+        }
+    }
+    return hit_top_or_bottom;
+}
+
+
+
+
+
 void Character::Collide(const std::vector<sf::RectangleShape> & Rects) {
 
     sf::Vector2f own_pos = _characterSprite.getPosition();
@@ -72,7 +93,8 @@ void Character::Collide(const std::vector<sf::RectangleShape> & Rects) {
                                      sf::Vector2f(own_pos.x + own_hitbox.width, own_pos.y),
                                      sf::Vector2f(own_pos.x, own_pos.y + own_hitbox.height),
                                      sf::Vector2f(own_pos.x + own_hitbox.width, own_pos.y + own_hitbox.height)};
-
+    bool hit_bottom = false;
+    bool hit_top = false;
     for (const auto &rect: Rects) {
 
         if (rect.getGlobalBounds().intersects(own_hitbox)) {
@@ -83,17 +105,67 @@ void Character::Collide(const std::vector<sf::RectangleShape> & Rects) {
                                                 sf::Vector2f(t_pos.x, t_pos.y + t_hitbox.height),
                                                 sf::Vector2f(t_pos.x + t_hitbox.width, t_pos.y + t_hitbox.height)};
 
-            if (_velocity.x < 0) {
-                float dist = (arr_target_points[1].x - arr_own_points[0].x);
-                _characterSprite.setPosition(own_pos.x + dist, own_pos.y);
+            if(_velocity.y > 0 && _velocity.x < 0){
+                float dist_top = arr_own_points[2].y - arr_target_points[0].y;
+                float dist_side = arr_target_points[1].x - arr_own_points[2].x;
 
-            } else {
-                float dist = (arr_own_points[1].x - arr_target_points[0].x);
-                _characterSprite.setPosition(own_pos.x - dist, own_pos.y);
+                if(dist_top < dist_side){
+                    hit_top = true;
+                    _characterSprite.setPosition(own_pos.x , own_pos.y - dist_top);
+                }
+                else{
+                    _characterSprite.setPosition(own_pos.x + dist_side, own_pos.y);
+                }
+            }
+            else if(_velocity.y > 0 && _velocity.x > 0){
+                float dist_top = arr_own_points[3].y - arr_target_points[0].y;
+                float dist_side = arr_own_points[3].x - arr_target_points[0].x;
+
+                if(dist_top < dist_side){
+                    hit_top = true;
+                    _characterSprite.setPosition(own_pos.x , own_pos.y - dist_top);
+                }
+                else{
+                    _characterSprite.setPosition(own_pos.x - dist_side, own_pos.y);
+                }
+            }
+            else if(_velocity.y < 0 && _velocity.x < 0){
+                float dist_bottom = arr_target_points[3].y - arr_own_points[0].y;
+                float dist_side = arr_target_points[3].x - arr_own_points[0].x;
+
+                if(dist_bottom < dist_side){
+                    hit_bottom = true;
+                    _characterSprite.setPosition(own_pos.x , own_pos.y + dist_bottom);
+                }
+                else{
+                    _characterSprite.setPosition(own_pos.x + dist_side, own_pos.y);
+                }
+            }
+            else if(_velocity.y < 0 && _velocity.x > 0){
+                float dist_bottom = arr_target_points[2].y - arr_own_points[1].y;
+                float dist_side = arr_own_points[1].x - arr_target_points[2].x;
+
+                if(dist_bottom < dist_side){
+                    hit_bottom = true;
+                    _characterSprite.setPosition(own_pos.x , own_pos.y + dist_bottom);
+                }
+                else{
+                    _characterSprite.setPosition(own_pos.x - dist_side, own_pos.y);
+                }
             }
 
-            _velocity.x *= -1;
-            _characterState = Stick;
+
+            if(hit_bottom){
+                _velocity.y = 0;
+                _characterState = Jumping;
+            }
+            else if (hit_top){
+                _characterState = Stick;
+            }
+            else{
+                _velocity.x *= -1;
+                _characterState = Stick;
+            }
         }
     }
 

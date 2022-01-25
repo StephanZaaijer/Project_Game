@@ -73,7 +73,7 @@ void JsonManager::Set_Musicvolume(int volume) {
 	if (volume == data.Soundvolume) {
 		return;
 	}
-	data.Soundvolume = volume;
+	data.Musicvolume = volume;
 	json_data["Audio"]["Musiclevel"] = volume;
 	Write_Json_to_file();
 }

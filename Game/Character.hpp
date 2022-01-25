@@ -20,7 +20,7 @@ public:
 
     int getHeight() const;
 
-    sf::Sprite & getSprite();
+    sf::Sprite & getSprite ();
 
     sf::FloatRect GetBound();
 

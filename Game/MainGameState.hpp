@@ -22,8 +22,6 @@ private:
 public:
     MainGameState(GameDataReference data);
     void Init() override;
-    bool CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2);
-    bool CollisionDetection(sf::FloatRect object1, sf::FloatRect object2);
 
     void HandleInput() override;
     void Update( float delta ) override;

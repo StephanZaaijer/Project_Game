@@ -12,7 +12,6 @@ sf::Vector2f Character::getPosition(){
     return _characterSprite.getPosition();
 }
 
-
 void Character::moveDownByOffset(const float & y){
     _position = _characterSprite.getPosition();
     _position.y += y;
@@ -35,7 +34,7 @@ sf::Sprite & Character::getSprite() {
     return _characterSprite;
 }
 
-sf::FloatRect Character::GetBound() {
+sf::FloatRect Character::   GetBound() {
     return _characterSprite.getGlobalBounds();
 }
 
@@ -63,27 +62,6 @@ void Character::Tap() {
     _characterState = Jumping;
     _velocity.y = VELOCITY_Y;
 }
-
-
-
-bool hit_top_or_bottom(const sf::Vector2f arr_own[], const sf::Vector2f arr_target[]){
-    bool hit_top_or_bottom = false;
-    if(arr_own[2].x >= arr_target[0].x && arr_own[3].x <= arr_target[1].x ){
-        if((int) arr_own[2].y == arr_target[0].y + 1){
-            hit_top_or_bottom = true;
-        }
-    }
-    if(arr_own[0].x >= arr_target[2].x && arr_own[1].x <= arr_target[3].x ){
-        if((int) arr_own[0].y == arr_target[2].y -1){
-            return hit_top_or_bottom = true;
-        }
-    }
-    return hit_top_or_bottom;
-}
-
-
-
-
 
 void Character::Collide(const std::vector<sf::RectangleShape> & Rects) {
 

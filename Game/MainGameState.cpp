@@ -6,20 +6,6 @@
 MainGameState::MainGameState(GameDataReference data):
     game_data (std::move(data))
 {}
-//bool MainGameState::CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2) {
-//    if(object1.intersects(object2)){
-//        return true;
-//    }
-//    return false;
-//}
-
-bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect object2) {
-    if(object1.intersects(object2)){
-        return true;
-    }
-    return false;
-}
-
 
 void MainGameState::Init(){
     character = new Character(game_data);
@@ -47,20 +33,21 @@ void MainGameState::HandleInput() {
             game_data->window.close();
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
-//            std::cout << "handle input: space" << "\n";
             character->setJump(true);
             character->Tap();
         }
-//        if (!game_data->window.hasFocus()) {
-//            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
-//        }
+        if (!game_data->window.hasFocus()) {
+            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+        }
     }
 }
 
 void MainGameState::Update( float delta ){
+    // update character
     character->Update(delta);
-    character->Collide(wall->getAllRectangles());
 
+    // call collide funtion to check if character collides with something
+    character->Collide(wall->getAllRectangles());
 
     // move walls downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){

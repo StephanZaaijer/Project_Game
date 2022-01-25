@@ -5,7 +5,6 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "StateMachine.hpp"
-#include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
 #include "Definitions.hpp"

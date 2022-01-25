@@ -1,7 +1,7 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
+		"Music" : true,
 		"Musiclevel" : 50,
 		"Sound" : true,
 		"Soundlevel" : 100

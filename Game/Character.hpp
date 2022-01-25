@@ -16,7 +16,7 @@ public:
     void Collide(bool spike);
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
-
+    void setPosition(const sf::Vector2f &  position);
     int getHeight() const;
 
     bool _death = false;

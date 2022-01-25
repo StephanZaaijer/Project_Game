@@ -1,7 +1,6 @@
 #include "StartUpState.hpp"
-
-
-
+#include "MainMenuState.hpp"
+#include "MainGameState.hpp"
 #include <utility>
 
 StartUpState::StartUpState(GameDataReference data) : game_data(std::move(data)) {}

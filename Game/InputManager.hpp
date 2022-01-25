@@ -13,6 +13,7 @@ public:
     bool IsKeyPressed(const sf::Keyboard::Key &key);
     bool IsButtonPressed(const sf::Mouse::Button &button);
     bool IsSpriteClicked(const sf::Sprite &sprite, const sf::Mouse::Button &button, sf::RenderWindow &window);
+    bool IsRectangleClicked(const sf::RectangleShape& rectangle, const sf::Mouse::Button& button, sf::RenderWindow& window);
     bool IsMouseIntersectingSprite(const sf::Sprite& sprite, sf::RenderWindow& window);
     bool IsMouseIntersectingSprite(const sf::Sprite* sprite, sf::RenderWindow& window);
     void ChangeMouseWhenHoveringOverButton(const std::vector<sf::Sprite*>& buttons, sf::RenderWindow &window);

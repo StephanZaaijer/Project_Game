@@ -5,6 +5,14 @@
 SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::move(data)) {}
 
 void SoundSettingsState::Init() {
+    if( !_clickBuffer.loadFromFile(SOUND_CLICK_PATH)){
+        std::cout << "ERROR loading click sound" << std::endl;
+    }
+
+    _clickSound.setBuffer( _clickBuffer );
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+
+
     game_data->assets.loadTextureFromFile("Sound Settings Background", SOUND_SETTINGS_BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("Music Button Green", MUSIC_BUTTON_GREEN_PATH);
     game_data->assets.loadTextureFromFile("Music Button Red", MUSIC_BUTTON_RED_PATH);
@@ -57,13 +65,22 @@ void SoundSettingsState::HandleInput() {
             game_data->window.close();
         }
         if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _clickSound.play();
+            }
             game_data->machine.RemoveGameState();
         }
         if (game_data->input.IsSpriteClicked(_musicButton, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _clickSound.play();
+            }
             // TODO actually turn off music
             game_data->json.Set_Musicstate(!game_data->json.Get_Musicstate());
         }
         if (game_data->input.IsSpriteClicked(_soundButton, sf::Mouse::Left, game_data->window)) {
+            if(!game_data->json.Get_Soundstate()){
+                _clickSound.play();
+            }
             // TODO actually turn off sound
             game_data->json.Set_Soundstate(!game_data->json.Get_Soundstate());
         }
@@ -74,6 +91,7 @@ void SoundSettingsState::HandleInput() {
 }
 
 void SoundSettingsState::Update(float delta) {
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
     soundslider->update();
     musicslider->update();
     if (game_data->json.Get_Musicstate()) {

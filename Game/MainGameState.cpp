@@ -22,6 +22,31 @@ bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect obje
 
 
 void MainGameState::Init(){
+    if( !_jumpSoundBuffer.loadFromFile(SOUND_JUMP_PATH)){
+        std::cout << "ERROR loading jump sound" << std::endl;
+    }
+    if( !_deathSoundBuffer.loadFromFile(SOUND_DEATH_PATH)){
+        std::cout << "ERROR loading death sound" << std::endl;
+    }
+    if( !_pauseSoundBuffer.loadFromFile(SOUND_PAUSE_PATH)){
+        std::cout << "ERROR loading pause sound" << std::endl;
+    }
+    if( !_gameMusicSoundBuffer.loadFromFile(MUSIC_GAME_PATH)){
+        std::cout << "ERROR loading music" << std::endl;
+    }
+
+    _jumpSound.setBuffer( _jumpSoundBuffer);
+    _jumpSound.setVolume(game_data->json.Get_Soundvolume());
+    _deathSound.setBuffer( _deathSoundBuffer );
+    _deathSound.setVolume(game_data->json.Get_Soundvolume());
+    _pauseSound.setBuffer( _pauseSoundBuffer );
+    _pauseSound.setVolume(game_data->json.Get_Soundvolume());
+    _gameMusicSound.setBuffer( _gameMusicSoundBuffer );
+    _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
+
+    _gameMusicSound.play();
+
+
     character = new Character(game_data);
     game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
     character->getSpriteToChange().setTexture( game_data->assets.GetTexture("character") );
@@ -48,9 +73,11 @@ void MainGameState::HandleInput() {
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             character->Tap();
         }
-//        if (!game_data->window.hasFocus()) {
-//            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
-//        }
+        if (!game_data->window.hasFocus()) {
+            _gameMusicSound.pause();
+            _pauseSound.play();
+            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+        }
     }
 }
 
@@ -88,6 +115,8 @@ void MainGameState::Update( float delta ){
         character->setHeight(0);
     }
     if (character->_death){
+        _gameMusicSound.stop();
+        _deathSound.play();
         game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
     }
 
@@ -101,4 +130,12 @@ void MainGameState::Draw( float delta ){
     wall -> draw_Wall();
     character->Draw();
     game_data -> window.display();
+}
+
+void MainGameState::Resume(){
+    _jumpSound.setVolume(game_data->json.Get_Soundvolume());
+    _deathSound.setVolume(game_data->json.Get_Soundvolume());
+    _pauseSound.setVolume(game_data->json.Get_Soundvolume());
+    _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
+    _gameMusicSound.play();
 }

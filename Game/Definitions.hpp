@@ -66,9 +66,16 @@ enum character_states {
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 
+#define MUSIC_MAIN_MENU_PATH "Assets/gameMusicMenu.wav"
+#define MUSIC_GAME_PATH "Assets/gameMusic.wav"
+#define SOUND_CLICK_PATH "Assets/click.wav"
+#define SOUND_DEATH_PATH "Assets/death.wav"
+#define SOUND_JUMP_PATH "Assets/jump.wav"
+#define SOUND_PAUSE_PATH "Assets/pause.wav"
+#define SOUND_RESUME_PATH "Assets/resume.wav"
 
 
-//#define ENABLE_SOUND
+#define ENABLE_SOUND
 #define ENABLE_FONT
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

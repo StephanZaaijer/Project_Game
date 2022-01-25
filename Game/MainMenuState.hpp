@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "StateMachine.hpp"
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
@@ -23,6 +24,8 @@ private:
     sf::Cursor hand_cursor;
     sf::Cursor arrow_cursor;
     std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_exitButton };
+    sf::SoundBuffer _clickBuffer;
+    sf::Sound _clickSound;
 
 
 public:

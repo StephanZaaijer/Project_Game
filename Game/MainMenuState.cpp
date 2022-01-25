@@ -7,6 +7,13 @@
 MainMenuState::MainMenuState(GameDataReference data) : game_data(std::move(data)) {}
 
 void MainMenuState::Init() {
+    if( !_clickBuffer.loadFromFile(SOUND_CLICK_PATH)){
+        std::cout << "ERROR loading click sound" << std::endl;
+    }
+
+    _clickSound.setBuffer( _clickBuffer );
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+
     game_data->assets.loadTextureFromFile("MainMenu State Background", BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("MainMenu State Banner", GAME_TITLE_PATH);
     game_data->assets.loadTextureFromFile("MainMenu State groep6 Banner", GROEP_6_BANNER_PATH);
@@ -31,6 +38,7 @@ void MainMenuState::Init() {
 void MainMenuState::HandleInput() {
     sf::Event event;
 
+
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
@@ -38,15 +46,23 @@ void MainMenuState::HandleInput() {
     }
 
     if(game_data->input.IsSpriteClicked( _exitButton, sf::Mouse::Left, game_data->window )){
+        if(game_data->json.Get_Soundstate()){
+            _clickSound.play();
+        }
         game_data->window.close();
     }
 
     if(game_data->input.IsSpriteClicked( _settingsButton, sf::Mouse::Left, game_data->window )){
+        if(game_data->json.Get_Soundstate()){
+            _clickSound.play();
+        }
         game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
     }
 
     if(game_data->input.IsSpriteClicked( _playButton, sf::Mouse::Left, game_data->window )){
-        //game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)),true);
+        if(game_data->json.Get_Soundstate()){
+            _clickSound.play();
+        }
       game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
     }
 
@@ -54,6 +70,7 @@ void MainMenuState::HandleInput() {
 }
 
 void MainMenuState::Update(float delta) {
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
 }
 
 void MainMenuState::Draw(float delta) {

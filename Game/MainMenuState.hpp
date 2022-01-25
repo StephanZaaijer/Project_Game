@@ -19,10 +19,10 @@ private:
     sf::Sprite _banner;
     sf::Sprite _playButton;
     sf::Sprite _settingsButton;
-    sf::Sprite _exitButton;
+    sf::Sprite _CustomButton;
     sf::Cursor hand_cursor;
     sf::Cursor arrow_cursor;
-    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_exitButton };
+    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_CustomButton };
 
 
 public:

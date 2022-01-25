@@ -48,9 +48,9 @@ void MainGameState::HandleInput() {
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             character->Tap();
         }
-//        if (!game_data->window.hasFocus()) {
-//            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
-//        }
+        if (!game_data->window.hasFocus()) {
+            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+        }
     }
 }
 

@@ -4,6 +4,17 @@
 
 SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::move(data)) {}
 
+SoundSettingsState::~SoundSettingsState() {
+    _background.~Sprite();
+    _backButton.~Sprite();
+    _musicButton.~Sprite();
+    _soundButton.~Sprite();
+    _settingsText.~Text();
+    clickable_buttons.~vector();
+    delete soundslider;
+    delete musicslider;
+}
+
 void SoundSettingsState::Init() {
     if( !_clickBuffer.loadFromFile(SOUND_CLICK_PATH)){
         std::cout << "ERROR loading click sound" << std::endl;
@@ -53,9 +64,9 @@ void SoundSettingsState::Init() {
 
     _soundButton.setPosition(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3);
 
-    soundslider = new Soundslider(game_data, { SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2 }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3 - 100, SCREEN_HEIGHT / 2 + 150 }, TEXT_TITLE_SIZE * 0.5);
+    soundslider = new Soundslider(game_data, { SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2 }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3 - 125, SCREEN_HEIGHT / 2 + 150 }, TEXT_TITLE_SIZE * 0.5);
 
-    musicslider = new Musicslider(game_data, { SCREEN_WIDTH / 3*2, SCREEN_HEIGHT / 2 }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3*2 + 100, SCREEN_HEIGHT / 2 + 150 }, TEXT_TITLE_SIZE * 0.5);
+    musicslider = new Musicslider(game_data, { SCREEN_WIDTH / 3*2, SCREEN_HEIGHT / 2 }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3*2 + 125, SCREEN_HEIGHT / 2 + 150 }, TEXT_TITLE_SIZE * 0.5);
 }
 
 void SoundSettingsState::HandleInput() {
@@ -83,6 +94,24 @@ void SoundSettingsState::HandleInput() {
             }
             // TODO actually turn off sound
             game_data->json.Set_Soundstate(!game_data->json.Get_Soundstate());
+            if (!prev_music) {
+                // TODO actually turn off music
+                prev_music = true;
+                game_data->json.Set_Musicstate(!game_data->json.Get_Musicstate());
+            }
+        }
+        else {
+            prev_music = false;
+        }
+        if (game_data->input.IsSpriteClicked(_soundButton, sf::Mouse::Left, game_data->window)) {
+            if (!prev_sound) {
+                prev_sound = true;
+                // TODO actually turn off sound
+                game_data->json.Set_Soundstate(!game_data->json.Get_Soundstate());
+            }
+        }
+        else {
+            prev_sound = false;
         }
     }
     game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);

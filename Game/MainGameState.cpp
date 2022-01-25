@@ -82,7 +82,7 @@ void MainGameState::HandleInput() {
 }
 
 void MainGameState::Update( float delta ){
-    if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
+     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
@@ -138,4 +138,11 @@ void MainGameState::Resume(){
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
     _gameMusicSound.play();
+
+MainGameState::~MainGameState() {
+    delete character;
+    delete obstacles_container;
+    delete wall;
+    ~char_height;
+    background.~Sprite();
 }

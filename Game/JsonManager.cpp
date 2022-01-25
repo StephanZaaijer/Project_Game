@@ -50,11 +50,8 @@ void JsonManager::Set_Soundstate(bool state) {
 
 }
 void JsonManager::Set_Soundvolume(int volume) {
-	data.Sound = true;
-	json_data["Audio"]["Sound"] = true;
-	if (volume == data.Soundvolume) {
-		return;
-	}
+	data.Sound = volume!=0;
+	json_data["Audio"]["Sound"] = volume != 0;
 	data.Soundvolume = volume;
 	json_data["Audio"]["Soundlevel"] = volume;
 	Write_Json_to_file();
@@ -68,11 +65,8 @@ void JsonManager::Set_Musicstate(bool state) {
 	Write_Json_to_file();
 }
 void JsonManager::Set_Musicvolume(int volume) {
-	data.Music = true;
-	json_data["Audio"]["Music"] = true;
-	if (volume == data.Soundvolume) {
-		return;
-	}
+	data.Music = volume != 0;
+	json_data["Audio"]["Music"] = volume != 0;
 	data.Musicvolume = volume;
 	json_data["Audio"]["Musiclevel"] = volume;
 	Write_Json_to_file();

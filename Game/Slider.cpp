@@ -43,3 +43,7 @@ void Slider::Draw() {
 	game_data->window.draw(slider);
 	game_data->window.draw(slider_block);
 }
+
+sf::RectangleShape& Slider::get_slider_block() {
+	return slider_block;
+}

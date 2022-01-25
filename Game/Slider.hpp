@@ -17,5 +17,6 @@ public:
 	virtual void Draw();
 	void handleinput();
 	virtual void update(){};
+	sf::RectangleShape& get_slider_block();
 };
 

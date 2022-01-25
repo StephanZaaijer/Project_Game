@@ -35,8 +35,6 @@ sf::Sprite & Character::getSpriteToChange() {
 
 
 void Character::Draw() {
-    _characterSprite.setPosition(_position);
-
     game_data->window.draw(_characterSprite);
 }
 
@@ -64,6 +62,7 @@ void Character::Update(float dt) {
         _velocity.y += GRAVITY;
         _position.y += _velocity.y;
         _position.x += _velocity.x;
+        _characterSprite.setPosition(_position);
 
 
 
@@ -71,7 +70,6 @@ void Character::Update(float dt) {
 
     }
     else if ( _characterState == Stick ) {
-
     }
 }
 
@@ -80,6 +78,7 @@ void Character::Tap() {
     _movementClock.restart();
     _characterState = Jumping;
     _velocity.y = VELOCITY_Y;
+//    _position = _characterSprite.getPosition();
 }
 
 void Character::Collide(bool dangerous) {

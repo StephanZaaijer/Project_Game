@@ -46,7 +46,7 @@ void MainGameState::HandleInput() {
             game_data->window.close();
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
-//            std::cout << "MainGameState: heyyyy" << "\n";
+//            std::cout << "handle input: space" << "\n";
             character->setJump(true);
             character->Tap();
         }
@@ -57,6 +57,9 @@ void MainGameState::HandleInput() {
 }
 
 void MainGameState::Update( float delta ){
+//    std::cout << "update from gamestate character" << "\n";
+    character->Update(delta);
+
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
@@ -64,21 +67,28 @@ void MainGameState::Update( float delta ){
         character->moveDownByOffset(move_down_by);
     }
 
-  
+
+//    std::cout << "colision check" << "\n";
     for ( auto &wallBound : wall->getWalls()) {
         if (
-                CollisionDetection(character->GetBound(), wallBound.wall.getGlobalBounds()) ||
-                (character->getPosition().x < 1) ||
-                ((character->getPosition().x + character->getSpriteToChange().getGlobalBounds().width) >=
-                 (float) game_data->window.getSize().x)
-
-                ) {
+                CollisionDetection(character->GetBound(), wallBound.wall.getGlobalBounds())
+            ) {
             character->Collide(false);
 
         }
         //    if(CollisionDetection(character->GetBound(), spike->getGlobalBounds())){
 //            character->Collide(True);
 //        }
+    }
+    if( (character->getPosition().x < 1) ){
+//        std::cout << "linker bounds" << "\n";
+//        character->getSpriteToChange().setPosition( character->getPosition().y);
+        character->Collide(false);
+    }
+    if((character->getPosition().x + character->getSpriteToChange().getGlobalBounds().width) >= (float) game_data->window.getSize().x){
+//        std::cout << "rechter bounds" << "\n";
+//        character->getSpriteToChange().setPosition((float)game_data->window.getSize().x, character->getPosition().y);
+        character->Collide(false);
     }
 
 
@@ -97,7 +107,6 @@ void MainGameState::Update( float delta ){
         character->setHeight(0);
     }
 
-    character->Update(delta);
 }
 
 void MainGameState::Draw( float delta ){

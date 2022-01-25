@@ -13,14 +13,14 @@ public:
     void Draw();
     void Update(float dt);
     void Tap();
-    void Collide(bool spike);
+    void Collide(const std::vector<sf::RectangleShape> & Rects );
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
     void setJump(const bool & set);
 
     int getHeight() const;
 
-    sf::Sprite & getSpriteToChange();
+    sf::Sprite & getSprite();
 
     sf::FloatRect GetBound();
 

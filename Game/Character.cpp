@@ -14,7 +14,9 @@ sf::Vector2f Character::getPosition(){
 
 
 void Character::moveDownByOffset(const float & y){
+    _position = _characterSprite.getPosition();
     _position.y += y;
+    _characterSprite.setPosition(_position);
 }
 
 int Character::getHeight() const {
@@ -29,8 +31,12 @@ void Character::setJump(const bool & set){
     jump = set;
 }
 
-sf::Sprite & Character::getSpriteToChange() {
+sf::Sprite & Character::getSprite() {
     return _characterSprite;
+}
+
+sf::FloatRect Character::GetBound() {
+    return _characterSprite.getGlobalBounds();
 }
 
 
@@ -41,30 +47,10 @@ void Character::Draw() {
 void Character::Update(float dt) {
     if ( _characterState == Jumping ) {
 
-        // TELEPORT JUMP WITH CHARACTER SPRITE POSITION CHANGE
-//        sf::Vector2f pos = _characterSprite.getPosition();
-//        _velocity.y += GRAVITY;
-//        pos.y += _velocity.y;
-//        pos.x += _velocity.x;
-//        _characterSprite.setPosition(pos);
-
-        // BLOB JUMP
-//        _velocity.y += GRAVITY;
-//
-////        std::cout << _characterSprite.getPosition().y << "\t" << _position.y << "\n";
-//        _position.y = _characterSprite.getPosition().y;
-//        _position.x = _characterSprite.getPosition().x;
-//        _position.y += _velocity.y ;
-//        _position.x += _velocity.x ;
-
-        // TELEPORT JUMP
-//        std::cout << "update values" << "\n";
+        _position = _characterSprite.getPosition();
         _velocity.y += GRAVITY;
-        _position.y += _velocity.y;
-        _position.x += _velocity.x;
+        _position += _velocity;
         _characterSprite.setPosition(_position);
-
-
 
         _height += (_velocity.y * -1);
 
@@ -74,18 +60,42 @@ void Character::Update(float dt) {
 }
 
 void Character::Tap() {
-//    std::cout << "tap()" << "\n";
-    _movementClock.restart();
     _characterState = Jumping;
     _velocity.y = VELOCITY_Y;
-//    _position = _characterSprite.getPosition();
 }
 
-void Character::Collide(bool dangerous) {
-    _velocity.x *= -1;
-    _characterState = Stick;
+void Character::Collide(const std::vector<sf::RectangleShape> & Rects) {
+
+    sf::Vector2f own_pos = _characterSprite.getPosition();
+    sf::FloatRect own_hitbox = _characterSprite.getGlobalBounds();
+    sf::Vector2f arr_own_points[] = {sf::Vector2f(own_pos.x, own_pos.y),
+                                     sf::Vector2f(own_pos.x + own_hitbox.width, own_pos.y),
+                                     sf::Vector2f(own_pos.x, own_pos.y + own_hitbox.height),
+                                     sf::Vector2f(own_pos.x + own_hitbox.width, own_pos.y + own_hitbox.height)};
+
+    for (const auto &rect: Rects) {
+
+        if (rect.getGlobalBounds().intersects(own_hitbox)) {
+            sf::Vector2f t_pos = rect.getPosition();
+            sf::FloatRect t_hitbox = rect.getGlobalBounds();
+            sf::Vector2f arr_target_points[] = {sf::Vector2f(t_pos.x, t_pos.y),
+                                                sf::Vector2f(t_pos.x + t_hitbox.width, t_pos.y),
+                                                sf::Vector2f(t_pos.x, t_pos.y + t_hitbox.height),
+                                                sf::Vector2f(t_pos.x + t_hitbox.width, t_pos.y + t_hitbox.height)};
+
+            if (_velocity.x < 0) {
+                float dist = (arr_target_points[1].x - arr_own_points[0].x);
+                _characterSprite.setPosition(own_pos.x + dist, own_pos.y);
+
+            } else {
+                float dist = (arr_own_points[1].x - arr_target_points[0].x);
+                _characterSprite.setPosition(own_pos.x - dist, own_pos.y);
+            }
+
+            _velocity.x *= -1;
+            _characterState = Stick;
+        }
+    }
+
 }
 
-sf::FloatRect Character::GetBound() {
-    return _characterSprite.getGlobalBounds();
-}

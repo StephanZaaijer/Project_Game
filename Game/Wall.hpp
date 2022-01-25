@@ -16,12 +16,14 @@ private:
     GameDataReference game_data;
     std::vector<wall_obstacles> walls;
 
+    sf::RectangleShape left_boundary;
+    sf::RectangleShape right_boundary;
+
+
 public:
     Wall(GameDataReference data);
-  
-    // TODO: Maak van alle rectangles (smart)pointers zodat je ze op de heap kan alloceren.
-//    std::vector<sf::RectangleShape> & getWalls();
     std::vector<wall_obstacles> & getWalls();
+    std::vector<sf::RectangleShape> getAllRectangles();
     void generate_Wall(float x_position, float start_y_offset);
     void spawn_Wall(float start_y_offset = 0);
     void move_Wall(sf::Vector2f move_by);

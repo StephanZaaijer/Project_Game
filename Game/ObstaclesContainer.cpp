@@ -99,7 +99,6 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(sf::RectangleShape wall){
 }
 
 void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
-    std::cout << "obsta m b " << move_by.y << std::endl;
     for (unsigned int i = 0; i < obstacles.size(); i++){
         obstacles[i] -> move(move_by);
         if (obstacles[i] -> getPosition().y >= SCREEN_HEIGHT){

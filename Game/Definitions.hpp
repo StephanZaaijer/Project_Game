@@ -40,6 +40,8 @@ enum character_states {
 
 #define PAUSE_STATE_PLAY_BUTTON_PATH "Assets/PlayButton2.png"
 #define PAUSE_STATE_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
+#define PAUSE_STATE_SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
+
 
 #define SOUND_SETTINGS_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
 #define SETTINGS_BANNER_PATH "Assets/SettingsBanner.png"

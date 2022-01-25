@@ -15,8 +15,9 @@ private:
 	GameDataReference game_data;
 	sf::Sprite _background;
 	sf::Sprite _playButton;
+	sf::Sprite _SoundsettingsButton;
 	sf::Text _pauseText;
-	std::vector<sf::Sprite*> clickable_buttons = { &_playButton};
+	std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_SoundsettingsButton};
 
 
 public:

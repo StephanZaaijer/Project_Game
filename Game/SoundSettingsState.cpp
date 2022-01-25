@@ -11,8 +11,8 @@ SoundSettingsState::~SoundSettingsState() {
     _soundButton.~Sprite();
     _settingsText.~Text();
     clickable_buttons.~vector();
-    delete soundslider;
-    delete musicslider;
+//    delete soundslider;
+//    delete musicslider;
 }
 
 void SoundSettingsState::Init() {

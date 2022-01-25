@@ -107,6 +107,5 @@ MainGameState::~MainGameState() {
     delete character;
     delete obstacles_container;
     delete wall;
-    ~char_height;
     background.~Sprite();
 }

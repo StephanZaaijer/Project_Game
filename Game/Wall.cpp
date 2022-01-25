@@ -7,10 +7,32 @@
 
 Wall::Wall(GameDataReference data):
     game_data (std::move(data))
-{}
+
+{
+    left_boundary.setPosition(0.0, 0.0);
+    left_boundary.setSize( {SCREEN_WIDTH/4, SCREEN_HEIGHT} );
+    left_boundary.setFillColor( sf::Color::Black );
+
+    right_boundary.setPosition(SCREEN_WIDTH/4 * 3, 0.0);
+    right_boundary.setSize( {(SCREEN_WIDTH/4), SCREEN_HEIGHT} );
+    right_boundary.setFillColor( sf::Color::Black );
+}
 
 std::vector<wall_obstacles> &Wall::getWalls() {
     return walls;
+}
+
+std::vector<sf::RectangleShape> Wall::getAllRectangles() {
+    std::vector<wall_obstacles> tmp = walls;
+    tmp.push_back({left_boundary, false});
+    tmp.push_back({right_boundary, false});
+
+    std::vector<sf::RectangleShape> hitboxes;
+    std::for_each(tmp.begin(), tmp.end(), [&hitboxes](const wall_obstacles& x){
+        hitboxes.push_back(x.wall);
+    });
+
+    return hitboxes;
 }
 
 void Wall::generate_Wall(float x_position, float start_y_offset){
@@ -55,6 +77,9 @@ void Wall::draw_Wall(){
     for(auto & wall : walls){
         game_data->window.draw(wall.wall);
     }
+    game_data->window.draw(left_boundary);
+    game_data->window.draw(right_boundary);
+
 }
 
 void Wall::setContainObstacleTrue(int index){

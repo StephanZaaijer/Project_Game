@@ -6,30 +6,19 @@
 MainGameState::MainGameState(GameDataReference data):
     game_data (std::move(data))
 {}
-//bool MainGameState::CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2) {
-//    if(object1.intersects(object2)){
-//        return true;
-//    }
-//    return false;
-//}
-
-bool MainGameState::CollisionDetection(sf::FloatRect object1, sf::FloatRect object2) {
-    if(object1.intersects(object2)){
-        return true;
-    }
-    return false;
-}
-
 
 void MainGameState::Init(){
     character = new Character(game_data);
     game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
-    character->getSpriteToChange().setTexture( game_data->assets.GetTexture("character") );
+    character->getSprite().setTexture( game_data->assets.GetTexture("character") );
+
+    wall = new Wall(game_data);
     obstacles_container = new Obstacle_Container(game_data);
     wall = new Wall(game_data);
     background.setTexture(this->game_data->assets.GetTexture("Background"));
-
     wall->spawn_Wall(WALL_HEIGHT);
+
+
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
         obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
@@ -45,6 +34,7 @@ void MainGameState::HandleInput() {
             game_data->window.close();
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+            character->setJump(true);
             character->Tap();
         }
         if (!game_data->window.hasFocus()) {
@@ -54,17 +44,13 @@ void MainGameState::HandleInput() {
 }
 
 void MainGameState::Update( float delta ){
+    // update character
+    character->Update(delta);
 
-    if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){ // spawn wall and obstacle
-        wall ->spawn_Wall();
-        for(unsigned int i = 0; i < wall->getWalls().size(); i++)
-            if (!(wall->getWalls()[i].contains_obstacles)){
-                obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
-                wall->setContainObstacleTrue(i);
-            }
-        character->setHeight(0);
-    }
+    // call collide funtion to check if character collides with something
+    character->Collide(wall->getAllRectangles());
 
+    // move walls downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         int move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
 
@@ -73,19 +59,18 @@ void MainGameState::Update( float delta ){
         character->moveDownByOffset(move_down_by);
     }
 
-  
-    for ( auto &wallBound : wall->getWalls()) {
-        if(CollisionDetection(character->GetBound(), wallBound.wall.getGlobalBounds())){
-            character->Collide(false);
-
+    // spawn walls and obstacles
+    if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
+        wall ->spawn_Wall();
+        for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
+            if (!(wall->getWalls()[i].contains_obstacles)) {
+                obstacles_container->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
+                wall->setContainObstacleTrue(i);
+            }
         }
+        character->setHeight(0);
     }
 
-    if (character->_death){
-        game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
-    }
-
-    character->Update(delta);
 }
 
 void MainGameState::Draw( float delta ){

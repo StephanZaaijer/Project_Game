@@ -13,15 +13,15 @@ public:
     void Draw();
     void Update(float dt);
     void Tap();
-    void Collide(bool spike);
+    void Collide(const std::vector<sf::RectangleShape> & Rects );
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
-    void setPosition(const sf::Vector2f &  position);
+
+    void setJump(const bool & set);
+
     int getHeight() const;
 
-    bool _death = false;
-
-    sf::Sprite & getSpriteToChange();
+    sf::Sprite & getSprite ();
 
     sf::FloatRect GetBound();
 
@@ -31,12 +31,13 @@ public:
 private:
     GameDataReference game_data;
     sf::Sprite _characterSprite;
-    sf::Vector2f _velocity = {8,0};
+    sf::Vector2f _velocity = {VELOCITY_X,0};
     sf::Vector2f _position;
     sf::Clock _clock;
     sf::Clock _movementClock;
     character_states _characterState;
     int _height = 0;
+    bool jump;
 };
 
 #endif //CHARACTER_HPP

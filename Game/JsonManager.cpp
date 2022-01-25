@@ -17,6 +17,7 @@ void JsonManager::Get_data() {
 		json_data["Audio"]["Music"].asBool(),
 		json_data["Audio"]["Musiclevel"].asInt(),
 		json_data["Score"]["Highscore"].asInt(),
+		json_data["Player"].asString()
 	};
 }
 
@@ -40,6 +41,10 @@ int JsonManager::Get_Highscore() {
 	return data.Highscore;
 }
 
+std::string JsonManager::Get_PlayerSprite() {
+	return data.PlayerSprite;
+}
+
 void JsonManager::Set_Soundstate(bool state) {
 	if (state == data.Sound) {
 		return;
@@ -47,9 +52,11 @@ void JsonManager::Set_Soundstate(bool state) {
 	data.Sound = state;
 	json_data["Audio"]["Sound"] = state;
 	Write_Json_to_file();
-
 }
 void JsonManager::Set_Soundvolume(int volume) {
+	if (volume == data.Soundvolume) {
+		return;
+	}
 	data.Sound = volume!=0;
 	json_data["Audio"]["Sound"] = volume != 0;
 	data.Soundvolume = volume;
@@ -65,6 +72,9 @@ void JsonManager::Set_Musicstate(bool state) {
 	Write_Json_to_file();
 }
 void JsonManager::Set_Musicvolume(int volume) {
+	if (volume == data.Musicvolume) {
+		return;
+	}
 	data.Music = volume != 0;
 	json_data["Audio"]["Music"] = volume != 0;
 	data.Musicvolume = volume;
@@ -77,6 +87,14 @@ void JsonManager::Set_Highscore(int highscore) {
 	}
 	data.Highscore = highscore;
 	json_data["Score"]["Highscore"] = highscore;
+	Write_Json_to_file();
+}
+void JsonManager::Set_PlayerSprite(std::string PlayerSpriteID) {
+	if (PlayerSpriteID == data.PlayerSprite) {
+		return;
+	}
+	data.PlayerSprite = PlayerSpriteID;
+	json_data["Player"] = PlayerSpriteID;
 	Write_Json_to_file();
 }
 

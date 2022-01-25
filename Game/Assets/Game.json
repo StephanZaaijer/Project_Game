@@ -2,9 +2,9 @@
 	"Audio" : 
 	{
 		"Music" : true,
-		"Musiclevel" : 50,
+		"Musiclevel" : 68,
 		"Sound" : true,
-		"Soundlevel" : 100
+		"Soundlevel" : 27
 	},
 	"Player" : "Temp",
 	"Score" : 

@@ -1,9 +1,10 @@
 #include "JsonManager.hpp"
 #include <iostream>
+#include <utility>
 #include "Exceptions.hpp"
 
 JsonManager::JsonManager(std::string Gamefile):
-	Gamefile(Gamefile)
+	Gamefile(std::move(Gamefile))
 {
 	data = JsonData();
 	Get_data();
@@ -21,27 +22,27 @@ void JsonManager::Get_data() {
 	};
 }
 
-bool JsonManager::Get_Soundstate() {
+bool JsonManager::Get_Soundstate() const {
 	return data.Sound;
 }
 
-int JsonManager::Get_Soundvolume() {
+int JsonManager::Get_Soundvolume() const {
 	return data.Soundvolume;
 }
 
-bool JsonManager::Get_Musicstate() {
+bool JsonManager::Get_Musicstate() const {
 	return data.Music;
 }
 
-int JsonManager::Get_Musicvolume() {
+int JsonManager::Get_Musicvolume() const {
 	return data.Musicvolume;
 }
 
-int JsonManager::Get_Highscore() {
+int JsonManager::Get_Highscore() const {
 	return data.Highscore;
 }
 
-std::string JsonManager::Get_PlayerSprite() {
+std::string JsonManager::Get_PlayerSprite() const {
 	return data.PlayerSprite;
 }
 

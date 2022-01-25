@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #include "Game.hpp"
 #include "StartUpState.hpp"
 #include "IconArray.hpp"

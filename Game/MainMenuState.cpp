@@ -19,12 +19,12 @@ void MainMenuState::Init() {
     _banner.setTexture(game_data->assets.GetTexture("MainMenu State groep6 Banner"));
     _playButton.setTexture(game_data->assets.GetTexture("MainMenu Play Button"));
     _settingsButton.setTexture(game_data->assets.GetTexture("MainMenu Settings Button"));
-    _CustomButton.setTexture(game_data->assets.GetTexture("MainMenu Custom Button"));
+    _customButton.setTexture(game_data->assets.GetTexture("MainMenu Custom Button"));
 
     _title.setPosition((SCREEN_WIDTH/2.0f - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2);
     _playButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*2);
     _settingsButton.setPosition(_playButton.getGlobalBounds().left - _playButton.getGlobalBounds().width, _title.getGlobalBounds().height*2);
-    _CustomButton.setPosition(_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2);
+    _customButton.setPosition(_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2);
     _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
 }
 
@@ -36,7 +36,7 @@ void MainMenuState::HandleInput() {
             game_data->window.close();
         }
 
-        if (game_data->input.IsSpriteClicked(_CustomButton, sf::Mouse::Left, game_data->window)) {
+        if (game_data->input.IsSpriteClicked(_customButton, sf::Mouse::Left, game_data->window)) {
             game_data->machine.AddGameState(GameStateReference(new CustomCharacterState(game_data)), false);
         }
 
@@ -61,7 +61,7 @@ void MainMenuState::Draw(float delta) {
     game_data->window.draw(_title);
     game_data->window.draw(_playButton);
     game_data->window.draw(_settingsButton);
-    game_data->window.draw(_CustomButton);
+    game_data->window.draw(_customButton);
     game_data->window.draw(_banner);
     game_data->window.display();
 }

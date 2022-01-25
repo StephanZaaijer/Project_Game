@@ -1,5 +1,4 @@
 #include "MainGameState.hpp"
-#include <iostream>
 #include <utility>
 #include "PauseState.hpp"
 
@@ -9,7 +8,7 @@ MainGameState::MainGameState(GameDataReference data):
 
 void MainGameState::Init(){
     character = new Character(game_data);
-    game_data->assets.loadTextureFromFile("character", CHARACTER_FRAME_1_FILEPATH);
+    game_data->assets.loadTextureFromFile("character", CHARACTER_3);
     character->getSprite().setTexture( game_data->assets.GetTexture("character") );
 
     wall = new Wall(game_data);
@@ -17,8 +16,6 @@ void MainGameState::Init(){
     wall = new Wall(game_data);
     background.setTexture(this->game_data->assets.GetTexture("Background"));
     wall->spawn_Wall(WALL_HEIGHT);
-
-
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
         obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
@@ -48,11 +45,11 @@ void MainGameState::Update( float delta ){
     character->Update(delta);
 
     // call collide funtion to check if character collides with something
-    character->Collide(wall->getAllRectangles());
+    character->CollideWalls(wall->getAllRectangles());
 
     // move walls downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
-        int move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
+        float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
 
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
@@ -71,6 +68,17 @@ void MainGameState::Update( float delta ){
         character->setHeight(0);
     }
 
+    std::vector<Obstacle*> obstacles;
+    obstacles = obstacles_container->getObstacle();
+    for(auto obstacle : obstacles){
+        if(obstacle->getBounds().intersects(character->GetBounds())){
+            character->_death = true;
+        }
+    }
+
+    if(character->_death){
+        game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
+    }
 }
 
 void MainGameState::Draw( float delta ){

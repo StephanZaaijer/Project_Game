@@ -1,7 +1,3 @@
-//
-// Created by Franky on 20-1-2022.
-//
-
 #ifndef PROJECT_GAME_SPIKE_H
 #define PROJECT_GAME_SPIKE_H
 
@@ -24,6 +20,8 @@ public:
     void spawn() override;
     void move(sf::Vector2f move_by) override;
     void draw() override;
+    sf::FloatRect getBounds() override;
+
 };
 
 

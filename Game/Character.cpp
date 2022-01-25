@@ -34,10 +34,9 @@ sf::Sprite & Character::getSprite() {
     return _characterSprite;
 }
 
-sf::FloatRect Character::   GetBound() {
+sf::FloatRect Character::GetBounds() {
     return _characterSprite.getGlobalBounds();
 }
-
 
 void Character::Draw() {
     game_data->window.draw(_characterSprite);
@@ -45,16 +44,18 @@ void Character::Draw() {
 
 void Character::Update(float dt) {
     if ( _characterState == Jumping ) {
-
         _position = _characterSprite.getPosition();
         _velocity.y += GRAVITY;
         _position += _velocity;
         _characterSprite.setPosition(_position);
 
-        _height += (_velocity.y * -1);
-
+        _height += (int(_velocity.y) * -1);
     }
     else if ( _characterState == Stick ) {
+    }
+
+    if(_characterSprite.getPosition().y >SCREEN_HEIGHT){
+        _death = true;
     }
 }
 
@@ -63,7 +64,7 @@ void Character::Tap() {
     _velocity.y = VELOCITY_Y;
 }
 
-void Character::Collide(const std::vector<sf::RectangleShape> & Rects) {
+void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
 
     sf::Vector2f own_pos = _characterSprite.getPosition();
     sf::FloatRect own_hitbox = _characterSprite.getGlobalBounds();

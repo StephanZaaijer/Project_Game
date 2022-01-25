@@ -1,13 +1,10 @@
-//
-// Created by Franky on 20-1-2022.
-//
-
 #include "Spike.hpp"
 #include <iostream>
+#include <utility>
 #include "Definitions.hpp"
 
 Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position):
-    game_data(game_data),
+    game_data(std::move(game_data)),
     facing (facing),
     position (position)
 {spawn();}
@@ -34,4 +31,8 @@ void Spike::move(sf::Vector2f move_by){
 }
 void Spike::draw(){
     game_data -> window.draw(Triangle);
+}
+
+sf::FloatRect Spike::getBounds(){
+    return Triangle.getGlobalBounds();
 }

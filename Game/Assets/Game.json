@@ -1,12 +1,16 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
-		"Musiclevel" : 77,
-		"Sound" : false,
-		"Soundlevel" : 99
+		"Music" : true,
+		"Musiclevel" : 37,
+		"Sound" : true,
+		"Soundlevel" : 63
 	},
-	"Player" : "Temp",
+	"Player" : 
+	{
+		"File" : "Assets/character_3.png",
+		"ID" : "character_3"
+	},
 	"Score" : 
 	{
 		"Highscore" : 123

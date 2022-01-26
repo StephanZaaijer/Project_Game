@@ -29,8 +29,9 @@ void MainGameState::Init(){
     }
 
     character = new Character(game_data);
-    game_data->assets.loadTextureFromFile("character", CHARACTER_3);
-    character->getSprite().setTexture( game_data->assets.GetTexture("character") );
+    characterinfo = game_data->json.Get_PlayerSprite();
+    game_data->assets.loadTextureFromFile(characterinfo.CharacterName, characterinfo.CharacterFileName);
+    character->getSprite().setTexture( game_data->assets.GetTexture(characterinfo.CharacterName) );
 
     wall = new Wall(game_data);
     obstacles_container = new Obstacle_Container(game_data);

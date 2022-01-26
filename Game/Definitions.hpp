@@ -1,6 +1,8 @@
 #ifndef PROJECT_GAME_DEFINITIONS_HPP
 #define PROJECT_GAME_DEFINITIONS_HPP
 
+#include <string>
+
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
@@ -64,6 +66,7 @@ enum character_states {
 
 #define GAME_FILE "Assets/Game.json"
 
+#define WALL_COLOR sf::Color::Green
 #define WALL_HEIGHT 600
 #define WALL_WIDTH 50
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
@@ -76,6 +79,15 @@ enum character_states {
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 
+
+struct CustomCharacter {
+    std::string CharacterName = "";
+    std::string CharacterFileName = "";
+	bool operator==(const CustomCharacter &rhs) const{
+		return (CharacterName == rhs.CharacterName) and (CharacterFileName == rhs.CharacterFileName);
+	}
+};
+
 #define MUSIC_MAIN_MENU_PATH "Assets/gameMusicMenu.wav"
 #define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"
@@ -84,8 +96,5 @@ enum Spike_facing {left, right};
 #define SOUND_PAUSE_PATH "Assets/pause.wav"
 #define SOUND_RESUME_PATH "Assets/resume.wav"
 
-
-#define ENABLE_SOUND
-#define ENABLE_FONT
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

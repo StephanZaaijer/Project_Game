@@ -13,9 +13,12 @@
 
 class MainGameState : public GameState{
 private:
+    float backGroundOffsetY = 0;
+    float backGroundOffsetY2;
     GameDataReference game_data;
     Wall *wall;
     sf::Sprite background;
+    sf::Sprite background2;
     Obstacle_Container *obstacles_container;
     Character *character;
     CustomCharacter characterinfo;

@@ -37,6 +37,8 @@ void MainGameState::Init(){
     obstacles_container = new Obstacle_Container(game_data);
     wall = new Wall(game_data);
     background.setTexture(this->game_data->assets.GetTexture("Background"));
+    background2.setTexture(this->game_data->assets.GetTexture("Background"));
+    backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     wall->spawn_Wall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
@@ -81,6 +83,17 @@ void MainGameState::Update( float delta ){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
 
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
+        backGroundOffsetY += move_down_by/4;
+        backGroundOffsetY2 += move_down_by/4;
+        background.setPosition(0, backGroundOffsetY);
+        background2.setPosition(0, backGroundOffsetY2);
+        if(backGroundOffsetY >= game_data->window.getSize().y){
+            backGroundOffsetY = background2.getGlobalBounds().top - background2.getGlobalBounds().height;
+        }
+        if(backGroundOffsetY2 >= game_data->window.getSize().y){
+            backGroundOffsetY2 = background.getGlobalBounds().top - background.getGlobalBounds().height;
+        }
+
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
         character->moveDownByOffset(move_down_by);
     }
@@ -120,6 +133,7 @@ void MainGameState::Update( float delta ){
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
     game_data-> window.draw(background);
+    game_data-> window.draw(background2);
     wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
     character->Draw();

@@ -27,7 +27,6 @@ private:
     sf::Sound _clickSound;
     std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton };
 
-
 public:
     MainMenuState(GameDataReference data);
 

@@ -1,7 +1,3 @@
-//
-// Created by Franky on 19-1-2022.
-//
-
 #ifndef PROJECT_GAME_OBSTACLE_CONTAINER_H
 #define PROJECT_GAME_OBSTACLE_CONTAINER_H
 
@@ -11,6 +7,7 @@
 #include <vector>
 #include "Obstacle.hpp"
 #include "Spike.hpp"
+#include "Deathwall.hpp"
 
 class Obstacle_Container {
 private:
@@ -19,8 +16,8 @@ private:
 public:
     Obstacle_Container(GameDataReference data);
     ~Obstacle_Container();
-//    void spawn_Obstacle(Obstacle_objects object);
-    void spawn_Obstacle_On_Wall(sf::RectangleShape wall);
+    std::vector<Obstacle*> getObstacle();
+    void spawn_Obstacle_On_Wall(const sf::RectangleShape& wall);
     void move_Obstacle(sf::Vector2f move_by);
     void draw_Obstacle();
 

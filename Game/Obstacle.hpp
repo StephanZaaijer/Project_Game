@@ -1,7 +1,3 @@
-//
-// Created by Franky on 20-1-2022.
-//
-
 #ifndef PROJECT_GAME_OBSTACLE_H
 #define PROJECT_GAME_OBSTACLE_H
 
@@ -16,6 +12,7 @@ public:
     virtual void spawn() = 0;
     virtual void move(sf::Vector2f move_by) = 0;
     virtual void draw() = 0;
+    virtual sf::FloatRect getBounds() = 0;
 };
 
 

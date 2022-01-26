@@ -1,4 +1,3 @@
-
 #ifndef PROJECT_GAME_MAINGAMESTATE_HPP
 #define PROJECT_GAME_MAINGAMESTATE_HPP
 
@@ -14,7 +13,6 @@
 
 class MainGameState : public GameState{
 private:
-    int char_height = 0;
     GameDataReference game_data;
     Wall *wall;
     sf::Sprite background;
@@ -32,8 +30,6 @@ public:
     MainGameState(GameDataReference data);
     ~MainGameState() override;
     void Init() override;
-    bool CollisionDetection(sf::FloatRect &object1, sf::FloatRect &object2);
-    bool CollisionDetection(sf::FloatRect object1, sf::FloatRect object2);
 
     void HandleInput() override;
     void Update( float delta ) override;

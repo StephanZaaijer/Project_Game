@@ -1,7 +1,3 @@
-//
-// Created by stephan on 18-1-2022.
-//
-
 #include "Game.hpp"
 #include "StartUpState.hpp"
 #include "IconArray.hpp"
@@ -31,7 +27,7 @@ void Game::start() {
         while (accumulator >= delta) {
             game_data->machine.GetActiveGameState()->HandleInput();
             game_data->machine.GetActiveGameState()->Update(delta);
-        accumulator -= delta;
+            accumulator -= delta;
         }
         game_data->machine.GetActiveGameState()->Draw(accumulator / delta);
         sf::sleep(sf::milliseconds(20));

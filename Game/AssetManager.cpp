@@ -1,7 +1,6 @@
 #include "AssetManager.hpp"
 #include "Exceptions.hpp"
 
-
 void AssetManager::loadTextureFromFile(const std::string& name, const std::string& Filename) {
     sf::Texture temp;
 
@@ -39,7 +38,6 @@ sf::Font &AssetManager::GetFont(const std::string &name){
 #endif //ENABLE_FONT
 
 #ifdef ENABLE_SOUND
-
 void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &Filename){
     sf::SoundBuffer temp;
     if (temp.loadFromFile(Filename)){

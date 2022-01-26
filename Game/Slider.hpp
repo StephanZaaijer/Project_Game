@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PROJECT_GAME_SLIDER
+#define PROJECT_GAME_SLIDER
+
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
@@ -20,3 +22,4 @@ public:
 	sf::RectangleShape& get_slider_block();
 };
 
+#endif // PROJECT_GAME_SLIDER

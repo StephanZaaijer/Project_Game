@@ -20,24 +20,24 @@ private:
     sf::Sprite _banner;
     sf::Sprite _playButton;
     sf::Sprite _settingsButton;
-    sf::Sprite _exitButton;
+    sf::Sprite _customButton;
     sf::Cursor hand_cursor;
     sf::Cursor arrow_cursor;
-    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_exitButton };
     sf::SoundBuffer _clickBuffer;
     sf::Sound _clickSound;
+    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton };
 
 
 public:
     MainMenuState(GameDataReference data);
 
-    void Init();
+    void Init() override;
 
-    void HandleInput();
+    void HandleInput() override;
 
-    void Update(float delta);
+    void Update(float delta) override;
 
-    void Draw(float delta);
+    void Draw(float delta) override;
 };
 
 #endif //PROJECT_GAME_MAINMENUSTATE_HPP

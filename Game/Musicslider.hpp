@@ -1,3 +1,6 @@
+#ifndef PROJECT_GAME_MUSICSLIDER
+#define PROJECT_GAME_MUSICSLIDER
+
 #include "Slider.hpp"
 
 class Musicslider :public Slider
@@ -18,3 +21,5 @@ private:
 	sf::Text level;
 	sf::Vector2f prev_sliderblock_location;
 };
+
+#endif // PROJECT_GAME_MUSICSLIDER

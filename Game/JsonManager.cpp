@@ -53,7 +53,8 @@ void JsonManager::Set_Soundstate(bool state) {
 	}
 	data.Sound = state;
 	json_data["Audio"]["Sound"] = state;
-	Write_Json_to_file();
+	clock.restart();
+	write_out = true;
 }
 void JsonManager::Set_Soundvolume(int volume) {
 	if (volume == data.Soundvolume) {
@@ -63,7 +64,8 @@ void JsonManager::Set_Soundvolume(int volume) {
 	json_data["Audio"]["Sound"] = volume != 0;
 	data.Soundvolume = volume;
 	json_data["Audio"]["Soundlevel"] = volume;
-	Write_Json_to_file();
+	clock.restart();
+	write_out = true;
 }
 void JsonManager::Set_Musicstate(bool state) {
 	if (state == data.Music) {
@@ -71,7 +73,8 @@ void JsonManager::Set_Musicstate(bool state) {
 	}
 	data.Music = state;
 	json_data["Audio"]["Music"] = state;
-	Write_Json_to_file();
+	clock.restart();
+	write_out = true;
 }
 void JsonManager::Set_Musicvolume(int volume) {
 	if (volume == data.Musicvolume) {
@@ -81,7 +84,8 @@ void JsonManager::Set_Musicvolume(int volume) {
 	json_data["Audio"]["Music"] = volume != 0;
 	data.Musicvolume = volume;
 	json_data["Audio"]["Musiclevel"] = volume;
-	Write_Json_to_file();
+	clock.restart();
+	write_out = true;
 }
 void JsonManager::Set_Highscore(int highscore) {
 	if (highscore <= data.Highscore) {
@@ -89,8 +93,10 @@ void JsonManager::Set_Highscore(int highscore) {
 	}
 	data.Highscore = highscore;
 	json_data["Score"]["Highscore"] = highscore;
-	Write_Json_to_file();
+	clock.restart();
+	write_out = true;
 }
+
 void JsonManager::Set_PlayerSprite(CustomCharacter PlayerSprite) {
 	if (PlayerSprite.CharacterName == data.PlayerSpriteID) {
 		return;
@@ -99,7 +105,23 @@ void JsonManager::Set_PlayerSprite(CustomCharacter PlayerSprite) {
 	data.PlayerSpriteFile = PlayerSprite.CharacterFileName;
 	json_data["Player"]["ID"] = PlayerSprite.CharacterName;
 	json_data["Player"]["File"] = PlayerSprite.CharacterFileName;
-	Write_Json_to_file();
+	clock.restart();
+	write_out = true;
+}
+
+
+void JsonManager::Update() {
+	if (write_out and clock.getElapsedTime().asSeconds() >= 5) {
+		write_out = false;
+		Write_Json_to_file();
+	}
+}
+
+void JsonManager::Direct_write() {
+	if (write_out) {
+		write_out = false;
+		Write_Json_to_file();
+	}
 }
 
 Json::Value JsonManager::Get_Json_from_file() {

@@ -1,25 +1,22 @@
 #include "MainGameState.hpp"
 #include <utility>
 #include "PauseState.hpp"
+#include <iostream>
 
 MainGameState::MainGameState(GameDataReference data):
     game_data (std::move(data))
 {}
 
 void MainGameState::Init(){
-
     game_data->assets.loadSoundBufferFromFile("_jumpSound", SOUND_JUMP_PATH);
-    game_data->assets.loadSoundBufferFromFile("_deathSound", SOUND_DEATH_PATH);
     game_data->assets.loadSoundBufferFromFile("_pauseSound", SOUND_PAUSE_PATH);
     game_data->assets.loadSoundBufferFromFile("_gameMusicSound", MUSIC_GAME_PATH);
 
     _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("_jumpSound"));
-    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("_deathSound"));
     _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("_pauseSound"));
     _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("_gameMusicSound"));
 
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
-    _deathSound.setVolume(game_data->json.Get_Soundvolume());
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
     _gameMusicSound.setLoop(true);
@@ -122,10 +119,6 @@ void MainGameState::Update( float delta ){
         if(_gameMusicSound.getStatus()){
             _gameMusicSound.stop();
         }
-        if(game_data->json.Get_Soundstate()){
-            _deathSound.play();
-            while(_deathSound.getStatus() == _deathSound.Playing){}
-        }
         game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
     }
 }
@@ -149,7 +142,6 @@ MainGameState::~MainGameState() {
 
 void MainGameState::Resume(){
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
-    _deathSound.setVolume(game_data->json.Get_Soundvolume());
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
     if(game_data->json.Get_Musicstate()){

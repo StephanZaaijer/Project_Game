@@ -1,6 +1,8 @@
 #ifndef PROJECT_GAME_DEFINITIONS_HPP
 #define PROJECT_GAME_DEFINITIONS_HPP
 
+#include <string>
+
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
@@ -76,7 +78,13 @@ enum character_states {
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 
-
+struct CustomCharacter {
+    std::string CharacterName = "";
+    std::string CharacterFileName = "";
+	bool operator==(const CustomCharacter &rhs) const{
+		return (CharacterName == rhs.CharacterName) and (CharacterFileName == rhs.CharacterFileName);
+	}
+};
 
 //#define ENABLE_SOUND
 #define ENABLE_FONT

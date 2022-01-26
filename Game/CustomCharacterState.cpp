@@ -7,15 +7,30 @@ CustomCharacterState::CustomCharacterState(GameDataReference data) :
 void CustomCharacterState::Init() {
     counter = 0;
     character = new Character(game_data);
-    game_data->assets.loadTextureFromFile(character_lst[0], CHARACTER_FRAME_1_FILEPATH);
-    game_data->assets.loadTextureFromFile(character_lst[1], CHARACTER_2);
-    game_data->assets.loadTextureFromFile(character_lst[2], CHARACTER_3);
+    CurrentCharacter = game_data->json.Get_PlayerSprite();
+    for (const auto &character : CustomCharacters) {
+        game_data->assets.loadTextureFromFile(character.CharacterName, character.CharacterFileName);
+
+    }
+
     game_data->assets.loadTextureFromFile("Random Button", RANDOMBUTTON);
     game_data->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
     game_data->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
     game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
 
-    character->getSprite().setTexture(game_data->assets.GetTexture(character_lst[counter]));
+    for (const auto& character : CustomCharacters) {
+        if (CurrentCharacter == character) {
+            break;
+        }
+        counter++;
+    }
+    if (counter > CustomCharacters.size()) {
+        counter = 0;
+        CurrentCharacter = CustomCharacters[counter];
+    }
+
+
+    character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
     character->getSprite().setPosition({SCREEN_WIDTH / 4.0f * 2.0f, SCREEN_HEIGHT / 2.0f});
     character->getSprite().setOrigin({character->getSprite().getGlobalBounds().width / 2, character->getSprite().getGlobalBounds().height / 2});
     character->getSprite().setOrigin({character->getSprite().getGlobalBounds().width / 2, character->getSprite().getGlobalBounds().height / 2});
@@ -43,25 +58,31 @@ void CustomCharacterState::HandleInput() {
     sf::Event event{};
     while (game_data->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
+            game_data->json.Set_PlayerSprite(CurrentCharacter);
             game_data->window.close();
+            
         }
         if (game_data->input.IsSpriteClicked(_arrowRight, sf::Mouse::Left, game_data->window)) {
-            if (counter == character_lst.size() - 1) {
+            if (counter == CustomCharacters.size() - 1) {
                 counter = 0;
             } else { counter += 1; }
-            character->getSprite().setTexture(game_data->assets.GetTexture(character_lst[counter]));
+            CurrentCharacter = CustomCharacters[counter];
+            character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
         }
         if (game_data->input.IsSpriteClicked(_randomButton, sf::Mouse::Left, game_data->window)) {
-            counter = std::rand() % character_lst.size();
-            character->getSprite().setTexture(game_data->assets.GetTexture(character_lst[counter]));
+            counter = std::rand() % CustomCharacters.size();
+            CurrentCharacter = CustomCharacters[counter];
+            character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
         }
         if (game_data->input.IsSpriteClicked(_arrowLeft, sf::Mouse::Left, game_data->window)) {
             if (counter == 0) {
-                counter = character_lst.size() - 1;
+                counter = CustomCharacters.size() - 1;
             } else { counter -= 1; }
-            character->getSprite().setTexture(game_data->assets.GetTexture(character_lst[counter]));
+            CurrentCharacter = CustomCharacters[counter];
+            character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
         }
         if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)) {
+            game_data->json.Set_PlayerSprite(CurrentCharacter);
             game_data->machine.RemoveGameState();
         }
         game_data->input.ChangeMouseWhenHoveringOverButton(CharacterSelect, game_data->window);

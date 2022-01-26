@@ -17,6 +17,7 @@ private:
     sf::Sprite background;
     Obstacle_Container *obstacles_container;
     Character *character;
+    CustomCharacter characterinfo;
 public:
     MainGameState(GameDataReference data);
     ~MainGameState() override;

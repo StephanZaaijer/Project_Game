@@ -6,7 +6,11 @@
 		"Sound" : false,
 		"Soundlevel" : 35
 	},
-	"Player" : "Temp",
+	"Player" : 
+	{
+		"File" : "Assets/character.jpg",
+		"ID" : "character"
+	},
 	"Score" : 
 	{
 		"Highscore" : 123

@@ -8,9 +8,8 @@ void CustomCharacterState::Init() {
     counter = 0;
     character = new Character(game_data);
     CurrentCharacter = game_data->json.Get_PlayerSprite();
-    for (const auto &character : CustomCharacters) {
-        game_data->assets.loadTextureFromFile(character.CharacterName, character.CharacterFileName);
-
+    for (const auto &characters : CustomCharacters) {
+        game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
     }
 
     game_data->assets.loadTextureFromFile("Random Button", RANDOMBUTTON);
@@ -18,8 +17,8 @@ void CustomCharacterState::Init() {
     game_data->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
     game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
 
-    for (const auto& character : CustomCharacters) {
-        if (CurrentCharacter == character) {
+    for (const auto& characters : CustomCharacters) {
+        if (CurrentCharacter == characters) {
             break;
         }
         counter++;

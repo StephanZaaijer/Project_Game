@@ -17,7 +17,7 @@ SOURCES := AssetManager.cpp Character.cpp CustomCharacterState.cpp Deathwall.cpp
 HEADERS := AssetManager.hpp Character.hpp CustomCharacterState.hpp Deathwall.hpp Definitions.hpp Exceptions.hpp Game.hpp GameOverState.hpp GameState.hpp InputManager.hpp json.h json-forwards.h JsonManager.hpp MainGameState.hpp MainMenuState.hpp Musicslider.hpp Obstacle.hpp ObstaclesContainer.hpp PauseState.hpp Slider.hpp SoundSettingsState.hpp Soundslider.hpp Spike.hpp StartupState.hpp StateMachine.hpp Wall.hpp
 
 # other places to look for files for this project
-SEARCH  := ../Library/JSON/json ../Library/JSON
+SEARCH  := ../Library/JSON/json/ ../Library/JSON/
 
 # set REATIVE to the next higher directory 
 # and defer to the Makefile.due there

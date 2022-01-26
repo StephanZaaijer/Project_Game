@@ -22,13 +22,12 @@ private:
   std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &_backButton };
   Soundslider* soundslider;
   Musicslider* musicslider;
-  bool prev_music = false;
-  bool prev_sound = false;
-
+  sf::SoundBuffer _clickBuffer;
+  sf::Sound _clickSound;
 
 public:
   SoundSettingsState(GameDataReference data);
-  ~SoundSettingsState() override;
+  ~SoundSettingsState();
   void Init() override;
   void HandleInput() override;
   void Update(float delta) override;

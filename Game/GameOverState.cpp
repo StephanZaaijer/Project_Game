@@ -7,8 +7,17 @@ GameOverState::GameOverState(GameDataReference data) : game_data(std::move(data)
 
 void GameOverState::Init() {
     game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
+    game_data->assets.loadSoundBufferFromFile("_deathSound", SOUND_DEATH_PATH);
+
     _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("_deathSound"));
+
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
+    _deathSound.setVolume(game_data->json.Get_Soundvolume());
+
+    if(game_data->json.Get_Soundstate()){
+        _deathSound.play();
+    }
 
     game_data->assets.loadTextureFromFile("State Background", BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);

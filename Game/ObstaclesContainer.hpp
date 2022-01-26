@@ -11,6 +11,7 @@
 
 class Obstacle_Container {
 private:
+    struct Coordinates_Obstacles;
     GameDataReference game_data;
     std::vector<Obstacle*> obstacles;
 public:

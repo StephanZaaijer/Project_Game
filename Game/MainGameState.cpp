@@ -43,10 +43,10 @@ void MainGameState::Init(){
     background.setTexture(this->game_data->assets.GetTexture("Background"));
     wall->spawn_Wall(WALL_HEIGHT);
 
-//    for(unsigned int i = 0; i < wall->getWalls().size(); i++){
-//        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
-//        wall->setContainObstacleTrue(i);
-//    }
+    for(unsigned int i = 0; i < wall->getWalls().size(); i++){
+        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
+        wall->setContainObstacleTrue(i);
+    }
 }
 
 void MainGameState::HandleInput() {
@@ -87,22 +87,22 @@ void MainGameState::Update( float delta ){
     // spawn walls and obstacles
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
         wall ->spawn_Wall();
-//        for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
-//            if (!(wall->getWalls()[i].contains_obstacles)) {
-////                obstacles_container->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
-////                wall->setContainObstacleTrue(i);
-//            }
-//        }
+        for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
+            if (!(wall->getWalls()[i].contains_obstacles)) {
+                obstacles_container->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
+                wall->setContainObstacleTrue(i);
+            }
+        }
         character->setHeight(0);
     }
 
-//    std::vector<Obstacle*> obstacles;
-//    obstacles = obstacles_container->getObstacle();
-//    for(auto obstacle : obstacles){
-//        if(obstacle->getBounds().intersects(character->GetBounds())){
-//            character->_death = true;
-//        }
-//    }
+    std::vector<Obstacle*> obstacles;
+    obstacles = obstacles_container->getObstacle();
+    for(auto obstacle : obstacles){
+        if(obstacle->getBounds().intersects(character->GetBounds())){
+            character->_death = true;
+        }
+    }
 
     if (character->_death){
         _gameMusicSound.stop();

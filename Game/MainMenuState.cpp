@@ -7,11 +7,9 @@
 MainMenuState::MainMenuState(GameDataReference data) : game_data(std::move(data)) {}
 
 void MainMenuState::Init() {
-    if( !_clickBuffer.loadFromFile(SOUND_CLICK_PATH)){
-        std::cout << "ERROR loading click sound" << std::endl;
-    }
 
-    _clickSound.setBuffer( _clickBuffer );
+    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
 
     game_data->assets.loadTextureFromFile("MainMenu State Background", BACKGROUND_PATH);

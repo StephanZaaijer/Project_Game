@@ -18,6 +18,8 @@ private:
 	sf::Sprite _soundsettingsButton;
 	sf::Text _pauseText;
 	std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_soundsettingsButton};
+	sf::Sound _resumeSound;
+	sf::Sound _clickSound;
 
 
 public:

@@ -20,6 +20,9 @@ private:
     sf::Text _score;
     sf::Text _highscore;
 
+    sf::SoundBuffer _clickBuffer;
+    sf::Sound _clickSound;
+
     std::vector<sf::Sprite*> clickable_buttons = { &_restartButton, &_mainMenuButton };
 
 public:

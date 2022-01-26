@@ -8,8 +8,8 @@
 	},
 	"Player" : 
 	{
-		"File" : "Assets/nick.png",
-		"ID" : "nick"
+		"File" : "Assets/character.jpg",
+		"ID" : "character"
 	},
 	"Score" : 
 	{

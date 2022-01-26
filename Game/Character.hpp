@@ -30,6 +30,7 @@ private:
     sf::Vector2f _velocity = {VELOCITY_X,0};
     sf::Vector2f _position;
     character_states _characterState;
+    float _fallVelocity = 0;
     int _height = 0;
     bool _jumped_once = false;
     bool _jumped_twice = false;

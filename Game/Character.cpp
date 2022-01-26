@@ -46,6 +46,7 @@ void Character::Draw() {
 
 void Character::Update(float dt) {
     if ( _characterState == Jumping ) {
+        _fallVelocity = 0;
         _position = _characterSprite.getPosition();
         _velocity.y += GRAVITY;
         _position += _velocity;
@@ -54,6 +55,7 @@ void Character::Update(float dt) {
         _height += (int(_velocity.y) * -1);
     }
     else if ( _characterState == Stick ) {
+        moveDownByOffset(_fallVelocity += GRAVITY / WALL_SLIDE_DELTA);
     }
 
     if(_characterSprite.getPosition().y >SCREEN_HEIGHT){

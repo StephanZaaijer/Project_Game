@@ -80,8 +80,8 @@ void MainGameState::Update( float delta ){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
 
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
-        backGroundOffsetY += move_down_by/4;
-        backGroundOffsetY2 += move_down_by/4;
+        backGroundOffsetY += move_down_by/BACKGROUND_SLIDE;
+        backGroundOffsetY2 += move_down_by/BACKGROUND_SLIDE;
         background.setPosition(0, backGroundOffsetY);
         background2.setPosition(0, backGroundOffsetY2);
         if(backGroundOffsetY >= game_data->window.getSize().y){

@@ -57,7 +57,7 @@ void MainGameState::HandleInput() {
             game_data->window.close();
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
-            character->setJump(true);
+//            character->setJump(true);
             character->Tap();
         }
         if (!game_data->window.hasFocus()) {

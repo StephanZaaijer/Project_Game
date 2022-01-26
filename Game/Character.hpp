@@ -16,7 +16,7 @@ public:
     void CollideWalls(const std::vector<sf::RectangleShape> & Rects );
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
-    void setJump(const bool & set);
+    void resetJumps();
     int getHeight() const;
     sf::Sprite & getSprite ();
     sf::FloatRect GetBounds();
@@ -31,7 +31,9 @@ private:
     sf::Vector2f _position;
     character_states _characterState;
     int _height = 0;
-    bool jump;
+    bool _jumped_once = false;
+    bool _jumped_twice = false;
+    sf::Clock _jumpclock;
 };
 
 #endif //CHARACTER_HPP

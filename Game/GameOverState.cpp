@@ -6,6 +6,10 @@
 GameOverState::GameOverState(GameDataReference data) : game_data(std::move(data)){}
 
 void GameOverState::Init() {
+    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+
     game_data->assets.loadTextureFromFile("State Background", BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Main Menu Button", MAIN_MENU_BUTTON_PATH);
@@ -60,9 +64,15 @@ void GameOverState::HandleInput() {
         }
     }
     if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
+        if(game_data->json.Get_Soundstate()){
+            _clickSound.play();
+        }
         game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
     }
     if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
+        if(game_data->json.Get_Soundstate()){
+            _clickSound.play();
+        }
         game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
     }
     game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);

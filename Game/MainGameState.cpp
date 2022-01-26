@@ -20,6 +20,8 @@ void MainGameState::Init(){
         std::cout << "ERROR loading music" << std::endl;
     }
 
+
+
     _jumpSound.setBuffer( _jumpSoundBuffer);
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
     _deathSound.setBuffer( _deathSoundBuffer );
@@ -106,6 +108,7 @@ void MainGameState::Update( float delta ){
     if (character->_death){
         _gameMusicSound.stop();
         _deathSound.play();
+        sf::sleep(sf::milliseconds(1500));
         game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
     }
 }

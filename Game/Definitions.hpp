@@ -97,7 +97,4 @@ struct CustomCharacter {
 #define SOUND_RESUME_PATH "Assets/resume.wav"
 
 
-#define ENABLE_SOUND
-#define ENABLE_FONT
-
 #endif //PROJECT_GAME_DEFINITIONS_HPP

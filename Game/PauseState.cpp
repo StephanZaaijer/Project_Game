@@ -7,6 +7,14 @@ PauseState::PauseState(GameDataReference data):
 {}
 
 void PauseState::Init() {
+    game_data->assets.loadSoundBufferFromFile("_resumeSound", SOUND_RESUME_PATH);
+    _resumeSound.setBuffer(game_data->assets.GetSoundBuffer("_resumeSound"));
+    _resumeSound.setVolume(game_data->json.Get_Soundvolume());
+
+    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+
     game_data->assets.loadTextureFromFile("Pause State Background", PAUSE_STATE_BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("Pause State Play Button", PAUSE_STATE_PLAY_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Pause State Settings Button", PAUSE_STATE_SETTINGS_BUTTON_PATH);
@@ -41,9 +49,16 @@ void PauseState::HandleInput() {
             game_data->window.close();
         }
         if (game_data->input.IsSpriteClicked(_playButton, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _resumeSound.play();
+                while(_resumeSound.getStatus() == _resumeSound.Playing){}
+            }
             game_data->machine.RemoveGameState();
         }
         if (game_data->input.IsSpriteClicked(_soundsettingsButton, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _clickSound.play();
+            }
             game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
         }
     }

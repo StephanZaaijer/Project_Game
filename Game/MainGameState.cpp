@@ -7,32 +7,26 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
-    if( !_jumpSoundBuffer.loadFromFile(SOUND_JUMP_PATH)){
-        std::cout << "ERROR loading jump sound" << std::endl;
-    }
-    if( !_deathSoundBuffer.loadFromFile(SOUND_DEATH_PATH)){
-        std::cout << "ERROR loading death sound" << std::endl;
-    }
-    if( !_pauseSoundBuffer.loadFromFile(SOUND_PAUSE_PATH)){
-        std::cout << "ERROR loading pause sound" << std::endl;
-    }
-    if( !_gameMusicSoundBuffer.loadFromFile(MUSIC_GAME_PATH)){
-        std::cout << "ERROR loading music" << std::endl;
-    }
 
+    game_data->assets.loadSoundBufferFromFile("_jumpSound", SOUND_JUMP_PATH);
+    game_data->assets.loadSoundBufferFromFile("_deathSound", SOUND_DEATH_PATH);
+    game_data->assets.loadSoundBufferFromFile("_pauseSound", SOUND_PAUSE_PATH);
+    game_data->assets.loadSoundBufferFromFile("_gameMusicSound", MUSIC_GAME_PATH);
 
+    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("_jumpSound"));
+    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("_deathSound"));
+    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("_pauseSound"));
+    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("_gameMusicSound"));
 
-    _jumpSound.setBuffer( _jumpSoundBuffer);
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
-    _deathSound.setBuffer( _deathSoundBuffer );
     _deathSound.setVolume(game_data->json.Get_Soundvolume());
-    _pauseSound.setBuffer( _pauseSoundBuffer );
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
-    _gameMusicSound.setBuffer( _gameMusicSoundBuffer );
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
+    _gameMusicSound.setLoop(true);
 
-    _gameMusicSound.play();
-
+    if(game_data->json.Get_Musicstate()){
+        _gameMusicSound.play();
+    }
 
     character = new Character(game_data);
     game_data->assets.loadTextureFromFile("character", CHARACTER_3);
@@ -56,14 +50,19 @@ void MainGameState::HandleInput() {
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
             game_data->window.close();
+            break;
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             character->setJump(true);
             character->Tap();
         }
         if (!game_data->window.hasFocus()) {
-            _gameMusicSound.pause();
-            _pauseSound.play();
+            if(game_data->json.Get_Musicstate()){
+                _gameMusicSound.pause();
+            }
+            if(game_data->json.Get_Soundstate()){
+                _pauseSound.play();
+            }
             game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
         }
     }
@@ -106,9 +105,13 @@ void MainGameState::Update( float delta ){
     }
 
     if (character->_death){
-        _gameMusicSound.stop();
-        _deathSound.play();
-        sf::sleep(sf::milliseconds(1500));
+        if(_gameMusicSound.getStatus()){
+            _gameMusicSound.stop();
+        }
+        if(game_data->json.Get_Soundstate()){
+            _deathSound.play();
+            while(_deathSound.getStatus() == _deathSound.Playing){}
+        }
         game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
     }
 }
@@ -134,5 +137,7 @@ void MainGameState::Resume(){
     _deathSound.setVolume(game_data->json.Get_Soundvolume());
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
-    _gameMusicSound.play();
+    if(game_data->json.Get_Musicstate()){
+        _gameMusicSound.play();
+    }
 }

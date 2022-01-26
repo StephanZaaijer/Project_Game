@@ -10,6 +10,7 @@
 #include "Definitions.hpp"
 #include "Soundslider.hpp"
 #include "Musicslider.hpp"
+#include "MainMenuState.hpp"
 
 class SoundSettingsState : public GameState {
 private:

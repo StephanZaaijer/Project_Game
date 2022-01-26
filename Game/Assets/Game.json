@@ -2,9 +2,9 @@
 	"Audio" : 
 	{
 		"Music" : true,
-		"Musiclevel" : 37,
-		"Sound" : true,
-		"Soundlevel" : 63
+		"Musiclevel" : 76,
+		"Sound" : false,
+		"Soundlevel" : 64
 	},
 	"Player" : 
 	{

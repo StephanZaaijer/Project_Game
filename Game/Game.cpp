@@ -31,7 +31,9 @@ void Game::start() {
         }
         game_data->machine.GetActiveGameState()->Draw(accumulator / delta);
         sf::sleep(sf::milliseconds(20));
+        game_data->json.Update();
     }
+    game_data->json.Direct_write();
 }
 
 

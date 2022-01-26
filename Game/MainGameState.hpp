@@ -20,13 +20,9 @@ private:
     Obstacle_Container *obstacles_container;
     Character *character;
     CustomCharacter characterinfo;
-    sf::SoundBuffer _jumpSoundBuffer;
+
     sf::Sound _jumpSound;
-    sf::SoundBuffer _deathSoundBuffer;
-    sf::Sound _deathSound;
-    sf::SoundBuffer _pauseSoundBuffer;
     sf::Sound _pauseSound;
-    sf::SoundBuffer _gameMusicSoundBuffer;
     sf::Sound _gameMusicSound;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;

@@ -26,9 +26,11 @@ void Character::setHeight(const int &value) {
     _height = value;
 }
 
-void Character::setJump(const bool & set){
-    jump = set;
+void Character::resetJumps(){
+    _jumped_once = false;
+    _jumped_twice = false;
 }
+
 
 sf::Sprite & Character::getSprite() {
     return _characterSprite;
@@ -62,8 +64,18 @@ void Character::Update(float dt) {
 }
 
 void Character::Tap() {
-    _characterState = Jumping;
-    _velocity.y = VELOCITY_Y;
+    if (_jumpclock.getElapsedTime().asSeconds() > 0.1 && !_jumped_twice) {
+        if (_jumped_once) {
+            _jumped_twice = true;
+        }
+        else{
+            _jumped_once = true;
+        }
+        _characterState = Jumping;
+        _velocity.y = VELOCITY_Y;
+        _jumpclock.restart();
+    }
+    else {}
 }
 
 void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
@@ -142,10 +154,12 @@ void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
             }
             else if (hit_top){
                 _characterState = Stick;
+                resetJumps();
             }
             else{
                 _velocity.x *= -1;
                 _characterState = Stick;
+                resetJumps();
             }
         }
     }

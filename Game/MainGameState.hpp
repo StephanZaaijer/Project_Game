@@ -30,7 +30,6 @@ private:
     sf::Sound _gameMusicSound;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
-    bool characterOnWall = false;
 
 public:
     MainGameState(GameDataReference data);

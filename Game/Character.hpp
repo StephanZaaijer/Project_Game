@@ -13,7 +13,7 @@ public:
     void Draw();
     void Update(float dt);
     void Tap();
-    bool CollideWalls(const std::vector<sf::RectangleShape> & Rects );
+    void CollideWalls(const std::vector<sf::RectangleShape> & Rects );
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
     void setJump(const bool & set);
@@ -30,6 +30,7 @@ private:
     sf::Vector2f _velocity = {VELOCITY_X,0};
     sf::Vector2f _position;
     character_states _characterState;
+    float _fallVelocity = 0;
     int _height = 0;
     bool jump;
 };

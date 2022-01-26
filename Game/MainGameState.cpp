@@ -76,14 +76,7 @@ void MainGameState::Update( float delta ){
     character->Update(delta);
 
     // call collide funtion to check if character collides with something
-    if(character->CollideWalls(wall->getAllRectangles())){
-        characterOnWall = true;
-    }
-
-    if(characterOnWall){
-        character->moveDownByOffset(WALL_SLIDE_DELTA);
-    }
-
+    character->CollideWalls(wall->getAllRectangles());
 
     // move walls downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){

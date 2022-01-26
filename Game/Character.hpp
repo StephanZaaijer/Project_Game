@@ -13,7 +13,7 @@ public:
     void Draw();
     void Update(float dt);
     void Tap();
-    void CollideWalls(const std::vector<sf::RectangleShape> & Rects );
+    bool CollideWalls(const std::vector<sf::RectangleShape> & Rects );
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
     void setJump(const bool & set);

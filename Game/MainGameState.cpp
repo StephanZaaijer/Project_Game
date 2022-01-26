@@ -76,15 +76,22 @@ void MainGameState::Update( float delta ){
     character->Update(delta);
 
     // call collide funtion to check if character collides with something
-    character->CollideWalls(wall->getAllRectangles());
+    if(character->CollideWalls(wall->getAllRectangles())){
+        characterOnWall = true;
+    }
+
+    if(characterOnWall){
+        character->moveDownByOffset(WALL_SLIDE_DELTA);
+    }
+
 
     // move walls downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
 
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
-        backGroundOffsetY += move_down_by/4;
-        backGroundOffsetY2 += move_down_by/4;
+        backGroundOffsetY += move_down_by/BACKGROUND_SLIDE;
+        backGroundOffsetY2 += move_down_by/BACKGROUND_SLIDE;
         background.setPosition(0, backGroundOffsetY);
         background2.setPosition(0, backGroundOffsetY2);
         if(backGroundOffsetY >= game_data->window.getSize().y){

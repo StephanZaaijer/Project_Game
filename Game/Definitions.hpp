@@ -74,6 +74,8 @@ enum character_states {
 #define WALL_OBSTACLE_HEIGHT_3 (WALL_HEIGHT / 6.0f * 5.0f)
 #define WALL_SPAWN_DISTANT 300
 #define CHARACTER_MAX_HEIGHT 700
+#define WALL_SLIDE_DELTA 43
+#define BACKGROUND_SLIDE 4
 
 #define SPIKE_SIZE 50
 enum Obstacle_objects {Spike_Object};

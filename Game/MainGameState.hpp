@@ -13,8 +13,6 @@
 
 class MainGameState : public GameState{
 private:
-    float backGroundOffsetY = 0;
-    float backGroundOffsetY2;
     GameDataReference game_data;
     Wall *wall;
     sf::Sprite background;
@@ -30,6 +28,9 @@ private:
     sf::Sound _pauseSound;
     sf::SoundBuffer _gameMusicSoundBuffer;
     sf::Sound _gameMusicSound;
+    float backGroundOffsetY = 0;
+    float backGroundOffsetY2;
+    bool characterOnWall = false;
 
 public:
     MainGameState(GameDataReference data);

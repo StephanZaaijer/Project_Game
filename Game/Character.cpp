@@ -64,7 +64,7 @@ void Character::Tap() {
     _velocity.y = VELOCITY_Y;
 }
 
-void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
+bool Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
 
     sf::Vector2f own_pos = _characterSprite.getPosition();
     sf::FloatRect own_hitbox = _characterSprite.getGlobalBounds();
@@ -137,16 +137,19 @@ void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
             if(hit_bottom){
                 _velocity.y = 0;
                 _characterState = Jumping;
+                return false;
             }
             else if (hit_top){
                 _characterState = Stick;
+                return false;
             }
             else{
                 _velocity.x *= -1;
                 _characterState = Stick;
+                return true;
             }
         }
     }
-
+    return false;
 }
 

@@ -13,7 +13,8 @@ public:
 		bool Music;
 		int Musicvolume;
 		int Highscore;
-		std::string PlayerSprite;
+		std::string PlayerSpriteID;
+		std::string PlayerSpriteFile;
 	};
 
 	JsonManager(std::string Gamefile);
@@ -22,13 +23,13 @@ public:
 	bool Get_Musicstate() const;
 	int Get_Musicvolume() const;
 	int Get_Highscore() const;
-	std::string Get_PlayerSprite() const;
+	CustomCharacter Get_PlayerSprite() const;
 	void Set_Soundstate(bool state);
 	void Set_Soundvolume(int volume);
 	void Set_Musicstate(bool state);
 	void Set_Musicvolume(int volume);
 	void Set_Highscore(int highscore);
-	void Set_PlayerSprite(std::string PlayerSpriteID);
+	void Set_PlayerSprite(CustomCharacter PlayerSprite);
 
 private:
 	bool start;

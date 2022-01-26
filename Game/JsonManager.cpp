@@ -18,7 +18,8 @@ void JsonManager::Get_data() {
 		json_data["Audio"]["Music"].asBool(),
 		json_data["Audio"]["Musiclevel"].asInt(),
 		json_data["Score"]["Highscore"].asInt(),
-		json_data["Player"].asString()
+		json_data["Player"]["ID"].asString(),
+		json_data["Player"]["File"].asString()
 	};
 }
 
@@ -42,8 +43,8 @@ int JsonManager::Get_Highscore() const {
 	return data.Highscore;
 }
 
-std::string JsonManager::Get_PlayerSprite() const {
-	return data.PlayerSprite;
+CustomCharacter JsonManager::Get_PlayerSprite() const {
+	return { data.PlayerSpriteID, data.PlayerSpriteFile };
 }
 
 void JsonManager::Set_Soundstate(bool state) {
@@ -90,12 +91,14 @@ void JsonManager::Set_Highscore(int highscore) {
 	json_data["Score"]["Highscore"] = highscore;
 	Write_Json_to_file();
 }
-void JsonManager::Set_PlayerSprite(std::string PlayerSpriteID) {
-	if (PlayerSpriteID == data.PlayerSprite) {
+void JsonManager::Set_PlayerSprite(CustomCharacter PlayerSprite) {
+	if (PlayerSprite.CharacterName == data.PlayerSpriteID) {
 		return;
 	}
-	data.PlayerSprite = PlayerSpriteID;
-	json_data["Player"] = PlayerSpriteID;
+	data.PlayerSpriteID = PlayerSprite.CharacterName;
+	data.PlayerSpriteFile = PlayerSprite.CharacterFileName;
+	json_data["Player"]["ID"] = PlayerSprite.CharacterName;
+	json_data["Player"]["File"] = PlayerSprite.CharacterFileName;
 	Write_Json_to_file();
 }
 

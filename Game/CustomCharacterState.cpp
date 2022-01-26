@@ -30,9 +30,9 @@ void CustomCharacterState::Init() {
 
 
     character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
-    character->getSprite().setPosition({SCREEN_WIDTH / 4.0f * 2.0f, SCREEN_HEIGHT / 2.0f});
+    character->getSprite().setPosition({SCREEN_WIDTH / 4.0f * 2.0f, SCREEN_HEIGHT / 3.0f * 1.0f});
     character->getSprite().setOrigin({character->getSprite().getGlobalBounds().width / 2, character->getSprite().getGlobalBounds().height / 2});
-    character->getSprite().setOrigin({character->getSprite().getGlobalBounds().width / 2, character->getSprite().getGlobalBounds().height / 2});
+    character->getSprite().setScale(2.5,2.5);
 
 
     _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
@@ -41,10 +41,10 @@ void CustomCharacterState::Init() {
     _arrowLeft.setTexture(game_data->assets.GetTexture("Arrow Left"));
     _background.setTexture(game_data->assets.GetTexture("Background"));
 
-    _randomButton.setPosition(SCREEN_WIDTH / 5.0f * 3.0f, SCREEN_HEIGHT / 6.0f * 4.0f);
-    _arrowRight.setPosition(SCREEN_WIDTH / 4.0f * 3.0f, SCREEN_HEIGHT / 2.0f);
-    _arrowLeft.setPosition(SCREEN_WIDTH / 4.0f * 1.0f, SCREEN_HEIGHT / 2.0f);
-    _backButton.setPosition(SCREEN_WIDTH / 5.0f * 2.0f, SCREEN_HEIGHT / 5.0f * 4.0f);
+    _randomButton.setPosition(SCREEN_WIDTH / 4.0f * 2.0f, SCREEN_HEIGHT / 5.0f * 3.0f);
+    _arrowRight.setPosition(SCREEN_WIDTH / 4.0f * 3.0f, SCREEN_HEIGHT / 3.0f * 1.0f);
+    _arrowLeft.setPosition(SCREEN_WIDTH / 4.0f * 1.0f, SCREEN_HEIGHT / 3.0f * 1.0f);
+    _backButton.setPosition(SCREEN_WIDTH / 4.0f * 2.0f, SCREEN_HEIGHT / 5.0f * 4.0f);
 
     _arrowRight.setOrigin({_arrowRight.getGlobalBounds().width / 2, _arrowRight.getGlobalBounds().height / 2});
     _backButton.setOrigin({_backButton.getGlobalBounds().width / 2, _backButton.getGlobalBounds().height / 2});

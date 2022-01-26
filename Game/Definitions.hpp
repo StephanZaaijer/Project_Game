@@ -30,6 +30,13 @@ enum character_states {
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 #define CHARACTER_2 "Assets/character_2.png"
 #define CHARACTER_3 "Assets/character_3.png"
+#define JASPER "Assets/jasper.png"
+#define NICK "Assets/nick.png"
+#define DANIEL "Assets/daniel.jpg"
+#define COEN "Assets/coen.jpg"
+#define FRANKY "Assets/franky.png"
+#define STEPHAN "Assets/stephan.png"
+
 #define RANDOMBUTTON "Assets/randomButton.png"
 
 #define BACKGROUND_PATH "Assets/StartupBackground.png"

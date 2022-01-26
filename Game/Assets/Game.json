@@ -3,13 +3,13 @@
 	{
 		"Music" : true,
 		"Musiclevel" : 76,
-		"Sound" : true,
-		"Soundlevel" : 46
+		"Sound" : false,
+		"Soundlevel" : 64
 	},
 	"Player" : 
 	{
-		"File" : "Assets/character_3.png",
-		"ID" : "character_3"
+		"File" : "Assets/nick.png",
+		"ID" : "nick"
 	},
 	"Score" : 
 	{

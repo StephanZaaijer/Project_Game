@@ -1,6 +1,5 @@
 #include "ObstaclesContainer.hpp"
 #include <cstdlib>
-#include <ctime>
 #include <utility>
 #include <vector>
 #include "Deathwall.hpp"
@@ -10,8 +9,6 @@ Obstacle_Container::Obstacle_Container(GameDataReference data):
 {}
 
 void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
-
-    srand (time(nullptr));
     int Wall_Left_Side = rand() % 4 + 1;
     int Wall_Right_Side = rand() % 4 + 1;
     int Wall_Left_Side_obstacles = rand() % 2 + 1;
@@ -96,14 +93,13 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
 }
 
 void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
-    for (unsigned int i = 0; i < obstacles.size(); i++){
-        obstacles[i] -> move(move_by);
-        if (obstacles[i] -> getPosition().y >= SCREEN_HEIGHT){
-//            auto obstacle = obstacles[i];
-            obstacles.erase(obstacles.begin() + i);
-//            delete obstacle;
-        }
-    }
+    std::for_each(obstacles.begin(),obstacles.end(), [&move_by ](Obstacle* &x ){
+        x->move(move_by);
+    });
+
+    obstacles.erase(std::remove_if(obstacles.begin(), obstacles.end(), [](Obstacle* &x){
+        return (x->getPosition().y >= SCREEN_HEIGHT);
+    }), obstacles.end());
 }
 
 void Obstacle_Container::draw_Obstacle(){
@@ -112,14 +108,16 @@ void Obstacle_Container::draw_Obstacle(){
     }
 }
 
+std::vector<Obstacle *> Obstacle_Container::getObstacle() {
+    return obstacles;
+}
+
 Obstacle_Container::~Obstacle_Container() {
 //    for (auto object : obstacles) {
 //        delete object;
 //    }
 }
 
-std::vector<Obstacle *> Obstacle_Container::getObstacle() {
-    return obstacles;
-}
+
 
 

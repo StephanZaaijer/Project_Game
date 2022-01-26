@@ -66,6 +66,7 @@ enum character_states {
 
 #define GAME_FILE "Assets/Game.json"
 
+#define WALL_COLOR sf::Color::Green
 #define WALL_HEIGHT 600
 #define WALL_WIDTH 50
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
@@ -95,8 +96,5 @@ struct CustomCharacter {
 #define SOUND_PAUSE_PATH "Assets/pause.wav"
 #define SOUND_RESUME_PATH "Assets/resume.wav"
 
-
-#define ENABLE_SOUND
-#define ENABLE_FONT
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

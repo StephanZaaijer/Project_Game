@@ -28,10 +28,10 @@ private:
 public:
     GameOverState(GameDataReference data);
 
-    void Init();
-    void HandleInput();
-    void Update(float delta);
-    void Draw(float delta);
+    void Init() override;
+    void HandleInput() override;
+    void Update(float delta) override;
+    void Draw(float delta) override;
 };
 
 #endif //PROJECT_GAME_GAMEOVERSTATE_HPP

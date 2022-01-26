@@ -82,7 +82,7 @@ void MainGameState::HandleInput() {
 }
 
 void MainGameState::Update( float delta ){
-    if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
+     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
@@ -130,6 +130,14 @@ void MainGameState::Draw( float delta ){
     wall -> draw_Wall();
     character->Draw();
     game_data -> window.display();
+}
+
+MainGameState::~MainGameState() {
+    delete character;
+    delete obstacles_container;
+    delete wall;
+    ~char_height;
+    background.~Sprite();
 }
 
 void MainGameState::Resume(){

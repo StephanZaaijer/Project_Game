@@ -4,6 +4,17 @@
 
 SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::move(data)) {}
 
+SoundSettingsState::~SoundSettingsState() {
+    _background.~Sprite();
+    _backButton.~Sprite();
+    _musicButton.~Sprite();
+    _soundButton.~Sprite();
+    _settingsText.~Text();
+    clickable_buttons.~vector();
+    delete soundslider;
+    delete musicslider;
+}
+
 void SoundSettingsState::Init() {
     if( !_clickBuffer.loadFromFile(SOUND_CLICK_PATH)){
         std::cout << "ERROR loading click sound" << std::endl;

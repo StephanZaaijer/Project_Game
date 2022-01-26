@@ -16,13 +16,13 @@ Soundslider::Soundslider(GameDataReference game_data, sf::Vector2f slider_locati
 		slider_min = slider_location.x;
 		slider_max = slider_location.x + length;
 		ratio = ((slider_max - slider_min) / 100);
-		prev_sliderblock_location = { slider_location.x + (game_data->json.Get_Soundvolume()) * ratio, slider_location.y };
+		prev_sliderblock_location = { slider_location.x + length - (game_data->json.Get_Soundvolume()) * ratio, slider_location.y };
 	}
 	else {
 		slider_min = slider_location.y;
 		slider_max = slider_location.y + length;
 		ratio = ((slider_max - slider_min) / 100);
-		prev_sliderblock_location = { slider_location.x, slider_location.y + (game_data->json.Get_Soundvolume()) *  ratio};
+		prev_sliderblock_location = { slider_location.x, slider_location.y + length - (game_data->json.Get_Soundvolume()) *  ratio};
 
 	}
 	slider_block.setPosition(prev_sliderblock_location);
@@ -30,7 +30,7 @@ Soundslider::Soundslider(GameDataReference game_data, sf::Vector2f slider_locati
 	level.setPosition(Textlocation);
 	level.setCharacterSize(fontsize);
 	level.setString(std::to_string(game_data->json.Get_Soundvolume()));
-	level.setOrigin({ level.getGlobalBounds().width, level.getGlobalBounds().height });
+	level.setOrigin({ level.getGlobalBounds().width/2, level.getGlobalBounds().height/2});
 }
 
 void Soundslider::update() {
@@ -46,17 +46,17 @@ void Soundslider::update() {
 		if (horizontal) {
 			game_data->json.Set_Soundstate(true);
 			int temp = slider_block.getPosition().x;
-			int current_level = (temp - slider_point.x) / ratio;
+			int current_level = 100 - (temp - slider_point.x) / ratio;
 			level.setString(std::to_string(current_level));
-			level.setOrigin({ level.getGlobalBounds().width, level.getGlobalBounds().height });
+			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
 			game_data->json.Set_Soundvolume(current_level);
 		}
 		else {
 			game_data->json.Set_Soundstate(true);
 			int temp = slider_block.getPosition().y;
-			int current_level = (temp - slider_point.y) / ratio;
+			int current_level = 100 - (temp - slider_point.y) / ratio;
 			level.setString(std::to_string(current_level));
-			level.setOrigin({ level.getGlobalBounds().width, level.getGlobalBounds().height });
+			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
 			game_data->json.Set_Soundvolume(current_level);
 		}
 		prev_sliderblock_location = slider_block.getPosition();

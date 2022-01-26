@@ -6,7 +6,7 @@
 		"Sound" : true,
 		"Soundlevel" : 63
 	},
-	"Player" : {},
+	"Player" : "Temp",
 	"Score" : 
 	{
 		"Highscore" : 123

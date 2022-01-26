@@ -1,6 +1,5 @@
 #include "StartUpState.hpp"
 #include "MainMenuState.hpp"
-#include "MainGameState.hpp"
 #include <utility>
 
 StartUpState::StartUpState(GameDataReference data) : game_data(std::move(data)) {}
@@ -16,12 +15,11 @@ void StartUpState::Init() {
     _title.setTexture(game_data->assets.GetTexture("StartUp State Banner"));
     _banner.setTexture(game_data->assets.GetTexture("StartUp State groep6 Banner"));
 
-    _title.setPosition(
-            {(SCREEN_WIDTH / 2.0f - (_title.getGlobalBounds().width / 2)), _title.getGlobalBounds().height / 2});
-    _logo.setPosition({SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f});
+    _title.setPosition((SCREEN_WIDTH / 2.0f - (_title.getGlobalBounds().width / 2)),
+                       _title.getGlobalBounds().height / 2);
+    _logo.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
     _banner.setPosition((SCREEN_WIDTH / 2.0f - (_banner.getGlobalBounds().width / 2)),
                         SCREEN_HEIGHT - _banner.getGlobalBounds().height * 1.5);
-
 }
 
 void StartUpState::HandleInput() {
@@ -35,9 +33,7 @@ void StartUpState::HandleInput() {
 
 void StartUpState::Update(float delta) {
     if (_clock.getElapsedTime().asSeconds() > START_UP_TIME) {
-
-      game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
-
+        game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
     }
 }
 

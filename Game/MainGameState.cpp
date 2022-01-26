@@ -7,6 +7,31 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
+    if( !_jumpSoundBuffer.loadFromFile(SOUND_JUMP_PATH)){
+        std::cout << "ERROR loading jump sound" << std::endl;
+    }
+    if( !_deathSoundBuffer.loadFromFile(SOUND_DEATH_PATH)){
+        std::cout << "ERROR loading death sound" << std::endl;
+    }
+    if( !_pauseSoundBuffer.loadFromFile(SOUND_PAUSE_PATH)){
+        std::cout << "ERROR loading pause sound" << std::endl;
+    }
+    if( !_gameMusicSoundBuffer.loadFromFile(MUSIC_GAME_PATH)){
+        std::cout << "ERROR loading music" << std::endl;
+    }
+
+    _jumpSound.setBuffer( _jumpSoundBuffer);
+    _jumpSound.setVolume(game_data->json.Get_Soundvolume());
+    _deathSound.setBuffer( _deathSoundBuffer );
+    _deathSound.setVolume(game_data->json.Get_Soundvolume());
+    _pauseSound.setBuffer( _pauseSoundBuffer );
+    _pauseSound.setVolume(game_data->json.Get_Soundvolume());
+    _gameMusicSound.setBuffer( _gameMusicSoundBuffer );
+    _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
+
+    _gameMusicSound.play();
+
+
     character = new Character(game_data);
     game_data->assets.loadTextureFromFile("character", CHARACTER_3);
     character->getSprite().setTexture( game_data->assets.GetTexture("character") );
@@ -35,6 +60,8 @@ void MainGameState::HandleInput() {
             character->Tap();
         }
         if (!game_data->window.hasFocus()) {
+            _gameMusicSound.pause();
+            _pauseSound.play();
             game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
         }
     }
@@ -76,7 +103,9 @@ void MainGameState::Update( float delta ){
         }
     }
 
-    if(character->_death){
+    if (character->_death){
+        _gameMusicSound.stop();
+        _deathSound.play();
         game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
     }
 }
@@ -95,4 +124,12 @@ MainGameState::~MainGameState() {
     delete obstacles_container;
     delete wall;
     background.~Sprite();
+}
+
+void MainGameState::Resume(){
+    _jumpSound.setVolume(game_data->json.Get_Soundvolume());
+    _deathSound.setVolume(game_data->json.Get_Soundvolume());
+    _pauseSound.setVolume(game_data->json.Get_Soundvolume());
+    _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
+    _gameMusicSound.play();
 }

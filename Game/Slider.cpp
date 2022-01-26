@@ -3,6 +3,7 @@
 
 Slider::Slider(GameDataReference game_data, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor) :
 	game_data(game_data),
+	horizontal(horizontal),
 	slider_point(location),
 	length(par_length+1),
     horizontal(horizontal)

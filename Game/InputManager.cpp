@@ -36,14 +36,15 @@ bool InputManager::IsMouseIntersectingSprite(const sf::Sprite* sprite, sf::Rende
     return (sprite->getGlobalBounds().contains(GetMousePosition(window)));
 }
 
-void InputManager::ChangeMouseWhenHoveringOverButton(const std::vector<sf::Sprite*>& buttons, sf::RenderWindow& window) {
+bool InputManager::ChangeMouseWhenHoveringOverButton(const std::vector<sf::Sprite*>& buttons, sf::RenderWindow& window) {
     for (const auto& button : buttons) {
         if (IsMouseIntersectingSprite(button, window)) {
             window.setMouseCursor(hand_cursor);
-            return;
+            return true;
         }
     }
     window.setMouseCursor(arrow_cursor);
+    return false;
 }
 
 sf::Vector2f InputManager::GetMousePosition(sf::RenderWindow &window) {

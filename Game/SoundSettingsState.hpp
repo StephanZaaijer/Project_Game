@@ -21,9 +21,10 @@ private:
   sf::Sprite _backButton;
   sf::Text _settingsText;
   std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &_backButton };
-  Soundslider* soundslider{};
-  Musicslider* musicslider{};
+  Soundslider* soundslider;
+  Musicslider* musicslider;
   sf::Sound _clickSound;
+  bool prevMousestate=false;
 
 public:
   SoundSettingsState(GameDataReference data);

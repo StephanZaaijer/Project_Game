@@ -47,3 +47,5 @@ void Slider::Draw() {
 sf::RectangleShape& Slider::get_slider_block() {
 	return slider_block;
 }
+
+

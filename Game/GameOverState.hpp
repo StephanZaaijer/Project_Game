@@ -27,7 +27,7 @@ private:
 
 public:
     GameOverState(GameDataReference data);
-
+    ~GameOverState() override = default;
     void Init() override;
     void HandleInput() override;
     void Update(float delta) override;

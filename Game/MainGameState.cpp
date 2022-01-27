@@ -137,7 +137,6 @@ MainGameState::~MainGameState() {
     delete character;
     delete obstacles_container;
     delete wall;
-    background.~Sprite();
 }
 
 void MainGameState::Resume(){

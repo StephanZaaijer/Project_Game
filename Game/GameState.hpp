@@ -16,9 +16,6 @@ public:
     
     virtual ~GameState(){};
 
-    virtual std::string ID(){
-        return "Unimplemented for this state";
-    }
 };
 
 

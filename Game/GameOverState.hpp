@@ -33,9 +33,7 @@ public:
     void Update(float delta) override;
     void Draw(float delta) override;
 
-    std::string ID() override{
-        return "Death state";
-    }
+
 };
 
 #endif //PROJECT_GAME_GAMEOVERSTATE_HPP

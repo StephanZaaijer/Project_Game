@@ -40,9 +40,7 @@ public:
     void Draw(float delta) override;
 
     void Resume() override;
-    std::string ID() override{
-        return "Mainmenu state";
-    }
+
 };
 
 #endif //PROJECT_GAME_MAINMENUSTATE_HPP

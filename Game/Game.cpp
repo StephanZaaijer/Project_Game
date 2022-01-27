@@ -5,7 +5,6 @@
 Game::Game(const int &screen_width, const int &screen_height, const std::string &game_title) {
     game_data->window.create(sf::VideoMode(screen_width, screen_height), game_title, sf::Style::Close | sf::Style::Titlebar);
     game_data->window.setIcon(100,100, iconArray2);
-
     game_data->machine.AddGameState(GameStateReference(new StartUpState(game_data)));
     start();
 }

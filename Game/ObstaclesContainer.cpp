@@ -119,9 +119,9 @@ std::vector<Obstacle *> Obstacle_Container::getObstacle() {
 }
 
 Obstacle_Container::~Obstacle_Container() {
-//    for (auto object : obstacles) {
-//        delete object;
-//    }
+    for (auto& object : obstacles) {
+        delete object;
+    }
 }
 
 

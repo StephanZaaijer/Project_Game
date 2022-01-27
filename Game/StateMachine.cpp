@@ -1,5 +1,4 @@
 #include "StateMachine.hpp"
-#include <iostream>
 
 void StateMachine::AddGameState(GameStateReference newState, bool isReplacing) {
     adding = true;

@@ -48,7 +48,7 @@ void MainMenuState::HandleInput() {
                     _clickSound.play();
                 }
                 game_data->machine.AddGameState(GameStateReference(new CustomCharacterState(game_data)), false);
-                prevMousestate=true;
+                prevMousestate = true;
             }
         } else if (game_data->input.IsSpriteClicked(_settingsButton, sf::Mouse::Left, game_data->window)) {
             if (!prevMousestate) {
@@ -56,7 +56,7 @@ void MainMenuState::HandleInput() {
                     _clickSound.play();
                 }
                 game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
-                prevMousestate=true;
+                prevMousestate = true;
             }
         } else if (game_data->input.IsSpriteClicked(_playButton, sf::Mouse::Left, game_data->window)) {
             if (!prevMousestate) {
@@ -64,11 +64,11 @@ void MainMenuState::HandleInput() {
                     _clickSound.play();
                 }
                 game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
-                prevMousestate=true;
+                prevMousestate = true;
             }
         }
         else{
-            prevMousestate=false;
+            prevMousestate = false;
         }
     }
 }

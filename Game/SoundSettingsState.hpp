@@ -24,7 +24,7 @@ private:
   Soundslider* soundslider;
   Musicslider* musicslider;
   sf::Sound _clickSound;
-  bool prevMousestate=false;
+  bool prevMousestate = false;
 
 public:
   SoundSettingsState(GameDataReference data);
@@ -33,7 +33,7 @@ public:
   void HandleInput() override;
   void Update(float delta) override;
   void Draw(float delta) override;
-  
+
 };
 
 

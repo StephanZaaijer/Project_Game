@@ -8,6 +8,7 @@
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
+#include "Character.hpp"
 
 class GameOverState : public GameState {
 private:
@@ -27,11 +28,13 @@ private:
 
 public:
     GameOverState(GameDataReference data);
-
+    ~GameOverState() override = default;
     void Init() override;
     void HandleInput() override;
     void Update(float delta) override;
     void Draw(float delta) override;
+
+
 };
 
 #endif //PROJECT_GAME_GAMEOVERSTATE_HPP

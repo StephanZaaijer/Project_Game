@@ -36,6 +36,7 @@ public:
     void Update( float delta ) override;
     void Draw( float delta ) override;
     void Resume() override;
+
 };
 
 #endif // PROJECT_GAME_MAINGAMESTATE_HPP

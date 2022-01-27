@@ -16,6 +16,7 @@ private:
     sf::Vector2f position;
 public:
     Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position);
+    ~Spike() override=default;
     sf::Vector2f getPosition() override;
     void spawn() override;
     void move(sf::Vector2f move_by) override;

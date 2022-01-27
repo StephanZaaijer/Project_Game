@@ -28,6 +28,7 @@ public:
     void HandleInput() override;
     void Update(float delta) override;
     void Draw(float delta) override;
+
 };
 
 #endif //PROJECT_GAME_STARTUPSTATE_HPP

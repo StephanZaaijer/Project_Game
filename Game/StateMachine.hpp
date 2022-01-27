@@ -2,8 +2,8 @@
 #define PROJECT_GAME_STATEMACHINE_HPP
 
 #include <memory>
-#include <stack>
 #include "GameState.hpp"
+#include <stack>
 
 typedef std::unique_ptr<GameState> GameStateReference;
 

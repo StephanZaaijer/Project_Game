@@ -26,6 +26,7 @@ private:
     sf::SoundBuffer _clickBuffer;
     sf::Sound _clickSound;
     std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton };
+    bool prevMousestate = false;
 
 public:
     MainMenuState(GameDataReference data);
@@ -39,6 +40,7 @@ public:
     void Draw(float delta) override;
 
     void Resume() override;
+
 };
 
 #endif //PROJECT_GAME_MAINMENUSTATE_HPP

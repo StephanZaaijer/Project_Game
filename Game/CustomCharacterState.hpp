@@ -29,11 +29,13 @@ private:
     unsigned int counter;
 public:
     CustomCharacterState(GameDataReference data);
-
+    ~CustomCharacterState() override;
     void Init() override;
     void HandleInput() override;
     void Update(float delta) override;
     void Draw(float delta) override;
+
+
 };
 
 

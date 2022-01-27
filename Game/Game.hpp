@@ -14,6 +14,7 @@ struct GameData {
     AssetManager assets;
     InputManager input;
     JsonManager json = JsonManager(GAME_FILE);
+    int score = 0;
 };
 
 typedef std::shared_ptr<GameData> GameDataReference;
@@ -27,7 +28,6 @@ private:
     void start();
 public:
     Game(const int &screen_width, const int &screen_height, const std::string &game_title);
-
 };
 
 

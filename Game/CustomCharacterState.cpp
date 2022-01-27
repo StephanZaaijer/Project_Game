@@ -119,3 +119,7 @@ void CustomCharacterState::Draw(float delta) {
     character->Draw();
     game_data->window.display();
 }
+
+CustomCharacterState::~CustomCharacterState(){
+    delete character;
+}

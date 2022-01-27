@@ -74,6 +74,7 @@ void GameOverState::HandleInput() {
     }
     if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
         if(game_data->json.Get_Soundstate()){
+            _deathSound.stop();
             _clickSound.play();
         }
         game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);

@@ -74,6 +74,7 @@ void SoundSettingsState::HandleInput() {
         if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)) {
             if (game_data->json.Get_Soundstate()) {
                 _clickSound.play();
+                while(_clickSound.getStatus() == _clickSound.Playing){}
             }
             game_data->machine.RemoveGameState();
         }

@@ -54,6 +54,9 @@ void MainGameState::HandleInput() {
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
 //            character->setJump(true);
+            if(game_data->json.Get_Soundstate()){
+                _jumpSound.play();
+            }
             character->Tap();
         }
         if (!game_data->window.hasFocus()) {

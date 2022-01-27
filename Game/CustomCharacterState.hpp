@@ -24,6 +24,8 @@ private:
     std::vector<sf::Sprite*> CharacterSelect = { &_arrowRight, &_arrowLeft ,&_backButton,&_randomButton};
     std::vector<CustomCharacter> CustomCharacters = { {"character", CHARACTER_FRAME_1_FILEPATH}, {"character_2", CHARACTER_2}, {"character_3", CHARACTER_3 },{"jasper",JASPER},{"nick",NICK},{"daniel",DANIEL},{"franky",FRANKY},{"stephan",STEPHAN},{"coen",COEN} };
     CustomCharacter CurrentCharacter;
+    sf::Sound _clickSound;
+    sf::Sound _customClickSound;
     unsigned int counter;
 public:
     CustomCharacterState(GameDataReference data);

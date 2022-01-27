@@ -4,12 +4,14 @@
 #include <memory>
 #include <stack>
 #include "GameState.hpp"
+#include <vector>
 
 typedef std::unique_ptr<GameState> GameStateReference;
 
 class StateMachine {
 private:
     std::stack<GameStateReference> gamestates;
+    std::vector<std::string> gamestatestring = {};
     GameStateReference new_state;
     bool removing;
     bool adding;
@@ -22,6 +24,10 @@ public:
     void ProcessGameStateChanges();
 
     GameStateReference &GetActiveGameState();
+
+    int GetLenGamestates();
+
+    const std::vector<std::string>& Get_Gamestatenames();
 };
 
 

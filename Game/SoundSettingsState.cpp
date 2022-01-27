@@ -89,12 +89,11 @@ void SoundSettingsState::HandleInput() {
             }
             game_data->json.Set_Soundstate(!game_data->json.Get_Soundstate());
         }
-        game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
-        soundslider->handleinput();
-        musicslider->handleinput();
     }
+    game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
+    soundslider->handleinput();
+    musicslider->handleinput();
 }
-
 void SoundSettingsState::Update(float delta) {
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     soundslider->update();

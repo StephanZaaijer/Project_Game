@@ -31,8 +31,29 @@ void Game::start() {
         }
         game_data->machine.GetActiveGameState()->Draw(accumulator / delta);
         sf::sleep(sf::milliseconds(20));
+        std::cout << "Length gamestates = " << game_data->machine.GetLenGamestates() << '\n';
+
+        std::cout << "Opbouw statemachine stack:\n";
+        std::vector<std::string> states = game_data->machine.Get_Gamestatenames();
+        int counter = 0;
+        for(const auto& state: states){
+            std::cout << counter << ":\t" << state << '\n';
+            counter++;
+        }
+        std::cout << "Current state: " << game_data->machine.GetActiveGameState()->ID() << "\n\n\n\n\n";
         game_data->json.Update();
     }
+    std::cout << "\t\t\twindow closed\n\n";
+    std::cout << "Length gamestates = " << game_data->machine.GetLenGamestates() << '\n';
+
+    std::cout << "Opbouw statemachine stack:\n";
+    std::vector<std::string> states = game_data->machine.Get_Gamestatenames();
+    int counter = 0;
+    for(const auto& state: states){
+        std::cout << counter << ":\t" << state << '\n';
+        counter++;
+    }
+    std::cout << "Current state: " << game_data->machine.GetActiveGameState()->ID() << '\n';
     game_data->json.Direct_write();
 }
 

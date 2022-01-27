@@ -21,8 +21,8 @@ private:
   sf::Sprite _backButton;
   sf::Text _settingsText;
   std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &_backButton };
-  Soundslider* soundslider;
-  Musicslider* musicslider;
+  Soundslider* soundslider{};
+  Musicslider* musicslider{};
   sf::Sound _clickSound;
 
 public:
@@ -32,6 +32,10 @@ public:
   void HandleInput() override;
   void Update(float delta) override;
   void Draw(float delta) override;
+
+    std::string ID() override{
+        return "Soundsettings";
+    }
 };
 
 

@@ -1,6 +1,7 @@
 #ifndef PROJECT_GAME_GAMESTATE_HPP
 #define PROJECT_GAME_GAMESTATE_HPP
 
+#include <string>
 
 class GameState{
 public:
@@ -14,6 +15,10 @@ public:
     virtual void Resume(){ }
     
     virtual ~GameState(){};
+
+    virtual std::string ID(){
+        return "Unimplemented for this state";
+    }
 };
 
 

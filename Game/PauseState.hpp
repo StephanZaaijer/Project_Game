@@ -29,6 +29,10 @@ public:
 	void HandleInput() override;
 	void Update(float delta) override;
 	void Draw(float delta) override;
+
+    std::string ID() override{
+        return "Pausestate";
+    }
 };
 
 #endif //PROJECT_GAME_PAUSESTATE_HPP

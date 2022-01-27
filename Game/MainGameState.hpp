@@ -36,6 +36,11 @@ public:
     void Update( float delta ) override;
     void Draw( float delta ) override;
     void Resume() override;
+
+    std::string ID() override{
+        return "Main gamestate";
+    }
+
 };
 
 #endif // PROJECT_GAME_MAINGAMESTATE_HPP

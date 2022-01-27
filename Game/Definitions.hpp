@@ -15,7 +15,7 @@ enum character_states {
 	Stick
 };
 #define GRAVITY 0.6f
-#define VELOCITY_Y (-18.0)
+#define VELOCITY_Y (-20.0)
 #define VELOCITY_X 8
 
 
@@ -74,17 +74,17 @@ enum character_states {
 #define GAME_FILE "Assets/Game.json"
 
 #define WALL_COLOR sf::Color::Green
-#define WALL_HEIGHT 600
+#define WALL_HEIGHT 810
 #define WALL_WIDTH 50
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
 #define WALL_OBSTACLE_HEIGHT_2 (WALL_HEIGHT / 2.0f)
 #define WALL_OBSTACLE_HEIGHT_3 (WALL_HEIGHT / 6.0f * 5.0f)
-#define WALL_SPAWN_DISTANT 300
+#define WALL_SPAWN_DISTANT 200
 #define CHARACTER_MAX_HEIGHT 700
 #define WALL_SLIDE_DELTA 4 //Higher is slower
 #define BACKGROUND_SLIDE 4 //Higher is slower
 
-#define SPIKE_SIZE 50
+#define SPIKE_SIZE 75
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 

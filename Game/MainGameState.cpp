@@ -107,13 +107,13 @@ void MainGameState::Update( float delta ){
         character->setHeight(0);
     }
 
-    std::vector<Obstacle*> obstacles;
-    obstacles = obstacles_container->getObstacle();
-    for(auto obstacle : obstacles){
-        if(obstacle->getBounds().intersects(character->GetBounds())){
-            character->_death = true;
-        }
-    }
+//    std::vector<Obstacle*> obstacles;
+//    obstacles = obstacles_container->getObstacle();
+//    for(auto obstacle : obstacles){
+//        if(obstacle->getBounds().intersects(character->GetBounds())){
+//            character->_death = true;
+//        }
+//    }
 
     if (character->_death){
         if(_gameMusicSound.getStatus()){

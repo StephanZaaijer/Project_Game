@@ -39,7 +39,7 @@ void MainGameState::Init(){
     wall->spawn_Wall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
-        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
+//        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
         wall->setContainObstacleTrue(i);
     }
 }
@@ -55,6 +55,10 @@ void MainGameState::HandleInput() {
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
 //            character->setJump(true);
             character->Tap();
+            character ->setJumpPressed(true);
+        }
+        else {
+            character ->setJumpPressed(false);
         }
         if (!game_data->window.hasFocus()) {
             if(game_data->json.Get_Musicstate()){
@@ -78,7 +82,7 @@ void MainGameState::Update( float delta ){
     // move walls downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
-
+        character ->addToScore(move_down_by);
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
         backGroundOffsetY += move_down_by/BACKGROUND_SLIDE;
         backGroundOffsetY2 += move_down_by/BACKGROUND_SLIDE;
@@ -116,6 +120,7 @@ void MainGameState::Update( float delta ){
     }
 
     if (character->_death){
+        game_data -> score = character -> getScore();
         if(_gameMusicSound.getStatus()){
             _gameMusicSound.stop();
         }

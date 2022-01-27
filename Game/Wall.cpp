@@ -8,11 +8,11 @@ Wall::Wall(GameDataReference data):
     game_data (std::move(data))
 {
     left_boundary.setPosition(0.0, 0.0);
-    left_boundary.setSize( {SCREEN_WIDTH/4.0f, SCREEN_HEIGHT} );
+    left_boundary.setSize( {SCREEN_WIDTH/6.0f, SCREEN_HEIGHT} );
     left_boundary.setFillColor( sf::Color::Black );
 
-    right_boundary.setPosition(SCREEN_WIDTH/4.0f * 3.0f, 0.0);
-    right_boundary.setSize( {(SCREEN_WIDTH/4.0f), SCREEN_HEIGHT} );
+    right_boundary.setPosition(SCREEN_WIDTH/6.0f * 5.0f, 0.0);
+    right_boundary.setSize( {(SCREEN_WIDTH/6.0f), SCREEN_HEIGHT} );
     right_boundary.setFillColor( sf::Color::Black );
 }
 
@@ -49,14 +49,14 @@ void Wall::spawn_Wall(float start_y_offset){
         generate_Wall(SCREEN_WIDTH / 2.0f, start_y_offset);
     }
     else if (random == 2){
-        generate_Wall(SCREEN_WIDTH / 3.0f, start_y_offset);
-        generate_Wall((SCREEN_WIDTH / 3.0f) * 2, start_y_offset);
+        generate_Wall( ((SCREEN_WIDTH / 5.0f) * 2) - WALL_WIDTH/4 *3, start_y_offset);
+        generate_Wall(((SCREEN_WIDTH / 5.0f) * 3) + WALL_WIDTH/4 *3, start_y_offset);
     }
     else if (random == 3){
-        generate_Wall(SCREEN_WIDTH / 3.0f, start_y_offset);
+        generate_Wall(((SCREEN_WIDTH / 5.0f) * 2) - WALL_WIDTH/4 *3, start_y_offset);
     }
     else{
-        generate_Wall((SCREEN_WIDTH / 3.0f) * 2, start_y_offset);
+        generate_Wall(((SCREEN_WIDTH / 5.0f) * 3) + WALL_WIDTH/4 *3, start_y_offset);
     }
 }
 

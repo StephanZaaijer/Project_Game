@@ -36,4 +36,3 @@ void Game::start() {
     game_data->json.Direct_write();
 }
 
-

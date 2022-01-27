@@ -39,7 +39,8 @@ void GameOverState::Init() {
                                SCREEN_HEIGHT - (_mainMenuButton.getGlobalBounds().height * 1.1));
 
     _gameOverText.setString("GAMEOVER!");
-    _score.setString("Score: 200"); //TODO score vanaf waar opvragen?
+    _score.setString("Score: " + std::to_string(game_data -> score));
+    game_data->json.Set_Highscore(game_data -> score);
     _highscore.setString("Highscore: " + std::to_string(game_data->json.Get_Highscore()));
 
     _gameOverText.setCharacterSize(TEXT_TITLE_SIZE);

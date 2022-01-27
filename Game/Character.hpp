@@ -18,10 +18,12 @@ public:
     void moveDownByOffset(const float & y);
     void resetJumps();
     int getHeight() const;
+    int getScore() const;
+    void addToScore(int add);
     sf::Sprite & getSprite ();
     sf::FloatRect GetBounds();
     sf::Vector2f getPosition();
-
+    void setJumpPressed(bool set);
     bool _death = false;
 
 private:
@@ -31,10 +33,11 @@ private:
     sf::Vector2f _position;
     character_states _characterState;
     float _fallVelocity = 0;
-    int _height = 0;
+    int _height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;
+    int _score = 0;
     bool _jumped_once = false;
     bool _jumped_twice = false;
-    sf::Clock _jumpclock;
+    bool isJumpPressed = false;
 };
 
 #endif //CHARACTER_HPP

@@ -8,6 +8,7 @@
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
+#include "Character.hpp"
 
 class GameOverState : public GameState {
 private:

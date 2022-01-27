@@ -23,6 +23,14 @@ int Character::getHeight() const {
     return _height;
 }
 
+int Character::getScore() const {
+    return _score / 100;
+}
+
+void Character::addToScore(int add) {
+    _score += add;
+}
+
 void Character::setHeight(const int &value) {
     _height = value;
 }
@@ -31,7 +39,6 @@ void Character::resetJumps(){
     _jumped_once = false;
     _jumped_twice = false;
 }
-
 
 sf::Sprite & Character::getSprite() {
     return _characterSprite;
@@ -64,24 +71,7 @@ void Character::Update(float dt) {
     if(_characterSprite.getPosition().y >SCREEN_HEIGHT){
         _death = true;
     }
-
-    std::cout << _height << std::endl;
 }
-
-//void Character::Tap() { // with clock implemented
-//    if (_jumpclock.getElapsedTime().asSeconds() > 0.1 && !_jumped_twice) {
-//        if (_jumped_once) {
-//            _jumped_twice = true;
-//        }
-//        else{
-//            _jumped_once = true;
-//        }
-//        _characterState = Jumping;
-//        _velocity.y = VELOCITY_Y;
-//        _jumpclock.restart();
-//    }
-//    else {}
-//}
 
 void Character::Tap() { // with spacebar release implemented
     if ( !isJumpPressed && !_jumped_twice) {
@@ -187,10 +177,6 @@ void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
 
 void  Character::setJumpPressed(bool set) {
     isJumpPressed = set;
-}
-
-bool Character::getJumpPressed() {
-    return isJumpPressed;
 }
 
 

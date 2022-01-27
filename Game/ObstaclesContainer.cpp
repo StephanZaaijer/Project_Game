@@ -99,9 +99,13 @@ void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
         x->move(move_by);
     });
 
-    obstacles.erase(std::remove_if(obstacles.begin(), obstacles.end(), [](Obstacle* &x){
-        return (x->getPosition().y >= SCREEN_HEIGHT);
-    }), obstacles.end());
+    obstacles.erase(std::remove_if(
+            obstacles.begin(),
+            obstacles.end(),
+            [](Obstacle* & x){
+            return (x -> getPosition().y >= SCREEN_HEIGHT * 2);
+            })
+                    , obstacles.end());
 }
 
 void Obstacle_Container::draw_Obstacle(){

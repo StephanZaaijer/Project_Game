@@ -74,7 +74,7 @@ enum character_states {
 #define GAME_FILE "Assets/Game.json"
 
 #define WALL_COLOR sf::Color::Green
-#define WALL_HEIGHT 810
+#define WALL_HEIGHT 750
 #define WALL_WIDTH 50
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
 #define WALL_OBSTACLE_HEIGHT_2 (WALL_HEIGHT / 2.0f)

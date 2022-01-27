@@ -21,7 +21,8 @@ public:
     sf::Sprite & getSprite ();
     sf::FloatRect GetBounds();
     sf::Vector2f getPosition();
-
+    void setJumpPressed(bool set);
+    bool getJumpPressed();
     bool _death = false;
 
 private:
@@ -31,9 +32,10 @@ private:
     sf::Vector2f _position;
     character_states _characterState;
     float _fallVelocity = 0;
-    int _height = 0;
+    int _height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;
     bool _jumped_once = false;
     bool _jumped_twice = false;
+    bool isJumpPressed = false;
     sf::Clock _jumpclock;
 };
 

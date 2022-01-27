@@ -56,16 +56,35 @@ void Character::Update(float dt) {
         _height += (int(_velocity.y) * -1);
     }
     else if ( _characterState == Stick ) {
-        moveDownByOffset(_fallVelocity += GRAVITY / WALL_SLIDE_DELTA);
+        int fallRate = _fallVelocity += GRAVITY / WALL_SLIDE_DELTA;
+        moveDownByOffset(fallRate);
+        _height -= fallRate;
     }
 
     if(_characterSprite.getPosition().y >SCREEN_HEIGHT){
         _death = true;
     }
+
+    std::cout << _height << std::endl;
 }
 
-void Character::Tap() {
-    if (_jumpclock.getElapsedTime().asSeconds() > 0.1 && !_jumped_twice) {
+//void Character::Tap() { // with clock implemented
+//    if (_jumpclock.getElapsedTime().asSeconds() > 0.1 && !_jumped_twice) {
+//        if (_jumped_once) {
+//            _jumped_twice = true;
+//        }
+//        else{
+//            _jumped_once = true;
+//        }
+//        _characterState = Jumping;
+//        _velocity.y = VELOCITY_Y;
+//        _jumpclock.restart();
+//    }
+//    else {}
+//}
+
+void Character::Tap() { // with spacebar release implemented
+    if ( !isJumpPressed && !_jumped_twice) {
         if (_jumped_once) {
             _jumped_twice = true;
         }
@@ -74,7 +93,6 @@ void Character::Tap() {
         }
         _characterState = Jumping;
         _velocity.y = VELOCITY_Y;
-        _jumpclock.restart();
     }
     else {}
 }
@@ -154,7 +172,7 @@ void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
                 _characterState = Jumping;
             }
             else if (hit_top){
-                _characterState = Stick;
+                _characterState = Still;
                 resetJumps();
             }
             else{
@@ -166,4 +184,15 @@ void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
     }
 
 }
+
+void  Character::setJumpPressed(bool set) {
+    isJumpPressed = set;
+}
+
+bool Character::getJumpPressed() {
+    return isJumpPressed;
+}
+
+
+
 

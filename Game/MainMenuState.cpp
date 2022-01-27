@@ -89,3 +89,7 @@ void MainMenuState::Draw(float delta) {
     game_data->window.draw(_banner);
     game_data->window.display();
 }
+
+void MainMenuState::Resume(){
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+}

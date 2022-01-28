@@ -12,11 +12,10 @@
 class Obstacle_Container {
 private:
     GameDataReference game_data;
-    std::vector<Obstacle*> obstacles;
+    std::vector<std::unique_ptr<Obstacle>> obstacles;
 public:
     Obstacle_Container(GameDataReference data);
-    ~Obstacle_Container();
-    std::vector<Obstacle*> getObstacle();
+    const std::vector<std::unique_ptr<Obstacle>> & getObstacle();
     void spawn_Obstacle_On_Wall(const sf::RectangleShape& wall);
     void move_Obstacle(sf::Vector2f move_by);
     void draw_Obstacle();

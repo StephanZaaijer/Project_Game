@@ -1,14 +1,18 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
-		"Musiclevel" : 77,
-		"Sound" : false,
-		"Soundlevel" : 35
+		"Music" : true,
+		"Musiclevel" : 76,
+		"Sound" : true,
+		"Soundlevel" : 42
 	},
-	"Player" : "Temp",
+	"Player" : 
+	{
+		"File" : "Assets/franky.png",
+		"ID" : "franky"
+	},
 	"Score" : 
 	{
-		"Highscore" : 123
+		"Highscore" : 66
 	}
 }

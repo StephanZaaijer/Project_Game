@@ -1,6 +1,8 @@
 #ifndef PROJECT_GAME_DEFINITIONS_HPP
 #define PROJECT_GAME_DEFINITIONS_HPP
 
+#include <string>
+
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
@@ -13,7 +15,7 @@ enum character_states {
 	Stick
 };
 #define GRAVITY 0.6f
-#define VELOCITY_Y (-18.0)
+#define VELOCITY_Y (-20.0)
 #define VELOCITY_X 8
 
 
@@ -28,6 +30,13 @@ enum character_states {
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 #define CHARACTER_2 "Assets/character_2.png"
 #define CHARACTER_3 "Assets/character_3.png"
+#define JASPER "Assets/jasper.png"
+#define NICK "Assets/nick.png"
+#define DANIEL "Assets/daniel.jpg"
+#define COEN "Assets/coen.jpg"
+#define FRANKY "Assets/franky.png"
+#define STEPHAN "Assets/stephan.png"
+
 #define RANDOMBUTTON "Assets/randomButton.png"
 
 #define BACKGROUND_PATH "Assets/StartupBackground.png"
@@ -64,21 +73,38 @@ enum character_states {
 
 #define GAME_FILE "Assets/Game.json"
 
-#define WALL_HEIGHT 600
+#define WALL_COLOR sf::Color::Green
+#define WALL_HEIGHT 750
 #define WALL_WIDTH 50
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
 #define WALL_OBSTACLE_HEIGHT_2 (WALL_HEIGHT / 2.0f)
 #define WALL_OBSTACLE_HEIGHT_3 (WALL_HEIGHT / 6.0f * 5.0f)
-#define WALL_SPAWN_DISTANT 300
+#define WALL_SPAWN_DISTANT 200
 #define CHARACTER_MAX_HEIGHT 700
+#define WALL_SLIDE_DELTA 4 //Higher is slower
+#define BACKGROUND_SLIDE 4 //Higher is slower
 
-#define SPIKE_SIZE 50
+#define SPIKE_SIZE 75
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 
 
+struct CustomCharacter {
+    std::string CharacterName = "";
+    std::string CharacterFileName = "";
+	bool operator==(const CustomCharacter &rhs) const{
+		return (CharacterName == rhs.CharacterName) and (CharacterFileName == rhs.CharacterFileName);
+	}
+};
 
-//#define ENABLE_SOUND
-#define ENABLE_FONT
+#define MUSIC_MAIN_MENU_PATH "Assets/gameMusicMenu.wav"
+#define MUSIC_GAME_PATH "Assets/gameMusic.wav"
+#define SOUND_CLICK_PATH "Assets/click.wav"
+#define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
+#define SOUND_DEATH_PATH "Assets/death.wav"
+#define SOUND_JUMP_PATH "Assets/jump.wav"
+#define SOUND_PAUSE_PATH "Assets/pause.wav"
+#define SOUND_RESUME_PATH "Assets/resume.wav"
+
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

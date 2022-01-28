@@ -13,23 +13,28 @@
 
 class CustomCharacterState: public GameState {
 private:
+
     GameDataReference game_data;
     sf::Sprite _backButton;
     sf::Sprite _arrowRight;
     sf::Sprite _arrowLeft;
     sf::Sprite _background;
     sf::Sprite _randomButton;
-    Character *character;
+    std::unique_ptr<Character> character;
     std::vector<sf::Sprite*> CharacterSelect = { &_arrowRight, &_arrowLeft ,&_backButton,&_randomButton};
-    std::vector<std::string> character_lst ={"character","character_2", "character_3"};
+    std::vector<CustomCharacter> CustomCharacters = { {"character", CHARACTER_FRAME_1_FILEPATH}, {"character_2", CHARACTER_2}, {"character_3", CHARACTER_3 },{"jasper",JASPER},{"nick",NICK},{"daniel",DANIEL},{"franky",FRANKY},{"stephan",STEPHAN},{"coen",COEN} };
+    CustomCharacter CurrentCharacter;
+    sf::Sound _clickSound;
+    sf::Sound _customClickSound;
     unsigned int counter;
 public:
     CustomCharacterState(GameDataReference data);
-
     void Init() override;
     void HandleInput() override;
     void Update(float delta) override;
     void Draw(float delta) override;
+
+
 };
 
 

@@ -20,7 +20,6 @@ private:
     sf::RectangleShape left_boundary;
     sf::RectangleShape right_boundary;
 
-
 public:
     Wall(GameDataReference data);
     std::vector<wall_obstacles> & getWalls();

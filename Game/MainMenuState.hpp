@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "StateMachine.hpp"
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
@@ -13,17 +14,17 @@
 class MainMenuState : public GameState {
 private:
     GameDataReference game_data;
-    sf::Clock _clock;
     sf::Sprite _background;
     sf::Sprite _title;
     sf::Sprite _banner;
     sf::Sprite _playButton;
     sf::Sprite _settingsButton;
     sf::Sprite _customButton;
-    sf::Cursor hand_cursor;
-    sf::Cursor arrow_cursor;
-    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton };
 
+    sf::Sound _clickSound;
+
+    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton };
+    bool prevMousestate = false;
 
 public:
     MainMenuState(GameDataReference data);
@@ -35,6 +36,9 @@ public:
     void Update(float delta) override;
 
     void Draw(float delta) override;
+
+    void Resume() override;
+
 };
 
 #endif //PROJECT_GAME_MAINMENUSTATE_HPP

@@ -18,15 +18,16 @@ private:
 	sf::Sprite _soundsettingsButton;
 	sf::Text _pauseText;
 	std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_soundsettingsButton};
-
+	sf::Sound _resumeSound;
+	sf::Sound _clickSound;
 
 public:
 	PauseState(GameDataReference data);
-
 	void Init() override;
 	void HandleInput() override;
 	void Update(float delta) override;
 	void Draw(float delta) override;
+
 };
 
 #endif //PROJECT_GAME_PAUSESTATE_HPP

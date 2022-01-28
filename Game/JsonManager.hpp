@@ -4,6 +4,7 @@
 #include "Definitions.hpp"
 #include "../Library/JSON/json/json.h"
 #include <fstream>
+#include <SFML/Graphics.hpp>
 
 class JsonManager {
 public:
@@ -13,7 +14,8 @@ public:
 		bool Music;
 		int Musicvolume;
 		int Highscore;
-		std::string PlayerSprite;
+		std::string PlayerSpriteID;
+		std::string PlayerSpriteFile;
 	};
 
 	JsonManager(std::string Gamefile);
@@ -22,13 +24,15 @@ public:
 	bool Get_Musicstate() const;
 	int Get_Musicvolume() const;
 	int Get_Highscore() const;
-	std::string Get_PlayerSprite() const;
+	CustomCharacter Get_PlayerSprite() const;
 	void Set_Soundstate(bool state);
 	void Set_Soundvolume(int volume);
 	void Set_Musicstate(bool state);
 	void Set_Musicvolume(int volume);
 	void Set_Highscore(int highscore);
-	void Set_PlayerSprite(std::string PlayerSpriteID);
+	void Set_PlayerSprite(CustomCharacter PlayerSprite);
+	void Update();
+	void Direct_write();
 
 private:
 	bool start;
@@ -38,6 +42,8 @@ private:
 	Json::Value Get_Json_from_file();
 	void Write_Json_to_file();
 	std::string Gamefile;
+	sf::Clock clock;
+	bool write_out;
 };
 
 #endif // PROJECT_GAME_JSONMANAGER_HPP

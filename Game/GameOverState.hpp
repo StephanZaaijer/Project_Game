@@ -8,6 +8,7 @@
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
+#include "Character.hpp"
 
 class GameOverState : public GameState {
 private:
@@ -20,15 +21,19 @@ private:
     sf::Text _score;
     sf::Text _highscore;
 
+    sf::Sound _deathSound;
+    sf::Sound _clickSound;
+
     std::vector<sf::Sprite*> clickable_buttons = { &_restartButton, &_mainMenuButton };
 
 public:
     GameOverState(GameDataReference data);
+    void Init() override;
+    void HandleInput() override;
+    void Update(float delta) override;
+    void Draw(float delta) override;
 
-    void Init();
-    void HandleInput();
-    void Update(float delta);
-    void Draw(float delta);
+
 };
 
 #endif //PROJECT_GAME_GAMEOVERSTATE_HPP

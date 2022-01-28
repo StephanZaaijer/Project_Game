@@ -4,6 +4,7 @@
 
 Character::Character(GameDataReference data) : game_data(std::move(data)) {
     _characterSprite.setPosition(SCREEN_WIDTH / 2.0f, CHARACTER_START_HEIGHT);
+    _characterSprite.setScale(0.75, 0.75);
     _position = _characterSprite.getPosition();
     _characterState = Still;
 }
@@ -22,12 +23,21 @@ int Character::getHeight() const {
     return _height;
 }
 
+int Character::getScore() const {
+    return _score / 100;
+}
+
+void Character::addToScore(int add) {
+    _score += add;
+}
+
 void Character::setHeight(const int &value) {
     _height = value;
 }
 
-void Character::setJump(const bool & set){
-    jump = set;
+void Character::resetJumps(){
+    _jumped_once = false;
+    _jumped_twice = false;
 }
 
 sf::Sprite & Character::getSprite() {
@@ -44,6 +54,7 @@ void Character::Draw() {
 
 void Character::Update(float dt) {
     if ( _characterState == Jumping ) {
+        _fallVelocity = 0;
         _position = _characterSprite.getPosition();
         _velocity.y += GRAVITY;
         _position += _velocity;
@@ -52,6 +63,9 @@ void Character::Update(float dt) {
         _height += (int(_velocity.y) * -1);
     }
     else if ( _characterState == Stick ) {
+        float fallRate = _fallVelocity += GRAVITY / WALL_SLIDE_DELTA;
+        moveDownByOffset(fallRate);
+        _height -= int(fallRate);
     }
 
     if(_characterSprite.getPosition().y >SCREEN_HEIGHT){
@@ -59,9 +73,18 @@ void Character::Update(float dt) {
     }
 }
 
-void Character::Tap() {
-    _characterState = Jumping;
-    _velocity.y = VELOCITY_Y;
+void Character::Tap() { // with spacebar release implemented
+    if ( !isJumpPressed && !_jumped_twice) {
+        if (_jumped_once) {
+            _jumped_twice = true;
+        }
+        else{
+            _jumped_once = true;
+        }
+        _characterState = Jumping;
+        _velocity.y = VELOCITY_Y;
+    }
+    else {}
 }
 
 void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
@@ -139,14 +162,32 @@ void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
                 _characterState = Jumping;
             }
             else if (hit_top){
-                _characterState = Stick;
+                _characterState = Still;
+                resetJumps();
             }
             else{
                 _velocity.x *= -1;
                 _characterState = Stick;
+                resetJumps();
             }
         }
     }
 
 }
+
+void  Character::setJumpPressed(bool set) {
+    isJumpPressed = set;
+}
+
+bool Character::getJumpedTwice() {
+    if(_jumped_twice){
+        return false;
+    } else{
+        return true;
+    }
+
+}
+
+
+
 

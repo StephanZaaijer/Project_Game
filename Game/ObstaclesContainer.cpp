@@ -100,7 +100,7 @@ void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
     });
 
     obstacles.erase(std::remove_if( obstacles.begin(), obstacles.end(), [](std::unique_ptr<Obstacle> & x){
-        return (x -> getPosition().y >= SCREEN_HEIGHT * 2);
+        return (x -> getPosition().y >= SCREEN_HEIGHT + x->getBounds().height);
     }), obstacles.end());
 
 }

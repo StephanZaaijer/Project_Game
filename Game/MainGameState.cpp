@@ -16,6 +16,11 @@ void MainGameState::Init(){
     _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("_pauseSound"));
     _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("_gameMusicSound"));
 
+    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _score.setCharacterSize(60);
+    _score.setFillColor(TEXT_COLOR);
+
+
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
@@ -120,6 +125,9 @@ void MainGameState::Update( float delta ){
         }
     }
 
+    _score.setString(std::to_string(character -> getScore()));
+    _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 20.0f);
+
     if (character->_death){
         game_data -> score = character -> getScore();
         if(_gameMusicSound.getStatus()){
@@ -136,6 +144,7 @@ void MainGameState::Draw( float delta ){
     wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
     character->Draw();
+    game_data -> window.draw(_score);
     game_data -> window.display();
 }
 

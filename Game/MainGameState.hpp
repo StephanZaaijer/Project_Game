@@ -20,7 +20,7 @@ private:
     std::unique_ptr<Obstacle_Container> obstacles_container;
     std::unique_ptr<Character> character;
     CustomCharacter characterinfo;
-
+    sf::Text _score;
     sf::Sound _jumpSound;
     sf::Sound _pauseSound;
     sf::Sound _gameMusicSound;

@@ -8,11 +8,11 @@
 	},
 	"Player" : 
 	{
-		"File" : "Assets/stephan.png",
-		"ID" : "stephan"
+		"File" : "Assets/character.jpg",
+		"ID" : "character"
 	},
 	"Score" : 
 	{
-		"Highscore" : 87
+		"Highscore" : 66
 	}
 }

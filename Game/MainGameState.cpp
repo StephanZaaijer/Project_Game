@@ -30,7 +30,6 @@ void MainGameState::Init(){
     game_data->assets.loadTextureFromFile(characterinfo.CharacterName, characterinfo.CharacterFileName);
     character->getSprite().setTexture( game_data->assets.GetTexture(characterinfo.CharacterName) );
 
-    wall = new Wall(game_data);
     obstacles_container = new Obstacle_Container(game_data);
     wall = new Wall(game_data);
     background.setTexture(this->game_data->assets.GetTexture("Background"));

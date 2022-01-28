@@ -22,9 +22,9 @@ public:
     sf::SoundBuffer &GetSoundBuffer(const std::string &name);
 
 private:
+    std::map<std::string, sf::SoundBuffer> sounds;
     std::map<std::string, sf::Texture> textures;
     std::map<std::string, sf::Font> fonts;
-    std::map<std::string, sf::SoundBuffer> sounds;
 };
 
 

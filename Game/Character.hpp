@@ -24,6 +24,7 @@ public:
     sf::FloatRect GetBounds();
     sf::Vector2f getPosition();
     void setJumpPressed(bool set);
+    bool getJumpedTwice();
     bool _death = false;
 
 private:

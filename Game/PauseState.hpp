@@ -21,7 +21,6 @@ private:
 	sf::Sound _resumeSound;
 	sf::Sound _clickSound;
 
-
 public:
 	PauseState(GameDataReference data);
 	void Init() override;

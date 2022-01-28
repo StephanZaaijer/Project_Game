@@ -57,9 +57,10 @@ void MainGameState::HandleInput() {
             break;
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
-//            character->setJump(true);
             if(game_data->json.Get_Soundstate()){
-                _jumpSound.play();
+                if(character->getJumpedTwice()) {
+                    _jumpSound.play();
+                }
             }
             character->Tap();
             character ->setJumpPressed(true);

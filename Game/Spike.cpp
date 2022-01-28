@@ -29,7 +29,7 @@ void Spike::spawn(){
 void Spike::move(sf::Vector2f move_by){
     Triangle.move(move_by);
 }
-void Spike::draw(){
+void Spike::draw() const{
     game_data -> window.draw(Triangle);
 }
 

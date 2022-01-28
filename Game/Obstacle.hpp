@@ -8,11 +8,10 @@
 
 class Obstacle {
 public:
-    virtual ~Obstacle()= default;
     virtual sf::Vector2f getPosition() = 0;
     virtual void spawn() = 0;
     virtual void move(sf::Vector2f move_by) = 0;
-    virtual void draw() = 0;
+    virtual void draw() const = 0;
     virtual sf::FloatRect getBounds() = 0;
 };
 

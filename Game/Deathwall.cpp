@@ -1,7 +1,5 @@
 #include "Deathwall.hpp"
-#include <iostream>
-#include <utility>
-#include "Definitions.hpp"
+
 
 Deathwall::Deathwall(GameDataReference game_data, sf::Vector2f position):
         game_data(std::move(game_data)),
@@ -21,7 +19,7 @@ void Deathwall::spawn(){
 void Deathwall::move(sf::Vector2f move_by){
     deathwall.move(move_by);
 }
-void Deathwall::draw(){
+void Deathwall::draw() const{
     game_data -> window.draw(deathwall);
 }
 

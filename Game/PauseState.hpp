@@ -24,7 +24,6 @@ private:
 
 public:
 	PauseState(GameDataReference data);
-
 	void Init() override;
 	void HandleInput() override;
 	void Update(float delta) override;

@@ -13,7 +13,7 @@ void CustomCharacterState::Init() {
     _customClickSound.setVolume(game_data->json.Get_Soundvolume());
 
     counter = 0;
-    character = new Character(game_data);
+    character = std::unique_ptr<Character>(new Character(game_data));
     CurrentCharacter = game_data->json.Get_PlayerSprite();
     for (const auto &characters : CustomCharacters) {
         game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
@@ -118,8 +118,4 @@ void CustomCharacterState::Draw(float delta) {
     game_data->window.draw(_arrowLeft);
     character->Draw();
     game_data->window.display();
-}
-
-CustomCharacterState::~CustomCharacterState(){
-    delete character;
 }

@@ -100,6 +100,7 @@ struct CustomCharacter {
 #define MUSIC_MAIN_MENU_PATH "Assets/gameMusicMenu.wav"
 #define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"
+#define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
 #define SOUND_DEATH_PATH "Assets/death.wav"
 #define SOUND_JUMP_PATH "Assets/jump.wav"
 #define SOUND_PAUSE_PATH "Assets/pause.wav"

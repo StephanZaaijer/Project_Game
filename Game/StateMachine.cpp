@@ -6,7 +6,8 @@ void StateMachine::AddGameState(GameStateReference newState, bool isReplacing) {
     new_state = std::move(newState);
 }
 
-void StateMachine::RemoveGameState() {
+void
+StateMachine::RemoveGameState() {
     removing = true;
 }
 

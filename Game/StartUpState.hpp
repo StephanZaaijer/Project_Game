@@ -23,7 +23,6 @@ private:
 
 public:
     StartUpState(GameDataReference data);
-
     void Init() override;
     void HandleInput() override;
     void Update(float delta) override;

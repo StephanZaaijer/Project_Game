@@ -13,7 +13,6 @@ public:
 
     sf::Texture &GetTexture(const std::string &name);
 
-
     void loadFontFromFile(const std::string &name, const std::string &Filename);
 
     sf::Font &GetFont(const std::string &name);

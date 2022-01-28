@@ -3,8 +3,6 @@
 
 SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::move(data)) {}
 
-SoundSettingsState::~SoundSettingsState() {
-}
 
 void SoundSettingsState::Init() {
 

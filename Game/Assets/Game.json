@@ -4,15 +4,15 @@
 		"Music" : true,
 		"Musiclevel" : 76,
 		"Sound" : true,
-		"Soundlevel" : 64
+		"Soundlevel" : 42
 	},
 	"Player" : 
 	{
-		"File" : "Assets/character_3.png",
-		"ID" : "character_3"
+		"File" : "Assets/stephan.png",
+		"ID" : "stephan"
 	},
 	"Score" : 
 	{
-		"Highscore" : 37
+		"Highscore" : 87
 	}
 }

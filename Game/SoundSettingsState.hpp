@@ -28,7 +28,6 @@ private:
 
 public:
   SoundSettingsState(GameDataReference data);
-  ~SoundSettingsState() override;
   void Init() override;
   void HandleInput() override;
   void Update(float delta) override;

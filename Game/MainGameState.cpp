@@ -66,6 +66,15 @@ void MainGameState::HandleInput() {
             character->Tap();
             character ->setJumpPressed(true);
         }
+        else if (game_data->input.IsKeyPressed(sf::Keyboard::Escape)) {
+            if (game_data->json.Get_Musicstate()) {
+                _gameMusicSound.pause();
+            }
+            if (game_data->json.Get_Soundstate()) {
+                _pauseSound.play();
+            }
+            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+        }
         else {
             character ->setJumpPressed(false);
             jumpSoundPlayed = false;

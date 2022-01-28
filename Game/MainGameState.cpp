@@ -58,8 +58,9 @@ void MainGameState::HandleInput() {
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             if(game_data->json.Get_Soundstate()){
-                if(character->getJumpedTwice()) {
+                if(character->getJumpedTwice() && jumpSoundPlayed == false) {
                     _jumpSound.play();
+                    jumpSoundPlayed = true;
                 }
             }
             character->Tap();
@@ -67,6 +68,7 @@ void MainGameState::HandleInput() {
         }
         else {
             character ->setJumpPressed(false);
+            jumpSoundPlayed = false;
         }
         if (!game_data->window.hasFocus()) {
             if(game_data->json.Get_Musicstate()){

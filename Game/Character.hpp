@@ -33,7 +33,6 @@ private:
     sf::Vector2f _velocity = {VELOCITY_X,0};
     sf::Vector2f _position;
     character_states _characterState;
-    sf::Sound _jumpSound;
     float _fallVelocity = 0;
     int _height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;
     int _score = 0;

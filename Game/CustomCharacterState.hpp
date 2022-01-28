@@ -21,12 +21,13 @@ private:
     sf::Sprite _background;
     sf::Sprite _randomButton;
     std::unique_ptr<Character> character;
-    std::vector<sf::Sprite*> CharacterSelect = { &_arrowRight, &_arrowLeft ,&_backButton,&_randomButton};
+    std::vector<sf::Sprite*> ClickableButtons = { &_arrowRight, &_arrowLeft ,&_backButton,&_randomButton};
     std::vector<CustomCharacter> CustomCharacters = { {"character", CHARACTER_FRAME_1_FILEPATH}, {"character_2", CHARACTER_2}, {"character_3", CHARACTER_3 },{"jasper",JASPER},{"nick",NICK},{"daniel",DANIEL},{"franky",FRANKY},{"stephan",STEPHAN},{"coen",COEN} };
     CustomCharacter CurrentCharacter;
     sf::Sound _clickSound;
     sf::Sound _customClickSound;
     unsigned int counter;
+    bool prevMousestate;
 public:
     CustomCharacterState(GameDataReference data);
     void Init() override;

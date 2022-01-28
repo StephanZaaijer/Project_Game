@@ -14,11 +14,11 @@
 class MainGameState : public GameState{
 private:
     GameDataReference game_data;
-    Wall *wall;
+    std::unique_ptr<Wall> wall;
     sf::Sprite background;
     sf::Sprite background2;
-    Obstacle_Container *obstacles_container;
-    Character *character;
+    std::unique_ptr<Obstacle_Container> obstacles_container;
+    std::unique_ptr<Character> character;
     CustomCharacter characterinfo;
     sf::Text _score;
     sf::Sound _jumpSound;
@@ -29,13 +29,12 @@ private:
 
 public:
     MainGameState(GameDataReference data);
-    ~MainGameState() override;
     void Init() override;
-
     void HandleInput() override;
     void Update( float delta ) override;
     void Draw( float delta ) override;
     void Resume() override;
+
 };
 
 #endif // PROJECT_GAME_MAINGAMESTATE_HPP

@@ -20,6 +20,7 @@ public:
 	void handleinput();
 	virtual void update(){};
 	sf::RectangleShape& get_slider_block();
+
 };
 
 #endif // PROJECT_GAME_SLIDER

@@ -3,8 +3,8 @@
 	{
 		"Music" : true,
 		"Musiclevel" : 76,
-		"Sound" : false,
-		"Soundlevel" : 64
+		"Sound" : true,
+		"Soundlevel" : 42
 	},
 	"Player" : 
 	{

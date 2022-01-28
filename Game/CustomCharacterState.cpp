@@ -5,8 +5,15 @@ CustomCharacterState::CustomCharacterState(GameDataReference data) :
         game_data(std::move(data)) {}
 
 void CustomCharacterState::Init() {
+    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
+    game_data->assets.loadSoundBufferFromFile("_customClickSound", SOUND_CLICK_CUSTOM_PATH);
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    _customClickSound.setBuffer(game_data->assets.GetSoundBuffer("_customClickSound"));
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+    _customClickSound.setVolume(game_data->json.Get_Soundvolume());
+
     counter = 0;
-    character = new Character(game_data);
+    character = std::unique_ptr<Character>(new Character(game_data));
     CurrentCharacter = game_data->json.Get_PlayerSprite();
     for (const auto &characters : CustomCharacters) {
         game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
@@ -62,6 +69,9 @@ void CustomCharacterState::HandleInput() {
             
         }
         if (game_data->input.IsSpriteClicked(_arrowRight, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _customClickSound.play();
+            }
             if (counter == CustomCharacters.size() - 1) {
                 counter = 0;
             } else { counter += 1; }
@@ -69,11 +79,17 @@ void CustomCharacterState::HandleInput() {
             character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
         }
         if (game_data->input.IsSpriteClicked(_randomButton, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _customClickSound.play();
+            }
             counter = std::rand() % CustomCharacters.size();
             CurrentCharacter = CustomCharacters[counter];
             character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
         }
         if (game_data->input.IsSpriteClicked(_arrowLeft, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _customClickSound.play();
+            }
             if (counter == 0) {
                 counter = CustomCharacters.size() - 1;
             } else { counter -= 1; }
@@ -81,6 +97,9 @@ void CustomCharacterState::HandleInput() {
             character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
         }
         if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)) {
+            if(game_data->json.Get_Soundstate()){
+                _clickSound.play();
+            }
             game_data->json.Set_PlayerSprite(CurrentCharacter);
             game_data->machine.RemoveGameState();
         }

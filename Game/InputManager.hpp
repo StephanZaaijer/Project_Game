@@ -16,7 +16,7 @@ public:
     bool IsRectangleClicked(const sf::RectangleShape& rectangle, const sf::Mouse::Button& button, sf::RenderWindow& window);
     bool IsMouseIntersectingSprite(const sf::Sprite& sprite, sf::RenderWindow& window);
     bool IsMouseIntersectingSprite(const sf::Sprite* sprite, sf::RenderWindow& window);
-    void ChangeMouseWhenHoveringOverButton(const std::vector<sf::Sprite*>& buttons, sf::RenderWindow &window);
+    bool ChangeMouseWhenHoveringOverButton(const std::vector<sf::Sprite*>& buttons, sf::RenderWindow &window);
     sf::Vector2f GetMousePosition(sf::RenderWindow &window);
 };
 

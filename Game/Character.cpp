@@ -63,9 +63,9 @@ void Character::Update(float dt) {
         _height += (int(_velocity.y) * -1);
     }
     else if ( _characterState == Stick ) {
-        int fallRate = _fallVelocity += GRAVITY / WALL_SLIDE_DELTA;
+        float fallRate = _fallVelocity += GRAVITY / WALL_SLIDE_DELTA;
         moveDownByOffset(fallRate);
-        _height -= fallRate;
+        _height -= int(fallRate);
     }
 
     if(_characterSprite.getPosition().y >SCREEN_HEIGHT){
@@ -177,6 +177,15 @@ void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
 
 void  Character::setJumpPressed(bool set) {
     isJumpPressed = set;
+}
+
+bool Character::getJumpedTwice() {
+    if(_jumped_twice){
+        return false;
+    } else{
+        return true;
+    }
+
 }
 
 

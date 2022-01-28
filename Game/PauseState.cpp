@@ -27,13 +27,13 @@ void PauseState::Init() {
     _pauseText.setString("PAUSED");
     _pauseText.setCharacterSize(TEXT_TITLE_SIZE);
     _pauseText.setFillColor(TEXT_COLOR);
+
     auto tmpRect = _pauseText.getLocalBounds();
     _pauseText.setOrigin(tmpRect.left + tmpRect.width / 2,
         tmpRect.top + tmpRect.height / 2);
 
     _playButton.setOrigin({ _playButton.getGlobalBounds().width / 2, _playButton.getGlobalBounds().height / 2 });
     _soundsettingsButton.setOrigin({ _soundsettingsButton.getGlobalBounds().width / 2, _soundsettingsButton.getGlobalBounds().height / 2 });
-
 
     _playButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 10.0f) });
     _soundsettingsButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 15.0f) });
@@ -77,3 +77,4 @@ void PauseState::Draw(float delta) {
     game_data->window.draw(_pauseText);
     game_data->window.display();
 }
+

@@ -19,7 +19,9 @@ void JsonManager::Get_data() {
 		json_data["Audio"]["Musiclevel"].asInt(),
 		json_data["Score"]["Highscore"].asInt(),
 		json_data["Player"]["ID"].asString(),
-		json_data["Player"]["File"].asString()
+		json_data["Player"]["File"].asString(),
+        json_data["Theme"]["ObstacleColor"].asString(),
+        json_data["Theme"]["WallColor"].asString()
 	};
 }
 
@@ -45,6 +47,14 @@ int JsonManager::Get_Highscore() const {
 
 CustomCharacter JsonManager::Get_PlayerSprite() const {
 	return { data.PlayerSpriteID, data.PlayerSpriteFile };
+}
+
+sf::Color JsonManager::Get_ObstacleColor() const {
+    return string_to_color(data.ObstacleColor);
+}
+
+sf::Color JsonManager::Get_WallColor() const {
+    return string_to_color(data.WallColor);
 }
 
 void JsonManager::Set_Soundstate(bool state) {
@@ -109,6 +119,26 @@ void JsonManager::Set_PlayerSprite(CustomCharacter PlayerSprite) {
 	write_out = true;
 }
 
+void JsonManager::Set_ObstacleColor(sf::Color ObstacleColor) {
+    if (ObstacleColor == string_to_color(data.ObstacleColor)) {
+        return;
+    }
+    data.ObstacleColor = color_to_string(ObstacleColor);
+    json_data["Theme"]["ObstacleColor"]=color_to_string(ObstacleColor);
+    clock.restart();
+    write_out = true;
+}
+
+void JsonManager::Set_WallColor(sf::Color WallColor) {
+    if (WallColor == string_to_color(data.WallColor)) {
+        return;
+    }
+    data.WallColor = color_to_string(WallColor);
+    json_data["Theme"]["WallColor"]=color_to_string(WallColor);
+    clock.restart();
+    write_out = true;
+}
+
 
 void JsonManager::Update() {
 	if (write_out and clock.getElapsedTime().asSeconds() >= 5) {
@@ -124,9 +154,28 @@ void JsonManager::Direct_write() {
 	}
 }
 
+
+sf::Color JsonManager::string_to_color(std::string colorstring) const{
+    for(const auto &color: colors){
+        if(color.color_string==colorstring){
+            return color.color_sf;
+        }
+    }
+    throw unknown_color_exception(colorstring);
+}
+
+std::string JsonManager::color_to_string(sf::Color color_sf) const{
+    for(const auto &color: colors){
+        if(color.color_sf == color_sf){
+            return color.color_string;
+        }
+    }
+    throw unknown_color_exception(color_sf);
+}
+
+
 Json::Value JsonManager::Get_Json_from_file() {
 	std::ifstream Inputfile;
-	Json::Value json_data;
 	Json::CharReaderBuilder builder;
 	Inputfile.open(Gamefile);
 	if (!Inputfile.is_open()) {

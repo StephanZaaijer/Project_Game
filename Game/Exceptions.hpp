@@ -34,7 +34,7 @@ private:
     std::string error;
 
 public:
-    open_file_exception(std::string Filename):
+    open_file_exception(const std::string &Filename):
         error("Could open file with filename: '" + error + "'")
     {}
     [[nodiscard]] const char* what() const noexcept override {
@@ -46,10 +46,27 @@ class invalid_json_exception : public std::exception {
 private:
     std::string error;
 public:
-    invalid_json_exception(std::string error):
+    invalid_json_exception(const std::string &error):
         error(error)
     {}
     [[nodiscard]] const char* what() const noexcept override {
         return error.c_str();
     }
 };
+
+class unknown_color_exception: public std::exception {
+private:
+    std::string error;
+public:
+    unknown_color_exception(const std::string &Color) :
+            error("The color: " + Color + " is not found as SF::Color") {}
+
+    unknown_color_exception(const sf::Color &Color) :
+            error("The color with rgb value: (" + std::to_string(Color.r) + ", " + std::to_string(Color.g) + ", " +
+                  std::to_string(Color.b) + ") is not found") {}
+
+    [[nodiscard]] const char *what() const noexcept override {
+        return error.c_str();
+    }
+};
+

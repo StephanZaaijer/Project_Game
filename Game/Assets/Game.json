@@ -18,6 +18,7 @@
 	"Theme":
 	{
 		"ObstacleColor": "Green",
-		"WallColor": "Red"
+		"WallColor": "Red",
+		"OuterWallColor": "Blue"
 	}
 }

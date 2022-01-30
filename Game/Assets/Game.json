@@ -14,5 +14,10 @@
 	"Score" : 
 	{
 		"Highscore" : 66
+	},
+	"Theme":
+	{
+		"ObstacleColor": "Green",
+		"WallColor": "Red"
 	}
 }

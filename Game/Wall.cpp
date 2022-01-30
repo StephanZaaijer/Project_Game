@@ -36,7 +36,7 @@ void Wall::generate_Wall(float x_position, float start_y_offset){
     wall_obstacles tmp;
     tmp.wall.setSize(sf::Vector2f(WALL_WIDTH, WALL_HEIGHT));
     tmp.wall.setPosition(x_position - tmp.wall.getSize().x / 2 ,start_y_offset - tmp.wall.getSize().y);
-    tmp.wall.setFillColor(WALL_COLOR);
+    tmp.wall.setFillColor(game_data->json.Get_WallColor());
     tmp.contains_obstacles = false;
     walls.push_back(tmp);
 }

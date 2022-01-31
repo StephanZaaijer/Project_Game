@@ -30,9 +30,10 @@ void CustomCharacterState::Init() {
     counter_Characters = 0;
     character = std::unique_ptr<Character>(new Character(game_data));
     CurrentCharacter = game_data->json.Get_PlayerSprite();
-    bool found=false;
+    bool found = false;
     for (const auto &characters: CustomCharacters) {
         game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
+        std::cout<<"uhm hallo char\n";
         if(!found){
             if (characters == CurrentCharacter) {
                 found=true;
@@ -49,6 +50,7 @@ void CustomCharacterState::Init() {
     CurrentTheme = game_data->json.Get_PlayerTheme();
     found = false;
     for (const auto &themes: CustomThemes) {
+        std::cout<<"uhm hallo theme\n";
         game_data->assets.loadTextureFromFile(themes.themeName, themes.themeFileName);
         if(!found){
             if (themes == CurrentTheme) {
@@ -86,7 +88,6 @@ void CustomCharacterState::Init() {
                                 SCREEN_HEIGHT / 1.5f - (_arrowLeftTheme.getGlobalBounds().height));
     _arrowRightTheme.setPosition(SCREEN_WIDTH / 6.0f * 4.0f - (_arrowRightTheme.getGlobalBounds().width / 2),
                                  SCREEN_HEIGHT / 1.5f - (_arrowRightTheme.getGlobalBounds().height));
-    std::cout<<"init done\n";
 }
 
 void CustomCharacterState::HandleInput() {
@@ -153,6 +154,7 @@ void CustomCharacterState::HandleInput() {
                     CurrentTheme = CustomThemes[counter_Theme];
                     _theme.setTexture(game_data->assets.GetTexture(CurrentTheme.themeName));
                 }
+
                 if (game_data->input.IsSpriteClicked(_arrowLeftTheme, sf::Mouse::Left, game_data->window)) {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();
@@ -165,6 +167,7 @@ void CustomCharacterState::HandleInput() {
                     CurrentTheme = CustomThemes[counter_Theme];
                     _theme.setTexture(game_data->assets.GetTexture(CurrentTheme.themeName));
                 }
+
                 if (game_data->input.IsSpriteClicked(_randomButtonTheme, sf::Mouse::Left, game_data->window)) {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();

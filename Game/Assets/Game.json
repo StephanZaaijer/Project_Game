@@ -1,26 +1,26 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
-		"Musiclevel" : 93,
-		"Sound" : false,
-		"Soundlevel" : 97
+		"Music" : true,
+		"Musiclevel" : 52,
+		"Sound" : true,
+		"Soundlevel" : 40
 	},
 	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/franky.jpg",
-		"ID" : "franky"
+		"File" : "Assets/character_3.png",
+		"ID" : "character_3"
 	},
-	"Score" :
+	"Score" : 
 	{
 		"Highscore" : 123
 	},
-	"Theme" :
+	"Theme" : 
 	{
-		"File" : "Assets/black_red.png",
-		"ID" : "black_red_theme",
-		"WallColor" : "Black",
-		"ObstacleColor" : "Red"
+		"File" : "Assets/green_blue.png",
+		"ID" : "green_blue_theme",
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Green"
 	}
 }

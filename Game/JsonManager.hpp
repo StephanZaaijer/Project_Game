@@ -19,6 +19,7 @@ public:
 		std::string PlayerSpriteFile;
         std::string ObstacleColor;
         std::string WallColor;
+        int Coins;
 	};
 
 	JsonManager(std::string Gamefile);
@@ -27,6 +28,7 @@ public:
 	bool Get_Musicstate() const;
 	int Get_Musicvolume() const;
 	int Get_Highscore() const;
+    int Get_Coins() const;
 	CustomCharacter Get_PlayerSprite() const;
     sf::Color Get_ObstacleColor() const;
     sf::Color Get_WallColor() const;
@@ -36,6 +38,7 @@ public:
 	void Set_Musicvolume(int volume);
 	void Set_Highscore(int highscore);
 	void Set_PlayerSprite(CustomCharacter PlayerSprite);
+    void Set_Coins(int coins);
     void Set_ObstacleColor(sf::Color ObstacleColor);
     void Set_WallColor(sf::Color WallColor);
 

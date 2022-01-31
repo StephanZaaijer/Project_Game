@@ -59,6 +59,9 @@ enum character_states {
 #define ARROW_RIGHT_BUTTON "Assets/ArrowRight.png"
 #define ARROW_LEFT_BUTTON "Assets/ArrowLeft.png"
 
+#define COIN_PATH "Assets/Coin.png"
+#define COIN_SCALE 0.25
+
 #define RESTART_BUTTON_PATH "Assets/RestartButton.png"
 #define MAIN_MENU_BUTTON_PATH "Assets/MainMenuButton.png"
 

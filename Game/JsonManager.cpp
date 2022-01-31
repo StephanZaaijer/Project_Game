@@ -155,7 +155,7 @@ void JsonManager::Set_WallColor(sf::Color WallColor) {
 }
 
 void JsonManager::Update() {
-	if (write_out and clock.getElapsedTime().asSeconds() >= 5) {
+	if (write_out and clock.getElapsedTime().asSeconds() >= JSON_WRITEOUT_TIME) {
 		write_out = false;
 		Write_Json_to_file();
 	}

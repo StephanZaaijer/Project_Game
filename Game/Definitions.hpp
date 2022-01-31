@@ -8,7 +8,8 @@
 #define GAME_TITLE "JUUJUU"
 #define FRAMERATE 60
 #define CHARACTER_START_HEIGHT 800
-
+#define CHARACTER_SCALE 0.75
+#define JSON_WRITEOUT_TIME 5.0
 enum character_states {
 	Still,
 	Jumping,
@@ -18,13 +19,10 @@ enum character_states {
 #define VELOCITY_Y (-20.0)
 #define VELOCITY_X 8
 
-
-#define JUMPING_SPEED 200.0f
-#define FLYING_SPEED 400.0f
-#define JUMP_DURATION 0.75f
 #define TEXT_COLOR { 59, 3, 31}
 
 #define TEXT_TITLE_SIZE 200
+#define GAME_OVER_SCORE_TEXT_SIZE 120
 #define START_UP_TIME 0.4
 
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
@@ -37,7 +35,7 @@ enum character_states {
 #define FRANKY "Assets/franky.png"
 #define STEPHAN "Assets/stephan.png"
 
-#define RANDOMBUTTON "Assets/randomButton.png"
+#define RANDOM_BUTTON "Assets/randomButton.png"
 
 #define BACKGROUND_PATH "Assets/StartupBackground.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
@@ -45,16 +43,13 @@ enum character_states {
 #define GROEP_6_BANNER_PATH "Assets/Groep6Banner.png"
 #define MAIN_MENU_PLAY_BUTTON_PATH "Assets/PlayButton2.png"
 #define MAIN_MENU_SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
-#define MAIN_MENU_EXIT_BUTTON_PATH "Assets/ExitButton.png"
 #define MAIN_MENU_CUSTOM_BUTTON_PATH "Assets/CustomButton.png"
 
 #define PAUSE_STATE_PLAY_BUTTON_PATH "Assets/PlayButton2.png"
 #define PAUSE_STATE_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
 #define PAUSE_STATE_SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
 
-
 #define SOUND_SETTINGS_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
-#define SETTINGS_BANNER_PATH "Assets/SettingsBanner.png"
 #define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"
 #define MUSIC_BUTTON_RED_PATH "Assets/MusicButtonRed.png"
 #define SOUND_BUTTON_GREEN_PATH "Assets/SoundButtonGreen.png"
@@ -68,8 +63,6 @@ enum character_states {
 #define MAIN_MENU_BUTTON_PATH "Assets/MainMenuButton.png"
 
 #define BAUHAUS_FONT_PATH "Assets/Bauhaus.ttf"
-
-//#define GAMEOVER_BANNER_PATH "Assets/SettingsBanner.png"
 
 #define GAME_FILE "Assets/Game.json"
 
@@ -90,14 +83,13 @@ enum Spike_facing {left, right};
 
 
 struct CustomCharacter {
-    std::string CharacterName = "";
-    std::string CharacterFileName = "";
+    std::string CharacterName;
+    std::string CharacterFileName;
 	bool operator==(const CustomCharacter &rhs) const{
 		return (CharacterName == rhs.CharacterName) and (CharacterFileName == rhs.CharacterFileName);
 	}
 };
 
-#define MUSIC_MAIN_MENU_PATH "Assets/gameMusicMenu.wav"
 #define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"
 #define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"

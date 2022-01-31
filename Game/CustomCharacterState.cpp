@@ -33,7 +33,6 @@ void CustomCharacterState::Init() {
     bool found = false;
     for (const auto &characters: CustomCharacters) {
         game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
-        std::cout<<"uhm hallo char\n";
         if(!found){
             if (characters == CurrentCharacter) {
                 found=true;
@@ -41,7 +40,7 @@ void CustomCharacterState::Init() {
             counter_Characters++;
         }
     }
-    if (counter_Characters > CustomCharacters.size()) {
+    if (counter_Characters > (int) CustomCharacters.size() - 1) {
         counter_Characters = 0;
         CurrentCharacter = CustomCharacters[counter_Characters];
     }
@@ -50,7 +49,6 @@ void CustomCharacterState::Init() {
     CurrentTheme = game_data->json.Get_PlayerTheme();
     found = false;
     for (const auto &themes: CustomThemes) {
-        std::cout<<"uhm hallo theme\n";
         game_data->assets.loadTextureFromFile(themes.themeName, themes.themeFileName);
         if(!found){
             if (themes == CurrentTheme) {
@@ -59,7 +57,7 @@ void CustomCharacterState::Init() {
             counter_Theme++;
         }
     }
-    if (counter_Theme > CustomThemes.size()) {
+    if (counter_Theme > (int) CustomThemes.size() - 1) {
         counter_Theme = 0;
         CurrentTheme = CustomThemes[counter_Theme];
     }
@@ -104,7 +102,7 @@ void CustomCharacterState::HandleInput() {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();
                     }
-                    if (counter_Characters == CustomCharacters.size() - 1) {
+                    if (counter_Characters ==  (int) CustomCharacters.size() - 1) {
                         counter_Characters = 0;
                     } else {
                         counter_Characters += 1;
@@ -118,7 +116,7 @@ void CustomCharacterState::HandleInput() {
                         _customClickSound.play();
                     }
                     if (counter_Characters == 0) {
-                        counter_Characters = CustomCharacters.size() - 1;
+                        counter_Characters = (int) CustomCharacters.size() - 1;
                     } else {
                         counter_Characters -= 1;
                     }
@@ -146,7 +144,7 @@ void CustomCharacterState::HandleInput() {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();
                     }
-                    if (counter_Theme == CustomThemes.size() - 1) {
+                    if (counter_Theme == (int) CustomThemes.size() -1) {
                         counter_Theme = 0;
                     } else {
                         counter_Theme += 1;
@@ -160,7 +158,7 @@ void CustomCharacterState::HandleInput() {
                         _customClickSound.play();
                     }
                     if (counter_Theme == 0) {
-                        counter_Theme = CustomThemes.size() - 1;
+                        counter_Theme = (int) CustomThemes.size() -1 ;
                     } else {
                         counter_Theme -= 1;
                     }

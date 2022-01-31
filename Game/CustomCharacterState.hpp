@@ -34,8 +34,8 @@ private:
     sf::Sound _customClickSound;
     sf::Text _coins_text;
     int coins;
-    unsigned int counter_Characters;
-    unsigned int counter_Theme;
+    int counter_Characters;
+    int counter_Theme;
     bool prevMousestate;
 
 public:

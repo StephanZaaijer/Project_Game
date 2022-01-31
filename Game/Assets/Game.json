@@ -1,16 +1,16 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
+		"Music" : false,
 		"Musiclevel" : 52,
-		"Sound" : true,
+		"Sound" : false,
 		"Soundlevel" : 40
 	},
 	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/character_3.png",
-		"ID" : "character_3"
+		"File" : "Assets/stephan.png",
+		"ID" : "stephan"
 	},
 	"Score" : 
 	{

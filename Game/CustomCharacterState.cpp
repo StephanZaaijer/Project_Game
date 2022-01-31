@@ -12,7 +12,16 @@ void CustomCharacterState::Init() {
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     _customClickSound.setVolume(game_data->json.Get_Soundvolume());
 
-    _coins_text.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
+    _background.setTexture(game_data->assets.GetTexture("Background"));
+    _randomButtonCharacter.setTexture(game_data->assets.GetTexture("Random Button"));
+    _arrowLeftCharacter.setTexture(game_data->assets.GetTexture("Arrow Left"));
+    _arrowRightCharacter.setTexture(game_data->assets.GetTexture("Arrow Right"));
+    _randomButtonTheme.setTexture(game_data->assets.GetTexture("Random Button"));
+    _arrowLeftTheme.setTexture(game_data->assets.GetTexture("Arrow Left"));
+    _arrowRightTheme.setTexture(game_data->assets.GetTexture("Arrow Right"));
+
+    _coins_text.setFont(game_data->assets.GetFont("Bauhaus"));
     _coins_text.setCharacterSize(60);
     _coins_text.setFillColor(TEXT_COLOR);
     _coins_text.setString("Coins: " + std::to_string(coins));
@@ -62,15 +71,6 @@ void CustomCharacterState::Init() {
     _theme.setPosition(SCREEN_WIDTH / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
                        SCREEN_HEIGHT / 1.5f - (character->getSprite().getGlobalBounds().height));
 
-    _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
-    _background.setTexture(game_data->assets.GetTexture("Background"));
-    _randomButtonCharacter.setTexture(game_data->assets.GetTexture("Random Button"));
-    _arrowLeftCharacter.setTexture(game_data->assets.GetTexture("Arrow Left"));
-    _arrowRightCharacter.setTexture(game_data->assets.GetTexture("Arrow Right"));
-    _randomButtonTheme.setTexture(game_data->assets.GetTexture("Random Button"));
-    _arrowLeftTheme.setTexture(game_data->assets.GetTexture("Arrow Left"));
-    _arrowRightTheme.setTexture(game_data->assets.GetTexture("Arrow Right"));
-
     _backButton.setPosition(SCREEN_WIDTH / 2.0f - (_backButton.getGlobalBounds().width / 2),
                             SCREEN_HEIGHT - (_backButton.getGlobalBounds().height * 1.1));
     _randomButtonCharacter.setPosition(SCREEN_WIDTH / 8.0f - (_randomButtonCharacter.getGlobalBounds().width / 2),
@@ -94,6 +94,7 @@ void CustomCharacterState::HandleInput() {
     while (game_data->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             game_data->json.Set_PlayerSprite(CurrentCharacter);
+            game_data->json.Set_PlayerTheme(CurrentTheme);
             game_data->window.close();
         }
         if (game_data->input.ChangeMouseWhenHoveringOverButton(ClickableButtons, game_data->window)) {

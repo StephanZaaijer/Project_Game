@@ -9,14 +9,14 @@
 	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/franky.png",
+		"File" : "Assets/franky.jpg",
 		"ID" : "franky"
 	},
-	"Score" : 
+	"Score" :
 	{
 		"Highscore" : 123
 	},
-	"Theme" : 
+	"Theme" :
 	{
 		"File" : "Assets/black_red.png",
 		"ID" : "black_red_theme",

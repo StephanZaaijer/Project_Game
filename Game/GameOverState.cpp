@@ -44,8 +44,8 @@ void GameOverState::Init() {
     _highscore.setString("Highscore: " + std::to_string(game_data->json.Get_Highscore()));
 
     _gameOverText.setCharacterSize(TEXT_TITLE_SIZE);
-    _score.setCharacterSize(120);
-    _highscore.setCharacterSize(120);
+    _score.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
+    _highscore.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
 
     _gameOverText.setFillColor(TEXT_COLOR);
     _score.setFillColor(TEXT_COLOR);

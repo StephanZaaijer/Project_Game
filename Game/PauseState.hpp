@@ -14,6 +14,7 @@ class PauseState : public GameState {
 private:
 	GameDataReference game_data;
 	sf::Sprite _background;
+    sf::RectangleShape DarkFade;
 	sf::Sprite _playButton;
 	sf::Sprite _soundsettingsButton;
 	sf::Text _pauseText;

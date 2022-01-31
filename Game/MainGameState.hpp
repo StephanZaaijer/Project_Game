@@ -26,6 +26,7 @@ private:
     sf::Sound _gameMusicSound;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
+    int counter = 0;
     bool jumpSoundPlayed = false;
 
 public:

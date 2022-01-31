@@ -24,6 +24,7 @@ struct GameData {
     int score = 0;
 };
 
+/// @brief
 /// Typedefinition to define std::shared_prt<GameData> as GameDataReference
 typedef std::shared_ptr<GameData> GameDataReference;
 

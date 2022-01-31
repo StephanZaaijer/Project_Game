@@ -8,6 +8,7 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
+  
     _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("jumpSound"));
     _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("pauseSound"));
     _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("gameMusic"));
@@ -33,9 +34,10 @@ void MainGameState::Init(){
 
     obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
     wall = std::unique_ptr<Wall>(new Wall(game_data));
-    background.setTexture(this->game_data->assets.GetTexture("Background"));
-    background2.setTexture(this->game_data->assets.GetTexture("Background"));
+    background.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
+    background2.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
+    background2.setPosition(0, backGroundOffsetY2);
     wall->spawn_Wall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
@@ -105,14 +107,47 @@ void MainGameState::Update( float delta ){
         background2.setPosition(0, backGroundOffsetY2);
         if(backGroundOffsetY >= game_data->window.getSize().y){
             backGroundOffsetY = background2.getGlobalBounds().top - background2.getGlobalBounds().height;
+            counter++;
         }
         if(backGroundOffsetY2 >= game_data->window.getSize().y){
             backGroundOffsetY2 = background.getGlobalBounds().top - background.getGlobalBounds().height;
+            counter++;
         }
-
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
         character->moveDownByOffset(move_down_by);
     }
+
+
+    switch (counter) {
+        case 0 * BACKGROUND_SWITCH:
+            background2.setTexture(this->game_data->assets.GetTexture("Background"));
+            break;
+
+        case 1 * BACKGROUND_SWITCH:
+            background.setTexture(this->game_data->assets.GetTexture("Background"));
+            break;
+
+        case 3 * BACKGROUND_SWITCH:
+            background.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
+            break;
+
+        case 4 * BACKGROUND_SWITCH:
+            background2.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
+            break;
+
+        case 5 * BACKGROUND_SWITCH:
+            background.setTexture(this->game_data->assets.GetTexture("SkyToSpaceBackground"));
+            break;
+
+        case 6 * BACKGROUND_SWITCH:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            break;
+
+        case 7 * BACKGROUND_SWITCH:
+            background.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            break;
+    }
+
 
     // spawn walls and obstacles
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
@@ -129,7 +164,7 @@ void MainGameState::Update( float delta ){
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
     for(const auto &obstacle : obstacles){
         if(obstacle->getBounds().intersects(character->GetBounds())){
-            character->_death = true;
+            //character->_death = true;
         }
     }
 

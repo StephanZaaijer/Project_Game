@@ -111,7 +111,7 @@ void CustomCharacterState::HandleInput() {
                     CurrentCharacter = CustomCharacters[counter_Characters];
                     character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
                 }
-
+              
                 if (game_data->input.IsSpriteClicked(_arrowLeftCharacter, sf::Mouse::Left, game_data->window)) {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();

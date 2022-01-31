@@ -1,10 +1,7 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
-		"Musiclevel" : 52,
-		"Sound" : false,
-		"Soundlevel" : 40
+
 	},
 	"Coins" : 55,
 	"Player" : 

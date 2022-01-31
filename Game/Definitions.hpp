@@ -36,15 +36,19 @@ enum character_states {
 #define FRANKY "Assets/franky.png"
 #define STEPHAN "Assets/stephan.png"
 
-#define RANDOM_BUTTON "Assets/randomButton.png"
-
+#define BACKGROUND_GROUND_PATH "Assets/BackgroundGround.png"
 #define BACKGROUND_PATH "Assets/Background.png"
+#define BACKGROUND_NO_CLOUDS_PATH "Assets/BackgroundNoClouds.png"
+#define BACKGROUND_SKY_TO_SPACE_PATH "Assets/SkyToSpaceBackground.png"
+#define SPACE_BACKGROUND_PATH "Assets/SpaceBackground.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
 #define GAME_IMAGE_PATH "Assets/StartUpImage.png"
 #define GROEP_6_BANNER_PATH "Assets/Groep6Banner.png"
 #define PLAY_BUTTON_PATH "Assets/PlayButton.png"
 #define SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
 #define CUSTOMIZE_BUTTON_PATH "Assets/CustomButton.png"
+#define BACK_BUTTON_SMALL "Assets/BackButtonSmall.png"
+#define RANDOM_BUTTON "Assets/randomButton.png"
 
 #define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"
 #define MUSIC_BUTTON_RED_PATH "Assets/MusicButtonRed.png"
@@ -71,7 +75,8 @@ enum character_states {
 #define WALL_SPAWN_DISTANT 200
 #define CHARACTER_MAX_HEIGHT 700
 #define WALL_SLIDE_DELTA 4 //Higher is slower
-#define BACKGROUND_SLIDE 4 //Higher is slower
+#define BACKGROUND_SLIDE 2 //Higher is slower
+#define BACKGROUND_SWITCH 1 //Must be an uneven integer
 
 #define SPIKE_SIZE 75
 enum Obstacle_objects {Spike_Object};

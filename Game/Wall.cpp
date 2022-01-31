@@ -9,11 +9,11 @@ Wall::Wall(GameDataReference data):
 {
     left_boundary.setPosition(0.0, 0.0);
     left_boundary.setSize( {SCREEN_WIDTH/6.0f, SCREEN_HEIGHT} );
-    left_boundary.setFillColor( game_data->json.Get_OuterWallColor() );
+    left_boundary.setFillColor( game_data->json.Get_WallColor() );
 
     right_boundary.setPosition(SCREEN_WIDTH/6.0f * 5.0f, 0.0);
     right_boundary.setSize( {(SCREEN_WIDTH/6.0f), SCREEN_HEIGHT} );
-    right_boundary.setFillColor( game_data->json.Get_OuterWallColor() );
+    right_boundary.setFillColor( game_data->json.Get_WallColor() );
 }
 
 std::vector<wall_obstacles> &Wall::getWalls() {

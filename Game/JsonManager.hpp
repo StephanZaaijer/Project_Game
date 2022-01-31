@@ -19,7 +19,6 @@ public:
 		std::string PlayerSpriteFile;
         std::string ObstacleColor;
         std::string WallColor;
-        std::string OuterWallColor;
 	};
 
 	JsonManager(std::string Gamefile);
@@ -31,7 +30,6 @@ public:
 	CustomCharacter Get_PlayerSprite() const;
     sf::Color Get_ObstacleColor() const;
     sf::Color Get_WallColor() const;
-    sf::Color Get_OuterWallColor() const;
     void Set_Soundstate(bool state);
 	void Set_Soundvolume(int volume);
 	void Set_Musicstate(bool state);
@@ -40,7 +38,6 @@ public:
 	void Set_PlayerSprite(CustomCharacter PlayerSprite);
     void Set_ObstacleColor(sf::Color ObstacleColor);
     void Set_WallColor(sf::Color WallColor);
-    void Set_OuterWallColor(sf::Color WallColor);
 
     void Update();
 	void Direct_write();

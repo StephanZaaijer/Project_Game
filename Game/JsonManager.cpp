@@ -22,7 +22,6 @@ void JsonManager::Get_data() {
 		json_data["Player"]["File"].asString(),
         json_data["Theme"]["ObstacleColor"].asString(),
         json_data["Theme"]["WallColor"].asString(),
-        json_data["Theme"]["OuterWallColor"].asString()
 	};
 }
 
@@ -56,10 +55,6 @@ sf::Color JsonManager::Get_ObstacleColor() const {
 
 sf::Color JsonManager::Get_WallColor() const {
     return string_to_color(data.WallColor);
-}
-
-sf::Color JsonManager::Get_OuterWallColor() const {
-    return string_to_color(data.OuterWallColor);
 }
 
 void JsonManager::Set_Soundstate(bool state) {
@@ -140,16 +135,6 @@ void JsonManager::Set_WallColor(sf::Color WallColor) {
     }
     data.WallColor = color_to_string(WallColor);
     json_data["Theme"]["WallColor"]=color_to_string(WallColor);
-    clock.restart();
-    write_out = true;
-}
-
-void JsonManager::Set_OuterWallColor(sf::Color WallColor) {
-    if (WallColor == string_to_color(data.OuterWallColor)) {
-        return;
-    }
-    data.OuterWallColor = color_to_string(WallColor);
-    json_data["Theme"]["OuterWallColor"]=color_to_string(WallColor);
     clock.restart();
     write_out = true;
 }

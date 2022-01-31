@@ -27,6 +27,8 @@ void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("Red Sound Button", SOUND_BUTTON_RED_PATH);
     game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Settings Button", SETTINGS_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Buy Button", BUY_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Equip Button", EQUIP_BUTTON_PATH);
 
     game_data->assets.loadFontFromFile("Bauhaus", BAUHAUS_FONT_PATH);
 

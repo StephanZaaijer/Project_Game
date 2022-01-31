@@ -68,6 +68,7 @@ void CustomCharacterState::Init() {
                                        SCREEN_HEIGHT / 3.0f - (character->getSprite().getGlobalBounds().height));
 
     _theme.setTexture(game_data->assets.GetTexture(CurrentTheme.themeName));
+    _theme.setScale(2, 2);
     _theme.setPosition(SCREEN_WIDTH / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
                        SCREEN_HEIGHT / 1.5f - (character->getSprite().getGlobalBounds().height));
 

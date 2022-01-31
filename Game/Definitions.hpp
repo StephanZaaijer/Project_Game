@@ -98,6 +98,8 @@ struct CustomTheme{
 
 #define BLACK_RED_THEME_PATH "Assets/black_red.png"
 #define GREEN_BLUE_THEME_PATH "Assets/green_blue.png"
+#define CYAN_BLUE_THEME_PATH "Assets/cyan_blue.png"
+#define YELLOW_BLACK_THEME_PATH "Assets/yellow_black.png"
 
 #define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"

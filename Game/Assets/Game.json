@@ -9,8 +9,8 @@
 	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/stephan.png",
-		"ID" : "stephan"
+		"File" : "Assets/daniel.jpg",
+		"ID" : "daniel"
 	},
 	"Score" : 
 	{
@@ -18,9 +18,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/green_blue.png",
-		"ID" : "green_blue_theme",
+		"File" : "Assets/cyan_blue.png",
+		"ID" : "cyan_blue_theme",
 		"ObstacleColor" : "Blue",
-		"WallColor" : "Green"
+		"WallColor" : "Cyan"
 	}
 }

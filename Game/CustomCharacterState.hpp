@@ -27,7 +27,7 @@ private:
     std::unique_ptr<Character> character;
     std::vector<sf::Sprite*> ClickableButtons = { &_arrowRightCharacter, &_arrowLeftCharacter ,&_backButton,&_randomButtonCharacter, &_randomButtonTheme, &_arrowLeftTheme, &_arrowRightTheme};
     std::vector<CustomCharacter> CustomCharacters = { {"character", CHARACTER_FRAME_1_FILEPATH}, {"character_2", CHARACTER_2}, {"character_3", CHARACTER_3 },{"jasper",JASPER},{"nick",NICK},{"daniel",DANIEL},{"franky",FRANKY},{"stephan",STEPHAN},{"coen",COEN} };
-    std::vector<CustomTheme> CustomThemes = {{sf::Color::Black, sf::Color::Red, "black_red_theme" ,BLACK_RED_THEME_PATH}, {sf::Color::Green, sf::Color::Blue, "green_blue_theme", GREEN_BLUE_THEME_PATH}};
+    std::vector<CustomTheme> CustomThemes = {{sf::Color::Black, sf::Color::Red, "black_red_theme" ,BLACK_RED_THEME_PATH}, {sf::Color::Green, sf::Color::Blue, "green_blue_theme", GREEN_BLUE_THEME_PATH}, {sf::Color::Yellow,sf::Color::Black, "yellow_black_theme", YELLOW_BLACK_THEME_PATH },{sf::Color::Cyan,sf::Color::Blue, "cyan_blue_theme", CYAN_BLUE_THEME_PATH }};
     CustomCharacter CurrentCharacter;
     CustomTheme CurrentTheme;
     sf::Sound _clickSound;

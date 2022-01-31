@@ -5,10 +5,8 @@ CustomCharacterState::CustomCharacterState(GameDataReference data) :
         game_data(std::move(data)) {}
 
 void CustomCharacterState::Init() {
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    game_data->assets.loadSoundBufferFromFile("_customClickSound", SOUND_CLICK_CUSTOM_PATH);
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
-    _customClickSound.setBuffer(game_data->assets.GetSoundBuffer("_customClickSound"));
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
+    _customClickSound.setBuffer(game_data->assets.GetSoundBuffer("customClickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     _customClickSound.setVolume(game_data->json.Get_Soundvolume());
 
@@ -18,11 +16,6 @@ void CustomCharacterState::Init() {
     for (const auto &characters : CustomCharacters) {
         game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
     }
-
-    game_data->assets.loadTextureFromFile("Random Button", RANDOM_BUTTON);
-    game_data->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
-    game_data->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
-    game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
 
     for (const auto& characters : CustomCharacters) {
         if (CurrentCharacter == characters) {
@@ -41,12 +34,11 @@ void CustomCharacterState::Init() {
     character->getSprite().setOrigin({character->getSprite().getGlobalBounds().width / 2, character->getSprite().getGlobalBounds().height / 2});
     character->getSprite().setScale(2.5,2.5);
 
-
-    _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
-    _randomButton.setTexture(game_data->assets.GetTexture("Random Button"));
     _arrowRight.setTexture(game_data->assets.GetTexture("Arrow Right"));
     _arrowLeft.setTexture(game_data->assets.GetTexture("Arrow Left"));
+    _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
     _background.setTexture(game_data->assets.GetTexture("Background"));
+    _randomButton.setTexture(game_data->assets.GetTexture("Random Button"));
 
     _randomButton.setPosition(SCREEN_WIDTH / 4.0f * 2.0f, SCREEN_HEIGHT / 5.0f * 3.0f);
     _arrowRight.setPosition(SCREEN_WIDTH / 4.0f * 3.0f, SCREEN_HEIGHT / 3.0f * 1.0f);

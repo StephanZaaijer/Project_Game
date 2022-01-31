@@ -5,15 +5,14 @@
 StartUpState::StartUpState(GameDataReference data) : game_data(std::move(data)) {}
 
 void StartUpState::Init() {
-    game_data->assets.loadFontFromFile("Bauhaus font", BAUHAUS_FONT_PATH);
     game_data->assets.loadTextureFromFile("Background", BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("StartUp State Image", GAME_IMAGE_PATH);
-    game_data->assets.loadTextureFromFile("StartUp State Banner", GAME_TITLE_PATH);
-    game_data->assets.loadTextureFromFile("StartUp State groep6 Banner", GROEP_6_BANNER_PATH);
+    game_data->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
+    game_data->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
     _background.setTexture(game_data->assets.GetTexture("Background"));
     _logo.setTexture(game_data->assets.GetTexture("StartUp State Image"));
-    _title.setTexture(game_data->assets.GetTexture("StartUp State Banner"));
-    _banner.setTexture(game_data->assets.GetTexture("StartUp State groep6 Banner"));
+    _title.setTexture(game_data->assets.GetTexture("Banner"));
+    _banner.setTexture(game_data->assets.GetTexture("Groep6 Banner"));
 
     _title.setPosition((SCREEN_WIDTH / 2.0f - (_title.getGlobalBounds().width / 2)),
                        _title.getGlobalBounds().height / 2);

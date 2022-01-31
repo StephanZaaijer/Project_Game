@@ -174,6 +174,16 @@ void CustomCharacterState::HandleInput() {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();
                     }
+                    for (int i = 0; i < 10 + std::rand() % 40; i++) {
+                        counter_Theme = std::rand() % CustomThemes.size();
+                        while (CurrentTheme == CustomThemes[counter_Theme]) {
+                            counter_Theme = std::rand() % CustomThemes.size();
+                        }
+                        CurrentTheme = CustomThemes[counter_Theme];
+                        _theme.setTexture(game_data->assets.GetTexture(CurrentTheme.themeName));
+                        Draw(0);
+                        sf::sleep(sf::milliseconds(20 + i * 10));
+                    }
                 }
 
                 if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)) {

@@ -19,8 +19,8 @@ public:
 		std::string PlayerSpriteFile;
         std::string PlayerThemeID;
         std::string PlayerThemeFile;
-        std::string ObstacleColor;
         std::string WallColor;
+        std::string ObstacleColor;
         int Coins;
 	};
 

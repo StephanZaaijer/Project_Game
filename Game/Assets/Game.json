@@ -9,8 +9,8 @@
 	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/coen.jpg",
-		"ID" : "coen"
+		"File" : "Assets/franky.png",
+		"ID" : "franky"
 	},
 	"Score" : 
 	{
@@ -20,7 +20,7 @@
 	{
 		"File" : "Assets/black_red.png",
 		"ID" : "black_red_theme",
-		"ObstacleColor" : "Red",
-		"WallColor" : "Black"
+		"WallColor" : "Black",
+		"ObstacleColor" : "Red"
 	}
 }

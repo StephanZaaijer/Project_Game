@@ -22,8 +22,8 @@ void JsonManager::Get_data() {
 		json_data["Player"]["File"].asString(),
         json_data["Theme"]["ID"].asString(),
         json_data["Theme"]["File"].asString(),
-        json_data["Theme"]["ObstacleColor"].asString(),
         json_data["Theme"]["WallColor"].asString(),
+        json_data["Theme"]["ObstacleColor"].asString(),
 		json_data["Coins"].asInt()
 	};
 }
@@ -130,7 +130,7 @@ void JsonManager::Set_PlayerSprite(const CustomCharacter& PlayerSprite) {
 }
 
 void JsonManager::Set_PlayerTheme(const CustomTheme& PlayerTheme) {
-    if (PlayerTheme.themeName == data.PlayerSpriteID) {
+    if (PlayerTheme.themeName == data.PlayerThemeID) {
         return;
     }
     data.PlayerThemeID = PlayerTheme.themeName;
@@ -139,8 +139,8 @@ void JsonManager::Set_PlayerTheme(const CustomTheme& PlayerTheme) {
     data.ObstacleColor = color_to_string(PlayerTheme.object_color);
     json_data["Theme"]["ID"] = PlayerTheme.themeName;
     json_data["Theme"]["File"]= PlayerTheme.themeFileName;
-    json_data["Theme"]["ObstacleColor"] = color_to_string(PlayerTheme.object_color);
     json_data["Theme"]["WallColor"]= color_to_string(PlayerTheme.wall_color);
+    json_data["Theme"]["ObstacleColor"] = color_to_string(PlayerTheme.object_color);
     clock.restart();
     write_out = true;
 }

@@ -15,6 +15,7 @@ struct GameData {
     InputManager input;
     JsonManager json = JsonManager(GAME_FILE);
     int score = 0;
+    int coins = 0;
 };
 
 typedef std::shared_ptr<GameData> GameDataReference;

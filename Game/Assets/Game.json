@@ -1,24 +1,24 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
+		"Music" : true,
 		"Musiclevel" : 93,
-		"Sound" : false,
+		"Sound" : true,
 		"Soundlevel" : 97
 	},
+	"Coins" : 0,
 	"Player" : 
 	{
-		"File" : "Assets/jasper.png",
-		"ID" : "jasper"
+		"File" : "Assets/stephan.png",
+		"ID" : "stephan"
 	},
 	"Score" : 
 	{
 		"Highscore" : 329
 	},
-	"Theme":
+	"Theme" : 
 	{
-		"ObstacleColor": "Green",
-		"WallColor": "Red"
-	},
-	"Coins": 0
+		"ObstacleColor" : "Green",
+		"WallColor" : "Red"
+	}
 }

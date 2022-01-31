@@ -32,12 +32,15 @@ void CustomCharacterState::Init() {
     counter_Characters = 0;
     character = std::unique_ptr<Character>(new Character(game_data));
     CurrentCharacter = game_data->json.Get_PlayerSprite();
+    bool found=false;
     for (const auto &characters: CustomCharacters) {
         game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
-        if (characters == CurrentCharacter) {
-            break;
+        if(!found){
+            if (characters == CurrentCharacter) {
+                found=true;
+            }
+            counter_Characters++;
         }
-        counter_Characters++;
     }
     if (counter_Characters > CustomCharacters.size()) {
         counter_Characters = 0;
@@ -46,12 +49,15 @@ void CustomCharacterState::Init() {
 
     counter_Theme = 0;
     CurrentTheme = game_data->json.Get_PlayerTheme();
+    found = false;
     for (const auto &themes: CustomThemes) {
         game_data->assets.loadTextureFromFile(themes.themeName, themes.themeFileName);
-        if (themes == CurrentTheme) {
-            break;
+        if(!found){
+            if (themes == CurrentTheme) {
+                found=true;
+            }
+            counter_Theme++;
         }
-        counter_Theme++;
     }
     if (counter_Theme > CustomThemes.size()) {
         counter_Theme = 0;

@@ -21,7 +21,7 @@ void JsonManager::Get_data() {
 		json_data["Player"]["ID"].asString(),
 		json_data["Player"]["File"].asString(),
         json_data["Theme"]["ObstacleColor"].asString(),
-        json_data["Theme"]["WallColor"].asString(),
+        json_data["Theme"]["WallColor"].asString()
 	};
 }
 

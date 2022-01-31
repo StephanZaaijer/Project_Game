@@ -137,7 +137,7 @@ void MainGameState::Update( float delta ){
         }
     }
 
-    _score.setString(std::to_string(character -> getScore()));
+    _score.setString(std::to_string(character->getScore()));
     _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 20.0f);
 
     if (character->_death){

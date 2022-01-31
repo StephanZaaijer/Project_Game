@@ -2,6 +2,7 @@
 #define PROJECT_GAME_DEFINITIONS_HPP
 
 #include <string>
+#include <SFML/Graphics.hpp>
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
@@ -89,6 +90,19 @@ struct CustomCharacter {
 		return (CharacterName == rhs.CharacterName) and (CharacterFileName == rhs.CharacterFileName);
 	}
 };
+
+struct CustomTheme{
+    sf::Color wall_color;
+    sf::Color object_color;
+    std::string themeName;
+    std::string themeFileName;
+    bool operator==(const CustomTheme &rhs) const{
+        return (themeName == rhs.themeName) and (themeFileName == rhs.themeFileName);
+    }
+};
+
+#define BLACK_RED_THEME_PATH "Assets/black_red.png"
+#define GREEN_BLUE_THEME_PATH "Assets/green_blue.png"
 
 #define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"

@@ -6,19 +6,21 @@
 		"Sound" : false,
 		"Soundlevel" : 97
 	},
+	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/jasper.png",
-		"ID" : "jasper"
+		"File" : "Assets/coen.jpg",
+		"ID" : "coen"
 	},
 	"Score" : 
 	{
-		"Highscore" : 329
+		"Highscore" : 123
 	},
-	"Theme":
+	"Theme" : 
 	{
-		"ObstacleColor": "Green",
-		"WallColor": "Red"
-	},
-	"Coins": 0
+		"File" : "Assets/black_red.png",
+		"ID" : "black_red_theme",
+		"ObstacleColor" : "Red",
+		"WallColor" : "Black"
+	}
 }

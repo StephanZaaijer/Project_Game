@@ -24,7 +24,7 @@ private:
   std::unique_ptr<Soundslider> soundslider;
   std::unique_ptr<Musicslider> musicslider;
   sf::Sound _clickSound;
-  bool prevMousestate = false;
+  bool prevMousestate = true;
 
 public:
   SoundSettingsState(GameDataReference data);

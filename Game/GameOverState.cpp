@@ -73,20 +73,31 @@ void GameOverState::HandleInput() {
             game_data->window.close();
         }
     }
-    if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
-        if(game_data->json.Get_Soundstate()){
+    if(game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+        if (game_data->json.Get_Soundstate()) {
             _deathSound.stop();
             _clickSound.play();
         }
         game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
     }
-    if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
-        if(game_data->json.Get_Soundstate()){
-            _clickSound.play();
+    else if (game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window)) {
+        if (!prevButtonState) {
+            if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
+                if (game_data->json.Get_Soundstate()) {
+                    _deathSound.stop();
+                    _clickSound.play();
+                }
+                game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
+            }
+            else if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
+                if (game_data->json.Get_Soundstate()) {
+                    _clickSound.play();
+                }
+                game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
+            }
         }
-        game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
     }
-    game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
+    prevButtonState=game_data->input.IsButtonPressed(sf::Mouse::Left);
 }
 
 void GameOverState::Update(float delta) {

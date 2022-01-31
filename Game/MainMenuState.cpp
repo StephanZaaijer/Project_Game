@@ -11,6 +11,10 @@ void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
     game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Background", BACKGROUND_PATH);
+    game_data->assets.loadTextureFromFile("BackgroundGround", BACKGROUND_GROUND_PATH);
+    game_data->assets.loadTextureFromFile("BackgroundNoClouds", BACKGROUND_NO_CLOUDS_PATH);
+    game_data->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
+    game_data->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
     game_data->assets.loadTextureFromFile("Customize Button", CUSTOMIZE_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Green Music Button", MUSIC_BUTTON_GREEN_PATH);

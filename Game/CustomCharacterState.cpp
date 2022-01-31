@@ -22,7 +22,7 @@ void CustomCharacterState::Init() {
     game_data->assets.loadTextureFromFile("Random Button", RANDOMBUTTON);
     game_data->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
     game_data->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
-    game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_SMALL);
 
     for (const auto& characters : CustomCharacters) {
         if (CurrentCharacter == characters) {
@@ -80,15 +80,19 @@ void CustomCharacterState::HandleInput() {
                     character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
                 }
                 if (game_data->input.IsSpriteClicked(_randomButton, sf::Mouse::Left, game_data->window)) {
-                    if (game_data->json.Get_Soundstate()) {
-                        _customClickSound.play();
-                    }
-                    counter = std::rand() % CustomCharacters.size();
-                    while (CurrentCharacter == CustomCharacters[counter]) {
+                    for(int i = 0; i < 10 + std::rand() % 40; i ++) {
+                        if (game_data->json.Get_Soundstate()) {
+                            _customClickSound.play();
+                        }
                         counter = std::rand() % CustomCharacters.size();
+                        while (CurrentCharacter == CustomCharacters[counter]) {
+                            counter = std::rand() % CustomCharacters.size();
+                        }
+                        CurrentCharacter = CustomCharacters[counter];
+                        character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
+                        Draw(0);
+                        sf::sleep(sf::milliseconds(20 + i*10));
                     }
-                    CurrentCharacter = CustomCharacters[counter];
-                    character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
                 }
                 if (game_data->input.IsSpriteClicked(_arrowLeft, sf::Mouse::Left, game_data->window)) {
                     if (game_data->json.Get_Soundstate()) {

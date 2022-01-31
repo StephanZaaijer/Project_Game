@@ -2,9 +2,9 @@
 	"Audio" : 
 	{
 		"Music" : true,
-		"Musiclevel" : 76,
+		"Musiclevel" : 24,
 		"Sound" : true,
-		"Soundlevel" : 42
+		"Soundlevel" : 23
 	},
 	"Player" : 
 	{
@@ -13,6 +13,6 @@
 	},
 	"Score" : 
 	{
-		"Highscore" : 66
+		"Highscore" : 215
 	}
 }

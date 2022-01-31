@@ -119,32 +119,40 @@ void MainGameState::Update( float delta ){
 
 
     switch (counter) {
-        case 0 * BACKGROUND_SWITCH:
+        case 0:
             background2.setTexture(this->game_data->assets.GetTexture("Background"));
             break;
 
-        case 1 * BACKGROUND_SWITCH:
+        case 1:
             background.setTexture(this->game_data->assets.GetTexture("Background"));
             break;
 
-        case 3 * BACKGROUND_SWITCH:
+        case 3:
             background.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
             break;
 
-        case 4 * BACKGROUND_SWITCH:
+        case 4:
             background2.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
             break;
 
-        case 5 * BACKGROUND_SWITCH:
+        case 5:
             background.setTexture(this->game_data->assets.GetTexture("SkyToSpaceBackground"));
             break;
 
-        case 6 * BACKGROUND_SWITCH:
+        case 6:
             background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
             break;
 
-        case 7 * BACKGROUND_SWITCH:
+        case 7:
             background.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            break;
+
+        case 8:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaghettiMonsterBackground"));
+            break;
+
+        case 12:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
             break;
     }
 
@@ -164,7 +172,7 @@ void MainGameState::Update( float delta ){
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
     for(const auto &obstacle : obstacles){
         if(obstacle->getBounds().intersects(character->GetBounds())){
-            character->_death = true;
+            //character->_death = true;
         }
     }
 

@@ -1,19 +1,19 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
-		"Musiclevel" : 76,
-		"Sound" : true,
-		"Soundlevel" : 42
+		"Music" : false,
+		"Musiclevel" : 93,
+		"Sound" : false,
+		"Soundlevel" : 97
 	},
 	"Player" : 
 	{
-		"File" : "Assets/franky.png",
-		"ID" : "franky"
+		"File" : "Assets/jasper.png",
+		"ID" : "jasper"
 	},
 	"Score" : 
 	{
-		"Highscore" : 66
+		"Highscore" : 329
 	},
 	"Theme":
 	{

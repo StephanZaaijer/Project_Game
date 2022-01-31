@@ -19,7 +19,7 @@ void CustomCharacterState::Init() {
         game_data->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
     }
 
-    game_data->assets.loadTextureFromFile("Random Button", RANDOMBUTTON);
+    game_data->assets.loadTextureFromFile("Random Button", RANDOM_BUTTON);
     game_data->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
     game_data->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
     game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);

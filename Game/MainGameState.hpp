@@ -29,6 +29,7 @@ private:
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
     int acquired_coins = 0;
+    int counter = 0;
     bool jumpSoundPlayed = false;
 
 

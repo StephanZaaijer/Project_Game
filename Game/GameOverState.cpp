@@ -6,11 +6,8 @@
 GameOverState::GameOverState(GameDataReference data) : game_data(std::move(data)){}
 
 void GameOverState::Init() {
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    game_data->assets.loadSoundBufferFromFile("_deathSound", SOUND_DEATH_PATH);
-
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
-    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("_deathSound"));
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
+    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("deathSound"));
 
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     _deathSound.setVolume(game_data->json.Get_Soundvolume());
@@ -19,19 +16,13 @@ void GameOverState::Init() {
         _deathSound.play();
     }
 
-    game_data->assets.loadTextureFromFile("State Background", BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("Main Menu Button", MAIN_MENU_BUTTON_PATH);
-
-    game_data->assets.loadFontFromFile("Bauhaus font", BAUHAUS_FONT_PATH);
-
-    _background.setTexture(game_data->assets.GetTexture("State Background"));
+    _background.setTexture(game_data->assets.GetTexture("Background"));
     _restartButton.setTexture(game_data->assets.GetTexture("Restart Button"));
-    _mainMenuButton.setTexture(game_data->assets.GetTexture("Main Menu Button"));
+    _mainMenuButton.setTexture(game_data->assets.GetTexture("MainMenu Button"));
 
-    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus font"));
-    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
-    _highscore.setFont( game_data->assets.GetFont("Bauhaus font"));
+    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus"));
+    _score.setFont(game_data->assets.GetFont("Bauhaus"));
+    _highscore.setFont( game_data->assets.GetFont("Bauhaus"));
 
     _restartButton.setPosition(SCREEN_WIDTH - (_restartButton.getGlobalBounds().width * 2.9),
                                SCREEN_HEIGHT - (_restartButton.getGlobalBounds().height * 1.1));
@@ -44,8 +35,8 @@ void GameOverState::Init() {
     _highscore.setString("Highscore: " + std::to_string(game_data->json.Get_Highscore()));
 
     _gameOverText.setCharacterSize(TEXT_TITLE_SIZE);
-    _score.setCharacterSize(120);
-    _highscore.setCharacterSize(120);
+    _score.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
+    _highscore.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
 
     _gameOverText.setFillColor(TEXT_COLOR);
     _score.setFillColor(TEXT_COLOR);
@@ -73,20 +64,31 @@ void GameOverState::HandleInput() {
             game_data->window.close();
         }
     }
-    if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
-        if(game_data->json.Get_Soundstate()){
+    if(game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+        if (game_data->json.Get_Soundstate()) {
             _deathSound.stop();
             _clickSound.play();
         }
         game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
     }
-    if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
-        if(game_data->json.Get_Soundstate()){
-            _clickSound.play();
+    else if (game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window)) {
+        if (!prevButtonState) {
+            if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
+                if (game_data->json.Get_Soundstate()) {
+                    _deathSound.stop();
+                    _clickSound.play();
+                }
+                game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
+            }
+            else if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
+                if (game_data->json.Get_Soundstate()) {
+                    _clickSound.play();
+                }
+                game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
+            }
         }
-        game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
     }
-    game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
+    prevButtonState=game_data->input.IsButtonPressed(sf::Mouse::Left);
 }
 
 void GameOverState::Update(float delta) {

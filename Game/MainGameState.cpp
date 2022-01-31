@@ -8,16 +8,11 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
-    game_data->assets.loadSoundBufferFromFile("_jumpSound", SOUND_JUMP_PATH);
-    game_data->assets.loadSoundBufferFromFile("_pauseSound", SOUND_PAUSE_PATH);
-    game_data->assets.loadSoundBufferFromFile("_gameMusicSound", MUSIC_GAME_PATH);
-    game_data->assets.loadTextureFromFile("_coin", COIN_PATH);
+    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("jumpSound"));
+    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("pauseSound"));
+    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("gameMusic"));
 
-    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("_jumpSound"));
-    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("_pauseSound"));
-    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("_gameMusicSound"));
-
-    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _score.setFont(game_data->assets.GetFont("Bauhaus"));
     _score.setCharacterSize(60);
     _score.setFillColor(TEXT_COLOR);
 
@@ -39,9 +34,10 @@ void MainGameState::Init(){
     obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
     wall = std::unique_ptr<Wall>(new Wall(game_data));
     coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(game_data));
-    background.setTexture(this->game_data->assets.GetTexture("Background"));
-    background2.setTexture(this->game_data->assets.GetTexture("Background"));
+    background.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
+    background2.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
+    background2.setPosition(0, backGroundOffsetY2);
     wall->spawn_Wall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
@@ -60,7 +56,7 @@ void MainGameState::HandleInput() {
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             if(game_data->json.Get_Soundstate()){
-                if(character->getJumpedTwice() && jumpSoundPlayed == false) {
+                if(character->getJumpedTwice() && !jumpSoundPlayed) {
                     _jumpSound.play();
                     jumpSoundPlayed = true;
                 }
@@ -112,14 +108,55 @@ void MainGameState::Update( float delta ){
         background2.setPosition(0, backGroundOffsetY2);
         if(backGroundOffsetY >= game_data->window.getSize().y){
             backGroundOffsetY = background2.getGlobalBounds().top - background2.getGlobalBounds().height;
+            counter++;
         }
         if(backGroundOffsetY2 >= game_data->window.getSize().y){
             backGroundOffsetY2 = background.getGlobalBounds().top - background.getGlobalBounds().height;
+            counter++;
         }
-
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
         character->moveDownByOffset(move_down_by);
     }
+
+
+    switch (counter) {
+        case 0:
+            background2.setTexture(this->game_data->assets.GetTexture("Background"));
+            break;
+
+        case 1:
+            background.setTexture(this->game_data->assets.GetTexture("Background"));
+            break;
+
+        case 3:
+            background.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
+            break;
+
+        case 4:
+            background2.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
+            break;
+
+        case 5:
+            background.setTexture(this->game_data->assets.GetTexture("SkyToSpaceBackground"));
+            break;
+
+        case 6:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            break;
+
+        case 7:
+            background.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            break;
+
+        case 8:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaghettiMonsterBackground"));
+            break;
+
+        case 12:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            break;
+    }
+
 
     // spawn walls and obstacles
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
@@ -150,7 +187,7 @@ void MainGameState::Update( float delta ){
         }
     }
 
-    _score.setString(std::to_string(character -> getScore()));
+    _score.setString(std::to_string(character->getScore()));
     _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 20.0f);
 
     if (character->_death){

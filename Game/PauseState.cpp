@@ -7,23 +7,21 @@ PauseState::PauseState(GameDataReference data):
 {}
 
 void PauseState::Init() {
-    game_data->assets.loadSoundBufferFromFile("_resumeSound", SOUND_RESUME_PATH);
-    _resumeSound.setBuffer(game_data->assets.GetSoundBuffer("_resumeSound"));
+    DarkFade.setSize(sf::Vector2f(game_data->window.getSize()));
+    DarkFade.setPosition(0, 0);
+    DarkFade.setFillColor(sf::Color(0, 0, 0, 120));
+
+    _resumeSound.setBuffer(game_data->assets.GetSoundBuffer("resumeSound"));
     _resumeSound.setVolume(game_data->json.Get_Soundvolume());
 
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
 
-    game_data->assets.loadTextureFromFile("Pause State Background", PAUSE_STATE_BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("Pause State Play Button", PAUSE_STATE_PLAY_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("Pause State Settings Button", PAUSE_STATE_SETTINGS_BUTTON_PATH);
+    _background.setTexture(game_data->assets.GetTexture("Background"));
+    _playButton.setTexture(game_data->assets.GetTexture("Play Button"));
+    _soundsettingsButton.setTexture(game_data->assets.GetTexture("Settings Button"));
 
-    _background.setTexture(game_data->assets.GetTexture("Pause State Background"));
-    _playButton.setTexture(game_data->assets.GetTexture("Pause State Play Button"));
-    _soundsettingsButton.setTexture(game_data->assets.GetTexture("Pause State Settings Button"));
-
-    _pauseText.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _pauseText.setFont(game_data->assets.GetFont("Bauhaus"));
     _pauseText.setString("PAUSED");
     _pauseText.setCharacterSize(TEXT_TITLE_SIZE);
     _pauseText.setFillColor(TEXT_COLOR);
@@ -48,22 +46,25 @@ void PauseState::HandleInput() {
         if (event.type == sf::Event::Closed) {
             game_data->window.close();
         }
-        if (game_data->input.IsSpriteClicked(_playButton, sf::Mouse::Left, game_data->window)) {
-            if(game_data->json.Get_Soundstate()){
-                _resumeSound.play();
-                while(_resumeSound.getStatus() == _resumeSound.Playing){}
+        if (game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window)) {
+            if(!prevMousestate) {
+                if (game_data->input.IsSpriteClicked(_playButton, sf::Mouse::Left, game_data->window)) {
+                    if (game_data->json.Get_Soundstate()) {
+                        _resumeSound.play();
+                        while (_resumeSound.getStatus() == _resumeSound.Playing) {}
+                    }
+                    game_data->machine.RemoveGameState();
+                }
+                if (game_data->input.IsSpriteClicked(_soundsettingsButton, sf::Mouse::Left, game_data->window)) {
+                    if (game_data->json.Get_Soundstate()) {
+                        _clickSound.play();
+                    }
+                    game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
+                }
             }
-            game_data->machine.RemoveGameState();
-        }
-        if (game_data->input.IsSpriteClicked(_soundsettingsButton, sf::Mouse::Left, game_data->window)) {
-            if(game_data->json.Get_Soundstate()){
-                _clickSound.play();
-            }
-            game_data->machine.AddGameState(GameStateReference(new SoundSettingsState(game_data)), false);
         }
     }
-
-    game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window);
+    prevMousestate = game_data->input.IsButtonPressed(sf::Mouse::Left);
 }
 
 void PauseState::Update(float delta) {
@@ -72,6 +73,7 @@ void PauseState::Update(float delta) {
 void PauseState::Draw(float delta) {
     game_data->window.clear();
     game_data->window.draw(_background);
+    game_data->window.draw(DarkFade);
     game_data->window.draw(_playButton);
     game_data->window.draw(_soundsettingsButton);
     game_data->window.draw(_pauseText);

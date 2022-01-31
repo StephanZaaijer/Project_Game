@@ -19,5 +19,6 @@
 	{
 		"ObstacleColor": "Green",
 		"WallColor": "Red"
-	}
+	},
+	"Coins": 0
 }

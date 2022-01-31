@@ -1,9 +1,12 @@
 {
 	"Audio" : 
 	{
-
+		"Music" : null,
+		"Musiclevel" : null,
+		"Sound" : null,
+		"Soundlevel" : null
 	},
-	"Coins" : 55,
+	"Coins" : 3,
 	"Player" : 
 	{
 		"File" : "Assets/daniel.jpg",

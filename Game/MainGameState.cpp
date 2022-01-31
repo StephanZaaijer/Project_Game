@@ -8,7 +8,6 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
-  
     _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("jumpSound"));
     _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("pauseSound"));
     _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("gameMusic"));
@@ -34,6 +33,7 @@ void MainGameState::Init(){
 
     obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
     wall = std::unique_ptr<Wall>(new Wall(game_data));
+    coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(game_data));
     background.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
     background2.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
@@ -101,6 +101,7 @@ void MainGameState::Update( float delta ){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         character ->addToScore(move_down_by);
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
+        coins_container ->move(sf::Vector2f(0, move_down_by));
         backGroundOffsetY += move_down_by/BACKGROUND_SLIDE;
         backGroundOffsetY2 += move_down_by/BACKGROUND_SLIDE;
         background.setPosition(0, backGroundOffsetY);
@@ -119,32 +120,40 @@ void MainGameState::Update( float delta ){
 
 
     switch (counter) {
-        case 0 * BACKGROUND_SWITCH:
+        case 0:
             background2.setTexture(this->game_data->assets.GetTexture("Background"));
             break;
 
-        case 1 * BACKGROUND_SWITCH:
+        case 1:
             background.setTexture(this->game_data->assets.GetTexture("Background"));
             break;
 
-        case 3 * BACKGROUND_SWITCH:
+        case 3:
             background.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
             break;
 
-        case 4 * BACKGROUND_SWITCH:
+        case 4:
             background2.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
             break;
 
-        case 5 * BACKGROUND_SWITCH:
+        case 5:
             background.setTexture(this->game_data->assets.GetTexture("SkyToSpaceBackground"));
             break;
 
-        case 6 * BACKGROUND_SWITCH:
+        case 6:
             background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
             break;
 
-        case 7 * BACKGROUND_SWITCH:
+        case 7:
             background.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            break;
+
+        case 8:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaghettiMonsterBackground"));
+            break;
+
+        case 12:
+            background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
             break;
     }
 
@@ -152,6 +161,7 @@ void MainGameState::Update( float delta ){
     // spawn walls and obstacles
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
         wall ->spawn_Wall();
+        coins_container ->spawn();
         for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
             if (!(wall->getWalls()[i].contains_obstacles)) {
                 obstacles_container->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
@@ -160,6 +170,15 @@ void MainGameState::Update( float delta ){
         }
         character->setHeight(0);
     }
+
+    std::vector<std::unique_ptr<Coin>> & coins = coins_container -> getCoins();
+    auto it = std::remove_if(coins.begin(),coins.end(),[this](std::unique_ptr<Coin> & coin){
+        return (coin -> getBounds().intersects(character->GetBounds()));
+    });
+    std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
+        this -> acquired_coins += 1;
+    });
+    coins.erase(it, coins.end());
 
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
     for(const auto &obstacle : obstacles){
@@ -173,6 +192,7 @@ void MainGameState::Update( float delta ){
 
     if (character->_death){
         game_data -> score = character -> getScore();
+        game_data -> coins = acquired_coins;
         if(_gameMusicSound.getStatus()){
             _gameMusicSound.stop();
         }
@@ -187,6 +207,7 @@ void MainGameState::Draw( float delta ){
     wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
     character->Draw();
+    coins_container -> draw();
     game_data -> window.draw(_score);
     game_data -> window.display();
 }

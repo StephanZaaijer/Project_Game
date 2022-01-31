@@ -1,24 +1,26 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
-		"Musiclevel" : 93,
-		"Sound" : true,
-		"Soundlevel" : 97
+		"Music" : false,
+		"Musiclevel" : 52,
+		"Sound" : false,
+		"Soundlevel" : 40
 	},
-	"Coins" : 0,
+	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/stephan.png",
-		"ID" : "stephan"
+		"File" : "Assets/daniel.jpg",
+		"ID" : "daniel"
 	},
 	"Score" : 
 	{
-		"Highscore" : 329
+		"Highscore" : 123
 	},
 	"Theme" : 
 	{
-		"ObstacleColor" : "Green",
-		"WallColor" : "Red"
+		"File" : "Assets/cyan_blue.png",
+		"ID" : "cyan_blue_theme",
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Cyan"
 	}
 }

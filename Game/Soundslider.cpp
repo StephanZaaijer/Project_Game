@@ -26,7 +26,7 @@ Soundslider::Soundslider(GameDataReference game_data, sf::Vector2f slider_locati
 
 	}
 	slider_block.setPosition(prev_sliderblock_location);
-	level.setFont(game_data->assets.GetFont("Bauhaus font"));
+	level.setFont(game_data->assets.GetFont("Bauhaus"));
 	level.setPosition(Textlocation);
 	level.setCharacterSize(fontsize);
 	level.setString(std::to_string(game_data->json.Get_Soundvolume()));

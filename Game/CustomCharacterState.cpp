@@ -7,19 +7,8 @@ CustomCharacterState::CustomCharacterState(GameDataReference data) :
 }
 
 void CustomCharacterState::Init() {
-    game_data->assets.loadFontFromFile("Bauhaus font", BAUHAUS_FONT_PATH);
-
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    game_data->assets.loadSoundBufferFromFile("_customClickSound", SOUND_CLICK_CUSTOM_PATH);
-
-    game_data->assets.loadTextureFromFile("Random Button", RANDOM_BUTTON);
-    game_data->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
-    game_data->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
-    game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
-
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
-    _customClickSound.setBuffer(game_data->assets.GetSoundBuffer("_customClickSound"));
-
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
+    _customClickSound.setBuffer(game_data->assets.GetSoundBuffer("customClickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     _customClickSound.setVolume(game_data->json.Get_Soundvolume());
 
@@ -105,7 +94,6 @@ void CustomCharacterState::HandleInput() {
     while (game_data->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             game_data->json.Set_PlayerSprite(CurrentCharacter);
-            game_data->json.Set_PlayerTheme(CurrentTheme);
             game_data->window.close();
         }
         if (game_data->input.ChangeMouseWhenHoveringOverButton(ClickableButtons, game_data->window)) {

@@ -6,11 +6,8 @@
 GameOverState::GameOverState(GameDataReference data) : game_data(std::move(data)){}
 
 void GameOverState::Init() {
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    game_data->assets.loadSoundBufferFromFile("_deathSound", SOUND_DEATH_PATH);
-
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
-    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("_deathSound"));
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
+    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("deathSound"));
 
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     _deathSound.setVolume(game_data->json.Get_Soundvolume());
@@ -19,19 +16,13 @@ void GameOverState::Init() {
         _deathSound.play();
     }
 
-    game_data->assets.loadTextureFromFile("State Background", BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("Main Menu Button", MAIN_MENU_BUTTON_PATH);
-
-    game_data->assets.loadFontFromFile("Bauhaus font", BAUHAUS_FONT_PATH);
-
-    _background.setTexture(game_data->assets.GetTexture("State Background"));
+    _background.setTexture(game_data->assets.GetTexture("Background"));
     _restartButton.setTexture(game_data->assets.GetTexture("Restart Button"));
-    _mainMenuButton.setTexture(game_data->assets.GetTexture("Main Menu Button"));
+    _mainMenuButton.setTexture(game_data->assets.GetTexture("MainMenu Button"));
 
-    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus font"));
-    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
-    _highscore.setFont( game_data->assets.GetFont("Bauhaus font"));
+    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus"));
+    _score.setFont(game_data->assets.GetFont("Bauhaus"));
+    _highscore.setFont( game_data->assets.GetFont("Bauhaus"));
 
     _restartButton.setPosition(SCREEN_WIDTH - (_restartButton.getGlobalBounds().width * 2.9),
                                SCREEN_HEIGHT - (_restartButton.getGlobalBounds().height * 1.1));

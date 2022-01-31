@@ -5,22 +5,13 @@ SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::m
 
 
 void SoundSettingsState::Init() {
-
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
-
-    game_data->assets.loadTextureFromFile("Sound Settings Background", SOUND_SETTINGS_BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("Music Button Green", MUSIC_BUTTON_GREEN_PATH);
-    game_data->assets.loadTextureFromFile("Music Button Red", MUSIC_BUTTON_RED_PATH);
-    game_data->assets.loadTextureFromFile("Sound Button Green", SOUND_BUTTON_GREEN_PATH);
-    game_data->assets.loadTextureFromFile("Sound Button Red", SOUND_BUTTON_RED_PATH);
-    game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
-    _background.setTexture(game_data->assets.GetTexture("Sound Settings Background"));
+    _background.setTexture(game_data->assets.GetTexture("Background"));
     _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
-    _musicButton.setTexture(game_data->assets.GetTexture("Music Button Green"));
-    _soundButton.setTexture(game_data->assets.GetTexture("Sound Button Green"));
-    _settingsText.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _musicButton.setTexture(game_data->assets.GetTexture("Green Music Button"));
+    _soundButton.setTexture(game_data->assets.GetTexture("Green Sound Button"));
+    _settingsText.setFont(game_data->assets.GetFont("Bauhaus"));
     _settingsText.setString("SETTINGS");
     _settingsText.setCharacterSize(TEXT_TITLE_SIZE);
     _settingsText.setFillColor(TEXT_COLOR);
@@ -29,11 +20,11 @@ void SoundSettingsState::Init() {
     _settingsText.setOrigin(tmpRect.left + tmpRect.width / 2,
         tmpRect.top + tmpRect.height / 2);
 
-    game_data->json.Get_Musicstate() ? _musicButton.setTexture(game_data->assets.GetTexture("Music Button Green")) : _musicButton.setTexture(
-        game_data->assets.GetTexture("Music Button Red"));
+    game_data->json.Get_Musicstate() ? _musicButton.setTexture(game_data->assets.GetTexture("Green Music Button")) : _musicButton.setTexture(
+        game_data->assets.GetTexture("Red Music Button"));
 
-    game_data->json.Get_Soundstate() ? _soundButton.setTexture(game_data->assets.GetTexture("Sound Button Green")) : _soundButton.setTexture(
-        game_data->assets.GetTexture("Sound Button Red"));
+    game_data->json.Get_Soundstate() ? _soundButton.setTexture(game_data->assets.GetTexture("Green Sound Button")) : _soundButton.setTexture(
+        game_data->assets.GetTexture("Red Sound Button"));
 
     _settingsText.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 8.0f);
     _backButton.setPosition(SCREEN_WIDTH / 2.0f - (_backButton.getGlobalBounds().width / 2),
@@ -87,17 +78,17 @@ void SoundSettingsState::Update(float delta) {
     soundslider->update();
     musicslider->update();
     if (game_data->json.Get_Musicstate()) {
-        _musicButton.setTexture(game_data->assets.GetTexture("Music Button Green"));
+        _musicButton.setTexture(game_data->assets.GetTexture("Green Music Button"));
     }
     else {
-        _musicButton.setTexture(game_data->assets.GetTexture("Music Button Red"));
+        _musicButton.setTexture(game_data->assets.GetTexture("Red Music Button"));
     }
     if (game_data->json.Get_Soundstate()) {
-        _soundButton.setTexture(game_data->assets.GetTexture("Sound Button Green"));
+        _soundButton.setTexture(game_data->assets.GetTexture("Green Sound Button"));
     }
     else {
         _soundButton.setTexture(
-            game_data->assets.GetTexture("Sound Button Red"));
+            game_data->assets.GetTexture("Red Sound Button"));
     }
 }
 

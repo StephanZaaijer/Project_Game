@@ -38,19 +38,14 @@ enum character_states {
 
 #define RANDOM_BUTTON "Assets/randomButton.png"
 
-#define BACKGROUND_PATH "Assets/StartupBackground.png"
+#define BACKGROUND_PATH "Assets/Background.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
 #define GAME_IMAGE_PATH "Assets/StartUpImage.png"
 #define GROEP_6_BANNER_PATH "Assets/Groep6Banner.png"
-#define MAIN_MENU_PLAY_BUTTON_PATH "Assets/PlayButton2.png"
-#define MAIN_MENU_SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
-#define MAIN_MENU_CUSTOM_BUTTON_PATH "Assets/CustomButton.png"
+#define PLAY_BUTTON_PATH "Assets/PlayButton.png"
+#define SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
+#define CUSTOMIZE_BUTTON_PATH "Assets/CustomButton.png"
 
-#define PAUSE_STATE_PLAY_BUTTON_PATH "Assets/PlayButton2.png"
-#define PAUSE_STATE_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
-#define PAUSE_STATE_SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
-
-#define SOUND_SETTINGS_BACKGROUND_PATH "Assets/SoundSettingsBackground.png"
 #define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"
 #define MUSIC_BUTTON_RED_PATH "Assets/MusicButtonRed.png"
 #define SOUND_BUTTON_GREEN_PATH "Assets/SoundButtonGreen.png"

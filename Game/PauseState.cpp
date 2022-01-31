@@ -7,23 +7,17 @@ PauseState::PauseState(GameDataReference data):
 {}
 
 void PauseState::Init() {
-    game_data->assets.loadSoundBufferFromFile("_resumeSound", SOUND_RESUME_PATH);
-    _resumeSound.setBuffer(game_data->assets.GetSoundBuffer("_resumeSound"));
+    _resumeSound.setBuffer(game_data->assets.GetSoundBuffer("resumeSound"));
     _resumeSound.setVolume(game_data->json.Get_Soundvolume());
 
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
 
-    game_data->assets.loadTextureFromFile("Pause State Background", PAUSE_STATE_BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("Pause State Play Button", PAUSE_STATE_PLAY_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("Pause State Settings Button", PAUSE_STATE_SETTINGS_BUTTON_PATH);
+    _background.setTexture(game_data->assets.GetTexture("Background"));
+    _playButton.setTexture(game_data->assets.GetTexture("Play Button"));
+    _soundsettingsButton.setTexture(game_data->assets.GetTexture("Settings Button"));
 
-    _background.setTexture(game_data->assets.GetTexture("Pause State Background"));
-    _playButton.setTexture(game_data->assets.GetTexture("Pause State Play Button"));
-    _soundsettingsButton.setTexture(game_data->assets.GetTexture("Pause State Settings Button"));
-
-    _pauseText.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _pauseText.setFont(game_data->assets.GetFont("Bauhaus"));
     _pauseText.setString("PAUSED");
     _pauseText.setCharacterSize(TEXT_TITLE_SIZE);
     _pauseText.setFillColor(TEXT_COLOR);

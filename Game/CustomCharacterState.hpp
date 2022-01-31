@@ -33,6 +33,7 @@ private:
     sf::Sound _clickSound;
     sf::Sound _customClickSound;
     sf::Text _coins_text;
+
     int coins;
     int counter_Characters;
     int counter_Theme;

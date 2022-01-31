@@ -20,8 +20,9 @@ void JsonManager::Get_data() {
 		json_data["Score"]["Highscore"].asInt(),
 		json_data["Player"]["ID"].asString(),
 		json_data["Player"]["File"].asString(),
-        json_data["Theme"]["ObstacleColor"].asString(),
-        json_data["Theme"]["WallColor"].asString()
+    json_data["Theme"]["ObstacleColor"].asString(),
+    json_data["Theme"]["WallColor"].asString(),
+		json_data["Coins"].asInt()
 	};
 }
 
@@ -43,6 +44,10 @@ int JsonManager::Get_Musicvolume() const {
 
 int JsonManager::Get_Highscore() const {
 	return data.Highscore;
+}
+
+int JsonManager::Get_Coins() const {
+	return data.Coins;
 }
 
 CustomCharacter JsonManager::Get_PlayerSprite() const {
@@ -119,6 +124,16 @@ void JsonManager::Set_PlayerSprite(CustomCharacter PlayerSprite) {
 	write_out = true;
 }
 
+void JsonManager::Set_Coins(int coins){
+	if (coins == data.Coins) {
+		return;
+	}
+	data.Coins = coins;
+	json_data["Coins"] = coins;
+	clock.restart();
+	write_out = true;
+}
+
 void JsonManager::Set_ObstacleColor(sf::Color ObstacleColor) {
     if (ObstacleColor == string_to_color(data.ObstacleColor)) {
         return;
@@ -140,7 +155,7 @@ void JsonManager::Set_WallColor(sf::Color WallColor) {
 }
 
 void JsonManager::Update() {
-	if (write_out and clock.getElapsedTime().asSeconds() >= 5) {
+	if (write_out and clock.getElapsedTime().asSeconds() >= JSON_WRITEOUT_TIME) {
 		write_out = false;
 		Write_Json_to_file();
 	}

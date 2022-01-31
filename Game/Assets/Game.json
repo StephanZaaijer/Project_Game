@@ -2,22 +2,23 @@
 	"Audio" : 
 	{
 		"Music" : true,
-		"Musiclevel" : 76,
+		"Musiclevel" : 93,
 		"Sound" : true,
-		"Soundlevel" : 42
+		"Soundlevel" : 97
 	},
+	"Coins" : 0,
 	"Player" : 
 	{
-		"File" : "Assets/franky.png",
-		"ID" : "franky"
+		"File" : "Assets/stephan.png",
+		"ID" : "stephan"
 	},
 	"Score" : 
 	{
-		"Highscore" : 66
+		"Highscore" : 329
 	},
-	"Theme":
+	"Theme" : 
 	{
-		"ObstacleColor": "Green",
-		"WallColor": "Red"
+		"ObstacleColor" : "Green",
+		"WallColor" : "Red"
 	}
 }

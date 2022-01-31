@@ -8,15 +8,11 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
-    game_data->assets.loadSoundBufferFromFile("_jumpSound", SOUND_JUMP_PATH);
-    game_data->assets.loadSoundBufferFromFile("_pauseSound", SOUND_PAUSE_PATH);
-    game_data->assets.loadSoundBufferFromFile("_gameMusicSound", MUSIC_GAME_PATH);
+    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("jumpSound"));
+    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("pauseSound"));
+    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("gameMusic"));
 
-    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("_jumpSound"));
-    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("_pauseSound"));
-    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("_gameMusicSound"));
-
-    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _score.setFont(game_data->assets.GetFont("Bauhaus"));
     _score.setCharacterSize(60);
     _score.setFillColor(TEXT_COLOR);
 
@@ -58,7 +54,7 @@ void MainGameState::HandleInput() {
         }
         if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
             if(game_data->json.Get_Soundstate()){
-                if(character->getJumpedTwice() && jumpSoundPlayed == false) {
+                if(character->getJumpedTwice() && !jumpSoundPlayed) {
                     _jumpSound.play();
                     jumpSoundPlayed = true;
                 }

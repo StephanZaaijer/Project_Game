@@ -172,7 +172,7 @@ void MainGameState::Update( float delta ){
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
     for(const auto &obstacle : obstacles){
         if(obstacle->getBounds().intersects(character->GetBounds())){
-            //character->_death = true;
+            character->_death = true;
         }
     }
 

@@ -1,18 +1,23 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
-		"Musiclevel" : 24,
-		"Sound" : true,
-		"Soundlevel" : 23
+
 	},
+	"Coins" : 55,
 	"Player" : 
 	{
-		"File" : "Assets/franky.png",
-		"ID" : "franky"
+		"File" : "Assets/daniel.jpg",
+		"ID" : "daniel"
 	},
 	"Score" : 
 	{
-		"Highscore" : 215
+		"Highscore" : 123
+	},
+	"Theme" : 
+	{
+		"File" : "Assets/cyan_blue.png",
+		"ID" : "cyan_blue_theme",
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Cyan"
 	}
 }

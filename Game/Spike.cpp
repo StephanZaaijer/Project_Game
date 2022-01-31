@@ -16,12 +16,12 @@ sf::Vector2f Spike::getPosition(){
 void Spike::spawn(){
     if(facing == left){
         Triangle.setPosition(sf::Vector2f(position.x - Triangle.getRadius(),position.y ));
-        Triangle.setFillColor(sf::Color::Black);
+        Triangle.setFillColor(game_data->json.Get_ObstacleColor());
         Triangle.setRotation(270);
     }
     else{
         Triangle.setPosition(sf::Vector2f(position.x + Triangle.getRadius(),position.y ));
-        Triangle.setFillColor(sf::Color::Black);
+        Triangle.setFillColor(game_data->json.Get_ObstacleColor());
         Triangle.setRotation(90);
     }
 }

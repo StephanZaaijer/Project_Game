@@ -8,21 +8,12 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
-    game_data->assets.loadSoundBufferFromFile("_jumpSound", SOUND_JUMP_PATH);
-    game_data->assets.loadSoundBufferFromFile("_pauseSound", SOUND_PAUSE_PATH);
-    game_data->assets.loadSoundBufferFromFile("_gameMusicSound", MUSIC_GAME_PATH);
-    game_data->assets.loadTextureFromFile("Background", BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("BackgroundGround", BACKGROUND_GROUND_PATH);
-    game_data->assets.loadTextureFromFile("BackgroundNoClouds", BACKGROUND_NO_CLOUDS_PATH);
-    game_data->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
-    game_data->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
+  
+    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("jumpSound"));
+    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("pauseSound"));
+    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("gameMusic"));
 
-
-    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("_jumpSound"));
-    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("_pauseSound"));
-    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("_gameMusicSound"));
-
-    _score.setFont(game_data->assets.GetFont("Bauhaus font"));
+    _score.setFont(game_data->assets.GetFont("Bauhaus"));
     _score.setCharacterSize(60);
     _score.setFillColor(TEXT_COLOR);
 
@@ -177,7 +168,7 @@ void MainGameState::Update( float delta ){
         }
     }
 
-    _score.setString(std::to_string(character -> getScore()));
+    _score.setString(std::to_string(character->getScore()));
     _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 20.0f);
 
     if (character->_death){

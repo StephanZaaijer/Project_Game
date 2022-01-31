@@ -26,6 +26,7 @@ enum character_states {
 #define GAME_OVER_SCORE_TEXT_SIZE 120
 #define START_UP_TIME 0.4
 
+#define SKIN_PRICE 15
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 #define CHARACTER_2 "Assets/character_2.png"
 #define CHARACTER_3 "Assets/character_3.png"
@@ -49,6 +50,8 @@ enum character_states {
 #define SETTINGS_BUTTON_PATH "Assets/SettingsButton.png"
 #define CUSTOMIZE_BUTTON_PATH "Assets/CustomButton.png"
 #define RANDOM_BUTTON "Assets/randomButton.png"
+#define BUY_BUTTON_PATH "Assets/BuyButton.png"
+#define EQUIP_BUTTON_PATH "Assets/EquipButton.png"
 
 #define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"
 #define MUSIC_BUTTON_RED_PATH "Assets/MusicButtonRed.png"

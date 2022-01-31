@@ -22,6 +22,7 @@ public:
         std::string WallColor;
         std::string ObstacleColor;
         int Coins;
+        Json::Value BoughtSkins;
 	};
 
 	JsonManager(std::string Gamefile);
@@ -31,6 +32,7 @@ public:
 	int Get_Musicvolume() const;
 	int Get_Highscore() const;
     int Get_Coins() const;
+    std::vector<bool> Get_Bought_Skins() const;
 	CustomCharacter Get_PlayerSprite() const;
     CustomTheme Get_PlayerTheme() const;
     sf::Color Get_ObstacleColor() const;
@@ -43,8 +45,7 @@ public:
 	void Set_PlayerSprite(const CustomCharacter& PlayerSprite);
     void Set_PlayerTheme(const CustomTheme& PlayerTheme);
     void Set_Coins(int coins);
-    void Set_ObstacleColor(sf::Color ObstacleColor);
-    void Set_WallColor(sf::Color WallColor);
+    void Set_BoughtSkins(int index, bool value);
 
     void Update();
 	void Direct_write();

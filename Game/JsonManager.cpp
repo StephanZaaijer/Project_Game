@@ -20,12 +20,13 @@ void JsonManager::Get_data() {
 		json_data["Score"]["Highscore"].asInt(),
 		json_data["Player"]["ID"].asString(),
 		json_data["Player"]["File"].asString(),
-    json_data["Theme"]["ID"].asString(),
-    json_data["Theme"]["File"].asString(),
-    json_data["Theme"]["WallColor"].asString(),
-    json_data["Theme"]["ObstacleColor"].asString(),
-		json_data["Coins"].asInt()
-	};
+        json_data["Theme"]["ID"].asString(),
+        json_data["Theme"]["File"].asString(),
+        json_data["Theme"]["WallColor"].asString(),
+        json_data["Theme"]["ObstacleColor"].asString(),
+		json_data["Coins"].asInt(),
+        json_data["Bought_Skins"]
+        };
 }
 
 bool JsonManager::Get_Soundstate() const {
@@ -65,6 +66,14 @@ sf::Color JsonManager::Get_ObstacleColor() const {
 
 sf::Color JsonManager::Get_WallColor() const {
     return string_to_color(data.WallColor);
+}
+
+std::vector<bool> JsonManager::Get_Bought_Skins() const{
+    std::vector<bool> tmp;
+    for( const auto& skin : data.BoughtSkins){
+        tmp.push_back(skin.asBool());
+    }
+    return tmp;
 }
 
 void JsonManager::Set_Soundstate(bool state) {
@@ -155,22 +164,9 @@ void JsonManager::Set_Coins(int coins){
 	write_out = true;
 }
 
-void JsonManager::Set_ObstacleColor(sf::Color ObstacleColor) {
-    if (ObstacleColor == string_to_color(data.ObstacleColor)) {
-        return;
-    }
-    data.ObstacleColor = color_to_string(ObstacleColor);
-    json_data["Theme"]["ObstacleColor"]=color_to_string(ObstacleColor);
-    clock.restart();
-    write_out = true;
-}
-
-void JsonManager::Set_WallColor(sf::Color WallColor) {
-    if (WallColor == string_to_color(data.WallColor)) {
-        return;
-    }
-    data.WallColor = color_to_string(WallColor);
-    json_data["Theme"]["WallColor"]=color_to_string(WallColor);
+void JsonManager::Set_BoughtSkins(int index, bool value) {
+    data.BoughtSkins[index] = value;
+    json_data["Bought_Skins"] = data.BoughtSkins;
     clock.restart();
     write_out = true;
 }
@@ -234,3 +230,5 @@ void JsonManager::Write_Json_to_file() {
 	Outputfile << json_data;
 	Outputfile.close();
 }
+
+

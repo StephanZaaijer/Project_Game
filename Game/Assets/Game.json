@@ -1,12 +1,24 @@
 {
 	"Audio" : 
 	{
-		"Music" : null,
-		"Musiclevel" : null,
-		"Sound" : null,
-		"Soundlevel" : null
+		"Music" : false,
+		"Musiclevel" : 91,
+		"Sound" : false,
+		"Soundlevel" : 98
 	},
-	"Coins" : 3,
+	"Bought_Skins" : 
+	[
+		true,
+		true,
+		false,
+		false,
+		false,
+		true,
+		true,
+		true,
+		true
+	],
+	"Coins" : 5,
 	"Player" : 
 	{
 		"File" : "Assets/daniel.jpg",
@@ -18,9 +30,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/cyan_blue.png",
-		"ID" : "cyan_blue_theme",
-		"ObstacleColor" : "Blue",
-		"WallColor" : "Cyan"
+		"File" : "Assets/black_red.png",
+		"ID" : "black_red_theme",
+		"ObstacleColor" : "Red",
+		"WallColor" : "Black"
 	}
 }

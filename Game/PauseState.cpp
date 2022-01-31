@@ -7,6 +7,10 @@ PauseState::PauseState(GameDataReference data):
 {}
 
 void PauseState::Init() {
+    DarkFade.setSize(sf::Vector2f(game_data->window.getSize()));
+    DarkFade.setPosition(0, 0);
+    DarkFade.setFillColor(sf::Color(0, 0, 0, 120));
+
     _resumeSound.setBuffer(game_data->assets.GetSoundBuffer("resumeSound"));
     _resumeSound.setVolume(game_data->json.Get_Soundvolume());
 
@@ -69,6 +73,7 @@ void PauseState::Update(float delta) {
 void PauseState::Draw(float delta) {
     game_data->window.clear();
     game_data->window.draw(_background);
+    game_data->window.draw(DarkFade);
     game_data->window.draw(_playButton);
     game_data->window.draw(_soundsettingsButton);
     game_data->window.draw(_pauseText);

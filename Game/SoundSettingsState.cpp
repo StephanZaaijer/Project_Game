@@ -5,6 +5,10 @@ SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::m
 
 
 void SoundSettingsState::Init() {
+    DarkFade.setSize(sf::Vector2f(game_data->window.getSize()));
+    DarkFade.setPosition(0, 0);
+    DarkFade.setFillColor(sf::Color(0, 0, 0, 120));
+
     _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     _background.setTexture(game_data->assets.GetTexture("Background"));
@@ -95,6 +99,7 @@ void SoundSettingsState::Update(float delta) {
 void SoundSettingsState::Draw(float delta) {
     game_data->window.clear();
     game_data->window.draw(_background);
+    game_data->window.draw(DarkFade);
     soundslider->Draw();
     musicslider->Draw();
     game_data->window.draw(_musicButton);

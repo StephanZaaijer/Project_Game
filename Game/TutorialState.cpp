@@ -5,16 +5,19 @@ TutorialState::TutorialState(GameDataReference data) :
 
 void TutorialState::Init(){
     game_data->assets.loadTextureFromFile("Tutorial", TUTORIAL);
+    game_data->assets.loadSoundBufferFromFile("clickSound", SOUND_CLICK_PATH);
+
     tutorial.setTexture(game_data->assets.GetTexture("Tutorial"));
-
     _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
-
-
     _background.setTexture(game_data->assets.GetTexture("Background"));
-    _backButton.setPosition(SCREEN_WIDTH / 2.0f - (_backButton.getGlobalBounds().width / 2),
+
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
+    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+
+    _backButton.setPosition(SCREEN_WIDTH / 6.0f * 6 - _backButton.getGlobalBounds().width ,
                             SCREEN_HEIGHT - (_backButton.getGlobalBounds().height * 1.1));
-    tutorial.setPosition(200,0);
-    tutorial.setScale(1.5,1);
+    tutorial.setPosition(400,100);
+    tutorial.setScale(1,1);
 }
 
 void TutorialState::HandleInput() {

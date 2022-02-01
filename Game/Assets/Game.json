@@ -3,7 +3,7 @@
 	{
 		"Music" : false,
 		"Musiclevel" : 91,
-		"Sound" : false,
+		"Sound" : true,
 		"Soundlevel" : 98
 	},
 	"Bought_Skins" : 
@@ -18,7 +18,7 @@
 		false,
 		false
 	],
-	"Coins" : 14,
+	"Coins" : 33,
 	"Player" : 
 	{
 		"File" : "Assets/character_3.png",

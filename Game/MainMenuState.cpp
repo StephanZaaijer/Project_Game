@@ -34,6 +34,7 @@ void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
 
     game_data->assets.loadFontFromFile("Bauhaus", BAUHAUS_FONT_PATH);
+    game_data->assets.loadFontFromFile("8-bit", BIT_FONT_PATH);
 
     game_data->assets.loadSoundBufferFromFile("clickSound", SOUND_CLICK_PATH);
     game_data->assets.loadSoundBufferFromFile("customClickSound", SOUND_CLICK_CUSTOM_PATH);
@@ -61,7 +62,17 @@ void MainMenuState::Init() {
     _tutorialButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*1.5);
     _settingsButton.setPosition(_playButton.getGlobalBounds().left - _playButton.getGlobalBounds().width, _title.getGlobalBounds().height*2);
     _customButton.setPosition(_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2);
-    _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height);
+
+    _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
+
+    _quote.setFont(game_data->assets.GetFont("8-bit"));
+    _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
+    _quote.setCharacterSize(MAIN_MENU_FONT_SIZE);
+    _quote.setRotation(-8);
+    _quote.setPosition(680,110);
+    _quote.setOrigin(_quote.getGlobalBounds().width/2, _quote.getLocalBounds().height/2);
+    _quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
+
 }
 
 void MainMenuState::HandleInput() {
@@ -112,10 +123,20 @@ void MainMenuState::HandleInput() {
 }
 
 void MainMenuState::Resume() {
+    scaler = MAIN_MENU_FONT_SIZE_SCALER;
     _clickSound.setVolume((float)game_data->json.Get_Soundvolume());
+    _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
+    _quote.setPosition(680,110);
+    _quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
 }
 
 void MainMenuState::Update(float delta) {
+    if(fontSize == fontSizeOrigin + 5 * scaler){
+        scaler *= -1;
+    }
+    _quote.setCharacterSize(fontSize);
+    _quote.setOrigin(_quote.getGlobalBounds().width/2, _quote.getLocalBounds().height/2);
+    fontSize += scaler;
 }
 
 void MainMenuState::Draw(float delta) {
@@ -127,5 +148,6 @@ void MainMenuState::Draw(float delta) {
     game_data->window.draw(_settingsButton);
     game_data->window.draw(_customButton);
     game_data->window.draw(_banner);
+    game_data->window.draw(_quote);
     game_data->window.display();
 }

@@ -71,6 +71,7 @@ enum character_states {
 #define MAIN_MENU_BUTTON_PATH "Assets/MainMenuButton.png"
 
 #define BAUHAUS_FONT_PATH "Assets/Bauhaus.ttf"
+#define BIT_FONT_PATH "Assets/8-bit.ttf"
 
 #define GAME_FILE "Assets/Game.json"
 
@@ -89,7 +90,32 @@ enum character_states {
 #define WALL_SLIDE_DELTA 4 //Higher is slower
 #define BACKGROUND_SLIDE 2 //Higher is slower
 
+#define SPIKE_SIZE 75
+
+#define QUOTE_1 "Franky is our favorite Asian!"
+#define QUOTE_2 "Is this EZ mode?"
+#define QUOTE_3 "How about you actually get good?"
+#define QUOTE_4 "Peukie doen?"
+#define QUOTE_5 "Double Destructor!"
+#define QUOTE_6 "Sheeeeesh!!!"
+#define QUOTE_7 "Coen ga je nog wat doen?"
+#define QUOTE_8 "Nick heeft weer nicks gedaan"
+#define QUOTE_9 "Danièl"
+#define QUOTE_10 "Ik zie alles breedbeeld"
+#define QUOTE_11 "Lag!"
+#define QUOTE_12 "@everyone"
+#define QUOTE_13 "Push Push Push!"
+#define QUOTE_14 "Pull Harder!"
+#define QUOTE_15 "Apex?"
+#define QUOTE_16 "Teams?"
+#define QUOTE_17 "Wat een kut game!"
+#define QUOTE_18 "Franky ligt waarschijnlijk nog in bed"
+#define QUOTE_19 "En wat zijn jullie aan het doen?"
+#define MAIN_MENU_FONT_SIZE 60
+#define MAIN_MENU_FONT_SIZE_SCALER 1
+
 #define SPIKE_SIZE 65
+
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 

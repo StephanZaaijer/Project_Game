@@ -25,7 +25,9 @@ private:
     sf::Sprite _theme;
     sf::Sprite _buyEquipButton;
     sf::Sprite _equipButtonTheme;
-    sf::Sprite _characterImg;
+
+    sf::Text _equippedCharater;
+    sf::Text _equippedTheme;
 
     std::unique_ptr<Character> character;
     std::vector<sf::Sprite*> ClickableButtons = { &_arrowRightCharacter, &_arrowLeftCharacter ,&_backButton,&_randomButtonCharacter, &_randomButtonTheme, &_arrowLeftTheme, &_arrowRightTheme, &_buyEquipButton, &_equipButtonTheme};

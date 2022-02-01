@@ -9,20 +9,21 @@
 	"Bought_Skins" : 
 	[
 		true,
+		false,
+		true,
 		true,
 		false,
 		false,
 		false,
-		true,
-		true,
-		true,
-		true
+		false,
+		false
 	],
 	"Coins" : 69,
+	"Coins" : 12,
 	"Player" : 
 	{
-		"File" : "Assets/daniel.jpg",
-		"ID" : "daniel"
+		"File" : "Assets/character_3.png",
+		"ID" : "character_3"
 	},
 	"Score" : 
 	{
@@ -30,9 +31,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/black_red.png",
-		"ID" : "black_red_theme",
-		"ObstacleColor" : "Red",
-		"WallColor" : "Black"
+		"File" : "Assets/cyan_blue.png",
+		"ID" : "cyan_blue_theme",
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Cyan"
 	}
 }

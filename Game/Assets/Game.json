@@ -1,18 +1,38 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
-		"Musiclevel" : 76,
-		"Sound" : true,
-		"Soundlevel" : 42
+		"Music" : false,
+		"Musiclevel" : 91,
+		"Sound" : false,
+		"Soundlevel" : 98
 	},
+	"Bought_Skins" : 
+	[
+		true,
+		true,
+		false,
+		false,
+		false,
+		true,
+		true,
+		true,
+		true
+	],
+	"Coins" : 5,
 	"Player" : 
 	{
-		"File" : "Assets/franky.png",
-		"ID" : "franky"
+		"File" : "Assets/daniel.jpg",
+		"ID" : "daniel"
 	},
 	"Score" : 
 	{
-		"Highscore" : 66
+		"Highscore" : 123
+	},
+	"Theme" : 
+	{
+		"File" : "Assets/black_red.png",
+		"ID" : "black_red_theme",
+		"ObstacleColor" : "Red",
+		"WallColor" : "Black"
 	}
 }

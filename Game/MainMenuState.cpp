@@ -7,24 +7,50 @@
 MainMenuState::MainMenuState(GameDataReference data) : game_data(std::move(data)) {}
 
 void MainMenuState::Init() {
+    game_data->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
+    game_data->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
+    game_data->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Background", BACKGROUND_PATH);
+    game_data->assets.loadTextureFromFile("BackgroundGround", BACKGROUND_GROUND_PATH);
+    game_data->assets.loadTextureFromFile("BackgroundNoClouds", BACKGROUND_NO_CLOUDS_PATH);
+    game_data->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
+    game_data->assets.loadTextureFromFile("Buy Button", BUY_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Coin", COIN_PATH);
+    game_data->assets.loadTextureFromFile("Customize Button", CUSTOMIZE_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Equip Button", EQUIP_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Green Music Button", MUSIC_BUTTON_GREEN_PATH);
+    game_data->assets.loadTextureFromFile("Green Sound Button", SOUND_BUTTON_GREEN_PATH);
+    game_data->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
+    game_data->assets.loadTextureFromFile("MainMenu Button", MAIN_MENU_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Play Button", PLAY_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Random Button", RANDOM_BUTTON);
+    game_data->assets.loadTextureFromFile("Red Music Button", MUSIC_BUTTON_RED_PATH);
+    game_data->assets.loadTextureFromFile("Red Sound Button", SOUND_BUTTON_RED_PATH);
+    game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Settings Button", SETTINGS_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
+    game_data->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
+    game_data->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
 
-    game_data->assets.loadSoundBufferFromFile("_clickSound", SOUND_CLICK_PATH);
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("_clickSound"));
+    game_data->assets.loadFontFromFile("Bauhaus", BAUHAUS_FONT_PATH);
+
+    game_data->assets.loadSoundBufferFromFile("clickSound", SOUND_CLICK_PATH);
+    game_data->assets.loadSoundBufferFromFile("customClickSound", SOUND_CLICK_CUSTOM_PATH);
+    game_data->assets.loadSoundBufferFromFile("deathSound", SOUND_DEATH_PATH);
+    game_data->assets.loadSoundBufferFromFile("gameMusic", MUSIC_GAME_PATH);
+    game_data->assets.loadSoundBufferFromFile("jumpSound", SOUND_JUMP_PATH);
+    game_data->assets.loadSoundBufferFromFile("pauseSound", SOUND_PAUSE_PATH);
+    game_data->assets.loadSoundBufferFromFile("resumeSound", SOUND_RESUME_PATH);
+
+    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
 
-    game_data->assets.loadTextureFromFile("MainMenu State Background", BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("MainMenu State Banner", GAME_TITLE_PATH);
-    game_data->assets.loadTextureFromFile("MainMenu State groep6 Banner", GROEP_6_BANNER_PATH);
-    game_data->assets.loadTextureFromFile("MainMenu Play Button", MAIN_MENU_PLAY_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("MainMenu Settings Button", MAIN_MENU_SETTINGS_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("MainMenu Custom Button", MAIN_MENU_CUSTOM_BUTTON_PATH);
-
-    _background.setTexture(game_data->assets.GetTexture("MainMenu State Background"));
-    _title.setTexture(game_data->assets.GetTexture("MainMenu State Banner"));
-    _banner.setTexture(game_data->assets.GetTexture("MainMenu State groep6 Banner"));
-    _playButton.setTexture(game_data->assets.GetTexture("MainMenu Play Button"));
-    _settingsButton.setTexture(game_data->assets.GetTexture("MainMenu Settings Button"));
-    _customButton.setTexture(game_data->assets.GetTexture("MainMenu Custom Button"));
+    _background.setTexture(game_data->assets.GetTexture("Background"));
+    _title.setTexture(game_data->assets.GetTexture("Banner"));
+    _banner.setTexture(game_data->assets.GetTexture("Groep6 Banner"));
+    _playButton.setTexture(game_data->assets.GetTexture("Play Button"));
+    _settingsButton.setTexture(game_data->assets.GetTexture("Settings Button"));
+    _customButton.setTexture(game_data->assets.GetTexture("Customize Button"));
 
     _title.setPosition((SCREEN_WIDTH/2.0f - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2);
     _playButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*2);

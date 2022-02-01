@@ -13,7 +13,7 @@ sf::Vector2f Deathwall::getPosition(){
 void Deathwall::spawn(){
     deathwall.setPosition(sf::Vector2f(position.x, position.y ));
     deathwall.setSize(sf::Vector2f(WALL_WIDTH/2.0f + 1.0f, WALL_HEIGHT/3.0f));
-    deathwall.setFillColor(sf::Color::Black);
+    deathwall.setFillColor(game_data->json.Get_ObstacleColor());
 }
 
 void Deathwall::move(sf::Vector2f move_by){

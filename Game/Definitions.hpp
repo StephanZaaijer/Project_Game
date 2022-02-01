@@ -77,15 +77,19 @@ enum character_states {
 #define WALL_HEIGHT 750
 #define WALL_HEIGHT 750
 #define WALL_WIDTH 50
+#define BORDER_WALL_1_START 0.0
+#define BORDER_WALL_2_START (SCREEN_WIDTH / 6.0f * 5.0f)
+#define BORDER_WALL_WIDTH (SCREEN_WIDTH / 6.0f)
+
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
 #define WALL_OBSTACLE_HEIGHT_2 (WALL_HEIGHT / 2.0f)
 #define WALL_OBSTACLE_HEIGHT_3 (WALL_HEIGHT / 6.0f * 5.0f)
-#define WALL_SPAWN_DISTANT 200
+#define WALL_SPAWN_DISTANT 250
 #define CHARACTER_MAX_HEIGHT 700
 #define WALL_SLIDE_DELTA 4 //Higher is slower
 #define BACKGROUND_SLIDE 2 //Higher is slower
 
-#define SPIKE_SIZE 75
+#define SPIKE_SIZE 65
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 
@@ -116,6 +120,7 @@ struct CustomTheme{
 #define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"
 #define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
+#define SOUND_COIN_PICKUP_PATH "Assets/coin.wav"
 #define SOUND_DEATH_PATH "Assets/death.wav"
 #define SOUND_JUMP_PATH "Assets/jump.wav"
 #define SOUND_PAUSE_PATH "Assets/pause.wav"

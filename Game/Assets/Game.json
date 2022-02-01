@@ -1,7 +1,7 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
+		"Music" : true,
 		"Musiclevel" : 91,
 		"Sound" : true,
 		"Soundlevel" : 98
@@ -18,7 +18,8 @@
 		false,
 		false
 	],
-	"Coins" : 33,
+	"Coins" : 69,
+	"Coins" : 12,
 	"Player" : 
 	{
 		"File" : "Assets/character_3.png",
@@ -26,7 +27,7 @@
 	},
 	"Score" : 
 	{
-		"Highscore" : 123
+		"Highscore" : 320
 	},
 	"Theme" : 
 	{

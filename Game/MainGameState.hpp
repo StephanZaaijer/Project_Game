@@ -11,6 +11,7 @@
 #include "Character.hpp"
 #include "GameOverState.hpp"
 #include "Line.hpp"
+#include "CoinContainer.hpp"
 
 class MainGameState : public GameState{
 private:
@@ -21,13 +22,20 @@ private:
     std::unique_ptr<Obstacle_Container> obstacles_container;
     std::unique_ptr<Character> character;
     CustomCharacter characterinfo;
+    std::unique_ptr<Coin_Container> coins_container;
     sf::Text _score;
+    sf::Text coin_text;
     sf::Sound _jumpSound;
     sf::Sound _pauseSound;
     sf::Sound _gameMusicSound;
+    sf::Sound _coinPickup;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
+    int acquired_coins = 0;
+    int counter = 0;
     bool jumpSoundPlayed = false;
+    bool prevKeystate_start=true;
+
 
 public:
     MainGameState(GameDataReference data);

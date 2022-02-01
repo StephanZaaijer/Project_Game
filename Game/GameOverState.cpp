@@ -33,6 +33,7 @@ void GameOverState::Init() {
     _score.setString("Score: " + std::to_string(game_data -> score));
     game_data->json.Set_Highscore(game_data -> score);
     _highscore.setString("Highscore: " + std::to_string(game_data->json.Get_Highscore()));
+    game_data->json.Set_Coins(game_data -> json.Get_Coins() + game_data -> coins);
 
     _gameOverText.setCharacterSize(TEXT_TITLE_SIZE);
     _score.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
@@ -64,7 +65,7 @@ void GameOverState::HandleInput() {
             game_data->window.close();
         }
     }
-    if(game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+    if(game_data->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate) {
         if (game_data->json.Get_Soundstate()) {
             _deathSound.stop();
             _clickSound.play();
@@ -88,6 +89,7 @@ void GameOverState::HandleInput() {
             }
         }
     }
+    prevKeystate=game_data->input.IsKeyPressed(sf::Keyboard::Space);
     prevButtonState=game_data->input.IsButtonPressed(sf::Mouse::Left);
 }
 

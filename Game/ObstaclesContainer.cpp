@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector>
 #include "Deathwall.hpp"
+#include <time.h>
 
 #include <iostream>
 
@@ -11,6 +12,7 @@ Obstacle_Container::Obstacle_Container(GameDataReference data):
 {}
 
 void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
+    srand (time(NULL));
     int Wall_Left_Side = rand() % 4 + 1;
     int Wall_Right_Side = rand() % 4 + 1;
     int Wall_Left_Side_obstacles = rand() % 2 + 1;

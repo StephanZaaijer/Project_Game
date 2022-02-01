@@ -2,23 +2,38 @@
 	"Audio" : 
 	{
 		"Music" : true,
-		"Musiclevel" : 93,
+		"Musiclevel" : 91,
 		"Sound" : true,
-		"Soundlevel" : 97
+		"Soundlevel" : 98
 	},
-	"Coins" : 0,
+	"Bought_Skins" : 
+	[
+		true,
+		false,
+		true,
+		true,
+		false,
+		false,
+		false,
+		false,
+		true
+	],
+	"Coins" : 35,
+
 	"Player" : 
 	{
-		"File" : "Assets/stephan.png",
-		"ID" : "stephan"
+		"File" : "Assets/character_3.png",
+		"ID" : "character_3"
 	},
 	"Score" : 
 	{
-		"Highscore" : 329
+		"Highscore" : 320
 	},
 	"Theme" : 
 	{
-		"ObstacleColor" : "Green",
-		"WallColor" : "Red"
+		"File" : "Assets/yellow_black.png",
+		"ID" : "yellow_black_theme",
+		"ObstacleColor" : "Black",
+		"WallColor" : "Yellow"
 	}
 }

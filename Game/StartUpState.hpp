@@ -1,6 +1,8 @@
 #ifndef PROJECT_GAME_STARTUPSTATE_HPP
 #define PROJECT_GAME_STARTUPSTATE_HPP
 
+///@file
+
 #include <iostream>
 #include <sstream>
 #include <SFML/Graphics.hpp>
@@ -12,6 +14,7 @@
 #include "MainGameState.hpp"
 #include "CustomCharacterState.hpp"
 
+///\class StartUpState ///\public GameState
 class StartUpState : public GameState {
 private:
     GameDataReference game_data;
@@ -22,10 +25,22 @@ private:
     sf::Sprite _banner;
 
 public:
+    ///\brief StartUpState constructor
+    /// \param data
     StartUpState(GameDataReference data);
+
+    ///\brief Init() function
     void Init() override;
+
+    ///\brief HandleInput() function
     void HandleInput() override;
+
+    ///\brief Update function
+    /// \param delta
     void Update(float delta) override;
+
+    ///\brief Draw() function
+    /// \param delta
     void Draw(float delta) override;
 
 };

@@ -18,11 +18,11 @@
 		false,
 		false
 	],
-	"Coins" : 10,
+	"Coins" : 12,
 	"Player" : 
 	{
-		"File" : "Assets/character.jpg",
-		"ID" : "character"
+		"File" : "Assets/character_3.png",
+		"ID" : "character_3"
 	},
 	"Score" : 
 	{
@@ -30,9 +30,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/yellow_black.png",
-		"ID" : "yellow_black_theme",
-		"ObstacleColor" : "Black",
-		"WallColor" : "Yellow"
+		"File" : "Assets/cyan_blue.png",
+		"ID" : "cyan_blue_theme",
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Cyan"
 	}
 }

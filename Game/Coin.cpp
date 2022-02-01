@@ -3,7 +3,7 @@
 Coin::Coin(GameDataReference game_data):
     game_data (game_data)
 {
-    _coin.setTexture(game_data -> assets.GetTexture("coin"));
+    _coin.setTexture(game_data -> assets.GetTexture("Coin"));
     _coin.setScale(COIN_SCALE, COIN_SCALE);
 }
 

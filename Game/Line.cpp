@@ -8,39 +8,9 @@ Line::Line(const sf::Vector2f &pointA, const sf::Vector2f &pointB):
 
 }
 
-void Line::setPointA(const sf::Vector2f &pointA) {
-    A = pointA;
-}
-
-void Line::setPointA(const float &x, const float &y) {
-    A = {x, y};
-}
-
-void Line::setPointB(const sf::Vector2f &pointB) {
-    B = pointB;
-}
-
-void Line::setPointB(const float &x, const float &y) {
-    B = {x, y};
-}
-
 formula Line::calculateFormula() {
-//    std::cout << "zero_point : \t" << "(" << zero_point.x << ", " << zero_point.y << ")" << "\n\n";
     std::cout << "pointA_original : \t" << "(" << A.x << ", " << A.y << ")" << "\n";
     std::cout << "pointB_original : \t" << "(" << B.x << ", " << B.y << ")" << "\n\n";
-
-
-
-//    float distance_to_origin_x = A.x - zero_point.x;
-//    float distance_to_origin_y = A.y - zero_point.y;
-//    sf::Vector2f A_to_origin = {distance_to_origin_x, distance_to_origin_y};
-//    std::cout << "point A: \t" << "(" << A_to_origin.x << ", " << A_to_origin.y << ")" << "\n";
-//
-//    distance_to_origin_x = B.x - zero_point.x;
-//    distance_to_origin_y = B.y - zero_point.y;
-//    sf::Vector2f B_to_origin = {distance_to_origin_x, distance_to_origin_y};
-//    std::cout << "point B: \t" << "(" << B_to_origin.x << ", " << B_to_origin.y << ")" << "\n";
-
 
 
     float dx = A.x - B.x;
@@ -58,10 +28,11 @@ formula Line::calculateFormula() {
 
 
 axisIntersection Line::intersects(const sf::Vector2f & reference_point){
+
     formula f = calculateFormula();
 
-    float result_x = f.get_x_intersection(reference_point);
-    float result_y = f.get_y_intersection(reference_point);
+    float result_x = f.get_x_intersection(reference_point.x);
+    float result_y = f.get_y_intersection(reference_point.y);
 
     bool x = result_x > reference_point.x;
     bool y = result_y < reference_point.y; // lower than because y-axis is inverted. lower y means higher up in the screen.
@@ -70,4 +41,15 @@ axisIntersection Line::intersects(const sf::Vector2f & reference_point){
     std::cout << x << " " << y << "\n";
 
     return {x, y};
+}
+
+std::vector<sf::Vector2f> &Line::get_points() {
+    formula f = calculateFormula();
+    int amount = A.x > B.x ? A.x - B.x : B.x - A.x;
+    int start_x = A.x < B.x ? A.x : B.x;
+    for (int i = 1; i < amount+1; i++) {
+        float x = start_x + i;
+        points_array.push_back({ x, f.get_y_intersection(x) });
+    }
+    return points_array;
 }

@@ -136,8 +136,6 @@ void MainGameState::Update( float delta ){
         else if(obstacle->getID() == spike){
             if(obstacle->getBounds().intersects(character->GetBounds())){
                 if(character->CollideSpike(obstacle)){
-                    Draw(0);
-//                    sf::sleep(sf::seconds(3));
                     character->_death = true;
                 }
             }

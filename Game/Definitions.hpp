@@ -37,6 +37,8 @@ enum character_states {
 #define FRANKY "Assets/franky.png"
 #define STEPHAN "Assets/stephan.png"
 
+
+#define TUTORIAL "Assets/Tutorial.png"
 #define BACKGROUND_GROUND_PATH "Assets/BackgroundGround.png"
 #define BACKGROUND_PATH "Assets/Background.png"
 #define BACKGROUND_NO_CLOUDS_PATH "Assets/BackgroundNoClouds.png"

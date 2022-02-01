@@ -18,7 +18,7 @@
 		false,
 		false
 	],
-	"Coins" : 12,
+	"Coins" : 14,
 	"Player" : 
 	{
 		"File" : "Assets/character_3.png",

@@ -201,9 +201,8 @@ void CustomCharacterState::HandleInput() {
                             _customClickSound.play();
                         }
                         counter_Characters = std::rand() % CustomCharacters.size();
-                        while ((CurrentCharacter == CustomCharacters[counter_Characters]) && (!skin_bought[counter_Characters])) {
+                        while ((CurrentCharacter == CustomCharacters[counter_Characters]) || (!skin_bought[counter_Characters])) {
                             counter_Characters = std::rand() % CustomCharacters.size();
-                            std::cout << CurrentCharacter.CharacterName << "\t" << skin_bought[counter_Characters] << std::endl;
                         }
                         CurrentCharacter = CustomCharacters[counter_Characters];
                         character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));

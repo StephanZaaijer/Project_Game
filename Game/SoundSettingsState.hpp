@@ -16,6 +16,7 @@ class SoundSettingsState : public GameState {
 private:
   GameDataReference game_data;
   sf::Sprite _background;
+  sf::RectangleShape DarkFade;
   sf::Sprite _musicButton;
   sf::Sprite _soundButton;
   sf::Sprite _backButton;
@@ -24,7 +25,7 @@ private:
   std::unique_ptr<Soundslider> soundslider;
   std::unique_ptr<Musicslider> musicslider;
   sf::Sound _clickSound;
-  bool prevMousestate = false;
+  bool prevMousestate = true;
 
 public:
   SoundSettingsState(GameDataReference data);

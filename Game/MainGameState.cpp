@@ -33,13 +33,12 @@ void MainGameState::Init(){
 
     obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
     wall = std::unique_ptr<Wall>(new Wall(game_data));
-    background.setTexture(this->game_data->assets.GetTexture("Background"));
-    background2.setTexture(this->game_data->assets.GetTexture("Background"));
+    background.setTexture(game_data->assets.GetTexture("Background"));
+    background2.setTexture(game_data->assets.GetTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     wall->spawn_Wall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
-//        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
         wall->setContainObstacleTrue(i);
     }
 }

@@ -6,8 +6,17 @@
 Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position):
     Obstacle(identifier::spike),
     game_data(std::move(game_data)),
-    facing (facing)
+    facing (facing),
+    position (position)
 {
+    spawn();
+}
+
+sf::Vector2f Spike::getPosition(){
+    return Triangle.getPosition();
+}
+
+void Spike::spawn(){
     Triangle.setPointCount(3);
 
     if(facing == left){
@@ -25,14 +34,6 @@ Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f posi
         Triangle.setFillColor(game_data->json.Get_ObstacleColor());
     }
 }
-
-sf::Vector2f Spike::getPosition(){
-    return Triangle.getPosition();
-}
-
-//void Spike::spawn(){
-//
-//}
 
 void Spike::move(sf::Vector2f move_by){
     Triangle.move(move_by);

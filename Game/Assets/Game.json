@@ -1,9 +1,9 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
+		"Music" : false,
 		"Musiclevel" : 91,
-		"Sound" : true,
+		"Sound" : false,
 		"Soundlevel" : 98
 	},
 	"Bought_Skins" : 
@@ -18,12 +18,11 @@
 		false,
 		true
 	],
-	"Coins" : 35,
-
+	"Coins" : 38,
 	"Player" : 
 	{
-		"File" : "Assets/character_3.png",
-		"ID" : "character_3"
+		"File" : "Assets/character.jpg",
+		"ID" : "character"
 	},
 	"Score" : 
 	{
@@ -31,9 +30,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/yellow_black.png",
-		"ID" : "yellow_black_theme",
-		"ObstacleColor" : "Black",
-		"WallColor" : "Yellow"
+		"File" : "Assets/cyan_blue.png",
+		"ID" : "cyan_blue_theme",
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Cyan"
 	}
 }

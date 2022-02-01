@@ -187,9 +187,10 @@ void MainGameState::Update( float delta ){
         std::vector<std::unique_ptr<Coin>> &coins = coins_container->getCoins();
             for (const auto &obstacle: obstacles) {
                 auto it = std::remove_if(coins.begin(), coins.end(),
-                                         [this, &obstacle](std::unique_ptr<Coin> &coin) {
-                                                 return (obstacle->getBounds().intersects(coin->getBounds()));
-                                             });
+                                         [this, &obstacle](std::unique_ptr<Coin> &coin)
+                {
+                    return (obstacle->getBounds().intersects(coin->getBounds()));
+                });
                 coins.erase(it, coins.end());
             }
         character->setHeight(0);
@@ -224,9 +225,9 @@ void MainGameState::Update( float delta ){
     }
 
     _score.setString("Score: " + std::to_string(character->getScore()));
-    _score.setPosition(BORDER_WALL_WIDTH + (SCREEN_HEIGHT / 20),SCREEN_HEIGHT / 20);
+    _score.setPosition(BORDER_WALL_WIDTH + (SCREEN_HEIGHT / 20.0f),SCREEN_HEIGHT / 20.0f);
     coin_text.setString("Coins: " + std::to_string(acquired_coins));
-    coin_text.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20) - coin_text.getGlobalBounds().width,SCREEN_HEIGHT / 20);
+    coin_text.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20.0f) - coin_text.getGlobalBounds().width,SCREEN_HEIGHT / 20.0f);
 
     if (character->_death){
         game_data -> score = character -> getScore();

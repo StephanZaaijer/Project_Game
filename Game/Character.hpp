@@ -2,9 +2,18 @@
 #define CHARACTER_HPP
 
 #include <SFML/Graphics.hpp>
+#include <memory>
+#include "Line.hpp"
+#include "Obstacle.hpp"
 #include "Definitions.hpp"
 #include "Game.hpp"
 #include "GameOverState.hpp"
+
+struct direction{
+    bool x;
+    bool y;
+};
+
 
 class Character {
 public:
@@ -14,11 +23,13 @@ public:
     void Update(float dt);
     void Tap();
     void CollideWalls(const std::vector<sf::RectangleShape> & Rects );
+    bool CollideSpike(const std::unique_ptr<Obstacle> & spike);
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
     void resetJumps();
     int getHeight() const;
     int getScore() const;
+    direction getDirection();
     void addToScore(int add);
     sf::Sprite & getSprite ();
     sf::FloatRect GetBounds();

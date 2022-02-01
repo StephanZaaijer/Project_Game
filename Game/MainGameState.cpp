@@ -128,9 +128,21 @@ void MainGameState::Update( float delta ){
 
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
     for(const auto &obstacle : obstacles){
-        if(obstacle->getBounds().intersects(character->GetBounds())){
-            character->_death = true;
+        if(obstacle->getID() == deathwall){
+            if(obstacle->getBounds().intersects(character->GetBounds())){
+//                character->_death = true;
+            }
         }
+        else if(obstacle->getID() == spike){
+            if(obstacle->getBounds().intersects(character->GetBounds())){
+                if(character->CollideSpike(obstacle)){
+                    Draw(0);
+//                    sf::sleep(sf::seconds(3));
+//                    character->_death = true;
+                }
+            }
+        }
+
     }
 
     _score.setString(std::to_string(character -> getScore()));

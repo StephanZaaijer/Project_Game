@@ -2,8 +2,9 @@
 
 
 Deathwall::Deathwall(GameDataReference game_data, sf::Vector2f position):
-        game_data(std::move(game_data)),
-        position (position)
+    Obstacle(identifier::deathwall),
+    game_data(std::move(game_data)),
+    position (position)
 {spawn();}
 
 sf::Vector2f Deathwall::getPosition(){
@@ -25,4 +26,4 @@ void Deathwall::draw() const{
 
 sf::FloatRect Deathwall::getBounds() {
     return deathwall.getGlobalBounds();
-};
+}

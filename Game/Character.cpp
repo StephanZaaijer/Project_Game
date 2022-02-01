@@ -188,6 +188,121 @@ bool Character::getJumpedTwice() {
 
 }
 
+direction Character::getDirection() {
+    bool x = _velocity.x > 0;
+    bool y = _velocity.y > 0;
+
+    return direction {x, y};
+}
+
+bool Character::CollideSpike(const std::unique_ptr<Obstacle> &spike) {
+    sf::Vector2f own_pos = _characterSprite.getPosition();
+    sf::FloatRect own_hitbox = _characterSprite.getGlobalBounds();
+    sf::Vector2f arr_own_points[] = {sf::Vector2f(own_pos.x, own_pos.y),
+                                     sf::Vector2f(own_pos.x + own_hitbox.width, own_pos.y),
+                                     sf::Vector2f(own_pos.x, own_pos.y + own_hitbox.height),
+                                     sf::Vector2f(own_pos.x + own_hitbox.width, own_pos.y + own_hitbox.height)};
+
+    if(spike->getFace() == right){
+        sf::FloatRect bounds = spike->getBounds();
+        sf::Vector2f pos = spike->getPosition();
+//        sf::Vector2f upper_left = { (pos.x - bounds.width/2), (pos.y - bounds.height/2) };
+//        sf::Vector2f mid_right  = { (pos.x + bounds.width/2),  pos.y };
+//        sf::Vector2f lower_left = { (pos.x - bounds.width/2), (pos.y + bounds.height/2) };
+        sf::Vector2f upper_left = { pos.x, pos.y };
+        sf::Vector2f mid_right  = { (pos.x + bounds.width),  (pos.y + bounds.height/2) };
+        sf::Vector2f lower_left = { pos.x, pos.y + bounds.height };
+
+
+        Line l1(upper_left, mid_right);
+        sf::VertexArray lines(sf::LineStrip, 2);
+        lines[0] = upper_left;
+        lines[1] = mid_right;
+        lines[0].color = sf::Color::Blue;
+        lines[1].color = sf::Color::Blue;
+
+        sf::VertexArray lines2(sf::LineStrip, 2);
+        lines2[0] = lower_left;
+        lines2[1] = mid_right;
+        lines2[0].color = sf::Color::Blue;
+        lines2[1].color = sf::Color::Blue;
+
+        game_data -> window.draw(lines);
+        game_data -> window.draw(lines2);
+        game_data -> window.display();
+        Line l2(lower_left, mid_right);
+
+        axisIntersection intersections;
+
+        intersections = l1.intersects(arr_own_points[2]);
+        if(intersections.x && intersections.y){
+            std::cout << "RIGHT: l1 with ownpoints 2" << "\n";
+
+            return true;
+        }
+        intersections = l2.intersects(arr_own_points[0]);
+        if(intersections.x && !intersections.y) {
+            std::cout << "RIGHT: l2 with ownpoints 0" << "\n";
+
+
+            return true;
+        }
+    }
+
+    if(spike->getFace() == left){
+        sf::FloatRect bounds = spike->getBounds();
+        sf::Vector2f pos = spike->getPosition();
+//        sf::Vector2f upper_right = { (pos.x + bounds.width/2), (pos.y - bounds.height/2) };
+//        sf::Vector2f mid_left  = { (pos.x - bounds.width/2),  pos.y };
+//        sf::Vector2f lower_right = { (pos.x + bounds.width/2), (pos.y + bounds.height/2) };
+        sf::Vector2f upper_right = { (pos.x + bounds.width), pos.y };
+        sf::Vector2f mid_left  = { pos.x,  (pos.y + bounds.height/2) };
+        sf::Vector2f lower_right = { (pos.x + bounds.width), (pos.y + bounds.height) };
+
+
+
+        Line l1(upper_right, mid_left);
+
+        sf::VertexArray lines(sf::LineStrip, 2);
+        lines[0] = upper_right;
+        lines[1] = mid_left;
+        lines[0].color = sf::Color::Blue;
+        lines[1].color = sf::Color::Blue;
+
+        sf::VertexArray lines2(sf::LineStrip, 2);
+        lines2[0] = lower_right;
+        lines2[1] = mid_left;
+        lines2[0].color = sf::Color::Blue;
+        lines2[1].color = sf::Color::Blue;
+
+        game_data -> window.draw(lines);
+        game_data -> window.draw(lines2);
+        game_data -> window.display();
+
+
+        Line l2(lower_right, mid_left);
+
+        axisIntersection intersections;
+
+        intersections = l1.intersects(arr_own_points[3]);
+        if(!intersections.x && intersections.y){
+            std::cout << "LEFT: l1 with ownpoints 3" << "\n";
+
+            return true;
+        }
+        intersections = l2.intersects(arr_own_points[1]);
+        if(!intersections.x && !intersections.y) {
+            std::cout << "LEFT: l2 with ownpoints 1" << "\n";
+
+            return true;
+        }
+    }
+
+
+    return false;
+}
+
+
 
 
 

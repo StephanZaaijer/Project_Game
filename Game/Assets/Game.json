@@ -1,10 +1,10 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
+		"Music" : false,
 		"Musiclevel" : 91,
 		"Sound" : true,
-		"Soundlevel" : 15
+		"Soundlevel" : 98
 	},
 	"Bought_Skins" : 
 	[
@@ -18,11 +18,11 @@
 		false,
 		true
 	],
-	"Coins" : 55,
+	"Coins" : 38,
 	"Player" : 
 	{
-		"File" : "Assets/character_3.png",
-		"ID" : "character_3"
+		"File" : "Assets/character.jpg",
+		"ID" : "character"
 	},
 	"Quotes" : 
 	[

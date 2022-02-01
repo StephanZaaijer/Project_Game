@@ -72,7 +72,7 @@ enum character_states {
 #define WALL_SLIDE_DELTA 4 //Higher is slower
 #define BACKGROUND_SLIDE 4 //Higher is slower
 
-#define SPIKE_SIZE 75
+#define SPIKE_SIZE 125
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right, neither};
 enum identifier {spike, deathwall};

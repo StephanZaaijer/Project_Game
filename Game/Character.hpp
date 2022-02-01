@@ -9,12 +9,6 @@
 #include "Game.hpp"
 #include "GameOverState.hpp"
 
-struct direction{
-    bool x;
-    bool y;
-};
-
-
 class Character {
 public:
     Character(GameDataReference data);
@@ -29,7 +23,6 @@ public:
     void resetJumps();
     int getHeight() const;
     int getScore() const;
-    direction getDirection();
     void addToScore(int add);
     sf::Sprite & getSprite ();
     sf::FloatRect GetBounds();

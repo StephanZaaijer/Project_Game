@@ -130,7 +130,7 @@ void MainGameState::Update( float delta ){
     for(const auto &obstacle : obstacles){
         if(obstacle->getID() == deathwall){
             if(obstacle->getBounds().intersects(character->GetBounds())){
-//                character->_death = true;
+                character->_death = true;
             }
         }
         else if(obstacle->getID() == spike){

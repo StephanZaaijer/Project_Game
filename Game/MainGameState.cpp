@@ -54,7 +54,7 @@ void MainGameState::HandleInput() {
             game_data->window.close();
             break;
         }
-        if (game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+        if (game_data->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate_start) {
             if(game_data->json.Get_Soundstate()){
                 if(character->getJumpedTwice() && !jumpSoundPlayed) {
                     _jumpSound.play();
@@ -86,6 +86,9 @@ void MainGameState::HandleInput() {
             }
             game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
         }
+    }
+    if(prevKeystate_start){
+        prevKeystate_start = game_data->input.IsKeyPressed(sf::Keyboard::Space);
     }
 }
 

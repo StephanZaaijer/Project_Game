@@ -31,6 +31,7 @@ private:
     int acquired_coins = 0;
     int counter = 0;
     bool jumpSoundPlayed = false;
+    bool prevKeystate_start=true;
 
 
 public:

@@ -65,7 +65,7 @@ void GameOverState::HandleInput() {
             game_data->window.close();
         }
     }
-    if(game_data->input.IsKeyPressed(sf::Keyboard::Space)) {
+    if(game_data->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate) {
         if (game_data->json.Get_Soundstate()) {
             _deathSound.stop();
             _clickSound.play();
@@ -89,6 +89,7 @@ void GameOverState::HandleInput() {
             }
         }
     }
+    prevKeystate=game_data->input.IsKeyPressed(sf::Keyboard::Space);
     prevButtonState=game_data->input.IsButtonPressed(sf::Mouse::Left);
 }
 

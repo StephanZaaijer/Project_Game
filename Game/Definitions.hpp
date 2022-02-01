@@ -114,8 +114,6 @@ enum character_states {
 #define MAIN_MENU_FONT_SIZE 60
 #define MAIN_MENU_FONT_SIZE_SCALER 1
 
-#define SPIKE_SIZE 65
-
 enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right};
 

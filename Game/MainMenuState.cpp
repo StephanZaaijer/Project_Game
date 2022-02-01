@@ -13,11 +13,11 @@ void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("Background", BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("BackgroundGround", BACKGROUND_GROUND_PATH);
     game_data->assets.loadTextureFromFile("BackgroundNoClouds", BACKGROUND_NO_CLOUDS_PATH);
-    game_data->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
-    game_data->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
     game_data->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
+    game_data->assets.loadTextureFromFile("Buy Button", BUY_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Coin", COIN_PATH);
     game_data->assets.loadTextureFromFile("Customize Button", CUSTOMIZE_BUTTON_PATH);
+    game_data->assets.loadTextureFromFile("Equip Button", EQUIP_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Green Music Button", MUSIC_BUTTON_GREEN_PATH);
     game_data->assets.loadTextureFromFile("Green Sound Button", SOUND_BUTTON_GREEN_PATH);
     game_data->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
@@ -28,9 +28,9 @@ void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("Red Sound Button", SOUND_BUTTON_RED_PATH);
     game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Settings Button", SETTINGS_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("Buy Button", BUY_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("Equip Button", EQUIP_BUTTON_PATH);
-    game_data->assets.loadTextureFromFile("coin", COIN_PATH);
+    game_data->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
+    game_data->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
+    game_data->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
 
     game_data->assets.loadFontFromFile("Bauhaus", BAUHAUS_FONT_PATH);
 

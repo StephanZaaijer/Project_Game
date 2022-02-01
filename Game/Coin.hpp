@@ -17,6 +17,7 @@ public:
     void set_position(sf::Vector2f position);
     sf::Sprite get_coin();
     sf::FloatRect getBounds();
+    sf::Vector2f getPosition();
     void draw();
 };
 

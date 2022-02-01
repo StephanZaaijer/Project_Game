@@ -7,12 +7,12 @@
 Wall::Wall(GameDataReference data):
     game_data (std::move(data))
 {
-    left_boundary.setPosition(0.0, 0.0);
-    left_boundary.setSize( {SCREEN_WIDTH/6.0f, SCREEN_HEIGHT} );
+    left_boundary.setPosition(BORDER_WALL_1_START, 0.0);
+    left_boundary.setSize( {BORDER_WALL_WIDTH, SCREEN_HEIGHT} );
     left_boundary.setFillColor( sf::Color::Black );
 
-    right_boundary.setPosition(SCREEN_WIDTH/6.0f * 5.0f, 0.0);
-    right_boundary.setSize( {(SCREEN_WIDTH/6.0f), SCREEN_HEIGHT} );
+    right_boundary.setPosition(BORDER_WALL_2_START, 0.0);
+    right_boundary.setSize( {BORDER_WALL_WIDTH, SCREEN_HEIGHT} );
     right_boundary.setFillColor( sf::Color::Black );
 }
 

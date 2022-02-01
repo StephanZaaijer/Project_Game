@@ -20,6 +20,7 @@ private:
     sf::Sprite _playButton;
     sf::Sprite _settingsButton;
     sf::Sprite _customButton;
+    sf::Sprite _tutorialButton;
 
     sf::Sound _clickSound;
 

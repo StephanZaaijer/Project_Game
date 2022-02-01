@@ -1,10 +1,10 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
-		"Musiclevel" : 46,
+		"Music" : true,
+		"Musiclevel" : 91,
 		"Sound" : true,
-		"Soundlevel" : 8
+		"Soundlevel" : 98
 	},
 	"Bought_Skins" : 
 	[
@@ -19,6 +19,7 @@
 		true
 	],
 	"Coins" : 35,
+
 	"Player" : 
 	{
 		"File" : "Assets/character_3.png",
@@ -26,7 +27,7 @@
 	},
 	"Score" : 
 	{
-		"Highscore" : 205
+		"Highscore" : 320
 	},
 	"Theme" : 
 	{

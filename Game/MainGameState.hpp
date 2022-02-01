@@ -10,6 +10,7 @@
 #include "ObstaclesContainer.hpp"
 #include "Character.hpp"
 #include "GameOverState.hpp"
+#include "Line.hpp"
 #include "CoinContainer.hpp"
 
 class MainGameState : public GameState{

@@ -92,7 +92,7 @@ enum character_states {
 #define WALL_SLIDE_DELTA 4 //Higher is slower
 #define BACKGROUND_SLIDE 2 //Higher is slower
 
-#define SPIKE_SIZE 75
+#define SPIKE_SIZE 125
 
 #define QUOTE_1 "Franky is our favorite Asian!"
 #define QUOTE_2 "Is this EZ mode?"
@@ -102,7 +102,7 @@ enum character_states {
 #define QUOTE_6 "Sheeeeesh!!!"
 #define QUOTE_7 "Coen ga je nog wat doen?"
 #define QUOTE_8 "Nick heeft weer nicks gedaan"
-#define QUOTE_9 "Danièl"
+#define QUOTE_9 "Daniiil"
 #define QUOTE_10 "Ik zie alles breedbeeld"
 #define QUOTE_11 "Lag!"
 #define QUOTE_12 "@everyone"
@@ -117,7 +117,8 @@ enum character_states {
 #define MAIN_MENU_FONT_SIZE_SCALER 1
 
 enum Obstacle_objects {Spike_Object};
-enum Spike_facing {left, right};
+enum Spike_facing {left, right, neither};
+enum identifier {spike, deathwall};
 
 
 struct CustomCharacter {

@@ -230,5 +230,3 @@ void JsonManager::Write_Json_to_file() {
 	Outputfile << json_data;
 	Outputfile.close();
 }
-
-

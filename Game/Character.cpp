@@ -73,7 +73,7 @@ void Character::Update(float dt) {
     }
 }
 
-void Character::Tap() { // with spacebar release implemented
+void Character::Tap() {
     if ( !isJumpPressed && !_jumped_twice) {
         if (_jumped_once) {
             _jumped_twice = true;
@@ -84,7 +84,6 @@ void Character::Tap() { // with spacebar release implemented
         _characterState = Jumping;
         _velocity.y = VELOCITY_Y;
     }
-    else {}
 }
 
 void Character::CollideWalls(const std::vector<sf::RectangleShape> & Rects) {
@@ -187,6 +186,69 @@ bool Character::getJumpedTwice() {
     }
 
 }
+
+bool Character::CollideSpike(const std::unique_ptr<Obstacle> &spike) {
+    sf::FloatRect own_hitbox = _characterSprite.getGlobalBounds();
+
+    if(spike->getFace() == right){
+        sf::Vector2f pos = spike->getPosition();
+        sf::Vector2f upper_left = spike->get_point(0) + pos;
+        sf::Vector2f mid_right  = spike->get_point(1) + pos;
+        sf::Vector2f lower_left = spike->get_point(2) + pos;
+
+        Line l1(upper_left, mid_right);
+        Line l2(lower_left, mid_right);
+        std::vector<sf::Vector2f> points_array_top = l1.get_points();
+        std::vector<sf::Vector2f> points_array_bottom = l2.get_points();
+
+        auto iterator = std::find_if(points_array_top.begin(), points_array_top.end(), [&own_hitbox](const sf::Vector2f & v) -> bool{
+            return own_hitbox.contains(v);
+        });
+
+        if(iterator != points_array_top.end()){
+            return true;
+        }
+
+        iterator = std::find_if(points_array_bottom.begin(), points_array_bottom.end(), [&own_hitbox](const sf::Vector2f & v) -> bool{
+            return own_hitbox.contains(v);
+        });
+
+        if(iterator != points_array_bottom.end()){
+            return true;
+        }
+    }
+
+    if(spike->getFace() == left){
+        sf::Vector2f pos = spike->getPosition();
+        sf::Vector2f upper_right = spike->get_point(0) + pos;
+        sf::Vector2f mid_left    = spike->get_point(1) + pos;
+        sf::Vector2f lower_right = spike->get_point(2) + pos;
+
+        Line l1(upper_right, mid_left);
+        Line l2(lower_right, mid_left);
+        std::vector<sf::Vector2f> points_array_top = l1.get_points();
+        std::vector<sf::Vector2f> points_array_bottom = l2.get_points();
+
+
+        auto iterator = std::find_if(points_array_top.begin(), points_array_top.end(), [this](const sf::Vector2f & v) -> bool{
+            return _characterSprite.getGlobalBounds().contains(v);
+        });
+
+        if(iterator != points_array_top.end()){
+            return true;
+        }
+
+        iterator = std::find_if(points_array_bottom.begin(), points_array_bottom.end(), [this](const sf::Vector2f & v) -> bool{
+            return _characterSprite.getGlobalBounds().contains(v);
+        });
+
+        if(iterator != points_array_bottom.end()){
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 

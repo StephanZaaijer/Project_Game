@@ -39,14 +39,13 @@ void MainGameState::Init(){
     obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
     wall = std::unique_ptr<Wall>(new Wall(game_data));
     coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(game_data));
-    background.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
-    background2.setTexture(this->game_data->assets.GetTexture("BackgroundGround"));
+    background.setTexture(game_data->assets.GetTexture("Background"));
+    background2.setTexture(game_data->assets.GetTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     background2.setPosition(0, backGroundOffsetY2);
     wall->spawn_Wall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
-//        obstacles_container -> spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
         wall->setContainObstacleTrue(i);
     }
 }
@@ -118,10 +117,12 @@ void MainGameState::Update( float delta ){
             backGroundOffsetY = background2.getGlobalBounds().top - background2.getGlobalBounds().height;
             counter++;
         }
+
         if(backGroundOffsetY2 >= game_data->window.getSize().y){
             backGroundOffsetY2 = background.getGlobalBounds().top - background.getGlobalBounds().height;
             counter++;
         }
+
         obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
         character->moveDownByOffset(move_down_by);
     }
@@ -170,6 +171,7 @@ void MainGameState::Update( float delta ){
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
         // Wall spawn
         wall ->spawn_Wall();
+
         // Obstacle spawn
         for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
             if (!(wall->getWalls()[i].contains_obstacles)) {
@@ -207,8 +209,17 @@ void MainGameState::Update( float delta ){
 //     Character Obstacle collision
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
     for(const auto &obstacle : obstacles){
-        if(obstacle->getBounds().intersects(character->GetBounds())){
-            //character->_death = true;
+        if(obstacle->getID() == deathwall){
+            if(obstacle->getBounds().intersects(character->GetBounds())){
+                character->_death = true;
+            }
+        }
+        else if(obstacle->getID() == spike){
+            if(obstacle->getBounds().intersects(character->GetBounds())){
+                if(character->CollideSpike(obstacle)){
+                    character->_death = true;
+                }
+            }
         }
     }
 

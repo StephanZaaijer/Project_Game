@@ -1,9 +1,9 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
+		"Music" : true,
 		"Musiclevel" : 91,
-		"Sound" : false,
+		"Sound" : true,
 		"Soundlevel" : 98
 	},
 	"Bought_Skins" : 
@@ -18,7 +18,7 @@
 		true,
 		true
 	],
-	"Coins" : 5,
+	"Coins" : 69,
 	"Player" : 
 	{
 		"File" : "Assets/daniel.jpg",
@@ -26,7 +26,7 @@
 	},
 	"Score" : 
 	{
-		"Highscore" : 123
+		"Highscore" : 320
 	},
 	"Theme" : 
 	{

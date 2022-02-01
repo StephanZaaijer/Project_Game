@@ -36,11 +36,13 @@ void MainMenuState::Init() {
 
     game_data->assets.loadSoundBufferFromFile("clickSound", SOUND_CLICK_PATH);
     game_data->assets.loadSoundBufferFromFile("customClickSound", SOUND_CLICK_CUSTOM_PATH);
+    game_data->assets.loadSoundBufferFromFile("coinPickup", SOUND_COIN_PICKUP_PATH);
     game_data->assets.loadSoundBufferFromFile("deathSound", SOUND_DEATH_PATH);
     game_data->assets.loadSoundBufferFromFile("gameMusic", MUSIC_GAME_PATH);
     game_data->assets.loadSoundBufferFromFile("jumpSound", SOUND_JUMP_PATH);
     game_data->assets.loadSoundBufferFromFile("pauseSound", SOUND_PAUSE_PATH);
     game_data->assets.loadSoundBufferFromFile("resumeSound", SOUND_RESUME_PATH);
+
 
     _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());

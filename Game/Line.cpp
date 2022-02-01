@@ -1,13 +1,6 @@
 #include "Line.hpp"
 
 
-Line::Line():
-    A({0.0, 0.0}),
-    B({0.0, 0.0})
-{
-
-}
-
 Line::Line(const sf::Vector2f &pointA, const sf::Vector2f &pointB):
     A(pointA),
     B(pointB)
@@ -31,42 +24,50 @@ void Line::setPointB(const float &x, const float &y) {
     B = {x, y};
 }
 
-formula Line::calculateFormula(const sf::Vector2f &zero_point) {
+formula Line::calculateFormula() {
+//    std::cout << "zero_point : \t" << "(" << zero_point.x << ", " << zero_point.y << ")" << "\n\n";
+    std::cout << "pointA_original : \t" << "(" << A.x << ", " << A.y << ")" << "\n";
+    std::cout << "pointB_original : \t" << "(" << B.x << ", " << B.y << ")" << "\n\n";
+
+
+
+//    float distance_to_origin_x = A.x - zero_point.x;
+//    float distance_to_origin_y = A.y - zero_point.y;
+//    sf::Vector2f A_to_origin = {distance_to_origin_x, distance_to_origin_y};
+//    std::cout << "point A: \t" << "(" << A_to_origin.x << ", " << A_to_origin.y << ")" << "\n";
+//
+//    distance_to_origin_x = B.x - zero_point.x;
+//    distance_to_origin_y = B.y - zero_point.y;
+//    sf::Vector2f B_to_origin = {distance_to_origin_x, distance_to_origin_y};
+//    std::cout << "point B: \t" << "(" << B_to_origin.x << ", " << B_to_origin.y << ")" << "\n";
+
+
+
     float dx = A.x - B.x;
     float dy = A.y - B.y;
 
-    float dist_to_origin_A = A.x - zero_point.x ? A.x > 0 : zero_point.x - A.x;
-    float dist_to_origin_B = B.x - zero_point.x ? B.x > 0 : zero_point.x - B.x;
-    sf::Vector2f selected;
-
-    if(dist_to_origin_A < dist_to_origin_B){
-        selected = A;
-    }
-    else{
-        selected = B;
-    }
-
-    float dist_to_origin = selected.x - zero_point.x ? selected.x > zero_point.x : zero_point.x - selected.x;
-    dist_to_origin *= -1 ? selected.x > 0 : 1;
-
-    float percentage_x = dist_to_origin / dx;
-    float change_x = dist_to_origin;
-    float change_y = dy * percentage_x;
-
-    sf::Vector2f change = {change_x, change_y};
-    sf::Vector2f result = selected + change;
-
     float rc = dy/dx;
-    float offset = result.y;
+    std::cout << "RC: \t" << dy << " / " << dx << " = " << rc << "\n";
 
-    return {rc, 0, offset};
+    float offset = A.y + ( ( rc * A.x ) * -1 );
+    std::cout << "offset: \t" << A.y << " + " << " -(" << rc << " * " << A.x << ") = " << offset << "\n\n\n";
+
+
+    return {rc, offset};
 }
 
 
 axisIntersection Line::intersects(const sf::Vector2f & reference_point){
-    formula f = calculateFormula(reference_point);
-    bool result_x = 1 ? f.get_X_axis_intersection() > 0 : 0;
-    bool result_y = 1 ? f.get_Y_axis_intersection() > 0 : 0;
+    formula f = calculateFormula();
 
-    return {result_x, result_y};
+    float result_x = f.get_x_intersection(reference_point);
+    float result_y = f.get_y_intersection(reference_point);
+
+    bool x = result_x > reference_point.x;
+    bool y = result_y < reference_point.y; // lower than because y-axis is inverted. lower y means higher up in the screen.
+
+//    std::cout << f.get_Y_axis_intersection() << "\n";
+    std::cout << x << " " << y << "\n";
+
+    return {x, y};
 }

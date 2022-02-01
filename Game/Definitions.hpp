@@ -74,7 +74,8 @@ enum character_states {
 
 #define SPIKE_SIZE 75
 enum Obstacle_objects {Spike_Object};
-enum Spike_facing {left, right};
+enum Spike_facing {left, right, neither};
+enum identifier {spike, deathwall};
 
 
 struct CustomCharacter {

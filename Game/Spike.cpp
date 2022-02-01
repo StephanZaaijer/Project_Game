@@ -4,6 +4,7 @@
 #include "Definitions.hpp"
 
 Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position):
+    Obstacle(identifier::spike),
     game_data(std::move(game_data)),
     facing (facing),
     position (position)
@@ -35,4 +36,12 @@ void Spike::draw() const{
 
 sf::FloatRect Spike::getBounds(){
     return Triangle.getGlobalBounds();
+}
+
+Spike_facing Spike::getFace() {
+    return facing;
+}
+
+sf::Vector2f Spike::get_point(const int &index) {
+    return Triangle.getPoint(index);
 }

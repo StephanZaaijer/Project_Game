@@ -32,6 +32,8 @@ void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
     game_data->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
     game_data->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
+    game_data->assets.loadTextureFromFile("Controls Button", CONTROLS_BUTTON_PATH);
+
 
     game_data->assets.loadFontFromFile("Bauhaus", BAUHAUS_FONT_PATH);
     game_data->assets.loadFontFromFile("8-bit", BIT_FONT_PATH);
@@ -55,15 +57,23 @@ void MainMenuState::Init() {
     _playButton.setTexture(game_data->assets.GetTexture("Play Button"));
     _settingsButton.setTexture(game_data->assets.GetTexture("Settings Button"));
     _customButton.setTexture(game_data->assets.GetTexture("Customize Button"));
-    _tutorialButton.setTexture(game_data->assets.GetTexture("Play Button"));
+    _tutorialButton.setTexture(game_data->assets.GetTexture("Controls Button"));
 
-    _title.setPosition((SCREEN_WIDTH/2.0f - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2);
-    _playButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*2.5);
-    _tutorialButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*1.5);
-    _settingsButton.setPosition(_playButton.getGlobalBounds().left - _playButton.getGlobalBounds().width, _title.getGlobalBounds().height*2);
-    _customButton.setPosition(_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2);
+    _title.setOrigin(_title.getGlobalBounds().width/2, _title.getGlobalBounds().height/2);
+    _playButton.setOrigin(_playButton.getGlobalBounds().width/2, _playButton.getGlobalBounds().height/2);
+    _tutorialButton.setOrigin(_tutorialButton.getGlobalBounds().width/2, _tutorialButton.getGlobalBounds().height/2);
+    _settingsButton.setOrigin(_settingsButton.getGlobalBounds().width/2, _settingsButton.getGlobalBounds().height/2);
+    _customButton.setOrigin(_customButton.getGlobalBounds().width/2, _customButton.getGlobalBounds().height/2);
+    _banner.setOrigin(_banner.getGlobalBounds().width/2, _banner.getGlobalBounds().height/2);
 
-    _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
+
+
+    _title.setPosition(SCREEN_WIDTH/2.0f, _title.getGlobalBounds().height);
+    _playButton.setPosition((SCREEN_WIDTH/4.0f)*2, (SCREEN_HEIGHT/4.0f)*2);
+    _tutorialButton.setPosition((SCREEN_WIDTH/30.0f)*15, (SCREEN_HEIGHT/4.0f)*3);
+    _settingsButton.setPosition((SCREEN_WIDTH/30.0f)*7, (SCREEN_HEIGHT/4.0f)*3);
+    _customButton.setPosition((SCREEN_WIDTH/30.0f)*23, (SCREEN_HEIGHT/4.0f)*3);
+    _banner.setPosition((SCREEN_WIDTH/2.0f), SCREEN_HEIGHT-_banner.getGlobalBounds().height);
 
     _quote.setFont(game_data->assets.GetFont("8-bit"));
     _quote.setString(quoteVector[std::rand() % quoteVector.size()]);

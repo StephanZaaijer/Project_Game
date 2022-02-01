@@ -138,7 +138,7 @@ void MainGameState::Update( float delta ){
                 if(character->CollideSpike(obstacle)){
                     Draw(0);
 //                    sf::sleep(sf::seconds(3));
-//                    character->_death = true;
+                    character->_death = true;
                 }
             }
         }

@@ -11,7 +11,9 @@
 class Spike : public Obstacle {
 private:
     GameDataReference game_data;
-    sf::CircleShape Triangle = sf::CircleShape(SPIKE_SIZE, 3);
+//    sf::CircleShape Triangle = sf::CircleShape(SPIKE_SIZE, 3);
+    sf::ConvexShape Triangle;
+
     Spike_facing facing;
     sf::Vector2f position;
 

@@ -209,23 +209,23 @@ bool Character::CollideSpike(const std::unique_ptr<Obstacle> &spike) {
 //        sf::Vector2f upper_left = { (pos.x - bounds.width/2), (pos.y - bounds.height/2) };
 //        sf::Vector2f mid_right  = { (pos.x + bounds.width/2),  pos.y };
 //        sf::Vector2f lower_left = { (pos.x - bounds.width/2), (pos.y + bounds.height/2) };
-        sf::Vector2f upper_left = { pos.x, pos.y };
-        sf::Vector2f mid_right  = { (pos.x + bounds.width),  (pos.y + bounds.height/2) };
-        sf::Vector2f lower_left = { pos.x, pos.y + bounds.height };
+        sf::Vector2f upper_left = spike->get_point(0) + pos;
+        sf::Vector2f mid_right  = spike->get_point(1) + pos;
+        sf::Vector2f lower_left = spike->get_point(2) + pos;
 
 
         Line l1(upper_left, mid_right);
         sf::VertexArray lines(sf::LineStrip, 2);
         lines[0] = upper_left;
         lines[1] = mid_right;
-        lines[0].color = sf::Color::Blue;
-        lines[1].color = sf::Color::Blue;
+        lines[0].color = sf::Color::Black;
+        lines[1].color = sf::Color::Black;
 
         sf::VertexArray lines2(sf::LineStrip, 2);
         lines2[0] = lower_left;
         lines2[1] = mid_right;
-        lines2[0].color = sf::Color::Blue;
-        lines2[1].color = sf::Color::Blue;
+        lines2[0].color = sf::Color::Black;
+        lines2[1].color = sf::Color::Black;
 
         game_data -> window.draw(lines);
         game_data -> window.draw(lines2);
@@ -255,9 +255,9 @@ bool Character::CollideSpike(const std::unique_ptr<Obstacle> &spike) {
 //        sf::Vector2f upper_right = { (pos.x + bounds.width/2), (pos.y - bounds.height/2) };
 //        sf::Vector2f mid_left  = { (pos.x - bounds.width/2),  pos.y };
 //        sf::Vector2f lower_right = { (pos.x + bounds.width/2), (pos.y + bounds.height/2) };
-        sf::Vector2f upper_right = { (pos.x + bounds.width), pos.y };
-        sf::Vector2f mid_left  = { pos.x,  (pos.y + bounds.height/2) };
-        sf::Vector2f lower_right = { (pos.x + bounds.width), (pos.y + bounds.height) };
+        sf::Vector2f upper_right = spike->get_point(0) + pos;
+        sf::Vector2f mid_left    = spike->get_point(1) + pos;
+        sf::Vector2f lower_right = spike->get_point(2) + pos;
 
 
 

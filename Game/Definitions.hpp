@@ -102,7 +102,7 @@ enum character_states {
 #define QUOTE_6 "Sheeeeesh!!!"
 #define QUOTE_7 "Coen ga je nog wat doen?"
 #define QUOTE_8 "Nick heeft weer nicks gedaan"
-#define QUOTE_9 "Danièl"
+#define QUOTE_9 "Daniiil"
 #define QUOTE_10 "Ik zie alles breedbeeld"
 #define QUOTE_11 "Lag!"
 #define QUOTE_12 "@everyone"

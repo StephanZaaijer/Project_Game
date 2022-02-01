@@ -23,6 +23,10 @@ sf::FloatRect Coin::getBounds(){
     return _coin.getGlobalBounds();
 }
 
+sf::Vector2f Coin::getPosition(){
+    return _coin.getPosition();
+}
+
 void Coin::draw(){
     game_data -> window.draw(_coin);
 }

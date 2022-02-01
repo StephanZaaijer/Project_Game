@@ -11,11 +11,16 @@ void MainGameState::Init(){
     _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("jumpSound"));
     _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("pauseSound"));
     _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("gameMusic"));
+    _coinPickup.setBuffer(game_data->assets.GetSoundBuffer("coinPickup"));
+
 
     _score.setFont(game_data->assets.GetFont("Bauhaus"));
-    _score.setCharacterSize(60);
+    _score.setCharacterSize(40);
     _score.setFillColor(TEXT_COLOR);
 
+    coin_text.setFont(game_data->assets.GetFont("Bauhaus"));
+    coin_text.setCharacterSize(40);
+    coin_text.setFillColor(TEXT_COLOR);
 
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
@@ -99,7 +104,7 @@ void MainGameState::Update( float delta ){
     // call collide funtion to check if character collides with something
     character->CollideWalls(wall->getAllRectangles());
 
-    // move walls downwards if character is above limit and push character back
+    // move everything downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         character ->addToScore(move_down_by);
@@ -161,28 +166,45 @@ void MainGameState::Update( float delta ){
     }
 
 
-    // spawn walls and obstacles
+    // spawn walls, obstacles and coins
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
+        // Wall spawn
         wall ->spawn_Wall();
-        coins_container ->spawn();
+        // Obstacle spawn
         for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
             if (!(wall->getWalls()[i].contains_obstacles)) {
                 obstacles_container->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
                 wall->setContainObstacleTrue(i);
             }
         }
+        // Coin spawn
+        coins_container -> spawn();
+
+        // Obstacle Coin collision
+        const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
+        std::vector<std::unique_ptr<Coin>> &coins = coins_container->getCoins();
+            for (const auto &obstacle: obstacles) {
+                auto it = std::remove_if(coins.begin(), coins.end(),
+                                         [this, &obstacle](std::unique_ptr<Coin> &coin) {
+                                                 return (obstacle->getBounds().intersects(coin->getBounds()));
+                                             });
+                coins.erase(it, coins.end());
+            }
         character->setHeight(0);
     }
 
-    std::vector<std::unique_ptr<Coin>> & coins = coins_container -> getCoins();
+    // Character Coin collision
+    std::vector<std::unique_ptr<Coin>> &coins = coins_container->getCoins();
     auto it = std::remove_if(coins.begin(),coins.end(),[this](std::unique_ptr<Coin> & coin){
         return (coin -> getBounds().intersects(character->GetBounds()));
     });
     std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
         this -> acquired_coins += 1;
+        _coinPickup.play();
     });
     coins.erase(it, coins.end());
 
+//     Character Obstacle collision
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
     for(const auto &obstacle : obstacles){
         if(obstacle->getBounds().intersects(character->GetBounds())){
@@ -190,8 +212,10 @@ void MainGameState::Update( float delta ){
         }
     }
 
-    _score.setString(std::to_string(character->getScore()));
-    _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 20.0f);
+    _score.setString("Score: " + std::to_string(character->getScore()));
+    _score.setPosition(BORDER_WALL_WIDTH + (SCREEN_HEIGHT / 20),SCREEN_HEIGHT / 20);
+    coin_text.setString("Coins: " + std::to_string(acquired_coins));
+    coin_text.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20) - coin_text.getGlobalBounds().width,SCREEN_HEIGHT / 20);
 
     if (character->_death){
         game_data -> score = character -> getScore();
@@ -205,20 +229,21 @@ void MainGameState::Update( float delta ){
 
 void MainGameState::Draw( float delta ){
     game_data -> window.clear();
-    game_data-> window.draw(background);
-    game_data-> window.draw(background2);
+    game_data -> window.draw(background);
+    game_data -> window.draw(background2);
     wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
     character->Draw();
     coins_container -> draw();
     game_data -> window.draw(_score);
+    game_data -> window.draw(coin_text);
     game_data -> window.display();
 }
-
 
 void MainGameState::Resume(){
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
+    _coinPickup.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
     if(game_data->json.Get_Musicstate()){
         _gameMusicSound.play();

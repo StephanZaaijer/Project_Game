@@ -2,6 +2,7 @@
 #include "MainMenuState.hpp"
 #include "MainGameState.hpp"
 #include "CustomCharacterState.hpp"
+#include "TutorialState.hpp"
 #include <utility>
 
 MainMenuState::MainMenuState(GameDataReference data) : game_data(std::move(data)) {}
@@ -53,12 +54,14 @@ void MainMenuState::Init() {
     _playButton.setTexture(game_data->assets.GetTexture("Play Button"));
     _settingsButton.setTexture(game_data->assets.GetTexture("Settings Button"));
     _customButton.setTexture(game_data->assets.GetTexture("Customize Button"));
+    _tutorialButton.setTexture(game_data->assets.GetTexture("Play Button"));
 
     _title.setPosition((SCREEN_WIDTH/2.0f - (_title.getGlobalBounds().width/2)), _title.getGlobalBounds().height/2);
-    _playButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*2);
+    _playButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*2.5);
+    _tutorialButton.setPosition((SCREEN_WIDTH/2.0f - (_playButton.getGlobalBounds().width/2)), _title.getGlobalBounds().height*1.5);
     _settingsButton.setPosition(_playButton.getGlobalBounds().left - _playButton.getGlobalBounds().width, _title.getGlobalBounds().height*2);
     _customButton.setPosition(_playButton.getGlobalBounds().left + _playButton.getGlobalBounds().width , _title.getGlobalBounds().height*2);
-    _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height*1.5);
+    _banner.setPosition((SCREEN_WIDTH/2.0f - (_banner.getGlobalBounds().width/2)), SCREEN_HEIGHT - _banner.getGlobalBounds().height);
 }
 
 void MainMenuState::HandleInput() {
@@ -93,12 +96,21 @@ void MainMenuState::HandleInput() {
                     game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
                     prevMousestate = true;
                 }
+            }else if (game_data->input.IsSpriteClicked(_tutorialButton, sf::Mouse::Left, game_data->window)) {
+                    if (!prevMousestate) {
+                        if (game_data->json.Get_Soundstate()) {
+                            _clickSound.play();
+                        }
+                        game_data->machine.AddGameState(GameStateReference(new TutorialState(game_data)), false);
+                        prevMousestate = true;
+                    }
             } else {
                 prevMousestate = false;
             }
         }
     }
 }
+
 void MainMenuState::Resume() {
     _clickSound.setVolume((float)game_data->json.Get_Soundvolume());
 }
@@ -111,6 +123,7 @@ void MainMenuState::Draw(float delta) {
     game_data->window.draw(_background);
     game_data->window.draw(_title);
     game_data->window.draw(_playButton);
+    game_data->window.draw(_tutorialButton);
     game_data->window.draw(_settingsButton);
     game_data->window.draw(_customButton);
     game_data->window.draw(_banner);

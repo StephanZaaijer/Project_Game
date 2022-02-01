@@ -20,10 +20,11 @@ private:
     sf::Sprite _playButton;
     sf::Sprite _settingsButton;
     sf::Sprite _customButton;
+    sf::Sprite _tutorialButton;
 
     sf::Sound _clickSound;
 
-    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton };
+    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton, &_tutorialButton };
     bool prevMousestate = false;
 
 public:

@@ -25,8 +25,7 @@ private:
     sf::Sound _clickSound;
 
     std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton, &_tutorialButton };
-    std::vector<std::string> quoteVector {QUOTE_1, QUOTE_2, QUOTE_3, QUOTE_4, QUOTE_5, QUOTE_6, QUOTE_7, QUOTE_8, QUOTE_9, QUOTE_10, QUOTE_11, QUOTE_12, QUOTE_13, QUOTE_14, QUOTE_15, QUOTE_16, QUOTE_17, QUOTE_18, QUOTE_19};
-
+    std::vector<std::string> quoteVector;
     float scaler = MAIN_MENU_FONT_SIZE_SCALER;
     float fontSize = MAIN_MENU_FONT_SIZE;
     float fontSizeOrigin = MAIN_MENU_FONT_SIZE;

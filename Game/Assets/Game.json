@@ -3,7 +3,7 @@
 	{
 		"Music" : false,
 		"Musiclevel" : 91,
-		"Sound" : false,
+		"Sound" : true,
 		"Soundlevel" : 98
 	},
 	"Bought_Skins" : 
@@ -24,15 +24,37 @@
 		"File" : "Assets/character.jpg",
 		"ID" : "character"
 	},
+	"Quotes" : 
+	[
+		"Franky is our favorite Asian!",
+		"Is this EZ mode?",
+		"How about you actually get good?",
+		"Peukie doen?",
+		"Double Destructor!",
+		"Sheeeeesh!!!",
+		"Coen ga je nog wat doen?",
+		"Nick heeft weer nicks gedaan",
+		"Daniiil",
+		"Ik zie alles breedbeeld",
+		"Lag!",
+		"@everyone",
+		"Push Push Push!",
+		"Pull Harder!",
+		"Apex?",
+		"Teams?",
+		"Wat een kut game!",
+		"Franky ligt waarschijnlijk nog in bed",
+		"En wat zijn jullie aan het doen?"
+	],
 	"Score" : 
 	{
 		"Highscore" : 320
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/cyan_blue.png",
-		"ID" : "cyan_blue_theme",
-		"ObstacleColor" : "Blue",
-		"WallColor" : "Cyan"
+		"File" : "Assets/black_red.png",
+		"ID" : "black_red_theme",
+		"ObstacleColor" : "Red",
+		"WallColor" : "Black"
 	}
 }

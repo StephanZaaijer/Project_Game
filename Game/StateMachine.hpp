@@ -9,19 +9,19 @@ typedef std::unique_ptr<GameState> GameStateReference;
 
 class StateMachine {
 private:
-    std::stack<GameStateReference> gamestates;
-    GameStateReference new_state;
+    std::stack<GameStateReference> gameStates;
+    GameStateReference newState;
     bool removing;
     bool adding;
     bool replacing;
 
 public:
-    void AddGameState( GameStateReference newState, bool isReplacing=true);
-    void RemoveGameState();
+    void addGameState( GameStateReference newState, bool isReplacing = true);
+    void removeGameState();
 
-    void ProcessGameStateChanges();
+    void processGameStateChanges();
 
-    GameStateReference &GetActiveGameState();
+    GameStateReference &getActiveGameState();
 };
 
 

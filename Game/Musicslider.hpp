@@ -6,7 +6,7 @@
 class MusicSlider :public Slider
 {
 public:
-	MusicSlider(GameDataReference gameData, sf::Vector2f sliderLocation, int length, bool horizontal, sf::Color sliderColorOn, sf::Color sliderColorOff, sf::Vector2f Textlocation, int fontsize);
+	MusicSlider(GameDataReference gameData, sf::Vector2f sliderLocation, int length, bool horizontal, sf::Color sliderColorOn, sf::Color sliderColorOff, sf::Vector2f textLocation, int fontSize);
     void update() override;
 	void draw() override;
 

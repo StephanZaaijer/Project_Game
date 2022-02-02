@@ -20,7 +20,7 @@ private:
     GameDataReference gameData;
     sf::Clock clock;
     sf::Sprite background;
-    sf::Sprite _logo;
+    sf::Sprite logo;
     sf::Sprite title;
     sf::Sprite banner;
 
@@ -36,12 +36,10 @@ public:
     void handleInput() override;
 
     ///\brief update function
-    /// \param delta
-    void update(float delta) override;
+    void update() override;
 
     ///\brief draw() function
-    /// \param delta
-    void draw(float delta) override;
+    void draw() override;
 
 };
 

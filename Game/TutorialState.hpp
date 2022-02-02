@@ -26,8 +26,8 @@ public:
     TutorialState(GameDataReference gameData);
     void init() override;
     void handleInput() override;
-    void update( float delta ) override;
-    void draw( float delta ) override;
+    void update() override;
+    void draw() override;
 };
 
 

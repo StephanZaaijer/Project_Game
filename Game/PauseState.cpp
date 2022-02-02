@@ -53,13 +53,13 @@ void PauseState::handleInput() {
                         resumeSound.play();
                         while (resumeSound.getStatus() == resumeSound.Playing) {}
                     }
-                    gameData->machine.RemoveGameState();
+                    gameData->machine.removeGameState();
                 }
                 if (gameData->input.isSpriteClicked(soundSettingsButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
-                    gameData->machine.AddGameState(GameStateReference(new SoundSettingsState(gameData)), false);
+                    gameData->machine.addGameState(GameStateReference(new SoundSettingsState(gameData)), false);
                 }
             }
         }

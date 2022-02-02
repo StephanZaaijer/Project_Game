@@ -2,7 +2,8 @@
 #include <utility>
 
 CustomCharacterState::CustomCharacterState(GameDataReference gameData) :
-        gameData(std::move(gameData)) {
+    gameData(std::move(gameData))
+{
     coins = gameData->json.getCoins();
     skinBought = gameData->json.getBoughtSkins();
 }
@@ -275,7 +276,7 @@ void CustomCharacterState::handleInput() {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
-                    gameData->machine.RemoveGameState();
+                    gameData->machine.removeGameState();
                 }
             }
         }

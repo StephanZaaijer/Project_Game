@@ -96,7 +96,7 @@ void MainMenuState::handleInput() {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
-                    gameData->machine.AddGameState(GameStateReference(new CustomCharacterState(gameData)), false);
+                    gameData->machine.addGameState(GameStateReference(new CustomCharacterState(gameData)), false);
                     prevMouseState = true;
                 }
             } else if (gameData->input.isSpriteClicked(settingsButton, sf::Mouse::Left, gameData->window)) {
@@ -104,7 +104,7 @@ void MainMenuState::handleInput() {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
-                    gameData->machine.AddGameState(GameStateReference(new SoundSettingsState(gameData)), false);
+                    gameData->machine.addGameState(GameStateReference(new SoundSettingsState(gameData)), false);
                     prevMouseState = true;
                 }
             } else if (gameData->input.isSpriteClicked(playButton, sf::Mouse::Left, gameData->window)) {
@@ -112,7 +112,7 @@ void MainMenuState::handleInput() {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
-                    gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
+                    gameData->machine.addGameState(GameStateReference(new MainGameState(gameData)), true);
                     prevMouseState = true;
                 }
             }else if (gameData->input.isSpriteClicked(tutorialButton, sf::Mouse::Left, gameData->window)) {
@@ -120,7 +120,7 @@ void MainMenuState::handleInput() {
                         if (gameData->json.getSoundState()) {
                             clickSound.play();
                         }
-                        gameData->machine.AddGameState(GameStateReference(new TutorialState(gameData)), false);
+                        gameData->machine.addGameState(GameStateReference(new TutorialState(gameData)), false);
                         prevMouseState = true;
                     }
             } else {

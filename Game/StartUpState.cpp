@@ -10,13 +10,13 @@ void StartUpState::init() {
     gameData->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
     gameData->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
     background.setTexture(gameData->assets.getTexture("Background"));
-    _logo.setTexture(gameData->assets.getTexture("StartUp State Image"));
+    logo.setTexture(gameData->assets.getTexture("StartUp State Image"));
     title.setTexture(gameData->assets.getTexture("Banner"));
     banner.setTexture(gameData->assets.getTexture("Groep6 Banner"));
 
     title.setPosition((SCREEN_WIDTH / 2.0f - (title.getGlobalBounds().width / 2)),
                        title.getGlobalBounds().height / 2);
-    _logo.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
+    logo.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
     banner.setPosition((SCREEN_WIDTH / 2.0f - (banner.getGlobalBounds().width / 2)),
                         SCREEN_HEIGHT - banner.getGlobalBounds().height * 1.5);
 }
@@ -30,17 +30,17 @@ void StartUpState::handleInput() {
     }
 }
 
-void StartUpState::update(float delta) {
+void StartUpState::update() {
     if (clock.getElapsedTime().asSeconds() > START_UP_TIME) {
-        gameData->machine.AddGameState(GameStateReference(new MainMenuState(gameData)), true);
+        gameData->machine.addGameState(GameStateReference(new MainMenuState(gameData)), true);
     }
 }
 
-void StartUpState::draw(float delta) {
+void StartUpState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);
     gameData->window.draw(title);
-    gameData->window.draw(_logo);
+    gameData->window.draw(logo);
     gameData->window.draw(banner);
     gameData->window.display();
 }

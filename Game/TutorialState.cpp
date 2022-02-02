@@ -32,15 +32,16 @@ void TutorialState::handleInput() {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
-                    gameData->machine.RemoveGameState();
+                    gameData->machine.removeGameState();
                 }
             }
         }
         prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
     }
 }
-void TutorialState::update(float delta){}
-void TutorialState::draw(float delta) {
+void TutorialState::update(){}
+
+void TutorialState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);
     gameData->window.draw(tutorial);

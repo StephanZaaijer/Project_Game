@@ -70,7 +70,7 @@ void GameOverState::handleInput() {
             deathSound.stop();
             clickSound.play();
         }
-        gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
+        gameData->machine.addGameState(GameStateReference(new MainGameState(gameData)), true);
     }
     else if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
         if (!prevButtonState) {
@@ -79,13 +79,13 @@ void GameOverState::handleInput() {
                     deathSound.stop();
                     clickSound.play();
                 }
-                gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
+                gameData->machine.addGameState(GameStateReference(new MainGameState(gameData)), true);
             }
             else if (gameData->input.isSpriteClicked(mainMenuButton, sf::Mouse::Left, gameData->window)) {
                 if (gameData->json.getSoundState()) {
                     clickSound.play();
                 }
-                gameData->machine.AddGameState(GameStateReference(new MainMenuState(gameData)), true);
+                gameData->machine.addGameState(GameStateReference(new MainMenuState(gameData)), true);
             }
         }
     }

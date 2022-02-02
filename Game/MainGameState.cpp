@@ -75,7 +75,7 @@ void MainGameState::handleInput() {
             if (gameData->json.getSoundState()) {
                 pauseSound.play();
             }
-            gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
+            gameData->machine.addGameState(GameStateReference(new PauseState(gameData)), false);
         }
         else {
             character->setJumpPressed(false);
@@ -88,7 +88,7 @@ void MainGameState::handleInput() {
             if(gameData->json.getSoundState()){
                 pauseSound.play();
             }
-            gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
+            gameData->machine.addGameState(GameStateReference(new PauseState(gameData)), false);
         }
     }
     if(prevKeystateStart){
@@ -107,7 +107,7 @@ void MainGameState::update(){
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float moveDownBy = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         character ->addToScore(moveDownBy);
-        wall -> move_Wall(sf::Vector2f(0, moveDownBy));
+        wall -> moveWall(sf::Vector2f(0, moveDownBy));
         coinsContainer ->move(sf::Vector2f(0, moveDownBy));
         backGroundOffsetY += moveDownBy/BACKGROUND_SLIDE;
         backGroundOffsetY2 += moveDownBy/BACKGROUND_SLIDE;
@@ -174,7 +174,7 @@ void MainGameState::update(){
 
         // Obstacle spawn
         for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
-            if (!(wall->getWalls()[i].contains_obstacles)) {
+            if (!(wall->getWalls()[i].containsObstacles)) {
                 obstaclesContainer->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
                 wall->setContainObstacleTrue(i);
             }
@@ -235,7 +235,7 @@ void MainGameState::update(){
         if(gameMusicSound.getStatus()){
             gameMusicSound.stop();
         }
-        gameData->machine.AddGameState(GameStateReference(new GameOverState(gameData)), true);
+        gameData->machine.addGameState(GameStateReference(new GameOverState(gameData)), true);
     }
 }
 
@@ -243,7 +243,7 @@ void MainGameState::draw(){
     gameData->window.clear();
     gameData->window.draw(background);
     gameData->window.draw(background2);
-    wall->draw_Wall();
+    wall->drawWall();
     obstaclesContainer->draw_Obstacle();
     character->draw();
     coinsContainer->draw();

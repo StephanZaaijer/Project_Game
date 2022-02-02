@@ -58,7 +58,7 @@ void SoundSettingsState::handleInput() {
                 if (gameData->json.getSoundState()) {
                     clickSound.play();
                 }
-                gameData->machine.RemoveGameState();
+                gameData->machine.removeGameState();
             } else if (gameData->input.isSpriteClicked(musicButton, sf::Mouse::Left, gameData->window)) {
                 if (gameData->json.getSoundState()) {
                     clickSound.play();

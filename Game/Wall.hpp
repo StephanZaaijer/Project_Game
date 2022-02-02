@@ -7,27 +7,27 @@
 #include <vector>
 #include "ObstaclesContainer.hpp"
 
-struct wall_obstacles{
+struct WallObstacles{
     sf::RectangleShape wall;
-    bool contains_obstacles = false;
+    bool containsObstacles = false;
 };
 
 class Wall {
 private:
     GameDataReference gameData;
-    std::vector<wall_obstacles> walls;
+    std::vector<WallObstacles> walls;
 
-    sf::RectangleShape left_boundary;
-    sf::RectangleShape right_boundary;
+    sf::RectangleShape leftBoundary;
+    sf::RectangleShape rightBoundary;
 
 public:
     Wall(GameDataReference gameData);
-    std::vector<wall_obstacles> & getWalls();
+    std::vector<WallObstacles> & getWalls();
     std::vector<sf::RectangleShape> getAllRectangles();
-    void generate_Wall(float x_position, float start_y_offset);
-    void spawnWall(float start_y_offset = 0);
-    void move_Wall(sf::Vector2f moveBy);
-    void draw_Wall();
+    void generateWall(float xPosition, float startYoffset);
+    void spawnWall(float startYoffset = 0);
+    void moveWall(sf::Vector2f moveBy);
+    void drawWall();
     void setContainObstacleTrue(int index);
 };
 

@@ -1,7 +1,7 @@
 #include "Musicslider.hpp"
 #include "Exceptions.hpp"
 
-MusicSlider::MusicSlider(GameDataReference gameData, sf::Vector2f sliderLocation, int length, bool horizontal, sf::Color sliderColorOn, sf::Color sliderColorOff, sf::Vector2f Textlocation, int fontsize) :
+MusicSlider::MusicSlider(GameDataReference gameData, sf::Vector2f sliderLocation, int length, bool horizontal, sf::Color sliderColorOn, sf::Color sliderColorOff, sf::Vector2f textLocation, int fontSize) :
 	Slider(gameData, sliderLocation, length, horizontal, sliderColorOn),
 	sliderColorOn(sliderColorOn),
 	sliderColorOff(sliderColorOff)
@@ -25,8 +25,8 @@ MusicSlider::MusicSlider(GameDataReference gameData, sf::Vector2f sliderLocation
 	}
 	sliderBlock.setPosition(prevSliderblockLocation);
 	level.setFont(gameData->assets.getFont("Bauhaus"));
-	level.setPosition(Textlocation);
-	level.setCharacterSize(fontsize);
+	level.setPosition(textLocation);
+	level.setCharacterSize(fontSize);
 	level.setString(std::to_string(gameData->json.getMusicVolume()));
 	level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
 }

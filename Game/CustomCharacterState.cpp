@@ -146,9 +146,9 @@ void CustomCharacterState::handleInput() {
             equippedTheme.setString("");
         }
 
-        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+        if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
             if (!prevMouseState) {
-                if (gameData->input.IsSpriteClicked(arrowRightCharacter, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(arrowRightCharacter, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         customClickSound.play();
                     }
@@ -161,7 +161,7 @@ void CustomCharacterState::handleInput() {
                     character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
                 }
 
-                if (gameData->input.IsSpriteClicked(arrowLeftCharacter, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(arrowLeftCharacter, sf::Mouse::Left, gameData->window)) {
                     if(currentCharacter.CharacterName == gameData->json.getPlayerSprite().CharacterName){
                         equippedCharacter.setString("EQUIPPED");
                     }else{
@@ -179,7 +179,7 @@ void CustomCharacterState::handleInput() {
                     character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
                 }
 
-                if (gameData->input.IsSpriteClicked(randomButtonCharacter, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(randomButtonCharacter, sf::Mouse::Left, gameData->window)) {
                     equippedCharacter.setString("");
                     for (int i = 0; i < 10 + std::rand() % 40; i++) {
                         if (gameData->json.getSoundState()) {
@@ -196,7 +196,7 @@ void CustomCharacterState::handleInput() {
                     }
                 }
 
-                if (gameData->input.IsSpriteClicked(buyEquipButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(buyEquipButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         customClickSound.play();
                     }
@@ -219,7 +219,7 @@ void CustomCharacterState::handleInput() {
                     }
                 }
 
-                if (gameData->input.IsSpriteClicked(arrowRightTheme, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(arrowRightTheme, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         customClickSound.play();
                     }
@@ -233,7 +233,7 @@ void CustomCharacterState::handleInput() {
 
                 }
 
-                if (gameData->input.IsSpriteClicked(arrowLeftTheme, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(arrowLeftTheme, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         customClickSound.play();
                     }
@@ -246,7 +246,7 @@ void CustomCharacterState::handleInput() {
                     theme.setTexture(gameData->assets.getTexture(currentTheme.themeName));
                 }
 
-                if (gameData->input.IsSpriteClicked(randomButtonTheme, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(randomButtonTheme, sf::Mouse::Left, gameData->window)) {
                     equippedTheme.setString("");
                     for (int i = 0; i < 10 + std::rand() % 40; i++) {
                         if (gameData->json.getSoundState()) {
@@ -263,7 +263,7 @@ void CustomCharacterState::handleInput() {
                     }
                 }
 
-                if (gameData->input.IsSpriteClicked(equipButtonTheme, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(equipButtonTheme, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         customClickSound.play();
                     }
@@ -271,7 +271,7 @@ void CustomCharacterState::handleInput() {
                     gameData->json.setPlayerTheme(currentTheme);
                 }
 
-                if (gameData->input.IsSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
@@ -279,7 +279,7 @@ void CustomCharacterState::handleInput() {
                 }
             }
         }
-        prevMouseState = gameData->input.IsButtonPressed(sf::Mouse::Left);
+        prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
     }
 }
 

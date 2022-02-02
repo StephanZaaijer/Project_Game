@@ -19,31 +19,31 @@ private:
     std::unique_ptr<Wall> wall;
     sf::Sprite background;
     sf::Sprite background2;
-    std::unique_ptr<Obstacle_Container> obstacles_container;
+    std::unique_ptr<Obstacle_Container> obstaclesContainer;
     std::unique_ptr<Character> character;
-    CustomCharacter characterinfo;
-    std::unique_ptr<CoinContainer> coins_container;
+    CustomCharacter characterInfo;
+    std::unique_ptr<CoinContainer> coinsContainer;
     sf::Text score;
-    sf::Text coin_text;
-    sf::Sound _jumpSound;
-    sf::Sound _pauseSound;
-    sf::Sound _gamemusicSound;
-    sf::Sound _coinPickup;
+    sf::Text coinText;
+    sf::Sound jumpSound;
+    sf::Sound pauseSound;
+    sf::Sound gameMusicSound;
+    sf::Sound coinPickup;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
-    int acquired_coins = 0;
+    int acquiredCoins = 0;
     int counter = 0;
     bool jumpSoundPlayed = false;
-    bool prevKeystate_start=true;
+    bool prevKeystateStart = true;
 
 
 public:
-    MainGameState(GameDataReference data);
+    MainGameState(GameDataReference gameData);
     void init() override;
     void handleInput() override;
-    void update( float delta ) override;
-    void draw( float delta ) override;
-    void Resume() override;
+    void update() override;
+    void draw() override;
+    void resume() override;
 
 };
 

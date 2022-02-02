@@ -23,7 +23,7 @@ private:
     bool prevMousestate;
 
 public:
-    TutorialState(GameDataReference data);
+    TutorialState(GameDataReference gameData);
     void init() override;
     void handleInput() override;
     void update( float delta ) override;

@@ -26,7 +26,7 @@ private:
 
     std::vector<sf::Sprite*> clickableButtons = { &restartButton, &mainMenuButton };
     bool prevButtonState=true;
-    bool prevKeystate=true;
+    bool prevKeyState=true;
 public:
     GameOverState(GameDataReference gameData);
     void init() override;

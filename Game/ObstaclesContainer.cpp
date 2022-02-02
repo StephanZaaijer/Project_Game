@@ -7,8 +7,8 @@
 
 #include <iostream>
 
-Obstacle_Container::Obstacle_Container(GameDataReference data):
-    gameData (std::move(data))
+Obstacle_Container::Obstacle_Container(GameDataReference gameData):
+    gameData (std::move(gameData))
 {}
 
 void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){

@@ -23,7 +23,7 @@ private:
 	sf::Sound clickSound;
     bool prevMousestate=true;
 public:
-	PauseState(GameDataReference data);
+	PauseState(GameDataReference gameData);
 	void init() override;
 	void handleInput() override;
 	void update(float delta) override;

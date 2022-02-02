@@ -35,7 +35,7 @@ private:
     bool prevMousestate = false;
 
 public:
-    MainMenuState(GameDataReference data);
+    MainMenuState(GameDataReference gameData);
 
     void init() override;
 
@@ -45,7 +45,7 @@ public:
 
     void draw(float delta) override;
 
-    void Resume() override;
+    void resume() override;
 
 };
 

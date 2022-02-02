@@ -4,8 +4,8 @@
 #include <utility>
 #include <random>
 
-Wall::Wall(GameDataReference data):
-    gameData (std::move(data))
+Wall::Wall(GameDataReference gameData):
+    gameData (std::move(gameData))
 {
     left_boundary.setPosition(0.0, 0.0);
     left_boundary.setSize( {SCREEN_WIDTH/6.0f, SCREEN_HEIGHT} );

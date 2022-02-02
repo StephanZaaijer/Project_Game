@@ -5,7 +5,7 @@
 #include "TutorialState.hpp"
 #include <utility>
 
-MainMenuState::MainMenuState(GameDataReference data) : gameData(std::move(data)) {}
+MainMenuState::MainMenuState(GameDataReference gameData) : gameData(std::move(gameData)) {}
 
 void MainMenuState::init() {
     gameData->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
@@ -42,7 +42,7 @@ void MainMenuState::init() {
     gameData->assets.loadSoundBufferFromFile("customClickSound", SOUND_CLICK_CUSTOM_PATH);
     gameData->assets.loadSoundBufferFromFile("coinPickup", SOUND_COIN_PICKUP_PATH);
     gameData->assets.loadSoundBufferFromFile("deathSound", SOUND_DEATH_PATH);
-    gameData->assets.loadSoundBufferFromFile("gamemusic", MUSIC_GAME_PATH);
+    gameData->assets.loadSoundBufferFromFile("gameMusic", MUSIC_GAME_PATH);
     gameData->assets.loadSoundBufferFromFile("jumpSound", SOUND_JUMP_PATH);
     gameData->assets.loadSoundBufferFromFile("pauseSound", SOUND_PAUSE_PATH);
     gameData->assets.loadSoundBufferFromFile("resumeSound", SOUND_RESUME_PATH);
@@ -94,8 +94,8 @@ void MainMenuState::handleInput() {
         if (sf::Event::Closed == event.type) {
             gameData->window.close();
         }
-        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
-            if (gameData->input.IsSpriteClicked(_customButton, sf::Mouse::Left, gameData->window)) {
+        if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+            if (gameData->input.isSpriteClicked(_customButton, sf::Mouse::Left, gameData->window)) {
                 if (!prevMousestate) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
@@ -103,7 +103,7 @@ void MainMenuState::handleInput() {
                     gameData->machine.AddGameState(GameStateReference(new CustomCharacterState(gameData)), false);
                     prevMousestate = true;
                 }
-            } else if (gameData->input.IsSpriteClicked(_settingsButton, sf::Mouse::Left, gameData->window)) {
+            } else if (gameData->input.isSpriteClicked(_settingsButton, sf::Mouse::Left, gameData->window)) {
                 if (!prevMousestate) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
@@ -111,7 +111,7 @@ void MainMenuState::handleInput() {
                     gameData->machine.AddGameState(GameStateReference(new SoundSettingsState(gameData)), false);
                     prevMousestate = true;
                 }
-            } else if (gameData->input.IsSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
+            } else if (gameData->input.isSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
                 if (!prevMousestate) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
@@ -119,7 +119,7 @@ void MainMenuState::handleInput() {
                     gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
                     prevMousestate = true;
                 }
-            }else if (gameData->input.IsSpriteClicked(_tutorialButton, sf::Mouse::Left, gameData->window)) {
+            }else if (gameData->input.isSpriteClicked(_tutorialButton, sf::Mouse::Left, gameData->window)) {
                     if (!prevMousestate) {
                         if (gameData->json.getSoundState()) {
                             clickSound.play();
@@ -134,7 +134,7 @@ void MainMenuState::handleInput() {
     }
 }
 
-void MainMenuState::Resume() {
+void MainMenuState::resume() {
     scaler = MAIN_MENU_FONT_SIZE_SCALER;
     clickSound.setVolume((float)gameData->json.getSoundVolume());
     _quote.setString(quoteVector[std::rand() % quoteVector.size()]);

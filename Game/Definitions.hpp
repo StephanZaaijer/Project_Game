@@ -125,7 +125,7 @@ struct CustomTheme{
 #define CYAN_BLUE_THEME_PATH "Assets/cyan_blue.png"
 #define YELLOW_BLACK_THEME_PATH "Assets/yellow_black.png"
 
-#define MUSIC_GAME_PATH "Assets/gamemusic.wav"
+#define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"
 #define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
 #define SOUND_COIN_PICKUP_PATH "Assets/coin.wav"

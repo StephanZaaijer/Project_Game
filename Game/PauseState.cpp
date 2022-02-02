@@ -2,8 +2,8 @@
 #include <utility>
 #include "SoundSettingsState.hpp"
 
-PauseState::PauseState(GameDataReference data):
-    gameData(std::move(data))
+PauseState::PauseState(GameDataReference gameData):
+    gameData(std::move(gameData))
 {}
 
 void PauseState::init() {
@@ -46,16 +46,16 @@ void PauseState::handleInput() {
         if (event.type == sf::Event::Closed) {
             gameData->window.close();
         }
-        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+        if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
             if(!prevMousestate) {
-                if (gameData->input.IsSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         _resumeSound.play();
                         while (_resumeSound.getStatus() == _resumeSound.Playing) {}
                     }
                     gameData->machine.RemoveGameState();
                 }
-                if (gameData->input.IsSpriteClicked(_soundsettingsButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(_soundsettingsButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
@@ -64,7 +64,7 @@ void PauseState::handleInput() {
             }
         }
     }
-    prevMousestate = gameData->input.IsButtonPressed(sf::Mouse::Left);
+    prevMousestate = gameData->input.isButtonPressed(sf::Mouse::Left);
 }
 
 void PauseState::update(float delta) {

@@ -1,7 +1,7 @@
 #include "SoundSettingsState.hpp"
 #include <utility>
 
-SoundSettingsState::SoundSettingsState(GameDataReference data): gameData(std::move(data)) {}
+SoundSettingsState::SoundSettingsState(GameDataReference gameData): gameData(std::move(gameData)) {}
 
 
 void SoundSettingsState::init() {
@@ -53,19 +53,19 @@ void SoundSettingsState::handleInput() {
             gameData->window.close();
         }
     }
-    if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+    if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
         if(!prevMousestate) {
-            if (gameData->input.IsSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
+            if (gameData->input.isSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
                 if (gameData->json.getSoundState()) {
                     clickSound.play();
                 }
                 gameData->machine.RemoveGameState();
-            } else if (gameData->input.IsSpriteClicked(_musicButton, sf::Mouse::Left, gameData->window)) {
+            } else if (gameData->input.isSpriteClicked(_musicButton, sf::Mouse::Left, gameData->window)) {
                 if (gameData->json.getSoundState()) {
                     clickSound.play();
                 }
                 gameData->json.setMusicState(!gameData->json.getMusicState());
-            } else if (gameData->input.IsSpriteClicked(_soundButton, sf::Mouse::Left, gameData->window)) {
+            } else if (gameData->input.isSpriteClicked(_soundButton, sf::Mouse::Left, gameData->window)) {
                 if (!gameData->json.getSoundState()) {
                     clickSound.play();
                 }
@@ -73,7 +73,7 @@ void SoundSettingsState::handleInput() {
             }
         }
     }
-    prevMousestate = gameData->input.IsButtonPressed(sf::Mouse::Left);
+    prevMousestate = gameData->input.isButtonPressed(sf::Mouse::Left);
     soundslider->handleInput();
     musicslider->handleInput();
 }

@@ -21,7 +21,7 @@ private:
     sf::RectangleShape right_boundary;
 
 public:
-    Wall(GameDataReference data);
+    Wall(GameDataReference gameData);
     std::vector<wall_obstacles> & getWalls();
     std::vector<sf::RectangleShape> getAllRectangles();
     void generate_Wall(float x_position, float start_y_offset);

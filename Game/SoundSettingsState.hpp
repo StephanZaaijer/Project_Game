@@ -27,7 +27,7 @@ private:
   bool prevMousestate = true;
 
 public:
-  SoundSettingsState(GameDataReference data);
+  SoundSettingsState(GameDataReference gameData);
   void init() override;
   void handleInput() override;
   void update(float delta) override;

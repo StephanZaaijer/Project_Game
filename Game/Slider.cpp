@@ -28,8 +28,8 @@ Slider::Slider(GameDataReference gameData, sf::Vector2f location, int par_length
 
 
 void Slider::handleInput() {
-	if (gameData->input.IsRectangleClicked(slider, sf::Mouse::Left, gameData->window)) {
-		sf::Vector2f mouse = gameData->input.GetMousePosition(gameData->window);
+	if (gameData->input.isRectangleClicked(slider, sf::Mouse::Left, gameData->window)) {
+		sf::Vector2f mouse = gameData->input.getMousePosition(gameData->window);
 		if (horizontal) {
 			slider_block.setPosition({ mouse.x, slider_point.y });
 		}

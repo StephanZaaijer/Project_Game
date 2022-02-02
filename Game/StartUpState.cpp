@@ -2,7 +2,7 @@
 #include "MainMenuState.hpp"
 #include <utility>
 
-StartUpState::StartUpState(GameDataReference data) : gameData(std::move(data)) {}
+StartUpState::StartUpState(GameDataReference gameData) : gameData(std::move(gameData)) {}
 
 void StartUpState::init() {
     gameData->assets.loadTextureFromFile("Background", BACKGROUND_PATH);

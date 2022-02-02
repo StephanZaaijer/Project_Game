@@ -1,7 +1,7 @@
 #include "TutorialState.hpp"
 
-TutorialState::TutorialState(GameDataReference data) :
-        gameData(std::move(data)) {}
+TutorialState::TutorialState(GameDataReference gameData) :
+        gameData(std::move(gameData)) {}
 
 void TutorialState::init(){
     gameData->assets.loadTextureFromFile("Tutorial", TUTORIAL);
@@ -26,9 +26,9 @@ void TutorialState::handleInput() {
         if (event.type == sf::Event::Closed) {
             gameData->window.close();
         }
-        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+        if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
             if (!prevMousestate) {
-                if (gameData->input.IsSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
@@ -36,7 +36,7 @@ void TutorialState::handleInput() {
                 }
             }
         }
-        prevMousestate = gameData->input.IsButtonPressed(sf::Mouse::Left);
+        prevMousestate = gameData->input.isButtonPressed(sf::Mouse::Left);
     }
 }
 void TutorialState::update(float delta){}

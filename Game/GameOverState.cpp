@@ -3,7 +3,7 @@
 #include "MainGameState.hpp"
 #include <utility>
 
-GameOverState::GameOverState(GameDataReference data) : gameData(std::move(data)){}
+GameOverState::GameOverState(GameDataReference gameData) : gameData(std::move(gameData)){}
 
 void GameOverState::init() {
     clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
@@ -65,23 +65,23 @@ void GameOverState::handleInput() {
             gameData->window.close();
         }
     }
-    if(gameData->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate) {
+    if(gameData->input.isKeyPressed(sf::Keyboard::Space) and !prevKeyState) {
         if (gameData->json.getSoundState()) {
             deathSound.stop();
             clickSound.play();
         }
         gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
     }
-    else if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+    else if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
         if (!prevButtonState) {
-            if (gameData->input.IsSpriteClicked(restartButton, sf::Mouse::Left, gameData->window)) {
+            if (gameData->input.isSpriteClicked(restartButton, sf::Mouse::Left, gameData->window)) {
                 if (gameData->json.getSoundState()) {
                     deathSound.stop();
                     clickSound.play();
                 }
                 gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
             }
-            else if (gameData->input.IsSpriteClicked(mainMenuButton, sf::Mouse::Left, gameData->window)) {
+            else if (gameData->input.isSpriteClicked(mainMenuButton, sf::Mouse::Left, gameData->window)) {
                 if (gameData->json.getSoundState()) {
                     clickSound.play();
                 }
@@ -89,8 +89,8 @@ void GameOverState::handleInput() {
             }
         }
     }
-    prevKeystate=gameData->input.IsKeyPressed(sf::Keyboard::Space);
-    prevButtonState=gameData->input.IsButtonPressed(sf::Mouse::Left);
+    prevKeyState=gameData->input.isKeyPressed(sf::Keyboard::Space);
+    prevButtonState=gameData->input.isButtonPressed(sf::Mouse::Left);
 }
 
 void GameOverState::update(float delta) {

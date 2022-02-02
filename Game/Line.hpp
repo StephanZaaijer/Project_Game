@@ -8,12 +8,12 @@ struct formula {
     float rc;
     float offset;
 
-    float get_y_intersection(const float & x) const{
+    float getYaxisIntersection(const float & x) const{
         float y = (rc * x) + offset;
         return y;
     }
 
-    float get_x_intersection(const float & y) const {
+    float getXaxisIntersection(const float & y) const {
         float x = (y + (offset * -1)) / rc;
         return x;
     }
@@ -21,7 +21,7 @@ struct formula {
 
 class Line {
 private:
-    std::vector<sf::Vector2f> points_array = {};
+    std::vector<sf::Vector2f> pointsArray = {};
 
     sf::Vector2f A;
     sf::Vector2f B;
@@ -34,4 +34,4 @@ public:
 };
 
 
-#endif //PROJECT_GAME_LINE_H
+#endif //PROJECT_GAME_LINE_HPP

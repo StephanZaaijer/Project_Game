@@ -3,42 +3,42 @@
 #include "PauseState.hpp"
 #include <iostream>
 
-MainGameState::MainGameState(GameDataReference data):
-    gameData (std::move(data))
+MainGameState::MainGameState(GameDataReference gameData):
+    gameData (std::move(gameData))
 {}
 
 void MainGameState::init(){
-    _jumpSound.setBuffer(gameData->assets.getSoundBuffer("jumpSound"));
-    _pauseSound.setBuffer(gameData->assets.getSoundBuffer("pauseSound"));
-    _gamemusicSound.setBuffer(gameData->assets.getSoundBuffer("gamemusic"));
-    _coinPickup.setBuffer(gameData->assets.getSoundBuffer("coinPickup"));
+    jumpSound.setBuffer(gameData->assets.getSoundBuffer("jumpSound"));
+    pauseSound.setBuffer(gameData->assets.getSoundBuffer("pauseSound"));
+    gameMusicSound.setBuffer(gameData->assets.getSoundBuffer("gameMusic"));
+    coinPickup.setBuffer(gameData->assets.getSoundBuffer("coinPickup"));
 
 
     score.setFont(gameData->assets.getFont("Bauhaus"));
     score.setCharacterSize(40);
     score.setFillColor(TEXT_COLOR);
 
-    coin_text.setFont(gameData->assets.getFont("Bauhaus"));
-    coin_text.setCharacterSize(40);
-    coin_text.setFillColor(TEXT_COLOR);
+    coinText.setFont(gameData->assets.getFont("Bauhaus"));
+    coinText.setCharacterSize(40);
+    coinText.setFillColor(TEXT_COLOR);
 
-    _jumpSound.setVolume(gameData->json.getSoundVolume());
-    _pauseSound.setVolume(gameData->json.getSoundVolume());
-    _gamemusicSound.setVolume(gameData->json.getMusicVolume());
-    _gamemusicSound.setLoop(true);
+    jumpSound.setVolume(gameData->json.getSoundVolume());
+    pauseSound.setVolume(gameData->json.getSoundVolume());
+    gameMusicSound.setVolume(gameData->json.getMusicVolume());
+    gameMusicSound.setLoop(true);
 
     if(gameData->json.getMusicState()){
-        _gamemusicSound.play();
+        gameMusicSound.play();
     }
 
     character = std::unique_ptr<Character>(new Character(gameData));
-    characterinfo = gameData->json.getPlayerSprite();
-    gameData->assets.loadTextureFromFile(characterinfo.CharacterName, characterinfo.CharacterFileName);
-    character->getSprite().setTexture( gameData->assets.getTexture(characterinfo.CharacterName) );
+    characterInfo = gameData->json.getPlayerSprite();
+    gameData->assets.loadTextureFromFile(characterInfo.CharacterName, characterInfo.CharacterFileName);
+    character->getSprite().setTexture( gameData->assets.getTexture(characterInfo.CharacterName) );
 
-    obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(gameData));
+    obstaclesContainer =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(gameData));
     wall = std::unique_ptr<Wall>(new Wall(gameData));
-    coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(gameData));
+    coinsContainer = std::unique_ptr<Coin_Container>(new Coin_Container(gameData));
     background.setTexture(gameData->assets.getTexture("BackgroundGround"));
     background2.setTexture(gameData->assets.getTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
@@ -58,22 +58,22 @@ void MainGameState::handleInput() {
             gameData->window.close();
             break;
         }
-        if (gameData->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate_start) {
+        if (gameData->input.isKeyPressed(sf::Keyboard::Space) and !prevKeystateStart) {
             if(gameData->json.getSoundState()){
                 if(character->getJumpedTwice() && !jumpSoundPlayed) {
-                    _jumpSound.play();
+                    jumpSound.play();
                     jumpSoundPlayed = true;
                 }
             }
             character->Tap();
             character ->setJumpPressed(true);
         }
-        else if (gameData->input.IsKeyPressed(sf::Keyboard::Escape)) {
+        else if (gameData->input.isKeyPressed(sf::Keyboard::Escape)) {
             if (gameData->json.getMusicState()) {
-                _gamemusicSound.pause();
+                gameMusicSound.pause();
             }
             if (gameData->json.getSoundState()) {
-                _pauseSound.play();
+                pauseSound.play();
             }
             gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
         }
@@ -83,16 +83,16 @@ void MainGameState::handleInput() {
         }
         if (!gameData->window.hasFocus()) {
             if(gameData->json.getMusicState()){
-                _gamemusicSound.pause();
+                gameMusicSound.pause();
             }
             if(gameData->json.getSoundState()){
-                _pauseSound.play();
+                pauseSound.play();
             }
             gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
         }
     }
-    if(prevKeystate_start){
-        prevKeystate_start = gameData->input.IsKeyPressed(sf::Keyboard::Space);
+    if(prevKeystateStart){
+        prevKeystateStart = gameData->input.isKeyPressed(sf::Keyboard::Space);
     }
 }
 
@@ -108,7 +108,7 @@ void MainGameState::update( float delta ){
         float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         character ->addToScore(move_down_by);
         wall -> move_Wall(sf::Vector2f(0, move_down_by));
-        coins_container ->move(sf::Vector2f(0, move_down_by));
+        coinsContainer ->move(sf::Vector2f(0, move_down_by));
         backGroundOffsetY += move_down_by/BACKGROUND_SLIDE;
         backGroundOffsetY2 += move_down_by/BACKGROUND_SLIDE;
         background.setPosition(0, backGroundOffsetY);
@@ -123,7 +123,7 @@ void MainGameState::update( float delta ){
             counter++;
         }
 
-        obstacles_container->move_Obstacle(sf::Vector2f(0, move_down_by));
+        obstaclesContainer->move_Obstacle(sf::Vector2f(0, move_down_by));
         character->moveDownByOffset(move_down_by);
     }
 
@@ -175,16 +175,16 @@ void MainGameState::update( float delta ){
         // Obstacle spawn
         for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
             if (!(wall->getWalls()[i].contains_obstacles)) {
-                obstacles_container->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
+                obstaclesContainer->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
                 wall->setContainObstacleTrue(i);
             }
         }
         // Coin spawn
-        coins_container -> spawn();
+        coinsContainer -> spawn();
 
         // Obstacle Coin collision
-        const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
-        std::vector<std::unique_ptr<Coin>> &coins = coins_container->getcoins();
+        const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstaclesContainer->getObstacle();
+        std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getcoins();
             for (const auto &obstacle: obstacles) {
                 auto it = std::remove_if(coins.begin(), coins.end(),
                                          [&obstacle](std::unique_ptr<Coin> &coin)
@@ -197,18 +197,18 @@ void MainGameState::update( float delta ){
     }
 
     // Character Coin collision
-    std::vector<std::unique_ptr<Coin>> &coins = coins_container->getcoins();
+    std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getcoins();
     auto it = std::remove_if(coins.begin(),coins.end(),[this](std::unique_ptr<Coin> & coin){
         return (coin -> getBounds().intersects(character->GetBounds()));
     });
     std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
-        acquired_coins += 1;
-        _coinPickup.play();
+        acquiredCoins += 1;
+        coinPickup.play();
     });
     coins.erase(it, coins.end());
 
 //     Character Obstacle collision
-    const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
+    const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstaclesContainer->getObstacle();
     for(const auto &obstacle : obstacles){
         if(obstacle->getID() == deathwall){
             if(obstacle->getBounds().intersects(character->GetBounds())){
@@ -226,14 +226,14 @@ void MainGameState::update( float delta ){
 
     score.setString("Score: " + std::to_string(character->getScore()));
     score.setPosition(BORDER_WALL_WIDTH + (SCREEN_HEIGHT / 20.0f),SCREEN_HEIGHT / 20.0f);
-    coin_text.setString("coins: " + std::to_string(acquired_coins));
-    coin_text.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20.0f) - coin_text.getGlobalBounds().width,SCREEN_HEIGHT / 20.0f);
+    coinText.setString("coins: " + std::to_string(acquiredCoins));
+    coinText.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20.0f) - coinText.getGlobalBounds().width,SCREEN_HEIGHT / 20.0f);
 
     if (character->_death){
         gameData -> score = character -> getScore();
-        gameData -> coins = acquired_coins;
-        if(_gamemusicSound.getStatus()){
-            _gamemusicSound.stop();
+        gameData -> coins = acquiredCoins;
+        if(gameMusicSound.getStatus()){
+            gameMusicSound.stop();
         }
         gameData->machine.AddGameState(GameStateReference(new GameOverState(gameData)), true);
     }
@@ -244,20 +244,20 @@ void MainGameState::draw( float delta ){
     gameData -> window.draw(background);
     gameData -> window.draw(background2);
     wall -> draw_Wall();
-    obstacles_container -> draw_Obstacle();
+    obstaclesContainer -> draw_Obstacle();
     character->draw();
-    coins_container -> draw();
+    coinsContainer -> draw();
     gameData -> window.draw(score);
-    gameData -> window.draw(coin_text);
+    gameData -> window.draw(coinText);
     gameData -> window.display();
 }
 
-void MainGameState::Resume(){
-    _jumpSound.setVolume(gameData->json.getSoundVolume());
-    _pauseSound.setVolume(gameData->json.getSoundVolume());
-    _coinPickup.setVolume(gameData->json.getSoundVolume());
-    _gamemusicSound.setVolume(gameData->json.getMusicVolume());
+void MainGameState::resume(){
+    jumpSound.setVolume(gameData->json.getSoundVolume());
+    pauseSound.setVolume(gameData->json.getSoundVolume());
+    coinPickup.setVolume(gameData->json.getSoundVolume());
+    gameMusicSound.setVolume(gameData->json.getMusicVolume());
     if(gameData->json.getMusicState()){
-        _gamemusicSound.play();
+        gameMusicSound.play();
     }
 }

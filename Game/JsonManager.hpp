@@ -26,7 +26,7 @@ public:
         std::vector<std::string> quotes;
 	};
 
-	JsonManager(const std::string &gameFile);
+	JsonManager(std::string gameFile);
 	bool getSoundState() const;
 	int getSoundVolume() const;
 	bool getMusicState() const;

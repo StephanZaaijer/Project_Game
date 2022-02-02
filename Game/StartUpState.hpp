@@ -26,8 +26,8 @@ private:
 
 public:
     ///\brief StartUpState constructor
-    /// \param data
-    StartUpState(GameDataReference data);
+    /// \param gameData
+    StartUpState(GameDataReference gameData);
 
     ///\brief init() function
     void init() override;

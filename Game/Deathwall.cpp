@@ -23,7 +23,7 @@ void Deathwall::move(sf::Vector2f moveBy){
     deathwall.move(moveBy);
 }
 void Deathwall::draw() const{
-    gameData -> window.draw(deathwall);
+    gameData->window.draw(deathwall);
 }
 
 sf::FloatRect Deathwall::getBounds() {

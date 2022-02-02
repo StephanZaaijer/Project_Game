@@ -66,29 +66,29 @@ void ObstacleContainer::spawnObstacleOnWall(const sf::RectangleShape& wall){
                 wall.getPosition().y + WALL_OBSTACLE_HEIGHT_3);
     }
 
-    for(auto & Coordinates_Left_Obstacle : coordinatesLeftObstacles) {
+    for(auto & coordinatesLeftObstacle : coordinatesLeftObstacles) {
         if (wallLeftSideObstacles == 1) {
             obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, left, sf::Vector2f(
-                    Coordinates_Left_Obstacle.x,
-                    Coordinates_Left_Obstacle.y - SPIKE_SIZE/2.0f ))));
+                    coordinatesLeftObstacle.x,
+                    coordinatesLeftObstacle.y - SPIKE_SIZE/2.0f ))));
         }
         else if (wallLeftSideObstacles == 2){
             obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
-                    Coordinates_Left_Obstacle.x - 1,
-                    Coordinates_Left_Obstacle.y - WALL_OBSTACLE_HEIGHT_1))));
+                    coordinatesLeftObstacle.x - 1,
+                    coordinatesLeftObstacle.y - WALL_OBSTACLE_HEIGHT_1))));
         }
     }
 
-    for(auto & Coordinates_Right_Obstacle : coordinatesRightObstacles) {
+    for(auto & coordinatesRightObstacle : coordinatesRightObstacles) {
         if (wallRightSideObstacles == 1) {
             obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, right, sf::Vector2f(
-                    Coordinates_Right_Obstacle.x,
-                    Coordinates_Right_Obstacle.y - SPIKE_SIZE/2.0f))));
+                    coordinatesRightObstacle.x,
+                    coordinatesRightObstacle.y - SPIKE_SIZE/2.0f))));
         }
         else if (wallRightSideObstacles == 2){
             obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
-                    Coordinates_Right_Obstacle.x - WALL_WIDTH / 2.0f ,
-                    Coordinates_Right_Obstacle.y - WALL_OBSTACLE_HEIGHT_1))));
+                    coordinatesRightObstacle.x - WALL_WIDTH / 2.0f ,
+                    coordinatesRightObstacle.y - WALL_OBSTACLE_HEIGHT_1))));
         }
     }
 }
@@ -99,14 +99,14 @@ void ObstacleContainer::moveObstacle(sf::Vector2f moveBy){
     });
 
     obstacles.erase(std::remove_if( obstacles.begin(), obstacles.end(), [](std::unique_ptr<Obstacle> & x){
-        return (x -> getPosition().y >= SCREEN_HEIGHT + x->getBounds().height);
+        return (x->getPosition().y >= SCREEN_HEIGHT + x->getBounds().height);
     }), obstacles.end());
 
 }
 
 void ObstacleContainer::drawObstacle(){
     for(const auto & obstacle : obstacles){
-        obstacle -> draw();
+        obstacle->draw();
     }
 }
 

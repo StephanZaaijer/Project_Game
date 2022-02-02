@@ -3,7 +3,7 @@
 Coin::Coin(GameDataReference gameData):
     gameData(gameData)
 {
-    coin.setTexture(gameData -> assets.getTexture("Coin"));
+    coin.setTexture(gameData->assets.getTexture("Coin"));
     coin.setScale(COIN_SCALE, COIN_SCALE);
 }
 
@@ -28,5 +28,5 @@ sf::Vector2f Coin::getPosition(){
 }
 
 void Coin::draw(){
-    gameData -> window.draw(coin);
+    gameData->window.draw(coin);
 }

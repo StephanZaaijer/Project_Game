@@ -13,17 +13,17 @@ private:
     GameDataReference gameData;
     sf::ConvexShape triangle;
 
-    Spike_facing facing;
+    spikeFacing facing;
     sf::Vector2f position;
 
 public:
-    Spike(GameDataReference gameData, Spike_facing facing, sf::Vector2f position);
+    Spike(GameDataReference gameData, spikeFacing facing, sf::Vector2f position);
     sf::Vector2f getPosition() override;
     void spawn() override;
     void move(sf::Vector2f moveBy) override;
     void draw() const override;
     sf::FloatRect getBounds() override;
-    Spike_facing getFace() override;
+    spikeFacing getFace() override;
     sf::Vector2f getPoint(const int & index) override;
 
 

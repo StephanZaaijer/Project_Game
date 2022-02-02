@@ -4,7 +4,6 @@ InputManager::InputManager() {
     handCursor.loadFromSystem(sf::Cursor::Hand);
 }
 
-
 bool InputManager::isKeyPressed(const sf::Keyboard::Key &key){
     return sf::Keyboard::isKeyPressed(key);
 }
@@ -26,7 +25,6 @@ bool InputManager::isRectangleClicked(const sf::RectangleShape& rectangle, const
     }
     return false ;
 }
-
 
 bool InputManager::isMouseIntersectingSprite(const sf::Sprite& sprite, sf::RenderWindow& window) {
     return (sprite.getGlobalBounds().contains(getMousePosition(window)));

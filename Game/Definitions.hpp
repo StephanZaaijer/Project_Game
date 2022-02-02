@@ -106,8 +106,8 @@ enum character_states {
 #define MAIN_MENU_FONT_SIZE_SCALER 1
 
 /// @brief
-/// This enum Spike_facing list is used to define which way an obstacle is facing
-enum Spike_facing {left, right, neither};
+/// This enum spikeFacing list is used to define which way an obstacle is facing
+enum spikeFacing {left, right, neither};
 
 /// @brief
 /// This enum identifier list is used to identify an obstacle as a spike or deathwall.

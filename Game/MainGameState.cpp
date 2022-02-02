@@ -13,7 +13,6 @@ void MainGameState::init(){
     gameMusicSound.setBuffer(gameData->assets.getSoundBuffer("gameMusic"));
     coinPickup.setBuffer(gameData->assets.getSoundBuffer("coinPickup"));
 
-
     score.setFont(gameData->assets.getFont("Bauhaus"));
     score.setCharacterSize(40);
     score.setFillColor(TEXT_COLOR);
@@ -107,7 +106,7 @@ void MainGameState::update(){
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
         float moveDownBy = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
         character ->addToScore(moveDownBy);
-        wall -> moveWall(sf::Vector2f(0, moveDownBy));
+        wall->moveWall(sf::Vector2f(0, moveDownBy));
         coinsContainer ->move(sf::Vector2f(0, moveDownBy));
         backGroundOffsetY += moveDownBy/BACKGROUND_SLIDE;
         backGroundOffsetY2 += moveDownBy/BACKGROUND_SLIDE;
@@ -199,7 +198,7 @@ void MainGameState::update(){
     // Character Coin collision
     std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getCoins();
     auto it = std::remove_if(coins.begin(),coins.end(),[this](std::unique_ptr<Coin> & coin){
-        return (coin -> getBounds().intersects(character->GetBounds()));
+        return (coin->getBounds().intersects(character->GetBounds()));
     });
     std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
         acquiredCoins += 1;

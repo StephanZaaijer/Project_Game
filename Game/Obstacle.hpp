@@ -61,7 +61,7 @@ public:
     }
 
     // TODO: Write doxygen
-    virtual Spike_facing getFace(){
+    virtual spikeFacing getFace(){
         return neither;
     }
 

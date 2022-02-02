@@ -1,8 +1,10 @@
 #include "Slider.hpp"
+
+#include <utility>
 #include "Exceptions.hpp"
 
 Slider::Slider(GameDataReference gameData, sf::Vector2f location, int par_length, bool horizontal, sf::Color sliderColor) :
-	gameData(gameData),
+	gameData(std::move(gameData)),
 	sliderPoint(location),
     length(par_length+1),
     horizontal(horizontal)

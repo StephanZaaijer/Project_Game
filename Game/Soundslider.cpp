@@ -45,18 +45,18 @@ void SoundSlider::update() {
 		if (horizontal) {
 			gameData->json.setSoundState(true);
 			int temp = sliderBlock.getPosition().x;
-			int current_level = 100 - (temp - sliderPoint.x) / ratio;
-			level.setString(std::to_string(current_level));
+			int currentLevel = 100 - (temp - sliderPoint.x) / ratio;
+			level.setString(std::to_string(currentLevel));
 			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
-			gameData->json.setSoundVolume(current_level);
+			gameData->json.setSoundVolume(currentLevel);
 		}
 		else {
 			gameData->json.setSoundState(true);
 			int temp = sliderBlock.getPosition().y;
-			int current_level = 100 - (temp - sliderPoint.y) / ratio;
-			level.setString(std::to_string(current_level));
+			int currentLevel = 100 - (temp - sliderPoint.y) / ratio;
+			level.setString(std::to_string(currentLevel));
 			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
-			gameData->json.setSoundVolume(current_level);
+			gameData->json.setSoundVolume(currentLevel);
 		}
 		prevSliderblockLocation = sliderBlock.getPosition();
 	}

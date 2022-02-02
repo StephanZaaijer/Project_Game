@@ -30,10 +30,10 @@ void GameOverState::init() {
                                SCREEN_HEIGHT - (mainMenuButton.getGlobalBounds().height * 1.1));
 
     gameOverText.setString("GAMEOVER!");
-    score.setString("Score: " + std::to_string(gameData -> score));
-    gameData->json.setHighscore(gameData -> score);
+    score.setString("Score: " + std::to_string(gameData->score));
+    gameData->json.setHighscore(gameData->score);
     highscore.setString("highscore: " + std::to_string(gameData->json.getHighscore()));
-    gameData->json.setCoins(gameData -> json.getCoins() + gameData -> coins);
+    gameData->json.setCoins(gameData->json.getCoins() + gameData->coins);
 
     gameOverText.setCharacterSize(TEXT_TITLE_SIZE);
     score.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);

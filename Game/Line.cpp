@@ -19,10 +19,10 @@ Formula Line::calculateFormula() const {
 std::vector<sf::Vector2f> &Line::getPoints() {
     Formula f = calculateFormula();
     int amount = A.x > B.x ? A.x - B.x : B.x - A.x;
-    int start_x = A.x < B.x ? A.x : B.x;
+    int startX = A.x < B.x ? A.x : B.x;
 
     for (int i = 1; i < amount+1; i++) {
-        float x = start_x + i;
+        float x = startX + i;
         pointsArray.emplace_back( x, f.getYaxisIntersection(x) );
     }
     return pointsArray;

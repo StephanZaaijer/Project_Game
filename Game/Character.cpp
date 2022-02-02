@@ -198,7 +198,7 @@ bool Character::collideSpike(const std::unique_ptr<Obstacle> &spike) {
         std::vector<sf::Vector2f> pointsArrayTop = l1.getPoints();
         std::vector<sf::Vector2f> pointsArrayBottom = l2.getPoints();
 
-        auto iterator = std::find_if(pointsArrayTop.begin(), pointsArrayTop.end(), [&ownHitbox](const sf::Vector2f & v) -> bool{
+        auto iterator = std::find_if(pointsArrayTop.begin(), pointsArrayTop.end(), [&ownHitbox](const sf::Vector2f & v)->bool{
             return ownHitbox.contains(v);
         });
 
@@ -206,7 +206,7 @@ bool Character::collideSpike(const std::unique_ptr<Obstacle> &spike) {
             return true;
         }
 
-        iterator = std::find_if(pointsArrayBottom.begin(), pointsArrayBottom.end(), [&ownHitbox](const sf::Vector2f & v) -> bool{
+        iterator = std::find_if(pointsArrayBottom.begin(), pointsArrayBottom.end(), [&ownHitbox](const sf::Vector2f & v)->bool{
             return ownHitbox.contains(v);
         });
 
@@ -226,7 +226,7 @@ bool Character::collideSpike(const std::unique_ptr<Obstacle> &spike) {
         std::vector<sf::Vector2f> pointsArrayTop = l1.getPoints();
         std::vector<sf::Vector2f> pointsArrayBottom = l2.getPoints();
 
-        auto iterator = std::find_if(pointsArrayTop.begin(), pointsArrayTop.end(), [this](const sf::Vector2f & v) -> bool{
+        auto iterator = std::find_if(pointsArrayTop.begin(), pointsArrayTop.end(), [this](const sf::Vector2f & v)->bool{
             return characterSprite.getGlobalBounds().contains(v);
         });
 
@@ -234,7 +234,7 @@ bool Character::collideSpike(const std::unique_ptr<Obstacle> &spike) {
             return true;
         }
 
-        iterator = std::find_if(pointsArrayBottom.begin(), pointsArrayBottom.end(), [this](const sf::Vector2f & v) -> bool{
+        iterator = std::find_if(pointsArrayBottom.begin(), pointsArrayBottom.end(), [this](const sf::Vector2f & v)->bool{
             return characterSprite.getGlobalBounds().contains(v);
         });
 

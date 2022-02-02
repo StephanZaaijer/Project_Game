@@ -39,7 +39,7 @@ void MainGameState::Init(){
     obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
     wall = std::unique_ptr<Wall>(new Wall(game_data));
     coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(game_data));
-    background.setTexture(game_data->assets.GetTexture("Background"));
+    background.setTexture(game_data->assets.GetTexture("BackgroundGround"));
     background2.setTexture(game_data->assets.GetTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     background2.setPosition(0, backGroundOffsetY2);
@@ -130,39 +130,39 @@ void MainGameState::Update( float delta ){
 
     switch (counter) {
         case 0:
-            background2.setTexture(this->game_data->assets.GetTexture("Background"));
+            background2.setTexture(game_data->assets.GetTexture("Background"));
             break;
 
         case 1:
-            background.setTexture(this->game_data->assets.GetTexture("Background"));
+            background.setTexture(game_data->assets.GetTexture("Background"));
             break;
 
         case 3:
-            background.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
+            background.setTexture(game_data->assets.GetTexture("BackgroundNoClouds"));
             break;
 
         case 4:
-            background2.setTexture(this->game_data->assets.GetTexture("BackgroundNoClouds"));
+            background2.setTexture(game_data->assets.GetTexture("BackgroundNoClouds"));
             break;
 
         case 5:
-            background.setTexture(this->game_data->assets.GetTexture("SkyToSpaceBackground"));
+            background.setTexture(game_data->assets.GetTexture("SkyToSpaceBackground"));
             break;
 
         case 6:
-            background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            background2.setTexture(game_data->assets.GetTexture("SpaceBackground"));
             break;
 
         case 7:
-            background.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            background.setTexture(game_data->assets.GetTexture("SpaceBackground"));
             break;
 
         case 12:
-            background2.setTexture(this->game_data->assets.GetTexture("SpaghettiMonsterBackground"));
+            background2.setTexture(game_data->assets.GetTexture("SpaghettiMonsterBackground"));
             break;
 
         case 14:
-            background2.setTexture(this->game_data->assets.GetTexture("SpaceBackground"));
+            background2.setTexture(game_data->assets.GetTexture("SpaceBackground"));
             break;
     }
 
@@ -187,7 +187,7 @@ void MainGameState::Update( float delta ){
         std::vector<std::unique_ptr<Coin>> &coins = coins_container->getCoins();
             for (const auto &obstacle: obstacles) {
                 auto it = std::remove_if(coins.begin(), coins.end(),
-                                         [this, &obstacle](std::unique_ptr<Coin> &coin)
+                                         [&obstacle](std::unique_ptr<Coin> &coin)
                 {
                     return (obstacle->getBounds().intersects(coin->getBounds()));
                 });
@@ -202,7 +202,7 @@ void MainGameState::Update( float delta ){
         return (coin -> getBounds().intersects(character->GetBounds()));
     });
     std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
-        this -> acquired_coins += 1;
+        acquired_coins += 1;
         _coinPickup.play();
     });
     coins.erase(it, coins.end());

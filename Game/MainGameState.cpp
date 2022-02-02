@@ -8,17 +8,17 @@ MainGameState::MainGameState(GameDataReference data):
 {}
 
 void MainGameState::Init(){
-    _jumpSound.setBuffer(game_data->assets.GetSoundBuffer("jumpSound"));
-    _pauseSound.setBuffer(game_data->assets.GetSoundBuffer("pauseSound"));
-    _gameMusicSound.setBuffer(game_data->assets.GetSoundBuffer("gameMusic"));
-    _coinPickup.setBuffer(game_data->assets.GetSoundBuffer("coinPickup"));
+    _jumpSound.setBuffer(game_data->assets.getSoundBuffer("jumpSound"));
+    _pauseSound.setBuffer(game_data->assets.getSoundBuffer("pauseSound"));
+    _gameMusicSound.setBuffer(game_data->assets.getSoundBuffer("gameMusic"));
+    _coinPickup.setBuffer(game_data->assets.getSoundBuffer("coinPickup"));
 
 
-    _score.setFont(game_data->assets.GetFont("Bauhaus"));
+    _score.setFont(game_data->assets.getFont("Bauhaus"));
     _score.setCharacterSize(40);
     _score.setFillColor(TEXT_COLOR);
 
-    coin_text.setFont(game_data->assets.GetFont("Bauhaus"));
+    coin_text.setFont(game_data->assets.getFont("Bauhaus"));
     coin_text.setCharacterSize(40);
     coin_text.setFillColor(TEXT_COLOR);
 
@@ -34,13 +34,13 @@ void MainGameState::Init(){
     character = std::unique_ptr<Character>(new Character(game_data));
     characterinfo = game_data->json.Get_PlayerSprite();
     game_data->assets.loadTextureFromFile(characterinfo.CharacterName, characterinfo.CharacterFileName);
-    character->getSprite().setTexture( game_data->assets.GetTexture(characterinfo.CharacterName) );
+    character->getSprite().setTexture( game_data->assets.getTexture(characterinfo.CharacterName) );
 
     obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
     wall = std::unique_ptr<Wall>(new Wall(game_data));
     coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(game_data));
-    background.setTexture(game_data->assets.GetTexture("BackgroundGround"));
-    background2.setTexture(game_data->assets.GetTexture("Background"));
+    background.setTexture(game_data->assets.getTexture("BackgroundGround"));
+    background2.setTexture(game_data->assets.getTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     background2.setPosition(0, backGroundOffsetY2);
     wall->spawn_Wall(WALL_HEIGHT);
@@ -50,7 +50,7 @@ void MainGameState::Init(){
     }
 }
 
-void MainGameState::HandleInput() {
+void MainGameState::handleInput() {
     sf::Event event{};
 
     while (game_data->window.pollEvent(event)) {
@@ -130,39 +130,39 @@ void MainGameState::Update( float delta ){
 
     switch (counter) {
         case 0:
-            background2.setTexture(game_data->assets.GetTexture("Background"));
+            background2.setTexture(game_data->assets.getTexture("Background"));
             break;
 
         case 1:
-            background.setTexture(game_data->assets.GetTexture("Background"));
+            background.setTexture(game_data->assets.getTexture("Background"));
             break;
 
         case 3:
-            background.setTexture(game_data->assets.GetTexture("BackgroundNoClouds"));
+            background.setTexture(game_data->assets.getTexture("BackgroundNoClouds"));
             break;
 
         case 4:
-            background2.setTexture(game_data->assets.GetTexture("BackgroundNoClouds"));
+            background2.setTexture(game_data->assets.getTexture("BackgroundNoClouds"));
             break;
 
         case 5:
-            background.setTexture(game_data->assets.GetTexture("SkyToSpaceBackground"));
+            background.setTexture(game_data->assets.getTexture("SkyToSpaceBackground"));
             break;
 
         case 6:
-            background2.setTexture(game_data->assets.GetTexture("SpaceBackground"));
+            background2.setTexture(game_data->assets.getTexture("SpaceBackground"));
             break;
 
         case 7:
-            background.setTexture(game_data->assets.GetTexture("SpaceBackground"));
+            background.setTexture(game_data->assets.getTexture("SpaceBackground"));
             break;
 
         case 12:
-            background2.setTexture(game_data->assets.GetTexture("SpaghettiMonsterBackground"));
+            background2.setTexture(game_data->assets.getTexture("SpaghettiMonsterBackground"));
             break;
 
         case 14:
-            background2.setTexture(game_data->assets.GetTexture("SpaceBackground"));
+            background2.setTexture(game_data->assets.getTexture("SpaceBackground"));
             break;
     }
 

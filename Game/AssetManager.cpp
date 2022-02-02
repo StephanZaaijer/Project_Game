@@ -13,7 +13,7 @@ void AssetManager::loadTextureFromFile(const std::string& name, const std::strin
     }
 }
 
-sf::Texture &AssetManager::GetTexture(const std::string &name) {
+sf::Texture &AssetManager::getTexture(const std::string &name) {
     if (textures.count(name)==1){
         return textures.at(name);
     }
@@ -31,7 +31,7 @@ void AssetManager::loadFontFromFile(const std::string &name, const std::string &
     }
 }
 
-sf::Font &AssetManager::GetFont(const std::string &name){
+sf::Font &AssetManager::getFont(const std::string &name){
     if (fonts.count(name)==1){
         return fonts.at(name);
     }
@@ -49,7 +49,7 @@ void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::s
     }
 }
 
-sf::SoundBuffer &AssetManager::GetSoundBuffer(const std::string &name) {
+sf::SoundBuffer &AssetManager::getSoundBuffer(const std::string &name) {
     if (sounds.count(name)==1){
         return sounds.at(name);
     }

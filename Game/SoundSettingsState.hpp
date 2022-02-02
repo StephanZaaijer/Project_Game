@@ -14,13 +14,13 @@
 
 class SoundSettingsState : public GameState {
 private:
-  sf::Sprite _background;
+  sf::Sprite background;
   sf::RectangleShape DarkFade;
   sf::Sprite _musicButton;
   sf::Sprite _soundButton;
-  sf::Sprite _backButton;
+  sf::Sprite backButton;
   sf::Text _settingsText;
-  std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &_backButton };
+  std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &backButton };
   std::unique_ptr<Soundslider> soundslider;
   std::unique_ptr<Musicslider> musicslider;
   sf::Sound _clickSound;
@@ -29,7 +29,7 @@ private:
 public:
   SoundSettingsState(GameDataReference data);
   void Init() override;
-  void HandleInput() override;
+  void handleInput() override;
   void Update(float delta) override;
   void Draw(float delta) override;
 

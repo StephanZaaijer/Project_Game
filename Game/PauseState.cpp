@@ -11,17 +11,17 @@ void PauseState::Init() {
     DarkFade.setPosition(0, 0);
     DarkFade.setFillColor(sf::Color(0, 0, 0, 120));
 
-    _resumeSound.setBuffer(game_data->assets.GetSoundBuffer("resumeSound"));
+    _resumeSound.setBuffer(game_data->assets.getSoundBuffer("resumeSound"));
     _resumeSound.setVolume(game_data->json.Get_Soundvolume());
 
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
+    _clickSound.setBuffer(game_data->assets.getSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
 
-    _background.setTexture(game_data->assets.GetTexture("Background"));
-    _playButton.setTexture(game_data->assets.GetTexture("Play Button"));
-    _soundsettingsButton.setTexture(game_data->assets.GetTexture("Settings Button"));
+    background.setTexture(game_data->assets.getTexture("Background"));
+    _playButton.setTexture(game_data->assets.getTexture("Play Button"));
+    _soundsettingsButton.setTexture(game_data->assets.getTexture("Settings Button"));
 
-    _pauseText.setFont(game_data->assets.GetFont("Bauhaus"));
+    _pauseText.setFont(game_data->assets.getFont("Bauhaus"));
     _pauseText.setString("PAUSED");
     _pauseText.setCharacterSize(TEXT_TITLE_SIZE);
     _pauseText.setFillColor(TEXT_COLOR);
@@ -40,7 +40,7 @@ void PauseState::Init() {
 
 }
 
-void PauseState::HandleInput() {
+void PauseState::handleInput() {
     sf::Event event{};
     while (game_data->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
@@ -72,7 +72,7 @@ void PauseState::Update(float delta) {
 
 void PauseState::Draw(float delta) {
     game_data->window.clear();
-    game_data->window.draw(_background);
+    game_data->window.draw(background);
     game_data->window.draw(DarkFade);
     game_data->window.draw(_playButton);
     game_data->window.draw(_soundsettingsButton);

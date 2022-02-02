@@ -6,8 +6,8 @@
 GameOverState::GameOverState(GameDataReference data) : game_data(std::move(data)){}
 
 void GameOverState::Init() {
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
-    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("deathSound"));
+    _clickSound.setBuffer(game_data->assets.getSoundBuffer("clickSound"));
+    _deathSound.setBuffer(game_data->assets.getSoundBuffer("deathSound"));
 
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
     _deathSound.setVolume(game_data->json.Get_Soundvolume());
@@ -16,13 +16,13 @@ void GameOverState::Init() {
         _deathSound.play();
     }
 
-    _background.setTexture(game_data->assets.GetTexture("Background"));
-    _restartButton.setTexture(game_data->assets.GetTexture("Restart Button"));
-    _mainMenuButton.setTexture(game_data->assets.GetTexture("MainMenu Button"));
+    background.setTexture(game_data->assets.getTexture("Background"));
+    _restartButton.setTexture(game_data->assets.getTexture("Restart Button"));
+    _mainMenuButton.setTexture(game_data->assets.getTexture("MainMenu Button"));
 
-    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus"));
-    _score.setFont(game_data->assets.GetFont("Bauhaus"));
-    _highscore.setFont( game_data->assets.GetFont("Bauhaus"));
+    _gameOverText.setFont(game_data->assets.getFont("Bauhaus"));
+    _score.setFont(game_data->assets.getFont("Bauhaus"));
+    _highscore.setFont( game_data->assets.getFont("Bauhaus"));
 
     _restartButton.setPosition(SCREEN_WIDTH - (_restartButton.getGlobalBounds().width * 2.9),
                                SCREEN_HEIGHT - (_restartButton.getGlobalBounds().height * 1.1));
@@ -58,7 +58,7 @@ void GameOverState::Init() {
     _highscore.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f);
 }
 
-void GameOverState::HandleInput() {
+void GameOverState::handleInput() {
     sf::Event event{};
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
@@ -98,7 +98,7 @@ void GameOverState::Update(float delta) {
 
 void GameOverState::Draw(float delta) {
     game_data->window.clear();
-    game_data->window.draw(_background);
+    game_data->window.draw(background);
     game_data->window.draw(_gameOverText);
     game_data->window.draw(_restartButton);
     game_data->window.draw(_mainMenuButton);

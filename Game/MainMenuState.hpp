@@ -14,7 +14,7 @@
 class MainMenuState : public GameState {
 private:
     GameDataReference game_data;
-    sf::Sprite _background;
+    sf::Sprite background;
     sf::Sprite _title;
     sf::Sprite _banner;
     sf::Sprite _playButton;
@@ -39,7 +39,7 @@ public:
 
     void Init() override;
 
-    void HandleInput() override;
+    void handleInput() override;
 
     void Update(float delta) override;
 

@@ -40,7 +40,7 @@ private:
 public:
     MainGameState(GameDataReference data);
     void Init() override;
-    void HandleInput() override;
+    void handleInput() override;
     void Update( float delta ) override;
     void Draw( float delta ) override;
     void Resume() override;

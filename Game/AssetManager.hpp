@@ -28,7 +28,7 @@ public:
     /// Function to get sf::Texture that`s stored in the assetmanager. Throws an return_exception if there is no sf::Texture stored in the assetmanager with that key.
     /// \param name The key that`s used to load the sf::Texture into the assetmanager.
     /// \return The sf::Texture that`s stored with that particular key.
-    sf::Texture &GetTexture(const std::string &name);
+    sf::Texture &getTexture(const std::string &name);
 
     /// @brief
     /// Function to load sf::Font into the assetmanager from a fontfile.
@@ -45,7 +45,7 @@ public:
     /// Function to get sf::Font that`s stored in the assetmanager. Throws an return_exception if there is no sf::Font stored in the assetmanager with that key.
     /// \param name The key that`s used to load the sf::Font into the assetmanager.
     /// \return The sf::Font that`s stored with that particular key.
-    sf::Font &GetFont(const std::string &name);
+    sf::Font &getFont(const std::string &name);
 
     /// @brief
     /// Function to load sf::SoundBuffer into the assetmanager from a Soundfile
@@ -62,7 +62,7 @@ public:
     /// Function to get sf::SoundBuffer that`s stored in the assetmanager. Throws an return_exception if there is no sf::SoundBuffer stored in the assetmanager with that key.
     /// \param name The key that`s used to load the sf::SoundBuffer into the assetmanager.
     /// \return The sf::SoundBuffer that`s stored with that particular key.
-    sf::SoundBuffer &GetSoundBuffer(const std::string &name);
+    sf::SoundBuffer &getSoundBuffer(const std::string &name);
 
 private:
     std::map<std::string, sf::SoundBuffer> sounds;

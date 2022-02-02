@@ -24,7 +24,7 @@ void Game::start() {
         accumulator += frameTime;
 
         while (accumulator >= delta) {
-            game_data->machine.GetActiveGameState()->HandleInput();
+            game_data->machine.GetActiveGameState()->handleInput();
             game_data->machine.GetActiveGameState()->Update(delta);
             accumulator -= delta;
         }

@@ -9,10 +9,10 @@ void StartUpState::Init() {
     game_data->assets.loadTextureFromFile("StartUp State Image", GAME_IMAGE_PATH);
     game_data->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
     game_data->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
-    _background.setTexture(game_data->assets.GetTexture("Background"));
-    _logo.setTexture(game_data->assets.GetTexture("StartUp State Image"));
-    _title.setTexture(game_data->assets.GetTexture("Banner"));
-    _banner.setTexture(game_data->assets.GetTexture("Groep6 Banner"));
+    background.setTexture(game_data->assets.getTexture("Background"));
+    _logo.setTexture(game_data->assets.getTexture("StartUp State Image"));
+    _title.setTexture(game_data->assets.getTexture("Banner"));
+    _banner.setTexture(game_data->assets.getTexture("Groep6 Banner"));
 
     _title.setPosition((SCREEN_WIDTH / 2.0f - (_title.getGlobalBounds().width / 2)),
                        _title.getGlobalBounds().height / 2);
@@ -21,7 +21,7 @@ void StartUpState::Init() {
                         SCREEN_HEIGHT - _banner.getGlobalBounds().height * 1.5);
 }
 
-void StartUpState::HandleInput() {
+void StartUpState::handleInput() {
     sf::Event event{};
     while (game_data->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
@@ -38,7 +38,7 @@ void StartUpState::Update(float delta) {
 
 void StartUpState::Draw(float delta) {
     game_data->window.clear();
-    game_data->window.draw(_background);
+    game_data->window.draw(background);
     game_data->window.draw(_title);
     game_data->window.draw(_logo);
     game_data->window.draw(_banner);

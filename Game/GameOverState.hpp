@@ -13,7 +13,7 @@
 class GameOverState : public GameState {
 private:
     GameDataReference game_data;
-    sf::Sprite _background;
+    sf::Sprite background;
     sf::Sprite _restartButton;
     sf::Sprite _mainMenuButton;
 
@@ -30,7 +30,7 @@ private:
 public:
     GameOverState(GameDataReference data);
     void Init() override;
-    void HandleInput() override;
+    void handleInput() override;
     void Update(float delta) override;
     void Draw(float delta) override;
 

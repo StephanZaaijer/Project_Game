@@ -19,7 +19,7 @@ class StartUpState : public GameState {
 private:
     GameDataReference game_data;
     sf::Clock _clock;
-    sf::Sprite _background;
+    sf::Sprite background;
     sf::Sprite _logo;
     sf::Sprite _title;
     sf::Sprite _banner;
@@ -32,8 +32,8 @@ public:
     ///\brief Init() function
     void Init() override;
 
-    ///\brief HandleInput() function
-    void HandleInput() override;
+    ///\brief handleInput() function
+    void handleInput() override;
 
     ///\brief Update function
     /// \param delta

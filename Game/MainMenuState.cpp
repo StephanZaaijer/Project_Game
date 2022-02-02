@@ -30,8 +30,8 @@ void MainMenuState::Init() {
     game_data->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("Settings Button", SETTINGS_BUTTON_PATH);
     game_data->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
-    game_data->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
+    game_data->assets.loadTextureFromFile("SpaceBackground", SPACEbackground_PATH);
+    game_data->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACEbackground_SPAGHETTI_MONSTER_PATH);
     game_data->assets.loadTextureFromFile("Controls Button", CONTROLS_BUTTON_PATH);
 
 
@@ -48,16 +48,16 @@ void MainMenuState::Init() {
     game_data->assets.loadSoundBufferFromFile("resumeSound", SOUND_RESUME_PATH);
 
 
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
+    _clickSound.setBuffer(game_data->assets.getSoundBuffer("clickSound"));
     _clickSound.setVolume(game_data->json.Get_Soundvolume());
 
-    _background.setTexture(game_data->assets.GetTexture("Background"));
-    _title.setTexture(game_data->assets.GetTexture("Banner"));
-    _banner.setTexture(game_data->assets.GetTexture("Groep6 Banner"));
-    _playButton.setTexture(game_data->assets.GetTexture("Play Button"));
-    _settingsButton.setTexture(game_data->assets.GetTexture("Settings Button"));
-    _customButton.setTexture(game_data->assets.GetTexture("Customize Button"));
-    _tutorialButton.setTexture(game_data->assets.GetTexture("Controls Button"));
+    background.setTexture(game_data->assets.getTexture("Background"));
+    _title.setTexture(game_data->assets.getTexture("Banner"));
+    _banner.setTexture(game_data->assets.getTexture("Groep6 Banner"));
+    _playButton.setTexture(game_data->assets.getTexture("Play Button"));
+    _settingsButton.setTexture(game_data->assets.getTexture("Settings Button"));
+    _customButton.setTexture(game_data->assets.getTexture("Customize Button"));
+    _tutorialButton.setTexture(game_data->assets.getTexture("Controls Button"));
 
     _title.setOrigin(_title.getGlobalBounds().width/2, _title.getGlobalBounds().height/2);
     _playButton.setOrigin(_playButton.getGlobalBounds().width/2, _playButton.getGlobalBounds().height/2);
@@ -77,7 +77,7 @@ void MainMenuState::Init() {
 
     quoteVector = game_data->json.Get_Quotes();
 
-    _quote.setFont(game_data->assets.GetFont("8-bit"));
+    _quote.setFont(game_data->assets.getFont("8-bit"));
     _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
     _quote.setCharacterSize(MAIN_MENU_FONT_SIZE);
     _quote.setRotation(-8);
@@ -87,7 +87,7 @@ void MainMenuState::Init() {
 
 }
 
-void MainMenuState::HandleInput() {
+void MainMenuState::handleInput() {
     sf::Event event{};
 
     while (game_data->window.pollEvent(event)) {
@@ -153,7 +153,7 @@ void MainMenuState::Update(float delta) {
 
 void MainMenuState::Draw(float delta) {
     game_data->window.clear();
-    game_data->window.draw(_background);
+    game_data->window.draw(background);
     game_data->window.draw(_title);
     game_data->window.draw(_playButton);
     game_data->window.draw(_tutorialButton);

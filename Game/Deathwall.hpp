@@ -10,10 +10,10 @@
 
 /// @file Deathwall.hpp
 /// @brief
-/// Project_Game: Defines a Deathwall that inherits from obstacle
+/// Project_Game: Defines a Deathwall that derives from obstacle
 
 /// @brief
-/// Deathwall class which inherits from Obstacle.
+/// Deathwall class which derives from Obstacle.
 class Deathwall : public Obstacle {
 private:
     GameDataReference gameData;
@@ -22,6 +22,8 @@ private:
 public:
     /// @brief
     /// Used to construct deathwall object.
+    /// @details
+    /// initializes the value of je object with the spawn method.
     /// \param game_data is a shared pointer to the GameDataReference where information of the game is stored
     /// \param position is a sf::Vector2f which contains a X and Y coordinate and is used to set the position of the deathwall
     Deathwall(GameDataReference gameData, sf::Vector2f position);

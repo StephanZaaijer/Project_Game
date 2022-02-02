@@ -198,8 +198,8 @@ bool Character::collideSpike(const std::unique_ptr<Obstacle> &spike) {
 
         Line l1(upperleft, midright);
         Line l2(lowerleft, midright);
-        std::vector<sf::Vector2f> pointsarraytop = l1.get_points();
-        std::vector<sf::Vector2f> pointsarraybottom = l2.get_points();
+        std::vector<sf::Vector2f> pointsarraytop = l1.getPoints();
+        std::vector<sf::Vector2f> pointsarraybottom = l2.getPoints();
 
         auto iterator = std::find_if(pointsarraytop.begin(), pointsarraytop.end(), [&ownhitbox](const sf::Vector2f & v) -> bool{
             return ownhitbox.contains(v);

@@ -1,32 +1,32 @@
 #include "Coin.hpp"
 
-Coin::Coin(GameDataReference game_data):
-    gameData(game_data)
+Coin::Coin(GameDataReference gameData):
+    gameData(gameData)
 {
-    _coin.setTexture(game_data -> assets.GetTexture("Coin"));
-    _coin.setScale(COIN_SCALE, COIN_SCALE);
+    coin.setTexture(gameData -> assets.GetTexture("Coin"));
+    coin.setScale(COIN_SCALE, COIN_SCALE);
 }
 
-void Coin::move(sf::Vector2f move_by){
-    _coin.move(move_by);
+void Coin::move(sf::Vector2f moveBy){
+    coin.move(moveBy);
 }
 
-void Coin::set_position(sf::Vector2f position){
-    _coin.setPosition(position);
+void Coin::setPosition(sf::Vector2f position){
+    coin.setPosition(position);
 }
 
-sf::Sprite Coin::get_coin(){
-    return _coin;
+sf::Sprite Coin::getCoin(){
+    return coin;
 }
 
 sf::FloatRect Coin::getBounds(){
-    return _coin.getGlobalBounds();
+    return coin.getGlobalBounds();
 }
 
 sf::Vector2f Coin::getPosition(){
-    return _coin.getPosition();
+    return coin.getPosition();
 }
 
 void Coin::draw(){
-    game_data -> window.draw(_coin);
+    gameData -> window.draw(coin);
 }

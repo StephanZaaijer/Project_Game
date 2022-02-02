@@ -301,6 +301,6 @@ void CustomCharacterState::Draw(float delta) {
     game_data->window.draw(_equipButtonTheme);
     game_data->window.draw(_equippedCharacter);
     game_data->window.draw(_equippedTheme);
-    character->Draw();
+    character->draw();
     game_data->window.display();
 }

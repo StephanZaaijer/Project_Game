@@ -29,7 +29,7 @@ private:
 public:
     Line(const sf::Vector2f & pointA = sf::Vector2f {0.0, 0.0}, const sf::Vector2f & pointB = sf::Vector2f {0.0, 0.0});
     formula calculateFormula() const;
-    std::vector<sf::Vector2f> & get_points();
+    std::vector<sf::Vector2f> & getPoints();
 
 };
 

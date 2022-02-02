@@ -16,7 +16,7 @@ formula Line::calculateFormula() const {
     return {rc, offset};
 }
 
-std::vector<sf::Vector2f> &Line::get_points() {
+std::vector<sf::Vector2f> &Line::getPoints() {
     formula f = calculateFormula();
     int amount = A.x > B.x ? A.x - B.x : B.x - A.x;
     int start_x = A.x < B.x ? A.x : B.x;

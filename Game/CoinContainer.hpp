@@ -8,12 +8,12 @@
 #include <vector>
 #include "Coin.hpp"
 
-class Coin_Container{
+class CoinContainer{
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     std::vector<std::unique_ptr<Coin>> coins;
 public:
-    Coin_Container(GameDataReference game_data);
+    CoinContainer(GameDataReference gameData);
     std::vector<std::unique_ptr<Coin>> & getCoins();
     void spawn();
     void move(sf::Vector2f move_by);

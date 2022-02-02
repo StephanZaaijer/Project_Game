@@ -22,7 +22,7 @@ private:
     std::unique_ptr<Obstacle_Container> obstacles_container;
     std::unique_ptr<Character> character;
     CustomCharacter characterinfo;
-    std::unique_ptr<Coin_Container> coins_container;
+    std::unique_ptr<CoinContainer> coins_container;
     sf::Text _score;
     sf::Text coin_text;
     sf::Sound _jumpSound;

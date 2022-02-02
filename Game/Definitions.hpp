@@ -4,6 +4,10 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+/// @file
+/// @brief
+/// Project_Game: This file contains all macro's, and several enum's and structs used for sharing data through the program.
+
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
@@ -11,11 +15,15 @@
 #define CHARACTER_START_HEIGHT 800
 #define CHARACTER_SCALE 0.75
 #define JSON_WRITEOUT_TIME 5.0
+
+/// @brief
+/// This enum list contains the character_states in which the character can be in.
 enum character_states {
 	Still,
 	Jumping,
 	Stick
 };
+
 #define GRAVITY 0.6f
 #define VELOCITY_Y (-20.0)
 #define VELOCITY_X 8
@@ -97,23 +105,44 @@ enum character_states {
 #define MAIN_MENU_FONT_SIZE 60
 #define MAIN_MENU_FONT_SIZE_SCALER 1
 
+/// @brief
+/// This enum Spike_facing list is used to define which way an obstacle is facing
 enum Spike_facing {left, right, neither};
+
+/// @brief
+/// This enum identifier list is used to identify an obstacle as a spike or deathwall.
 enum identifier {spike, deathwall};
 
-
+/// @brief
+/// This CustomCharacter struct is used to store character-sprite information.
+/// @details
+/// This struct contains the character name and filename.
 struct CustomCharacter {
     std::string characterName;
     std::string characterFileName;
+
+    /// @brief
+    /// This operator== is used to check if the a CustomCharacter is equal to another CustomCharacter.
+    /// This is done by checking their name and filename is.
 	bool operator==(const CustomCharacter &rhs) const{
 		return (characterName == rhs.characterName) and (characterFileName == rhs.characterFileName);
 	}
 };
 
+/// @brief
+/// This CustomTheme struct is used to store information for the game theme.
+/// @details
+/// This struct contains the wallColor, objectColor, themeName and themeFileName.
+/// This is used to initialize the colors of all game elements.
 struct CustomTheme{
     sf::Color wallColor;
     sf::Color objectColor;
     std::string themeName;
     std::string themeFileName;
+
+    /// @brief
+    /// This operator== is used to determine if the a given theme is equal to another theme.
+    /// This is done by comparing their names and filenames
     bool operator==(const CustomTheme &rhs) const{
         return (themeName == rhs.themeName) and (themeFileName == rhs.themeFileName);
     }

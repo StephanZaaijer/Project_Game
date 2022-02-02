@@ -13,11 +13,11 @@ class Character {
 public:
     Character(GameDataReference data);
 
-    void Draw();
-    void Update(float dt);
-    void Tap();
-    void CollideWalls(const std::vector<sf::RectangleShape> & Rects );
-    bool CollideSpike(const std::unique_ptr<Obstacle> & spike);
+    void draw();
+    void update();
+    void tap();
+    void collideWalls(const std::vector<sf::RectangleShape> & Rects );
+    bool collideSpike(const std::unique_ptr<Obstacle> & spike);
     void setHeight(const int &value);
     void moveDownByOffset(const float & y);
     void resetJumps();
@@ -29,19 +29,19 @@ public:
     sf::Vector2f getPosition();
     void setJumpPressed(bool set);
     bool getJumpedTwice();
-    bool _death = false;
+    bool death = false;
 
 private:
-    GameDataReference game_data;
-    sf::Sprite _characterSprite;
-    sf::Vector2f _velocity = {VELOCITY_X,0};
-    sf::Vector2f _position;
-    character_states _characterState;
-    float _fallVelocity = 0;
-    int _height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;
-    int _score = 0;
-    bool _jumped_once = false;
-    bool _jumped_twice = false;
+    GameDataReference gameData;
+    sf::Sprite characterSprite;
+    sf::Vector2f velocity = {VELOCITY_X,0};
+    sf::Vector2f position;
+    character_states characterState;
+    float fallVelocity = 0;
+    int height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;
+    int score = 0;
+    bool jumpedOnce = false;
+    bool jumpedTwice = false;
     bool isJumpPressed = false;
 };
 

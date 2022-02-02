@@ -30,7 +30,6 @@ public:
     /// \return The sf::Texture that`s stored with that particular key.
     sf::Texture &GetTexture(const std::string &name);
 
-
     /// @brief
     /// Function to load sf::Font into the assetmanager from a fontfile.
     /// @details
@@ -47,7 +46,6 @@ public:
     /// \param name The key that`s used to load the sf::Font into the assetmanager.
     /// \return The sf::Font that`s stored with that particular key.
     sf::Font &GetFont(const std::string &name);
-
 
     /// @brief
     /// Function to load sf::SoundBuffer into the assetmanager from a Soundfile

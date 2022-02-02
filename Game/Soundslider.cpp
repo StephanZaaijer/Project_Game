@@ -4,7 +4,6 @@
 
 Soundslider::Soundslider(GameDataReference game_data, sf::Vector2f slider_location, int length, bool horizontal, sf::Color slidercolor_on, sf::Color slidercolor_off, sf::Vector2f Textlocation, int fontsize) :
 	Slider(game_data, slider_location, length, horizontal, slidercolor_on),
-	game_data(game_data),
 	slidercolor_on(slidercolor_on),
 	slidercolor_off(slidercolor_off)
 {

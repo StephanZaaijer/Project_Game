@@ -29,6 +29,26 @@ void CustomCharacterState::Init() {
     _coins_text.setString("Coins: " + std::to_string(coins));
     _coins_text.setPosition(SCREEN_WIDTH / 1.2f, SCREEN_HEIGHT / 20.0f);
 
+    _equippedCharacter.setFont(game_data->assets.GetFont("Bauhaus"));
+    _equippedCharacter.setCharacterSize(30);
+    _equippedCharacter.setFillColor(TEXT_COLOR);
+    _equippedCharacter.setString("EQUIPPED");
+
+     auto tmpRect = _equippedCharacter.getLocalBounds();
+    _equippedCharacter.setOrigin(tmpRect.left + tmpRect.width / 2,
+        tmpRect.top + tmpRect.height / 2);
+    _equippedCharacter.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 10.0f);
+
+    _equippedTheme.setFont(game_data->assets.GetFont("Bauhaus"));
+    _equippedTheme.setCharacterSize(30);
+    _equippedTheme.setFillColor(TEXT_COLOR);
+    _equippedTheme.setString("EQUIPPED");
+
+    tmpRect = _equippedTheme.getLocalBounds();
+    _equippedTheme.setOrigin(tmpRect.left + tmpRect.width / 2,
+                                tmpRect.top + tmpRect.height / 2);
+    _equippedTheme.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.3f);
+
     counter_Characters = 0;
     character = std::unique_ptr<Character>(new Character(game_data));
     CurrentCharacter = game_data->json.Get_PlayerSprite();
@@ -38,19 +58,17 @@ void CustomCharacterState::Init() {
         if (!found) {
             if (characters == CurrentCharacter) {
                 found = true;
+            } else {
+                counter_Characters++;
             }
-            counter_Characters++;
         }
     }
     if (counter_Characters > (int) CustomCharacters.size() - 1) {
         counter_Characters = 0;
-        CurrentCharacter = CustomCharacters[counter_Characters];
     }
-    if (skin_bought[counter_Characters]) {
-        _buyEquipButton.setTexture(game_data->assets.GetTexture("Equip Button"));
-    } else {
-        _buyEquipButton.setTexture(game_data->assets.GetTexture("Buy Button"));
-    }
+    CurrentCharacter = CustomCharacters[counter_Characters];
+
+    _buyEquipButton.setTexture(game_data->assets.GetTexture("Equip Button"));
 
     counter_Theme = 0;
     CurrentTheme = game_data->json.Get_PlayerTheme();
@@ -60,14 +78,15 @@ void CustomCharacterState::Init() {
         if (!found) {
             if (themes == CurrentTheme) {
                 found = true;
+            } else {
+                counter_Theme++;
             }
-            counter_Theme++;
         }
     }
     if (counter_Theme > (int) CustomThemes.size() - 1) {
         counter_Theme = 0;
-        CurrentTheme = CustomThemes[counter_Theme];
     }
+    CurrentTheme = CustomThemes[counter_Theme];
 
     character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
     character->getSprite().setScale(2, 2);
@@ -104,14 +123,27 @@ void CustomCharacterState::HandleInput() {
     sf::Event event{};
     while (game_data->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            game_data->json.Set_PlayerSprite(CurrentCharacter);
-            game_data->json.Set_PlayerTheme(CurrentTheme);
             game_data->window.close();
         }
         if (skin_bought[counter_Characters]) {
             _buyEquipButton.setTexture(game_data->assets.GetTexture("Equip Button"));
         } else {
             _buyEquipButton.setTexture(game_data->assets.GetTexture("Buy Button"));
+        }
+
+        if(CurrentCharacter.CharacterName == game_data->json.Get_PlayerSprite().CharacterName){
+            _equippedCharacter.setString("EQUIPPED");
+        }else if (skin_bought[counter_Characters]){
+            _equippedCharacter.setString("");
+        }
+        else{
+            _equippedCharacter.setString(std::to_string(SKIN_PRICE) + " coins");
+        }
+
+        if(CurrentTheme.themeName == game_data->json.Get_PlayerTheme().themeName){
+            _equippedTheme.setString("EQUIPPED");
+        }else{
+            _equippedTheme.setString("");
         }
 
         if (game_data->input.ChangeMouseWhenHoveringOverButton(ClickableButtons, game_data->window)) {
@@ -130,6 +162,11 @@ void CustomCharacterState::HandleInput() {
                 }
 
                 if (game_data->input.IsSpriteClicked(_arrowLeftCharacter, sf::Mouse::Left, game_data->window)) {
+                    if(CurrentCharacter.CharacterName == game_data->json.Get_PlayerSprite().CharacterName){
+                        _equippedCharacter.setString("EQUIPPED");
+                    }else{
+                        _equippedCharacter.setString("");
+                    }
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();
                     }
@@ -143,12 +180,13 @@ void CustomCharacterState::HandleInput() {
                 }
 
                 if (game_data->input.IsSpriteClicked(_randomButtonCharacter, sf::Mouse::Left, game_data->window)) {
+                    _equippedCharacter.setString("");
                     for (int i = 0; i < 10 + std::rand() % 40; i++) {
                         if (game_data->json.Get_Soundstate()) {
                             _customClickSound.play();
                         }
                         counter_Characters = std::rand() % CustomCharacters.size();
-                        while (CurrentCharacter == CustomCharacters[counter_Characters]) {
+                        while ((CurrentCharacter == CustomCharacters[counter_Characters]) || (!skin_bought[counter_Characters])) {
                             counter_Characters = std::rand() % CustomCharacters.size();
                         }
                         CurrentCharacter = CustomCharacters[counter_Characters];
@@ -157,6 +195,7 @@ void CustomCharacterState::HandleInput() {
                         sf::sleep(sf::milliseconds(20 + i * 10));
                     }
                 }
+
                 if (game_data->input.IsSpriteClicked(_buyEquipButton, sf::Mouse::Left, game_data->window)) {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();
@@ -170,8 +209,11 @@ void CustomCharacterState::HandleInput() {
                             character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
                             game_data->json.Set_Coins(coins);
                             game_data->json.Set_BoughtSkins(counter_Characters, true);
+                            _equippedCharacter.setString("EQUIPPED");
+                            game_data->json.Set_PlayerSprite(CurrentCharacter);
                         }
                     } else {
+                        _equippedCharacter.setString("EQUIPPED");
                         character->getSprite().setTexture(game_data->assets.GetTexture(CurrentCharacter.CharacterName));
                         game_data->json.Set_PlayerSprite(CurrentCharacter);
                     }
@@ -188,6 +230,7 @@ void CustomCharacterState::HandleInput() {
                     }
                     CurrentTheme = CustomThemes[counter_Theme];
                     _theme.setTexture(game_data->assets.GetTexture(CurrentTheme.themeName));
+
                 }
 
                 if (game_data->input.IsSpriteClicked(_arrowLeftTheme, sf::Mouse::Left, game_data->window)) {
@@ -204,6 +247,7 @@ void CustomCharacterState::HandleInput() {
                 }
 
                 if (game_data->input.IsSpriteClicked(_randomButtonTheme, sf::Mouse::Left, game_data->window)) {
+                    _equippedTheme.setString("");
                     for (int i = 0; i < 10 + std::rand() % 40; i++) {
                         if (game_data->json.Get_Soundstate()) {
                             _customClickSound.play();
@@ -218,10 +262,12 @@ void CustomCharacterState::HandleInput() {
                         sf::sleep(sf::milliseconds(20 + i * 10));
                     }
                 }
+
                 if (game_data->input.IsSpriteClicked(_equipButtonTheme, sf::Mouse::Left, game_data->window)) {
                     if (game_data->json.Get_Soundstate()) {
                         _customClickSound.play();
                     }
+                    _equippedTheme.setString("EQUIPPED");
                     game_data->json.Set_PlayerTheme(CurrentTheme);
                 }
 
@@ -253,6 +299,8 @@ void CustomCharacterState::Draw(float delta) {
     game_data->window.draw(_theme);
     game_data->window.draw(_buyEquipButton);
     game_data->window.draw(_equipButtonTheme);
+    game_data->window.draw(_equippedCharacter);
+    game_data->window.draw(_equippedTheme);
     character->Draw();
     game_data->window.display();
 }

@@ -14,7 +14,7 @@
 
 class SoundSettingsState : public GameState {
 private:
-  GameDataReference game_data;
+    GameDataReference game_data;
   sf::Sprite _background;
   sf::RectangleShape DarkFade;
   sf::Sprite _musicButton;

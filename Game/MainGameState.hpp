@@ -10,6 +10,7 @@
 #include "ObstaclesContainer.hpp"
 #include "Character.hpp"
 #include "GameOverState.hpp"
+#include "Line.hpp"
 #include "CoinContainer.hpp"
 
 class MainGameState : public GameState{
@@ -23,9 +24,11 @@ private:
     CustomCharacter characterinfo;
     std::unique_ptr<Coin_Container> coins_container;
     sf::Text _score;
+    sf::Text coin_text;
     sf::Sound _jumpSound;
     sf::Sound _pauseSound;
     sf::Sound _gameMusicSound;
+    sf::Sound _coinPickup;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
     int acquired_coins = 0;

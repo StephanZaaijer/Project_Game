@@ -20,11 +20,19 @@ private:
     sf::Sprite _playButton;
     sf::Sprite _settingsButton;
     sf::Sprite _customButton;
+    sf::Sprite _tutorialButton;
 
     sf::Sound _clickSound;
 
-    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton };
-    bool prevMousestate = false;
+    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton, &_tutorialButton };
+    std::vector<std::string> quoteVector;
+    float scaler = MAIN_MENU_FONT_SIZE_SCALER;
+    float fontSize = MAIN_MENU_FONT_SIZE;
+    float fontSizeOrigin = MAIN_MENU_FONT_SIZE;
+
+    sf::Text _quote;
+
+    bool prevMousestate = true;
 
 public:
     MainMenuState(GameDataReference data);

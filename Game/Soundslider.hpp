@@ -11,7 +11,6 @@ public:
 	void Draw() override;
 
 private:
-	GameDataReference game_data;
 	sf::Color slidercolor_on;
 	sf::Color slidercolor_off;
 	int slider_min;
@@ -22,4 +21,4 @@ private:
 	sf::Vector2f prev_sliderblock_location;
 };
 
-#endif // PROJECT_GAME_SLIDER
+#endif // PROJECT_GAME_SOUNDSLIDER

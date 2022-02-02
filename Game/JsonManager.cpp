@@ -3,7 +3,7 @@
 #include <utility>
 #include "Exceptions.hpp"
 
-JsonManager::JsonManager(std::string Gamefile):
+JsonManager::JsonManager(const std::string &Gamefile):
 	Gamefile(std::move(Gamefile))
 {
 	data = JsonData();
@@ -12,7 +12,15 @@ JsonManager::JsonManager(std::string Gamefile):
 
 void JsonManager::Get_data() {
 	json_data = Get_Json_from_file();
-	data = {
+    std::vector<bool> Bought_Skins;
+    for( const auto& skin : json_data["Bought_Skins"]){
+        Bought_Skins.push_back(skin.asBool());
+    }
+    std::vector<std::string> Quotes;
+    for( const auto& quote : json_data["Quotes"]){
+        Quotes.push_back(quote.asString());
+    }
+    data = {
 		json_data["Audio"]["Sound"].asBool(),
 		json_data["Audio"]["Soundlevel"].asInt(),
 		json_data["Audio"]["Music"].asBool(),
@@ -25,7 +33,8 @@ void JsonManager::Get_data() {
         json_data["Theme"]["WallColor"].asString(),
         json_data["Theme"]["ObstacleColor"].asString(),
 		json_data["Coins"].asInt(),
-        json_data["Bought_Skins"]
+        Bought_Skins,
+        Quotes
         };
 }
 
@@ -69,14 +78,14 @@ sf::Color JsonManager::Get_WallColor() const {
 }
 
 std::vector<bool> JsonManager::Get_Bought_Skins() const{
-    std::vector<bool> tmp;
-    for( const auto& skin : data.BoughtSkins){
-        tmp.push_back(skin.asBool());
-    }
-    return tmp;
+    return data.BoughtSkins;
 }
 
-void JsonManager::Set_Soundstate(bool state) {
+std::vector<std::string> JsonManager::Get_Quotes() const{
+    return data.Quotes;
+}
+
+void JsonManager::Set_Soundstate(const bool &state) {
 	if (state == data.Sound) {
 		return;
 	}
@@ -85,7 +94,7 @@ void JsonManager::Set_Soundstate(bool state) {
 	clock.restart();
 	write_out = true;
 }
-void JsonManager::Set_Soundvolume(int volume) {
+void JsonManager::Set_Soundvolume(const int &volume) {
 	if (volume == data.Soundvolume) {
 		return;
 	}
@@ -96,7 +105,7 @@ void JsonManager::Set_Soundvolume(int volume) {
 	clock.restart();
 	write_out = true;
 }
-void JsonManager::Set_Musicstate(bool state) {
+void JsonManager::Set_Musicstate(const bool &state) {
 	if (state == data.Music) {
 		return;
 	}
@@ -105,7 +114,7 @@ void JsonManager::Set_Musicstate(bool state) {
 	clock.restart();
 	write_out = true;
 }
-void JsonManager::Set_Musicvolume(int volume) {
+void JsonManager::Set_Musicvolume(const int &volume) {
 	if (volume == data.Musicvolume) {
 		return;
 	}
@@ -116,7 +125,7 @@ void JsonManager::Set_Musicvolume(int volume) {
 	clock.restart();
 	write_out = true;
 }
-void JsonManager::Set_Highscore(int highscore) {
+void JsonManager::Set_Highscore(const int &highscore) {
 	if (highscore <= data.Highscore) {
 		return;
 	}
@@ -154,7 +163,7 @@ void JsonManager::Set_PlayerTheme(const CustomTheme& PlayerTheme) {
     write_out = true;
 }
 
-void JsonManager::Set_Coins(int coins){
+void JsonManager::Set_Coins(const int &coins){
 	if (coins == data.Coins) {
 		return;
 	}
@@ -164,11 +173,24 @@ void JsonManager::Set_Coins(int coins){
 	write_out = true;
 }
 
-void JsonManager::Set_BoughtSkins(int index, bool value) {
+void JsonManager::Set_BoughtSkins(const int &index, const bool &value) {
+    if(data.BoughtSkins[index]==value){
+        return;
+    }
     data.BoughtSkins[index] = value;
-    json_data["Bought_Skins"] = data.BoughtSkins;
+    json_data["Bought_Skins"][index] = value;
     clock.restart();
     write_out = true;
+}
+
+void JsonManager::Set_Quotes(const int &index, const std::string &Quote){
+    if(data.Quotes[index]==Quote){
+        return;
+    }
+    data.Quotes[index]=Quote;
+    json_data["Quotes"][index]=Quote;
+    clock.restart();
+    write_out=true;
 }
 
 void JsonManager::Update() {
@@ -186,7 +208,7 @@ void JsonManager::Direct_write() {
 }
 
 
-sf::Color JsonManager::string_to_color(std::string colorstring) const{
+sf::Color JsonManager::string_to_color(const std::string &colorstring) const{
     for(const auto &color: colors){
         if(color.color_string==colorstring){
             return color.color_sf;
@@ -195,7 +217,7 @@ sf::Color JsonManager::string_to_color(std::string colorstring) const{
     throw unknown_color_exception(colorstring);
 }
 
-std::string JsonManager::color_to_string(sf::Color color_sf) const{
+std::string JsonManager::color_to_string(const sf::Color &color_sf) const{
     for(const auto &color: colors){
         if(color.color_sf == color_sf){
             return color.color_string;
@@ -230,5 +252,3 @@ void JsonManager::Write_Json_to_file() {
 	Outputfile << json_data;
 	Outputfile.close();
 }
-
-

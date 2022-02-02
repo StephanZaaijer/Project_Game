@@ -6,16 +6,16 @@ PauseState::PauseState(GameDataReference data):
     gameData(std::move(data))
 {}
 
-void PauseState::Init() {
+void PauseState::init() {
     DarkFade.setSize(sf::Vector2f(gameData->window.getSize()));
     DarkFade.setPosition(0, 0);
     DarkFade.setFillColor(sf::Color(0, 0, 0, 120));
 
     _resumeSound.setBuffer(gameData->assets.getSoundBuffer("resumeSound"));
-    _resumeSound.setVolume(gameData->json.Get_Soundvolume());
+    _resumeSound.setVolume(gameData->json.getSoundVolume());
 
-    _clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
-    _clickSound.setVolume(gameData->json.Get_Soundvolume());
+    clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
+    clickSound.setVolume(gameData->json.getSoundVolume());
 
     background.setTexture(gameData->assets.getTexture("Background"));
     _playButton.setTexture(gameData->assets.getTexture("Play Button"));
@@ -33,10 +33,10 @@ void PauseState::Init() {
     _playButton.setOrigin({ _playButton.getGlobalBounds().width / 2, _playButton.getGlobalBounds().height / 2 });
     _soundsettingsButton.setOrigin({ _soundsettingsButton.getGlobalBounds().width / 2, _soundsettingsButton.getGlobalBounds().height / 2 });
 
-    _playButton.setPosition({ (ScreenWidth / 2.0f), (SCREEN_HEIGHT / 20.0f * 10.0f) });
-    _soundsettingsButton.setPosition({ (ScreenWidth / 2.0f), (SCREEN_HEIGHT / 20.0f * 15.0f) });
+    _playButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 10.0f) });
+    _soundsettingsButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 15.0f) });
 
-    _pauseText.setPosition(ScreenWidth / 2.0f, SCREEN_HEIGHT / 8.0f);
+    _pauseText.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 8.0f);
 
 }
 
@@ -46,18 +46,18 @@ void PauseState::handleInput() {
         if (event.type == sf::Event::Closed) {
             gameData->window.close();
         }
-        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, gameData->window)) {
+        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
             if(!prevMousestate) {
                 if (gameData->input.IsSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
-                    if (gameData->json.Get_Soundstate()) {
+                    if (gameData->json.getSoundState()) {
                         _resumeSound.play();
                         while (_resumeSound.getStatus() == _resumeSound.Playing) {}
                     }
                     gameData->machine.RemoveGameState();
                 }
                 if (gameData->input.IsSpriteClicked(_soundsettingsButton, sf::Mouse::Left, gameData->window)) {
-                    if (gameData->json.Get_Soundstate()) {
-                        _clickSound.play();
+                    if (gameData->json.getSoundState()) {
+                        clickSound.play();
                     }
                     gameData->machine.AddGameState(GameStateReference(new SoundSettingsState(gameData)), false);
                 }
@@ -67,10 +67,10 @@ void PauseState::handleInput() {
     prevMousestate = gameData->input.IsButtonPressed(sf::Mouse::Left);
 }
 
-void PauseState::Update(float delta) {
+void PauseState::update(float delta) {
 }
 
-void PauseState::Draw(float delta) {
+void PauseState::draw(float delta) {
     gameData->window.clear();
     gameData->window.draw(background);
     gameData->window.draw(DarkFade);

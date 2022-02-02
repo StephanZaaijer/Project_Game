@@ -24,19 +24,19 @@ void Spike::spawn(){
         Triangle.setPoint(1, sf::Vector2f{ -SPIKE_SIZE, SPIKE_SIZE/2.0f } );
         Triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
         Triangle.setPosition(position);
-        Triangle.setFillColor(gameData->json.Get_ObstacleColor());
+        Triangle.setFillColor(gameData->json.getObstacleColor());
     }
     else{
         Triangle.setPoint(0, sf::Vector2f{ 0, 0 } );
         Triangle.setPoint(1, sf::Vector2f{ SPIKE_SIZE, SPIKE_SIZE/2.0f } );
         Triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
         Triangle.setPosition(position);
-        Triangle.setFillColor(gameData->json.Get_ObstacleColor());
+        Triangle.setFillColor(gameData->json.getObstacleColor());
     }
 }
 
-void Spike::move(sf::Vector2f move_by){
-    Triangle.move(move_by);
+void Spike::move(sf::Vector2f moveBy){
+    Triangle.move(moveBy);
 }
 
 void Spike::draw() const{

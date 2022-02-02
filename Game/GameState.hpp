@@ -9,18 +9,18 @@
 class GameState{
 public:
     /// @brief
-    /// Init function that`s called first time when state is active in the statemachine
+    /// init function that`s called first time when state is active in the statemachine
     virtual void init() = 0;
 
     /// @brief
     /// handleInput function that`s called regularly in the gameloop to handle userinput
     virtual void handleInput() = 0;
     /// @brief
-    /// Update function that`s called regularly in the gameloop to update the position of the objects on the screen
-    /// \param delta The elapsed time since the last call of the Update function
+    /// update function that`s called regularly in the gameloop to update the position of the objects on the screen
+    /// \param delta The elapsed time since the last call of the update function
     virtual void update() = 0;
-    /// Draw function that`s called once every loop to draw the object on the screen
-    /// \param delta The elapsed time since the last call of the Update function
+    /// draw function that`s called once every loop to draw the object on the screen
+    /// \param delta The elapsed time since the last call of the update function
     virtual void draw() = 0;
     /// @brief
     /// Function that`s called when new state is appended to statemachine on top of the current gamestate

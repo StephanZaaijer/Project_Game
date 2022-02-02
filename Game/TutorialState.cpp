@@ -3,7 +3,7 @@
 TutorialState::TutorialState(GameDataReference data) :
         gameData(std::move(data)) {}
 
-void TutorialState::Init(){
+void TutorialState::init(){
     gameData->assets.loadTextureFromFile("Tutorial", TUTORIAL);
     gameData->assets.loadSoundBufferFromFile("clickSound", SOUND_CLICK_PATH);
 
@@ -11,10 +11,10 @@ void TutorialState::Init(){
     backButton.setTexture(gameData->assets.getTexture("Back Button"));
     background.setTexture(gameData->assets.getTexture("Background"));
 
-    _clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
-    _clickSound.setVolume(gameData->json.Get_Soundvolume());
+    clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
+    clickSound.setVolume(gameData->json.getSoundVolume());
 
-    backButton.setPosition(ScreenWidth / 6.0f * 6 - backButton.getGlobalBounds().width ,
+    backButton.setPosition(SCREEN_WIDTH / 6.0f * 6 - backButton.getGlobalBounds().width ,
                             SCREEN_HEIGHT - (backButton.getGlobalBounds().height * 1.1));
     tutorial.setPosition(400,100);
     tutorial.setScale(1,1);
@@ -29,8 +29,8 @@ void TutorialState::handleInput() {
         if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
             if (!prevMousestate) {
                 if (gameData->input.IsSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
-                    if (gameData->json.Get_Soundstate()) {
-                        _clickSound.play();
+                    if (gameData->json.getSoundState()) {
+                        clickSound.play();
                     }
                     gameData->machine.RemoveGameState();
                 }
@@ -39,8 +39,8 @@ void TutorialState::handleInput() {
         prevMousestate = gameData->input.IsButtonPressed(sf::Mouse::Left);
     }
 }
-void TutorialState::Update(float delta){}
-void TutorialState::Draw(float delta) {
+void TutorialState::update(float delta){}
+void TutorialState::draw(float delta) {
     gameData->window.clear();
     gameData->window.draw(background);
     gameData->window.draw(tutorial);

@@ -40,7 +40,7 @@ private:
     int coins;
     int counterCharacters;
     int counterTheme;
-    bool prevMousestate;
+    bool prevMouseState;
 
     std::vector<CustomTheme> customThemes = {{sf::Color::Black, sf::Color::Red, "black_red_theme" ,BLACK_RED_THEME_PATH},
                                              {sf::Color::Green, sf::Color::Blue, "green_blue_theme", GREEN_BLUE_THEME_PATH},

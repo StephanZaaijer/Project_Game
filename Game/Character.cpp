@@ -3,7 +3,7 @@
 #include <utility>
 
 Character::Character(GameDataReference data) : gameData(std::move(data)) {
-    characterSprite.setPosition(ScreenWidth / 2.0f, CHARACTER_START_HEIGHT);
+    characterSprite.setPosition(SCREEN_WIDTH / 2.0f, CHARACTER_START_HEIGHT);
     characterSprite.setScale(CHARACTER_SCALE, CHARACTER_SCALE);
     position = characterSprite.getPosition();
     characterState = Still;

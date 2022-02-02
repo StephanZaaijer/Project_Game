@@ -23,11 +23,11 @@ private:
     std::unique_ptr<Character> character;
     CustomCharacter characterinfo;
     std::unique_ptr<CoinContainer> coins_container;
-    sf::Text _score;
+    sf::Text score;
     sf::Text coin_text;
     sf::Sound _jumpSound;
     sf::Sound _pauseSound;
-    sf::Sound _gameMusicSound;
+    sf::Sound _gamemusicSound;
     sf::Sound _coinPickup;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
@@ -39,10 +39,10 @@ private:
 
 public:
     MainGameState(GameDataReference data);
-    void Init() override;
+    void init() override;
     void handleInput() override;
-    void Update( float delta ) override;
-    void Draw( float delta ) override;
+    void update( float delta ) override;
+    void draw( float delta ) override;
     void Resume() override;
 
 };

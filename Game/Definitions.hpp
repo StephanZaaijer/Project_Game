@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#define ScreenWidth 1920
+#define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
 #define FRAMERATE 60
@@ -43,8 +43,8 @@ enum character_states {
 #define BACKGROUND_PATH "Assets/Background.png"
 #define BACKGROUND_NO_CLOUDS_PATH "Assets/BackgroundNoClouds.png"
 #define BACKGROUND_SKY_TO_SPACE_PATH "Assets/SkyToSpaceBackground.png"
-#define SPACEbackground_PATH "Assets/SpaceBackground.png"
-#define SPACEbackground_SPAGHETTI_MONSTER_PATH "Assets/SpaceBackgroundSpaghettiMonster.png"
+#define SPACE_BACKGROUND_PATH "Assets/SpaceBackground.png"
+#define SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH "Assets/SpaceBackgroundSpaghettiMonster.png"
 #define GAME_TITLE_PATH "Assets/JuuJuuBanner.png"
 #define GAME_IMAGE_PATH "Assets/StartUpImage.png"
 #define GROEP_6_BANNER_PATH "Assets/Groep6Banner.png"
@@ -57,8 +57,8 @@ enum character_states {
 
 #define CONTROLS_BUTTON_PATH "Assets/ControlsButton.png"
 
-#define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"
-#define MUSIC_BUTTON_RED_PATH "Assets/MusicButtonRed.png"
+#define MUSIC_BUTTON_GREEN_PATH "Assets/musicButtonGreen.png"
+#define MUSIC_BUTTON_RED_PATH "Assets/musicButtonRed.png"
 #define SOUND_BUTTON_GREEN_PATH "Assets/SoundButtonGreen.png"
 #define SOUND_BUTTON_RED_PATH "Assets/SoundButtonRed.png"
 #define BACK_BUTTON_PATH "Assets/BackButton.png"
@@ -81,8 +81,8 @@ enum character_states {
 #define WALL_HEIGHT 750
 #define WALL_WIDTH 50
 #define BORDER_WALL_1_START 0.0
-#define BORDER_WALL_2_START (ScreenWidth / 6.0f * 5.0f)
-#define BORDER_WALL_WIDTH (ScreenWidth / 6.0f)
+#define BORDER_WALL_2_START (SCREEN_WIDTH / 6.0f * 5.0f)
+#define BORDER_WALL_WIDTH (SCREEN_WIDTH / 6.0f)
 
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
 #define WALL_OBSTACLE_HEIGHT_2 (WALL_HEIGHT / 2.0f)
@@ -125,7 +125,7 @@ struct CustomTheme{
 #define CYAN_BLUE_THEME_PATH "Assets/cyan_blue.png"
 #define YELLOW_BLACK_THEME_PATH "Assets/yellow_black.png"
 
-#define MUSIC_GAME_PATH "Assets/gameMusic.wav"
+#define MUSIC_GAME_PATH "Assets/gamemusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"
 #define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
 #define SOUND_COIN_PICKUP_PATH "Assets/coin.wav"

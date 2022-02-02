@@ -8,7 +8,7 @@ class Soundslider:public Slider
 public:
 	Soundslider(GameDataReference gameData, sf::Vector2f slider_location, int length, bool horizontal, sf::Color slidercolor_on, sf::Color slidercolor_off, sf::Vector2f Textlocation, int fontsize);
     void update() override;
-	void Draw() override;
+	void draw() override;
 
 private:
 	sf::Color slidercolor_on;

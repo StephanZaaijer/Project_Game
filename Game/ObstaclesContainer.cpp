@@ -96,9 +96,9 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
     }
 }
 
-void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
-    std::for_each(obstacles.begin(),obstacles.end(), [&move_by](std::unique_ptr<Obstacle> &x ){
-        x->move(move_by);
+void Obstacle_Container::move_Obstacle(sf::Vector2f moveBy){
+    std::for_each(obstacles.begin(),obstacles.end(), [&moveBy](std::unique_ptr<Obstacle> &x ){
+        x->move(moveBy);
     });
 
     obstacles.erase(std::remove_if( obstacles.begin(), obstacles.end(), [](std::unique_ptr<Obstacle> & x){

@@ -29,19 +29,19 @@ public:
     /// \param data
     StartUpState(GameDataReference data);
 
-    ///\brief Init() function
-    void Init() override;
+    ///\brief init() function
+    void init() override;
 
     ///\brief handleInput() function
     void handleInput() override;
 
-    ///\brief Update function
+    ///\brief update function
     /// \param delta
-    void Update(float delta) override;
+    void update(float delta) override;
 
-    ///\brief Draw() function
+    ///\brief draw() function
     /// \param delta
-    void Draw(float delta) override;
+    void draw(float delta) override;
 
 };
 

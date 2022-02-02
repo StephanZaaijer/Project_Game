@@ -7,7 +7,7 @@
 
 MainMenuState::MainMenuState(GameDataReference data) : gameData(std::move(data)) {}
 
-void MainMenuState::Init() {
+void MainMenuState::init() {
     gameData->assets.loadTextureFromFile("Arrow Left", ARROW_LEFT_BUTTON);
     gameData->assets.loadTextureFromFile("Arrow Right", ARROW_RIGHT_BUTTON);
     gameData->assets.loadTextureFromFile("Back Button", BACK_BUTTON_PATH);
@@ -19,19 +19,19 @@ void MainMenuState::Init() {
     gameData->assets.loadTextureFromFile("Coin", COIN_PATH);
     gameData->assets.loadTextureFromFile("Customize Button", CUSTOMIZE_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("Equip Button", EQUIP_BUTTON_PATH);
-    gameData->assets.loadTextureFromFile("Green Music Button", MUSIC_BUTTON_GREEN_PATH);
+    gameData->assets.loadTextureFromFile("Green music Button", MUSIC_BUTTON_GREEN_PATH);
     gameData->assets.loadTextureFromFile("Green Sound Button", SOUND_BUTTON_GREEN_PATH);
     gameData->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
     gameData->assets.loadTextureFromFile("MainMenu Button", MAIN_MENU_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("Play Button", PLAY_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("Random Button", RANDOM_BUTTON);
-    gameData->assets.loadTextureFromFile("Red Music Button", MUSIC_BUTTON_RED_PATH);
+    gameData->assets.loadTextureFromFile("Red music Button", MUSIC_BUTTON_RED_PATH);
     gameData->assets.loadTextureFromFile("Red Sound Button", SOUND_BUTTON_RED_PATH);
     gameData->assets.loadTextureFromFile("Restart Button", RESTART_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("Settings Button", SETTINGS_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
-    gameData->assets.loadTextureFromFile("SpaceBackground", SPACEbackground_PATH);
-    gameData->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACEbackground_SPAGHETTI_MONSTER_PATH);
+    gameData->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
+    gameData->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
     gameData->assets.loadTextureFromFile("Controls Button", CONTROLS_BUTTON_PATH);
 
 
@@ -42,14 +42,14 @@ void MainMenuState::Init() {
     gameData->assets.loadSoundBufferFromFile("customClickSound", SOUND_CLICK_CUSTOM_PATH);
     gameData->assets.loadSoundBufferFromFile("coinPickup", SOUND_COIN_PICKUP_PATH);
     gameData->assets.loadSoundBufferFromFile("deathSound", SOUND_DEATH_PATH);
-    gameData->assets.loadSoundBufferFromFile("gameMusic", MUSIC_GAME_PATH);
+    gameData->assets.loadSoundBufferFromFile("gamemusic", MUSIC_GAME_PATH);
     gameData->assets.loadSoundBufferFromFile("jumpSound", SOUND_JUMP_PATH);
     gameData->assets.loadSoundBufferFromFile("pauseSound", SOUND_PAUSE_PATH);
     gameData->assets.loadSoundBufferFromFile("resumeSound", SOUND_RESUME_PATH);
 
 
-    _clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
-    _clickSound.setVolume(gameData->json.Get_Soundvolume());
+    clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
+    clickSound.setVolume(gameData->json.getSoundVolume());
 
     background.setTexture(gameData->assets.getTexture("Background"));
     _title.setTexture(gameData->assets.getTexture("Banner"));
@@ -68,14 +68,14 @@ void MainMenuState::Init() {
 
 
 
-    _title.setPosition(ScreenWidth/2.0f, _title.getGlobalBounds().height);
-    _playButton.setPosition((ScreenWidth/4.0f)*2, (SCREEN_HEIGHT/4.0f)*2);
-    _tutorialButton.setPosition((ScreenWidth/30.0f)*15, (SCREEN_HEIGHT/4.0f)*3);
-    _settingsButton.setPosition((ScreenWidth/30.0f)*7, (SCREEN_HEIGHT/4.0f)*3);
-    _customButton.setPosition((ScreenWidth/30.0f)*23, (SCREEN_HEIGHT/4.0f)*3);
-    _banner.setPosition((ScreenWidth/2.0f), SCREEN_HEIGHT-_banner.getGlobalBounds().height);
+    _title.setPosition(SCREEN_WIDTH/2.0f, _title.getGlobalBounds().height);
+    _playButton.setPosition((SCREEN_WIDTH/4.0f)*2, (SCREEN_HEIGHT/4.0f)*2);
+    _tutorialButton.setPosition((SCREEN_WIDTH/30.0f)*15, (SCREEN_HEIGHT/4.0f)*3);
+    _settingsButton.setPosition((SCREEN_WIDTH/30.0f)*7, (SCREEN_HEIGHT/4.0f)*3);
+    _customButton.setPosition((SCREEN_WIDTH/30.0f)*23, (SCREEN_HEIGHT/4.0f)*3);
+    _banner.setPosition((SCREEN_WIDTH/2.0f), SCREEN_HEIGHT-_banner.getGlobalBounds().height);
 
-    quoteVector = gameData->json.Get_Quotes();
+    quoteVector = gameData->json.getQuotes();
 
     _quote.setFont(gameData->assets.getFont("8-bit"));
     _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
@@ -94,35 +94,35 @@ void MainMenuState::handleInput() {
         if (sf::Event::Closed == event.type) {
             gameData->window.close();
         }
-        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, gameData->window)) {
+        if (gameData->input.ChangeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
             if (gameData->input.IsSpriteClicked(_customButton, sf::Mouse::Left, gameData->window)) {
                 if (!prevMousestate) {
-                    if (gameData->json.Get_Soundstate()) {
-                        _clickSound.play();
+                    if (gameData->json.getSoundState()) {
+                        clickSound.play();
                     }
                     gameData->machine.AddGameState(GameStateReference(new CustomCharacterState(gameData)), false);
                     prevMousestate = true;
                 }
             } else if (gameData->input.IsSpriteClicked(_settingsButton, sf::Mouse::Left, gameData->window)) {
                 if (!prevMousestate) {
-                    if (gameData->json.Get_Soundstate()) {
-                        _clickSound.play();
+                    if (gameData->json.getSoundState()) {
+                        clickSound.play();
                     }
                     gameData->machine.AddGameState(GameStateReference(new SoundSettingsState(gameData)), false);
                     prevMousestate = true;
                 }
             } else if (gameData->input.IsSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
                 if (!prevMousestate) {
-                    if (gameData->json.Get_Soundstate()) {
-                        _clickSound.play();
+                    if (gameData->json.getSoundState()) {
+                        clickSound.play();
                     }
                     gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
                     prevMousestate = true;
                 }
             }else if (gameData->input.IsSpriteClicked(_tutorialButton, sf::Mouse::Left, gameData->window)) {
                     if (!prevMousestate) {
-                        if (gameData->json.Get_Soundstate()) {
-                            _clickSound.play();
+                        if (gameData->json.getSoundState()) {
+                            clickSound.play();
                         }
                         gameData->machine.AddGameState(GameStateReference(new TutorialState(gameData)), false);
                         prevMousestate = true;
@@ -136,13 +136,13 @@ void MainMenuState::handleInput() {
 
 void MainMenuState::Resume() {
     scaler = MAIN_MENU_FONT_SIZE_SCALER;
-    _clickSound.setVolume((float)gameData->json.Get_Soundvolume());
+    clickSound.setVolume((float)gameData->json.getSoundVolume());
     _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
     _quote.setPosition(680,110);
     _quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
 }
 
-void MainMenuState::Update(float delta) {
+void MainMenuState::update(float delta) {
     if(fontSize == fontSizeOrigin + 5 * scaler){
         scaler *= -1;
     }
@@ -151,7 +151,7 @@ void MainMenuState::Update(float delta) {
     fontSize += scaler;
 }
 
-void MainMenuState::Draw(float delta) {
+void MainMenuState::draw(float delta) {
     gameData->window.clear();
     gameData->window.draw(background);
     gameData->window.draw(_title);

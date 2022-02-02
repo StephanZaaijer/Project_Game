@@ -26,7 +26,7 @@ public:
     std::vector<sf::RectangleShape> getAllRectangles();
     void generate_Wall(float x_position, float start_y_offset);
     void spawn_Wall(float start_y_offset = 0);
-    void move_Wall(sf::Vector2f move_by);
+    void move_Wall(sf::Vector2f moveBy);
     void draw_Wall();
     void setContainObstacleTrue(int index);
 };

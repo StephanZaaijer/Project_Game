@@ -17,17 +17,17 @@ private:
     sf::Sprite tutorial;
     sf::Sprite backButton;
     sf::Sprite background;
-    sf::Sound _clickSound;
+    sf::Sound clickSound;
 
     std::vector<sf::Sprite*> clickableButtons = { &backButton};
     bool prevMousestate;
 
 public:
     TutorialState(GameDataReference data);
-    void Init() override;
+    void init() override;
     void handleInput() override;
-    void Update( float delta ) override;
-    void Draw( float delta ) override;
+    void update( float delta ) override;
+    void draw( float delta ) override;
 };
 
 

@@ -39,7 +39,7 @@ void Slider::handleInput() {
 	}
 }
 
-void Slider::Draw() {
+void Slider::draw() {
 	gameData->window.draw(slider);
 	gameData->window.draw(slider_block);
 }

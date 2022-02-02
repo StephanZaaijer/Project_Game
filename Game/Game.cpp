@@ -3,7 +3,7 @@
 #include "IconArray.hpp"
 
 Game::Game(const int &screenWidth, const int &screenHeight, const std::string &gameTitle) {
-    gameData->window.create(sf::VideoMode(ScreenWidth, screenHeight), gameTitle, sf::Style::Close | sf::Style::Titlebar);
+    gameData->window.create(sf::VideoMode(SCREEN_WIDTH, screenHeight), gameTitle, sf::Style::Close | sf::Style::Titlebar);
     gameData->window.setIcon(100,100, iconArray2);
     gameData->machine.AddGameState(GameStateReference(new StartUpState(gameData)));
     start();

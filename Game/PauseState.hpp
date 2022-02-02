@@ -18,16 +18,16 @@ private:
 	sf::Sprite _playButton;
 	sf::Sprite _soundsettingsButton;
 	sf::Text _pauseText;
-	std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_soundsettingsButton};
+	std::vector<sf::Sprite*> clickableButtons = { &_playButton, &_soundsettingsButton};
 	sf::Sound _resumeSound;
-	sf::Sound _clickSound;
+	sf::Sound clickSound;
     bool prevMousestate=true;
 public:
 	PauseState(GameDataReference data);
-	void Init() override;
+	void init() override;
 	void handleInput() override;
-	void Update(float delta) override;
-	void Draw(float delta) override;
+	void update(float delta) override;
+	void draw(float delta) override;
 
 };
 

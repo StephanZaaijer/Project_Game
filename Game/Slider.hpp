@@ -16,7 +16,7 @@ protected:
 
 public:
 	Slider(GameDataReference gameData, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor);
-	virtual void Draw();
+	virtual void draw();
 	void handleInput();
 	virtual void update(){};
 	sf::RectangleShape& get_slider_block();

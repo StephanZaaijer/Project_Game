@@ -7,32 +7,32 @@ MainGameState::MainGameState(GameDataReference data):
     gameData (std::move(data))
 {}
 
-void MainGameState::Init(){
+void MainGameState::init(){
     _jumpSound.setBuffer(gameData->assets.getSoundBuffer("jumpSound"));
     _pauseSound.setBuffer(gameData->assets.getSoundBuffer("pauseSound"));
-    _gameMusicSound.setBuffer(gameData->assets.getSoundBuffer("gameMusic"));
+    _gamemusicSound.setBuffer(gameData->assets.getSoundBuffer("gamemusic"));
     _coinPickup.setBuffer(gameData->assets.getSoundBuffer("coinPickup"));
 
 
-    _score.setFont(gameData->assets.getFont("Bauhaus"));
-    _score.setCharacterSize(40);
-    _score.setFillColor(TEXT_COLOR);
+    score.setFont(gameData->assets.getFont("Bauhaus"));
+    score.setCharacterSize(40);
+    score.setFillColor(TEXT_COLOR);
 
     coin_text.setFont(gameData->assets.getFont("Bauhaus"));
     coin_text.setCharacterSize(40);
     coin_text.setFillColor(TEXT_COLOR);
 
-    _jumpSound.setVolume(gameData->json.Get_Soundvolume());
-    _pauseSound.setVolume(gameData->json.Get_Soundvolume());
-    _gameMusicSound.setVolume(gameData->json.Get_Musicvolume());
-    _gameMusicSound.setLoop(true);
+    _jumpSound.setVolume(gameData->json.getSoundVolume());
+    _pauseSound.setVolume(gameData->json.getSoundVolume());
+    _gamemusicSound.setVolume(gameData->json.getMusicVolume());
+    _gamemusicSound.setLoop(true);
 
-    if(gameData->json.Get_Musicstate()){
-        _gameMusicSound.play();
+    if(gameData->json.getMusicState()){
+        _gamemusicSound.play();
     }
 
     character = std::unique_ptr<Character>(new Character(gameData));
-    characterinfo = gameData->json.Get_PlayerSprite();
+    characterinfo = gameData->json.getPlayerSprite();
     gameData->assets.loadTextureFromFile(characterinfo.CharacterName, characterinfo.CharacterFileName);
     character->getSprite().setTexture( gameData->assets.getTexture(characterinfo.CharacterName) );
 
@@ -59,7 +59,7 @@ void MainGameState::handleInput() {
             break;
         }
         if (gameData->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate_start) {
-            if(gameData->json.Get_Soundstate()){
+            if(gameData->json.getSoundState()){
                 if(character->getJumpedTwice() && !jumpSoundPlayed) {
                     _jumpSound.play();
                     jumpSoundPlayed = true;
@@ -69,10 +69,10 @@ void MainGameState::handleInput() {
             character ->setJumpPressed(true);
         }
         else if (gameData->input.IsKeyPressed(sf::Keyboard::Escape)) {
-            if (gameData->json.Get_Musicstate()) {
-                _gameMusicSound.pause();
+            if (gameData->json.getMusicState()) {
+                _gamemusicSound.pause();
             }
-            if (gameData->json.Get_Soundstate()) {
+            if (gameData->json.getSoundState()) {
                 _pauseSound.play();
             }
             gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
@@ -82,10 +82,10 @@ void MainGameState::handleInput() {
             jumpSoundPlayed = false;
         }
         if (!gameData->window.hasFocus()) {
-            if(gameData->json.Get_Musicstate()){
-                _gameMusicSound.pause();
+            if(gameData->json.getMusicState()){
+                _gamemusicSound.pause();
             }
-            if(gameData->json.Get_Soundstate()){
+            if(gameData->json.getSoundState()){
                 _pauseSound.play();
             }
             gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
@@ -96,9 +96,9 @@ void MainGameState::handleInput() {
     }
 }
 
-void MainGameState::Update( float delta ){
+void MainGameState::update( float delta ){
     // update character
-    character->Update(delta);
+    character->update(delta);
 
     // call collide funtion to check if character collides with something
     character->CollideWalls(wall->getAllRectangles());
@@ -184,7 +184,7 @@ void MainGameState::Update( float delta ){
 
         // Obstacle Coin collision
         const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstacles_container->getObstacle();
-        std::vector<std::unique_ptr<Coin>> &coins = coins_container->getCoins();
+        std::vector<std::unique_ptr<Coin>> &coins = coins_container->getcoins();
             for (const auto &obstacle: obstacles) {
                 auto it = std::remove_if(coins.begin(), coins.end(),
                                          [&obstacle](std::unique_ptr<Coin> &coin)
@@ -197,7 +197,7 @@ void MainGameState::Update( float delta ){
     }
 
     // Character Coin collision
-    std::vector<std::unique_ptr<Coin>> &coins = coins_container->getCoins();
+    std::vector<std::unique_ptr<Coin>> &coins = coins_container->getcoins();
     auto it = std::remove_if(coins.begin(),coins.end(),[this](std::unique_ptr<Coin> & coin){
         return (coin -> getBounds().intersects(character->GetBounds()));
     });
@@ -224,40 +224,40 @@ void MainGameState::Update( float delta ){
         }
     }
 
-    _score.setString("Score: " + std::to_string(character->getScore()));
-    _score.setPosition(BORDER_WALL_WIDTH + (SCREEN_HEIGHT / 20.0f),SCREEN_HEIGHT / 20.0f);
-    coin_text.setString("Coins: " + std::to_string(acquired_coins));
+    score.setString("Score: " + std::to_string(character->getScore()));
+    score.setPosition(BORDER_WALL_WIDTH + (SCREEN_HEIGHT / 20.0f),SCREEN_HEIGHT / 20.0f);
+    coin_text.setString("coins: " + std::to_string(acquired_coins));
     coin_text.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20.0f) - coin_text.getGlobalBounds().width,SCREEN_HEIGHT / 20.0f);
 
     if (character->_death){
         gameData -> score = character -> getScore();
         gameData -> coins = acquired_coins;
-        if(_gameMusicSound.getStatus()){
-            _gameMusicSound.stop();
+        if(_gamemusicSound.getStatus()){
+            _gamemusicSound.stop();
         }
         gameData->machine.AddGameState(GameStateReference(new GameOverState(gameData)), true);
     }
 }
 
-void MainGameState::Draw( float delta ){
+void MainGameState::draw( float delta ){
     gameData -> window.clear();
     gameData -> window.draw(background);
     gameData -> window.draw(background2);
     wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
-    character->Draw();
+    character->draw();
     coins_container -> draw();
-    gameData -> window.draw(_score);
+    gameData -> window.draw(score);
     gameData -> window.draw(coin_text);
     gameData -> window.display();
 }
 
 void MainGameState::Resume(){
-    _jumpSound.setVolume(gameData->json.Get_Soundvolume());
-    _pauseSound.setVolume(gameData->json.Get_Soundvolume());
-    _coinPickup.setVolume(gameData->json.Get_Soundvolume());
-    _gameMusicSound.setVolume(gameData->json.Get_Musicvolume());
-    if(gameData->json.Get_Musicstate()){
-        _gameMusicSound.play();
+    _jumpSound.setVolume(gameData->json.getSoundVolume());
+    _pauseSound.setVolume(gameData->json.getSoundVolume());
+    _coinPickup.setVolume(gameData->json.getSoundVolume());
+    _gamemusicSound.setVolume(gameData->json.getMusicVolume());
+    if(gameData->json.getMusicState()){
+        _gamemusicSound.play();
     }
 }

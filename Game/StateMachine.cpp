@@ -28,7 +28,7 @@ void StateMachine::ProcessGameStateChanges() {
             }
         }
         gamestates.push(std::move(new_state));
-        gamestates.top()->Init();
+        gamestates.top()->init();
         adding=false;
     }
 }

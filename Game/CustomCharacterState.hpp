@@ -11,6 +11,11 @@
 #include "GameState.hpp"
 #include "Character.hpp"
 
+/// @file CustomCharacterState.hpp
+/// @brief
+/// Project_Game: CustomCharacterState is used to customize the theme of the game and character skin
+
+
 class CustomCharacterState: public GameState {
 private:
     GameDataReference gameData;
@@ -63,10 +68,25 @@ private:
                                                       {"stephan",STEPHAN},
                                                       {"coen",COEN} };
 public:
+
+    /// @brief
+    /// This constructor constructs an object of the CustomCharacterState
     CustomCharacterState(GameDataReference gameData);
+
+    /// @brief
+    /// This function initializes the whole CustomCharacterState
+    /// @details
+    /// This function sets all textures, volumes, fonts, text and positions of all element.
     void init() override;
+
+    /// @brief
+    /// This function handles all input in the state.
     void handleInput() override;
+
     void update() override;
+
+    /// @brief
+    /// this function draws all elements to the screen
     void draw() override;
 };
 

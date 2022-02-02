@@ -8,14 +8,14 @@
 
 class Coin{
 private:
-    GameDataReference game_data;
-    sf::Sprite _coin;
+    GameDataReference gameData;
+    sf::Sprite coin;
 
 public:
-    Coin(GameDataReference game_data);
-    void move(sf::Vector2f move_by);
-    void set_position(sf::Vector2f position);
-    sf::Sprite get_coin();
+    Coin(GameDataReference gameData);
+    void move(sf::Vector2f moveBy);
+    void setPosition(sf::Vector2f position);
+    sf::Sprite getCoin();
     sf::FloatRect getBounds();
     sf::Vector2f getPosition();
     void draw();

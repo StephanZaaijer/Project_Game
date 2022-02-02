@@ -1,7 +1,7 @@
 #include "Coin.hpp"
 
 Coin::Coin(GameDataReference game_data):
-    game_data (game_data)
+    gameData(game_data)
 {
     _coin.setTexture(game_data -> assets.GetTexture("Coin"));
     _coin.setScale(COIN_SCALE, COIN_SCALE);

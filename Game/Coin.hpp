@@ -10,6 +10,8 @@
 /// @brief
 /// Project_Game: Defines a coin object
 
+/// @brief
+/// Coin class which contains information of the coin.
 class Coin{
 private:
     GameDataReference gameData;
@@ -26,14 +28,14 @@ public:
     /// Used to move coin object.
     /// @details
     /// Used to move coin object by an offset given in the parameter.
-    /// \param moveBy is a sf vector which contains a X and Y coordinate
+    /// \param moveBy is a sf::Vector2f which contains a X and Y coordinate
     void move(sf::Vector2f moveBy);
 
     /// @brief
     /// Used to position the coin object.
     /// @details
     /// Used to overwrite the position of the coin with the given the parameter.
-    /// \param position is a sf vector which contains a X and Y coordinate
+    /// \param position is a sf::Vector2f which contains a X and Y coordinate
     void setPosition(sf::Vector2f position);
 
     /// @brief
@@ -50,6 +52,9 @@ public:
     /// Returns the position of the coin sprite.
     /// \return Returns a sf::Vector2f with the coordinates of the sprite coin.
     sf::Vector2f getPosition();
+
+    /// @brief
+    /// Used to draw coin object in the window.
     void draw();
 };
 

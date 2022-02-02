@@ -2,29 +2,29 @@
 #include "Exceptions.hpp"
 #include <iostream>
 
-Soundslider::Soundslider(GameDataReference gameData, sf::Vector2f slider_location, int length, bool horizontal, sf::Color slidercolor_on, sf::Color slidercolor_off, sf::Vector2f Textlocation, int fontsize) :
-	Slider(gameData, slider_location, length, horizontal, slidercolor_on),
-	slidercolor_on(slidercolor_on),
-	slidercolor_off(slidercolor_off)
+SoundSlider::SoundSlider(GameDataReference gameData, sf::Vector2f sliderLocation, int length, bool horizontal, sf::Color sliderColorOn, sf::Color sliderColorOff, sf::Vector2f Textlocation, int fontsize) :
+	Slider(gameData, sliderLocation, length, horizontal, sliderColorOn),
+	sliderColorOn(sliderColorOn),
+	sliderColorOff(sliderColorOff)
 {
-	prev_state = gameData->json.getSoundState();
-	if (!prev_state) {
-		slider_block.setFillColor(slidercolor_off);
+	prevState = gameData->json.getSoundState();
+	if (!prevState) {
+		sliderBlock.setFillColor(sliderColorOff);
 	}
 	if (horizontal) {
-		slider_min = slider_location.x;
-		slider_max = slider_location.x + length;
-		ratio = ((slider_max - slider_min) / 100);
-		prev_sliderblock_location = { slider_location.x + length - (gameData->json.getSoundVolume()) * ratio, slider_location.y };
+		sliderMin = sliderLocation.x;
+		sliderMax = sliderLocation.x + length;
+		ratio = ((sliderMax - sliderMin) / 100);
+		prevSliderblockLocation = { sliderLocation.x + length - (gameData->json.getSoundVolume()) * ratio, sliderLocation.y };
 	}
 	else {
-		slider_min = slider_location.y;
-		slider_max = slider_location.y + length;
-		ratio = ((slider_max - slider_min) / 100);
-		prev_sliderblock_location = { slider_location.x, slider_location.y + length - (gameData->json.getSoundVolume()) *  ratio};
+		sliderMin = sliderLocation.y;
+		sliderMax = sliderLocation.y + length;
+		ratio = ((sliderMax - sliderMin) / 100);
+		prevSliderblockLocation = { sliderLocation.x, sliderLocation.y + length - (gameData->json.getSoundVolume()) *  ratio};
 
 	}
-	slider_block.setPosition(prev_sliderblock_location);
+	sliderBlock.setPosition(prevSliderblockLocation);
 	level.setFont(gameData->assets.getFont("Bauhaus"));
 	level.setPosition(Textlocation);
 	level.setCharacterSize(fontsize);
@@ -32,38 +32,38 @@ Soundslider::Soundslider(GameDataReference gameData, sf::Vector2f slider_locatio
 	level.setOrigin({ level.getGlobalBounds().width/2, level.getGlobalBounds().height/2});
 }
 
-void Soundslider::update() {
-	if (gameData->json.getSoundState() and !prev_state) {
-		slider_block.setFillColor(slidercolor_on);
-		prev_state = true;
+void SoundSlider::update() {
+	if (gameData->json.getSoundState() and !prevState) {
+		sliderBlock.setFillColor(sliderColorOn);
+		prevState = true;
 	}
-	else if (!gameData->json.getSoundState() and prev_state) {
-		slider_block.setFillColor(slidercolor_off);
-		prev_state = false;
+	else if (!gameData->json.getSoundState() and prevState) {
+		sliderBlock.setFillColor(sliderColorOff);
+		prevState = false;
 	}
-	if (prev_sliderblock_location != slider_block.getPosition()) {
+	if (prevSliderblockLocation != sliderBlock.getPosition()) {
 		if (horizontal) {
 			gameData->json.setSoundState(true);
-			int temp = slider_block.getPosition().x;
-			int current_level = 100 - (temp - slider_point.x) / ratio;
+			int temp = sliderBlock.getPosition().x;
+			int current_level = 100 - (temp - sliderPoint.x) / ratio;
 			level.setString(std::to_string(current_level));
 			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
 			gameData->json.setSoundVolume(current_level);
 		}
 		else {
 			gameData->json.setSoundState(true);
-			int temp = slider_block.getPosition().y;
-			int current_level = 100 - (temp - slider_point.y) / ratio;
+			int temp = sliderBlock.getPosition().y;
+			int current_level = 100 - (temp - sliderPoint.y) / ratio;
 			level.setString(std::to_string(current_level));
 			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
 			gameData->json.setSoundVolume(current_level);
 		}
-		prev_sliderblock_location = slider_block.getPosition();
+		prevSliderblockLocation = sliderBlock.getPosition();
 	}
 }
 
-void Soundslider::draw() {
+void SoundSlider::draw() {
 	gameData->window.draw(slider);
-	gameData->window.draw(slider_block);
+	gameData->window.draw(sliderBlock);
 	gameData->window.draw(level);
 }

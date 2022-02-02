@@ -4,7 +4,7 @@ CoinContainer::CoinContainer(GameDataReference gameData):
     gameData (std::move(gameData))
 {}
 
-std::vector<std::unique_ptr<Coin>> & CoinContainer::getcoins(){
+std::vector<std::unique_ptr<Coin>> & CoinContainer::getCoins(){
     return coins;
 }
 

@@ -15,24 +15,24 @@ class MainMenuState : public GameState {
 private:
     GameDataReference gameData;
     sf::Sprite background;
-    sf::Sprite _title;
-    sf::Sprite _banner;
-    sf::Sprite _playButton;
-    sf::Sprite _settingsButton;
-    sf::Sprite _customButton;
-    sf::Sprite _tutorialButton;
+    sf::Sprite title;
+    sf::Sprite banner;
+    sf::Sprite playButton;
+    sf::Sprite settingsButton;
+    sf::Sprite customButton;
+    sf::Sprite tutorialButton;
 
     sf::Sound clickSound;
 
-    std::vector<sf::Sprite*> clickableButtons = { &_playButton, &_settingsButton, &_customButton, &_tutorialButton };
+    std::vector<sf::Sprite*> clickableButtons = { &playButton, &settingsButton, &customButton, &tutorialButton };
     std::vector<std::string> quoteVector;
     float scaler = MAIN_MENU_FONT_SIZE_SCALER;
     float fontSize = MAIN_MENU_FONT_SIZE;
     float fontSizeOrigin = MAIN_MENU_FONT_SIZE;
 
-    sf::Text _quote;
+    sf::Text quote;
 
-    bool prevMousestate = false;
+    bool prevMouseState = false;
 
 public:
     MainMenuState(GameDataReference gameData);
@@ -41,9 +41,9 @@ public:
 
     void handleInput() override;
 
-    void update(float delta) override;
+    void update() override;
 
-    void draw(float delta) override;
+    void draw() override;
 
     void resume() override;
 

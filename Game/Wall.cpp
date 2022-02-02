@@ -41,7 +41,7 @@ void Wall::generate_Wall(float x_position, float start_y_offset){
     walls.push_back(tmp);
 }
 
-void Wall::spawn_Wall(float start_y_offset){
+void Wall::spawnWall(float start_y_offset){
     srand (time(nullptr));
     int random = rand() % 4 + 1;
 

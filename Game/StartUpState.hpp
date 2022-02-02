@@ -18,11 +18,11 @@
 class StartUpState : public GameState {
 private:
     GameDataReference gameData;
-    sf::Clock _clock;
+    sf::Clock clock;
     sf::Sprite background;
     sf::Sprite _logo;
-    sf::Sprite _title;
-    sf::Sprite _banner;
+    sf::Sprite title;
+    sf::Sprite banner;
 
 public:
     ///\brief StartUpState constructor

@@ -97,22 +97,21 @@ enum character_states {
 #define MAIN_MENU_FONT_SIZE 60
 #define MAIN_MENU_FONT_SIZE_SCALER 1
 
-enum Obstacle_objects {Spike_Object};
 enum Spike_facing {left, right, neither};
 enum identifier {spike, deathwall};
 
 
 struct CustomCharacter {
-    std::string CharacterName;
-    std::string CharacterFileName;
+    std::string characterName;
+    std::string characterFileName;
 	bool operator==(const CustomCharacter &rhs) const{
-		return (CharacterName == rhs.CharacterName) and (CharacterFileName == rhs.CharacterFileName);
+		return (characterName == rhs.characterName) and (characterFileName == rhs.characterFileName);
 	}
 };
 
 struct CustomTheme{
-    sf::Color wall_color;
-    sf::Color object_color;
+    sf::Color wallColor;
+    sf::Color objectColor;
     std::string themeName;
     std::string themeFileName;
     bool operator==(const CustomTheme &rhs) const{

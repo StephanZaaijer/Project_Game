@@ -10,7 +10,7 @@
 class JsonManager {
 public:
 	struct JsonData {
-		bool Sound;
+		bool sound;
 		int soundVolume;
 		bool music;
 		int musicVolume;
@@ -57,7 +57,7 @@ private:
 	void getData();
 	JsonData data;
 	Json::Value jsonData;
-    sf::Color stringToColor(const std::string &colorstring) const;
+    sf::Color stringToColor(const std::string &colorString) const;
     std::string colorToString(const sf::Color &colorSf) const;
 
     Json::Value getJsonFromFile();
@@ -66,7 +66,7 @@ private:
 	sf::Clock clock;
 	bool writeOut;
 
-    struct Color{const std::string color_string; const sf::Color colorSf;};
+    struct Color{const std::string colorString; const sf::Color colorSf;};
     const std::vector<Color> colors={{"Black", sf::Color::Black},
                                      {"White", sf::Color::White},
                                      {"Red", sf::Color::Red},

@@ -20,7 +20,7 @@ private:
     sf::Sound clickSound;
 
     std::vector<sf::Sprite*> clickableButtons = { &backButton};
-    bool prevMousestate;
+    bool prevMouseState;
 
 public:
     TutorialState(GameDataReference gameData);

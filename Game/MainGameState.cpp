@@ -33,17 +33,17 @@ void MainGameState::init(){
 
     character = std::unique_ptr<Character>(new Character(gameData));
     characterInfo = gameData->json.getPlayerSprite();
-    gameData->assets.loadTextureFromFile(characterInfo.CharacterName, characterInfo.CharacterFileName);
-    character->getSprite().setTexture( gameData->assets.getTexture(characterInfo.CharacterName) );
+    gameData->assets.loadTextureFromFile(characterInfo.characterName, characterInfo.characterFileName);
+    character->getSprite().setTexture( gameData->assets.getTexture(characterInfo.characterName) );
 
-    obstaclesContainer =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(gameData));
+    obstaclesContainer =  std::unique_ptr<ObstacleContainer>(new ObstacleContainer(gameData));
     wall = std::unique_ptr<Wall>(new Wall(gameData));
-    coinsContainer = std::unique_ptr<Coin_Container>(new Coin_Container(gameData));
+    coinsContainer = std::unique_ptr<CoinContainer>(new CoinContainer(gameData));
     background.setTexture(gameData->assets.getTexture("BackgroundGround"));
     background2.setTexture(gameData->assets.getTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     background2.setPosition(0, backGroundOffsetY2);
-    wall->spawn_Wall(WALL_HEIGHT);
+    wall->spawnWall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
         wall->setContainObstacleTrue(i);
@@ -65,8 +65,8 @@ void MainGameState::handleInput() {
                     jumpSoundPlayed = true;
                 }
             }
-            character->Tap();
-            character ->setJumpPressed(true);
+            character->tap();
+            character->setJumpPressed(true);
         }
         else if (gameData->input.isKeyPressed(sf::Keyboard::Escape)) {
             if (gameData->json.getMusicState()) {
@@ -78,7 +78,7 @@ void MainGameState::handleInput() {
             gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
         }
         else {
-            character ->setJumpPressed(false);
+            character->setJumpPressed(false);
             jumpSoundPlayed = false;
         }
         if (!gameData->window.hasFocus()) {
@@ -96,21 +96,21 @@ void MainGameState::handleInput() {
     }
 }
 
-void MainGameState::update( float delta ){
+void MainGameState::update(){
     // update character
-    character->update(delta);
+    character->update();
 
     // call collide funtion to check if character collides with something
-    character->CollideWalls(wall->getAllRectangles());
+    character->collideWalls(wall->getAllRectangles());
 
     // move everything downwards if character is above limit and push character back
     if(character->getPosition().y < SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT){
-        float move_down_by = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
-        character ->addToScore(move_down_by);
-        wall -> move_Wall(sf::Vector2f(0, move_down_by));
-        coinsContainer ->move(sf::Vector2f(0, move_down_by));
-        backGroundOffsetY += move_down_by/BACKGROUND_SLIDE;
-        backGroundOffsetY2 += move_down_by/BACKGROUND_SLIDE;
+        float moveDownBy = (SCREEN_HEIGHT - CHARACTER_MAX_HEIGHT) - character->getPosition().y;
+        character ->addToScore(moveDownBy);
+        wall -> move_Wall(sf::Vector2f(0, moveDownBy));
+        coinsContainer ->move(sf::Vector2f(0, moveDownBy));
+        backGroundOffsetY += moveDownBy/BACKGROUND_SLIDE;
+        backGroundOffsetY2 += moveDownBy/BACKGROUND_SLIDE;
         background.setPosition(0, backGroundOffsetY);
         background2.setPosition(0, backGroundOffsetY2);
         if(backGroundOffsetY >= gameData->window.getSize().y){
@@ -123,8 +123,8 @@ void MainGameState::update( float delta ){
             counter++;
         }
 
-        obstaclesContainer->move_Obstacle(sf::Vector2f(0, move_down_by));
-        character->moveDownByOffset(move_down_by);
+        obstaclesContainer->moveObstacle(sf::Vector2f(0, moveDownBy));
+        character->moveDownByOffset(moveDownBy);
     }
 
 
@@ -170,7 +170,7 @@ void MainGameState::update( float delta ){
     // spawn walls, obstacles and coins
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
         // Wall spawn
-        wall ->spawn_Wall();
+        wall->spawnWall();
 
         // Obstacle spawn
         for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
@@ -180,11 +180,11 @@ void MainGameState::update( float delta ){
             }
         }
         // Coin spawn
-        coinsContainer -> spawn();
+        coinsContainer->spawn();
 
         // Obstacle Coin collision
         const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstaclesContainer->getObstacle();
-        std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getcoins();
+        std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getCoins();
             for (const auto &obstacle: obstacles) {
                 auto it = std::remove_if(coins.begin(), coins.end(),
                                          [&obstacle](std::unique_ptr<Coin> &coin)
@@ -197,7 +197,7 @@ void MainGameState::update( float delta ){
     }
 
     // Character Coin collision
-    std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getcoins();
+    std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getCoins();
     auto it = std::remove_if(coins.begin(),coins.end(),[this](std::unique_ptr<Coin> & coin){
         return (coin -> getBounds().intersects(character->GetBounds()));
     });
@@ -212,13 +212,13 @@ void MainGameState::update( float delta ){
     for(const auto &obstacle : obstacles){
         if(obstacle->getID() == deathwall){
             if(obstacle->getBounds().intersects(character->GetBounds())){
-                character->_death = true;
+                character->death = true;
             }
         }
         else if(obstacle->getID() == spike){
             if(obstacle->getBounds().intersects(character->GetBounds())){
-                if(character->CollideSpike(obstacle)){
-                    character->_death = true;
+                if(character->collideSpike(obstacle)){
+                    character->death = true;
                 }
             }
         }
@@ -229,9 +229,9 @@ void MainGameState::update( float delta ){
     coinText.setString("coins: " + std::to_string(acquiredCoins));
     coinText.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20.0f) - coinText.getGlobalBounds().width,SCREEN_HEIGHT / 20.0f);
 
-    if (character->_death){
-        gameData -> score = character -> getScore();
-        gameData -> coins = acquiredCoins;
+    if (character->death){
+        gameData->score = character->getScore();
+        gameData->coins = acquiredCoins;
         if(gameMusicSound.getStatus()){
             gameMusicSound.stop();
         }
@@ -239,17 +239,17 @@ void MainGameState::update( float delta ){
     }
 }
 
-void MainGameState::draw( float delta ){
-    gameData -> window.clear();
-    gameData -> window.draw(background);
-    gameData -> window.draw(background2);
-    wall -> draw_Wall();
-    obstaclesContainer -> draw_Obstacle();
+void MainGameState::draw(){
+    gameData->window.clear();
+    gameData->window.draw(background);
+    gameData->window.draw(background2);
+    wall->draw_Wall();
+    obstaclesContainer->draw_Obstacle();
     character->draw();
-    coinsContainer -> draw();
-    gameData -> window.draw(score);
-    gameData -> window.draw(coinText);
-    gameData -> window.display();
+    coinsContainer->draw();
+    gameData->window.draw(score);
+    gameData->window.draw(coinText);
+    gameData->window.display();
 }
 
 void MainGameState::resume(){

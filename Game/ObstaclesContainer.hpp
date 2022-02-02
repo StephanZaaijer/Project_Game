@@ -9,15 +9,15 @@
 #include "Spike.hpp"
 #include "Deathwall.hpp"
 
-class Obstacle_Container {
+class ObstacleContainer {
 private:
     GameDataReference gameData;
     std::vector<std::unique_ptr<Obstacle>> obstacles;
 public:
-    Obstacle_Container(GameDataReference gameData);
+    ObstacleContainer(GameDataReference gameData);
     const std::vector<std::unique_ptr<Obstacle>> & getObstacle();
     void spawn_Obstacle_On_Wall(const sf::RectangleShape& wall);
-    void move_Obstacle(sf::Vector2f moveBy);
+    void moveObstacle(sf::Vector2f moveBy);
     void draw_Obstacle();
 
 };

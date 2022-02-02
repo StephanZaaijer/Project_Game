@@ -19,7 +19,7 @@ private:
     std::unique_ptr<Wall> wall;
     sf::Sprite background;
     sf::Sprite background2;
-    std::unique_ptr<Obstacle_Container> obstaclesContainer;
+    std::unique_ptr<ObstacleContainer> obstaclesContainer;
     std::unique_ptr<Character> character;
     CustomCharacter characterInfo;
     std::unique_ptr<CoinContainer> coinsContainer;

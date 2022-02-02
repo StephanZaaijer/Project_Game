@@ -14,7 +14,7 @@ private:
     std::vector<std::unique_ptr<Coin>> coins;
 public:
     CoinContainer(GameDataReference gameData);
-    std::vector<std::unique_ptr<Coin>> & getcoins();
+    std::vector<std::unique_ptr<Coin>> & getCoins();
     void spawn();
     void move(sf::Vector2f moveBy);
     void draw();

@@ -6,7 +6,7 @@ Line::Line(const sf::Vector2f &pointA, const sf::Vector2f &pointB):
     B(pointB)
 {}
 
-formula Line::calculateFormula() const {
+Formula Line::calculateFormula() const {
     float dx = A.x - B.x;
     float dy = A.y - B.y;
 
@@ -17,7 +17,7 @@ formula Line::calculateFormula() const {
 }
 
 std::vector<sf::Vector2f> &Line::getPoints() {
-    formula f = calculateFormula();
+    Formula f = calculateFormula();
     int amount = A.x > B.x ? A.x - B.x : B.x - A.x;
     int start_x = A.x < B.x ? A.x : B.x;
 

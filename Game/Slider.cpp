@@ -1,9 +1,9 @@
 #include "Slider.hpp"
 #include "Exceptions.hpp"
 
-Slider::Slider(GameDataReference gameData, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor) :
+Slider::Slider(GameDataReference gameData, sf::Vector2f location, int par_length, bool horizontal, sf::Color sliderColor) :
 	gameData(gameData),
-	slider_point(location),
+	sliderPoint(location),
     length(par_length+1),
     horizontal(horizontal)
 {
@@ -16,14 +16,14 @@ Slider::Slider(GameDataReference gameData, sf::Vector2f location, int par_length
 		slider.setOrigin({ slider.getGlobalBounds().width / 2, 0 });
 
 	}
-	slider_block.setSize({ 60, 60 });
-	slider_block.setOrigin(slider_block.getGlobalBounds().width / 2, slider_block.getGlobalBounds().height / 2);
-	slider_block.setFillColor(slidercolor);
+	sliderBlock.setSize({ 60, 60 });
+	sliderBlock.setOrigin(sliderBlock.getGlobalBounds().width / 2, sliderBlock.getGlobalBounds().height / 2);
+	sliderBlock.setFillColor(sliderColor);
 
 
 	slider.setFillColor({ 0, 0, 0, 100 });
-	slider.setPosition(slider_point);
-	slider_block.setPosition({ slider_point.x + (slider_point.x - slider_point.x) / 2, slider_point.y });
+	slider.setPosition(sliderPoint);
+	sliderBlock.setPosition({ sliderPoint.x + (sliderPoint.x - sliderPoint.x) / 2, sliderPoint.y });
 }
 
 
@@ -31,21 +31,17 @@ void Slider::handleInput() {
 	if (gameData->input.isRectangleClicked(slider, sf::Mouse::Left, gameData->window)) {
 		sf::Vector2f mouse = gameData->input.getMousePosition(gameData->window);
 		if (horizontal) {
-			slider_block.setPosition({ mouse.x, slider_point.y });
+			sliderBlock.setPosition({ mouse.x, sliderPoint.y });
 		}
 		else {
-			slider_block.setPosition({ slider_point.x, mouse.y});
+			sliderBlock.setPosition({ sliderPoint.x, mouse.y});
 		}
 	}
 }
 
 void Slider::draw() {
 	gameData->window.draw(slider);
-	gameData->window.draw(slider_block);
-}
-
-sf::RectangleShape& Slider::get_slider_block() {
-	return slider_block;
+	gameData->window.draw(sliderBlock);
 }
 
 

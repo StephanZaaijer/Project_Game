@@ -34,7 +34,6 @@ void MainMenuState::init() {
     gameData->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
     gameData->assets.loadTextureFromFile("Controls Button", CONTROLS_BUTTON_PATH);
 
-
     gameData->assets.loadFontFromFile("Bauhaus", BAUHAUS_FONT_PATH);
     gameData->assets.loadFontFromFile("8-bit", BIT_FONT_PATH);
 
@@ -47,43 +46,40 @@ void MainMenuState::init() {
     gameData->assets.loadSoundBufferFromFile("pauseSound", SOUND_PAUSE_PATH);
     gameData->assets.loadSoundBufferFromFile("resumeSound", SOUND_RESUME_PATH);
 
-
     clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
     clickSound.setVolume(gameData->json.getSoundVolume());
 
     background.setTexture(gameData->assets.getTexture("Background"));
-    _title.setTexture(gameData->assets.getTexture("Banner"));
-    _banner.setTexture(gameData->assets.getTexture("Groep6 Banner"));
-    _playButton.setTexture(gameData->assets.getTexture("Play Button"));
-    _settingsButton.setTexture(gameData->assets.getTexture("Settings Button"));
-    _customButton.setTexture(gameData->assets.getTexture("Customize Button"));
-    _tutorialButton.setTexture(gameData->assets.getTexture("Controls Button"));
+    title.setTexture(gameData->assets.getTexture("Banner"));
+    banner.setTexture(gameData->assets.getTexture("Groep6 Banner"));
+    playButton.setTexture(gameData->assets.getTexture("Play Button"));
+    settingsButton.setTexture(gameData->assets.getTexture("Settings Button"));
+    customButton.setTexture(gameData->assets.getTexture("Customize Button"));
+    tutorialButton.setTexture(gameData->assets.getTexture("Controls Button"));
 
-    _title.setOrigin(_title.getGlobalBounds().width/2, _title.getGlobalBounds().height/2);
-    _playButton.setOrigin(_playButton.getGlobalBounds().width/2, _playButton.getGlobalBounds().height/2);
-    _tutorialButton.setOrigin(_tutorialButton.getGlobalBounds().width/2, _tutorialButton.getGlobalBounds().height/2);
-    _settingsButton.setOrigin(_settingsButton.getGlobalBounds().width/2, _settingsButton.getGlobalBounds().height/2);
-    _customButton.setOrigin(_customButton.getGlobalBounds().width/2, _customButton.getGlobalBounds().height/2);
-    _banner.setOrigin(_banner.getGlobalBounds().width/2, _banner.getGlobalBounds().height/2);
+    title.setOrigin(title.getGlobalBounds().width/2, title.getGlobalBounds().height/2);
+    playButton.setOrigin(playButton.getGlobalBounds().width/2, playButton.getGlobalBounds().height/2);
+    tutorialButton.setOrigin(tutorialButton.getGlobalBounds().width/2, tutorialButton.getGlobalBounds().height/2);
+    settingsButton.setOrigin(settingsButton.getGlobalBounds().width/2, settingsButton.getGlobalBounds().height/2);
+    customButton.setOrigin(customButton.getGlobalBounds().width/2, customButton.getGlobalBounds().height/2);
+    banner.setOrigin(banner.getGlobalBounds().width/2, banner.getGlobalBounds().height/2);
 
-
-
-    _title.setPosition(SCREEN_WIDTH/2.0f, _title.getGlobalBounds().height);
-    _playButton.setPosition((SCREEN_WIDTH/4.0f)*2, (SCREEN_HEIGHT/4.0f)*2);
-    _tutorialButton.setPosition((SCREEN_WIDTH/30.0f)*15, (SCREEN_HEIGHT/4.0f)*3);
-    _settingsButton.setPosition((SCREEN_WIDTH/30.0f)*7, (SCREEN_HEIGHT/4.0f)*3);
-    _customButton.setPosition((SCREEN_WIDTH/30.0f)*23, (SCREEN_HEIGHT/4.0f)*3);
-    _banner.setPosition((SCREEN_WIDTH/2.0f), SCREEN_HEIGHT-_banner.getGlobalBounds().height);
+    title.setPosition(SCREEN_WIDTH/2.0f, title.getGlobalBounds().height);
+    playButton.setPosition((SCREEN_WIDTH/4.0f)*2, (SCREEN_HEIGHT/4.0f)*2);
+    tutorialButton.setPosition((SCREEN_WIDTH/30.0f)*15, (SCREEN_HEIGHT/4.0f)*3);
+    settingsButton.setPosition((SCREEN_WIDTH/30.0f)*7, (SCREEN_HEIGHT/4.0f)*3);
+    customButton.setPosition((SCREEN_WIDTH/30.0f)*23, (SCREEN_HEIGHT/4.0f)*3);
+    banner.setPosition((SCREEN_WIDTH/2.0f), SCREEN_HEIGHT-banner.getGlobalBounds().height);
 
     quoteVector = gameData->json.getQuotes();
 
-    _quote.setFont(gameData->assets.getFont("8-bit"));
-    _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
-    _quote.setCharacterSize(MAIN_MENU_FONT_SIZE);
-    _quote.setRotation(-8);
-    _quote.setPosition(680,110);
-    _quote.setOrigin(_quote.getGlobalBounds().width/2, _quote.getLocalBounds().height/2);
-    _quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
+    quote.setFont(gameData->assets.getFont("8-bit"));
+    quote.setString(quoteVector[std::rand() % quoteVector.size()]);
+    quote.setCharacterSize(MAIN_MENU_FONT_SIZE);
+    quote.setRotation(-8);
+    quote.setPosition(680,110);
+    quote.setOrigin(quote.getGlobalBounds().width/2, quote.getLocalBounds().height/2);
+    quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
 
 }
 
@@ -95,40 +91,40 @@ void MainMenuState::handleInput() {
             gameData->window.close();
         }
         if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
-            if (gameData->input.isSpriteClicked(_customButton, sf::Mouse::Left, gameData->window)) {
-                if (!prevMousestate) {
+            if (gameData->input.isSpriteClicked(customButton, sf::Mouse::Left, gameData->window)) {
+                if (!prevMouseState) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
                     gameData->machine.AddGameState(GameStateReference(new CustomCharacterState(gameData)), false);
-                    prevMousestate = true;
+                    prevMouseState = true;
                 }
-            } else if (gameData->input.isSpriteClicked(_settingsButton, sf::Mouse::Left, gameData->window)) {
-                if (!prevMousestate) {
+            } else if (gameData->input.isSpriteClicked(settingsButton, sf::Mouse::Left, gameData->window)) {
+                if (!prevMouseState) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
                     gameData->machine.AddGameState(GameStateReference(new SoundSettingsState(gameData)), false);
-                    prevMousestate = true;
+                    prevMouseState = true;
                 }
-            } else if (gameData->input.isSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
-                if (!prevMousestate) {
+            } else if (gameData->input.isSpriteClicked(playButton, sf::Mouse::Left, gameData->window)) {
+                if (!prevMouseState) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
                     gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
-                    prevMousestate = true;
+                    prevMouseState = true;
                 }
-            }else if (gameData->input.isSpriteClicked(_tutorialButton, sf::Mouse::Left, gameData->window)) {
-                    if (!prevMousestate) {
+            }else if (gameData->input.isSpriteClicked(tutorialButton, sf::Mouse::Left, gameData->window)) {
+                    if (!prevMouseState) {
                         if (gameData->json.getSoundState()) {
                             clickSound.play();
                         }
                         gameData->machine.AddGameState(GameStateReference(new TutorialState(gameData)), false);
-                        prevMousestate = true;
+                        prevMouseState = true;
                     }
             } else {
-                prevMousestate = false;
+                prevMouseState = false;
             }
         }
     }
@@ -137,29 +133,29 @@ void MainMenuState::handleInput() {
 void MainMenuState::resume() {
     scaler = MAIN_MENU_FONT_SIZE_SCALER;
     clickSound.setVolume((float)gameData->json.getSoundVolume());
-    _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
-    _quote.setPosition(680,110);
-    _quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
+    quote.setString(quoteVector[std::rand() % quoteVector.size()]);
+    quote.setPosition(680,110);
+    quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
 }
 
-void MainMenuState::update(float delta) {
+void MainMenuState::update() {
     if(fontSize == fontSizeOrigin + 5 * scaler){
         scaler *= -1;
     }
-    _quote.setCharacterSize(fontSize);
-    _quote.setOrigin(_quote.getGlobalBounds().width/2, _quote.getLocalBounds().height/2);
+    quote.setCharacterSize(fontSize);
+    quote.setOrigin(quote.getGlobalBounds().width/2, quote.getLocalBounds().height/2);
     fontSize += scaler;
 }
 
-void MainMenuState::draw(float delta) {
+void MainMenuState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);
-    gameData->window.draw(_title);
-    gameData->window.draw(_playButton);
-    gameData->window.draw(_tutorialButton);
-    gameData->window.draw(_settingsButton);
-    gameData->window.draw(_customButton);
-    gameData->window.draw(_banner);
-    gameData->window.draw(_quote);
+    gameData->window.draw(title);
+    gameData->window.draw(playButton);
+    gameData->window.draw(tutorialButton);
+    gameData->window.draw(settingsButton);
+    gameData->window.draw(customButton);
+    gameData->window.draw(banner);
+    gameData->window.draw(quote);
     gameData->window.display();
 }

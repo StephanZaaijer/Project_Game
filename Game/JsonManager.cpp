@@ -39,7 +39,7 @@ void JsonManager::getData() {
 }
 
 bool JsonManager::getSoundState() const {
-	return data.Sound;
+	return data.sound;
 }
 
 int JsonManager::getSoundVolume() const {
@@ -86,10 +86,10 @@ std::vector<std::string> JsonManager::getQuotes() const{
 }
 
 void JsonManager::setSoundState(const bool &state) {
-	if (state == data.Sound) {
+	if (state == data.sound) {
 		return;
 	}
-	data.Sound = state;
+	data.sound = state;
 	jsonData["Audio"]["Sound"] = state;
 	clock.restart();
 	writeOut = true;
@@ -98,7 +98,7 @@ void JsonManager::setSoundVolume(const int &volume) {
 	if (volume == data.soundVolume) {
 		return;
 	}
-	data.Sound = volume!=0;
+	data.sound = volume!=0;
 	jsonData["Audio"]["Sound"] = volume != 0;
 	data.soundVolume = volume;
 	jsonData["Audio"]["Soundlevel"] = volume;
@@ -136,13 +136,13 @@ void JsonManager::setHighscore(const int &highscore) {
 }
 
 void JsonManager::setPlayerSprite(const CustomCharacter& playerSprite) {
-	if (playerSprite.CharacterName == data.playerSpriteID) {
+	if (playerSprite.characterName == data.playerSpriteID) {
 		return;
 	}
-	data.playerSpriteID = playerSprite.CharacterName;
-	data.playerSpriteFile = playerSprite.CharacterFileName;
-	jsonData["Player"]["ID"] = playerSprite.CharacterName;
-	jsonData["Player"]["File"] = playerSprite.CharacterFileName;
+	data.playerSpriteID = playerSprite.characterName;
+	data.playerSpriteFile = playerSprite.characterFileName;
+	jsonData["Player"]["ID"] = playerSprite.characterName;
+	jsonData["Player"]["File"] = playerSprite.characterFileName;
 	clock.restart();
 	writeOut = true;
 }
@@ -153,12 +153,12 @@ void JsonManager::setPlayerTheme(const CustomTheme& playerTheme) {
     }
     data.playerThemeID = playerTheme.themeName;
     data.playerThemeFile = playerTheme.themeFileName;
-    data.wallColor = colorToString(playerTheme.wall_color);
-    data.obstacleColor = colorToString(playerTheme.object_color);
+    data.wallColor = colorToString(playerTheme.wallColor);
+    data.obstacleColor = colorToString(playerTheme.objectColor);
     jsonData["Theme"]["ID"] = playerTheme.themeName;
     jsonData["Theme"]["File"]= playerTheme.themeFileName;
-    jsonData["Theme"]["WallColor"]= colorToString(playerTheme.wall_color);
-    jsonData["Theme"]["ObstacleColor"] = colorToString(playerTheme.object_color);
+    jsonData["Theme"]["WallColor"]= colorToString(playerTheme.wallColor);
+    jsonData["Theme"]["ObstacleColor"] = colorToString(playerTheme.objectColor);
     clock.restart();
     writeOut = true;
 }
@@ -208,19 +208,19 @@ void JsonManager::directWrite() {
 }
 
 
-sf::Color JsonManager::stringToColor(const std::string &colorstring) const{
+sf::Color JsonManager::stringToColor(const std::string &colorString) const{
     for(const auto &color: colors){
-        if(color.color_string==colorstring){
+        if(color.colorString==colorString){
             return color.colorSf;
         }
     }
-    throw UnknownColorException(colorstring);
+    throw UnknownColorException(colorString);
 }
 
 std::string JsonManager::colorToString(const sf::Color &colorSf) const{
     for(const auto &color: colors){
         if(color.colorSf == colorSf){
-            return color.color_string;
+            return color.colorString;
         }
     }
     throw UnknownColorException(colorSf);

@@ -4,7 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
-struct formula {
+struct Formula {
     float rc;
     float offset;
 
@@ -28,7 +28,7 @@ private:
 
 public:
     Line(const sf::Vector2f & pointA = sf::Vector2f {0.0, 0.0}, const sf::Vector2f & pointB = sf::Vector2f {0.0, 0.0});
-    formula calculateFormula() const;
+    Formula calculateFormula() const;
     std::vector<sf::Vector2f> & getPoints();
 
 };

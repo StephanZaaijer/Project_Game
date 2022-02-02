@@ -7,36 +7,36 @@ PauseState::PauseState(GameDataReference gameData):
 {}
 
 void PauseState::init() {
-    DarkFade.setSize(sf::Vector2f(gameData->window.getSize()));
-    DarkFade.setPosition(0, 0);
-    DarkFade.setFillColor(sf::Color(0, 0, 0, 120));
+    darkFade.setSize(sf::Vector2f(gameData->window.getSize()));
+    darkFade.setPosition(0, 0);
+    darkFade.setFillColor(sf::Color(0, 0, 0, 120));
 
-    _resumeSound.setBuffer(gameData->assets.getSoundBuffer("resumeSound"));
-    _resumeSound.setVolume(gameData->json.getSoundVolume());
+    resumeSound.setBuffer(gameData->assets.getSoundBuffer("resumeSound"));
+    resumeSound.setVolume(gameData->json.getSoundVolume());
 
     clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
     clickSound.setVolume(gameData->json.getSoundVolume());
 
     background.setTexture(gameData->assets.getTexture("Background"));
-    _playButton.setTexture(gameData->assets.getTexture("Play Button"));
-    _soundsettingsButton.setTexture(gameData->assets.getTexture("Settings Button"));
+    playButton.setTexture(gameData->assets.getTexture("Play Button"));
+    soundSettingsButton.setTexture(gameData->assets.getTexture("Settings Button"));
 
-    _pauseText.setFont(gameData->assets.getFont("Bauhaus"));
-    _pauseText.setString("PAUSED");
-    _pauseText.setCharacterSize(TEXT_TITLE_SIZE);
-    _pauseText.setFillColor(TEXT_COLOR);
+    pauseText.setFont(gameData->assets.getFont("Bauhaus"));
+    pauseText.setString("PAUSED");
+    pauseText.setCharacterSize(TEXT_TITLE_SIZE);
+    pauseText.setFillColor(TEXT_COLOR);
 
-    auto tmpRect = _pauseText.getLocalBounds();
-    _pauseText.setOrigin(tmpRect.left + tmpRect.width / 2,
+    auto tmpRect = pauseText.getLocalBounds();
+    pauseText.setOrigin(tmpRect.left + tmpRect.width / 2,
         tmpRect.top + tmpRect.height / 2);
 
-    _playButton.setOrigin({ _playButton.getGlobalBounds().width / 2, _playButton.getGlobalBounds().height / 2 });
-    _soundsettingsButton.setOrigin({ _soundsettingsButton.getGlobalBounds().width / 2, _soundsettingsButton.getGlobalBounds().height / 2 });
+    playButton.setOrigin({ playButton.getGlobalBounds().width / 2, playButton.getGlobalBounds().height / 2 });
+    soundSettingsButton.setOrigin({ soundSettingsButton.getGlobalBounds().width / 2, soundSettingsButton.getGlobalBounds().height / 2 });
 
-    _playButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 10.0f) });
-    _soundsettingsButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 15.0f) });
+    playButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 10.0f) });
+    soundSettingsButton.setPosition({ (SCREEN_WIDTH / 2.0f), (SCREEN_HEIGHT / 20.0f * 15.0f) });
 
-    _pauseText.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 8.0f);
+    pauseText.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 8.0f);
 
 }
 
@@ -47,15 +47,15 @@ void PauseState::handleInput() {
             gameData->window.close();
         }
         if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
-            if(!prevMousestate) {
-                if (gameData->input.isSpriteClicked(_playButton, sf::Mouse::Left, gameData->window)) {
+            if(!prevMouseState) {
+                if (gameData->input.isSpriteClicked(playButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
-                        _resumeSound.play();
-                        while (_resumeSound.getStatus() == _resumeSound.Playing) {}
+                        resumeSound.play();
+                        while (resumeSound.getStatus() == resumeSound.Playing) {}
                     }
                     gameData->machine.RemoveGameState();
                 }
-                if (gameData->input.isSpriteClicked(_soundsettingsButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->input.isSpriteClicked(soundSettingsButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
                     }
@@ -64,19 +64,19 @@ void PauseState::handleInput() {
             }
         }
     }
-    prevMousestate = gameData->input.isButtonPressed(sf::Mouse::Left);
+    prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
 }
 
-void PauseState::update(float delta) {
+void PauseState::update() {
 }
 
-void PauseState::draw(float delta) {
+void PauseState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);
-    gameData->window.draw(DarkFade);
-    gameData->window.draw(_playButton);
-    gameData->window.draw(_soundsettingsButton);
-    gameData->window.draw(_pauseText);
+    gameData->window.draw(darkFade);
+    gameData->window.draw(playButton);
+    gameData->window.draw(soundSettingsButton);
+    gameData->window.draw(pauseText);
     gameData->window.display();
 }
 

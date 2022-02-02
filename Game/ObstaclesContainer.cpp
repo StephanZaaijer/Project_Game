@@ -7,11 +7,11 @@
 
 #include <iostream>
 
-Obstacle_Container::Obstacle_Container(GameDataReference gameData):
+ObstacleContainer::ObstacleContainer(GameDataReference gameData):
     gameData (std::move(gameData))
 {}
 
-void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
+void ObstacleContainer::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
     srand (time(NULL));
     int Wall_Left_Side = rand() % 4 + 1;
     int Wall_Right_Side = rand() % 4 + 1;
@@ -73,7 +73,7 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
         if (Wall_Left_Side_obstacles == 1) {
             obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, left, sf::Vector2f(
                     Coordinates_Left_Obstacle.x,
-                    Coordinates_Left_Obstacle.y - SPIKE_SIZE/2 ))));
+                    Coordinates_Left_Obstacle.y - SPIKE_SIZE/2.0f ))));
         }
         else if (Wall_Left_Side_obstacles == 2){
             obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
@@ -86,17 +86,17 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
         if (Wall_right_Side_obstacles == 1) {
             obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, right, sf::Vector2f(
                     Coordinates_Right_Obstacle.x,
-                    Coordinates_Right_Obstacle.y - SPIKE_SIZE/2))));
+                    Coordinates_Right_Obstacle.y - SPIKE_SIZE/2.0f))));
         }
         else if (Wall_right_Side_obstacles == 2){
             obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
-                    Coordinates_Right_Obstacle.x - WALL_WIDTH / 2 ,
+                    Coordinates_Right_Obstacle.x - WALL_WIDTH / 2.0f ,
                     Coordinates_Right_Obstacle.y - WALL_OBSTACLE_HEIGHT_1))));
         }
     }
 }
 
-void Obstacle_Container::move_Obstacle(sf::Vector2f moveBy){
+void ObstacleContainer::moveObstacle(sf::Vector2f moveBy){
     std::for_each(obstacles.begin(),obstacles.end(), [&moveBy](std::unique_ptr<Obstacle> &x ){
         x->move(moveBy);
     });
@@ -107,13 +107,13 @@ void Obstacle_Container::move_Obstacle(sf::Vector2f moveBy){
 
 }
 
-void Obstacle_Container::draw_Obstacle(){
+void ObstacleContainer::draw_Obstacle(){
     for(const auto & obstacle : obstacles){
         obstacle -> draw();
     }
 }
 
-const std::vector<std::unique_ptr<Obstacle>> & Obstacle_Container::getObstacle() {
+const std::vector<std::unique_ptr<Obstacle>> & ObstacleContainer::getObstacle() {
     return obstacles;
 }
 

@@ -27,7 +27,7 @@ void TutorialState::handleInput() {
             gameData->window.close();
         }
         if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
-            if (!prevMousestate) {
+            if (!prevMouseState) {
                 if (gameData->input.isSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
                     if (gameData->json.getSoundState()) {
                         clickSound.play();
@@ -36,7 +36,7 @@ void TutorialState::handleInput() {
                 }
             }
         }
-        prevMousestate = gameData->input.isButtonPressed(sf::Mouse::Left);
+        prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
     }
 }
 void TutorialState::update(float delta){}

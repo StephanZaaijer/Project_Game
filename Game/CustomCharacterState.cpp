@@ -54,7 +54,7 @@ void CustomCharacterState::init() {
     currentCharacter = gameData->json.getPlayerSprite();
     bool found = false;
     for (const auto &characters: customCharacters) {
-        gameData->assets.loadTextureFromFile(characters.CharacterName, characters.CharacterFileName);
+        gameData->assets.loadTextureFromFile(characters.characterName, characters.characterFileName);
         if (!found) {
             if (characters == currentCharacter) {
                 found = true;
@@ -88,7 +88,7 @@ void CustomCharacterState::init() {
     }
     currentTheme = customThemes[counterTheme];
 
-    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
+    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
     character->getSprite().setScale(2, 2);
     character->getSprite().setPosition(SCREEN_WIDTH / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
                                        SCREEN_HEIGHT / 3.0f - (character->getSprite().getGlobalBounds().height));
@@ -131,7 +131,7 @@ void CustomCharacterState::handleInput() {
             buyEquipButton.setTexture(gameData->assets.getTexture("Buy Button"));
         }
 
-        if(currentCharacter.CharacterName == gameData->json.getPlayerSprite().CharacterName){
+        if(currentCharacter.characterName == gameData->json.getPlayerSprite().characterName){
             equippedCharacter.setString("EQUIPPED");
         }else if (skinBought[counterCharacters]){
             equippedCharacter.setString("");
@@ -158,11 +158,11 @@ void CustomCharacterState::handleInput() {
                         counterCharacters += 1;
                     }
                     currentCharacter = customCharacters[counterCharacters];
-                    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
+                    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                 }
 
                 if (gameData->input.isSpriteClicked(arrowLeftCharacter, sf::Mouse::Left, gameData->window)) {
-                    if(currentCharacter.CharacterName == gameData->json.getPlayerSprite().CharacterName){
+                    if(currentCharacter.characterName == gameData->json.getPlayerSprite().characterName){
                         equippedCharacter.setString("EQUIPPED");
                     }else{
                         equippedCharacter.setString("");
@@ -176,7 +176,7 @@ void CustomCharacterState::handleInput() {
                         counterCharacters -= 1;
                     }
                     currentCharacter = customCharacters[counterCharacters];
-                    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
+                    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                 }
 
                 if (gameData->input.isSpriteClicked(randomButtonCharacter, sf::Mouse::Left, gameData->window)) {
@@ -190,7 +190,7 @@ void CustomCharacterState::handleInput() {
                             counterCharacters = std::rand() % customCharacters.size();
                         }
                         currentCharacter = customCharacters[counterCharacters];
-                        character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
+                        character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                         draw();
                         sf::sleep(sf::milliseconds(20 + i * 10));
                     }
@@ -206,7 +206,7 @@ void CustomCharacterState::handleInput() {
                             coins -= SKIN_PRICE;
                             coinsText.setString("coins: " + std::to_string(coins));
                             skinBought[counterCharacters] = true;
-                            character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
+                            character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                             gameData->json.setCoins(coins);
                             gameData->json.setBoughtSkins(counterCharacters, true);
                             equippedCharacter.setString("EQUIPPED");
@@ -214,7 +214,7 @@ void CustomCharacterState::handleInput() {
                         }
                     } else {
                         equippedCharacter.setString("EQUIPPED");
-                        character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
+                        character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                         gameData->json.setPlayerSprite(currentCharacter);
                     }
                 }

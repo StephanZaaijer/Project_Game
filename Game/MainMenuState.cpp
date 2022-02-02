@@ -75,6 +75,8 @@ void MainMenuState::Init() {
     _customButton.setPosition((SCREEN_WIDTH/30.0f)*23, (SCREEN_HEIGHT/4.0f)*3);
     _banner.setPosition((SCREEN_WIDTH/2.0f), SCREEN_HEIGHT-_banner.getGlobalBounds().height);
 
+    quoteVector = game_data->json.Get_Quotes();
+
     _quote.setFont(game_data->assets.GetFont("8-bit"));
     _quote.setString(quoteVector[std::rand() % quoteVector.size()]);
     _quote.setCharacterSize(MAIN_MENU_FONT_SIZE);

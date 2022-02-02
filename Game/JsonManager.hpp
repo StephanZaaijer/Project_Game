@@ -22,10 +22,11 @@ public:
         std::string WallColor;
         std::string ObstacleColor;
         int Coins;
-        Json::Value BoughtSkins;
+        std::vector<bool> BoughtSkins;
+        std::vector<std::string> Quotes;
 	};
 
-	JsonManager(std::string Gamefile);
+	JsonManager(const std::string &Gamefile);
 	bool Get_Soundstate() const;
 	int Get_Soundvolume() const;
 	bool Get_Musicstate() const;
@@ -33,19 +34,21 @@ public:
 	int Get_Highscore() const;
     int Get_Coins() const;
     std::vector<bool> Get_Bought_Skins() const;
+    std::vector<std::string> Get_Quotes() const;
 	CustomCharacter Get_PlayerSprite() const;
     CustomTheme Get_PlayerTheme() const;
     sf::Color Get_ObstacleColor() const;
     sf::Color Get_WallColor() const;
-    void Set_Soundstate(bool state);
-	void Set_Soundvolume(int volume);
-	void Set_Musicstate(bool state);
-	void Set_Musicvolume(int volume);
-	void Set_Highscore(int highscore);
+    void Set_Soundstate(const bool &state);
+	void Set_Soundvolume(const int &volume);
+	void Set_Musicstate(const bool &state);
+	void Set_Musicvolume(const int &volume);
+	void Set_Highscore(const int &highscore);
 	void Set_PlayerSprite(const CustomCharacter& PlayerSprite);
     void Set_PlayerTheme(const CustomTheme& PlayerTheme);
-    void Set_Coins(int coins);
-    void Set_BoughtSkins(int index, bool value);
+    void Set_Coins(const int &coins);
+    void Set_BoughtSkins(const int &index, const bool &value);
+    void Set_Quotes(const int &index, const std::string &Quote);
 
     void Update();
 	void Direct_write();
@@ -55,8 +58,8 @@ private:
 	void Get_data();
 	JsonData data;
 	Json::Value json_data;
-    sf::Color string_to_color(std::string colorstring) const;
-    std::string color_to_string(sf::Color color_sf) const;
+    sf::Color string_to_color(const std::string &colorstring) const;
+    std::string color_to_string(const sf::Color &color_sf) const;
 
     Json::Value Get_Json_from_file();
 	void Write_Json_to_file();

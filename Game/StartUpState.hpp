@@ -14,7 +14,12 @@
 #include "MainGameState.hpp"
 #include "CustomCharacterState.hpp"
 
-///\class StartUpState ///\public GameState
+/// @brief
+/// Project_Game: This is the StartUpState which is the first state you will see if the program has started
+
+
+/// @brief
+/// This class is used to create the StartUpState and all of its contents
 class StartUpState : public GameState {
 private:
     GameDataReference gameData;
@@ -25,20 +30,25 @@ private:
     sf::Sprite banner;
 
 public:
-    ///\brief StartUpState constructor
+    ///\brief
+    /// This constructor constructs an object of GameOverState
     /// \param gameData
     StartUpState(GameDataReference gameData);
 
-    ///\brief init() function
+    ///\brief
+    /// This function initializes all of the textures and set their positions
     void init() override;
 
-    ///\brief handleInput() function
+    /// @brief
+    /// In this function all of the input from the user is checked and the corresponding actions are taken
     void handleInput() override;
 
-    ///\brief update function
+    /// @brief
+    /// This function Checks if the time elapsed is greater then the START_UP_TIME macro and switches states
     void update() override;
 
-    ///\brief draw() function
+    /// @brief
+    /// This function draws all of it's contents onto the screen
     void draw() override;
 
 };

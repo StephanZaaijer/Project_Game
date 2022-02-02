@@ -10,6 +10,13 @@
 #include "Game.hpp"
 #include "Definitions.hpp"
 
+/// @file
+/// @brief
+/// Project_Game: This is the PauseState which is called when the user pauses the game
+
+
+/// @brief
+/// This class is used to create the PauseState and all of its contents
 class PauseState : public GameState {
 private:
 	GameDataReference gameData;
@@ -23,6 +30,9 @@ private:
 	sf::Sound clickSound;
     bool prevMouseState = true;
 public:
+    ///\brief
+    /// This constructor constructs an object of PauseState
+    /// \param gameData
 	PauseState(GameDataReference gameData);
 	void init() override;
 	void handleInput() override;

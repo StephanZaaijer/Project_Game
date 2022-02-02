@@ -16,7 +16,7 @@ public:
     CoinContainer(GameDataReference gameData);
     std::vector<std::unique_ptr<Coin>> & getCoins();
     void spawn();
-    void move(sf::Vector2f move_by);
+    void move(sf::Vector2f moveBy);
     void draw();
 };
 

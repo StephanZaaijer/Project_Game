@@ -13,7 +13,7 @@
 
 class MainMenuState : public GameState {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     sf::Sprite background;
     sf::Sprite _title;
     sf::Sprite _banner;

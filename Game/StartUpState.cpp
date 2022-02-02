@@ -2,45 +2,45 @@
 #include "MainMenuState.hpp"
 #include <utility>
 
-StartUpState::StartUpState(GameDataReference data) : game_data(std::move(data)) {}
+StartUpState::StartUpState(GameDataReference data) : gameData(std::move(data)) {}
 
 void StartUpState::Init() {
-    game_data->assets.loadTextureFromFile("Background", BACKGROUND_PATH);
-    game_data->assets.loadTextureFromFile("StartUp State Image", GAME_IMAGE_PATH);
-    game_data->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
-    game_data->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
-    background.setTexture(game_data->assets.getTexture("Background"));
-    _logo.setTexture(game_data->assets.getTexture("StartUp State Image"));
-    _title.setTexture(game_data->assets.getTexture("Banner"));
-    _banner.setTexture(game_data->assets.getTexture("Groep6 Banner"));
+    gameData->assets.loadTextureFromFile("Background", BACKGROUND_PATH);
+    gameData->assets.loadTextureFromFile("StartUp State Image", GAME_IMAGE_PATH);
+    gameData->assets.loadTextureFromFile("Banner", GAME_TITLE_PATH);
+    gameData->assets.loadTextureFromFile("Groep6 Banner", GROEP_6_BANNER_PATH);
+    background.setTexture(gameData->assets.getTexture("Background"));
+    _logo.setTexture(gameData->assets.getTexture("StartUp State Image"));
+    _title.setTexture(gameData->assets.getTexture("Banner"));
+    _banner.setTexture(gameData->assets.getTexture("Groep6 Banner"));
 
-    _title.setPosition((SCREEN_WIDTH / 2.0f - (_title.getGlobalBounds().width / 2)),
+    _title.setPosition((ScreenWidth / 2.0f - (_title.getGlobalBounds().width / 2)),
                        _title.getGlobalBounds().height / 2);
-    _logo.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f);
-    _banner.setPosition((SCREEN_WIDTH / 2.0f - (_banner.getGlobalBounds().width / 2)),
+    _logo.setPosition(ScreenWidth / 2.0f, SCREEN_HEIGHT / 2.0f);
+    _banner.setPosition((ScreenWidth / 2.0f - (_banner.getGlobalBounds().width / 2)),
                         SCREEN_HEIGHT - _banner.getGlobalBounds().height * 1.5);
 }
 
 void StartUpState::handleInput() {
     sf::Event event{};
-    while (game_data->window.pollEvent(event)) {
+    while (gameData->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
-            game_data->window.close();
+            gameData->window.close();
         }
     }
 }
 
 void StartUpState::Update(float delta) {
     if (_clock.getElapsedTime().asSeconds() > START_UP_TIME) {
-        game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
+        gameData->machine.AddGameState(GameStateReference(new MainMenuState(gameData)), true);
     }
 }
 
 void StartUpState::Draw(float delta) {
-    game_data->window.clear();
-    game_data->window.draw(background);
-    game_data->window.draw(_title);
-    game_data->window.draw(_logo);
-    game_data->window.draw(_banner);
-    game_data->window.display();
+    gameData->window.clear();
+    gameData->window.draw(background);
+    gameData->window.draw(_title);
+    gameData->window.draw(_logo);
+    gameData->window.draw(_banner);
+    gameData->window.display();
 }

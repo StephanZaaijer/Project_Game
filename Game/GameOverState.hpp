@@ -12,7 +12,7 @@
 
 class GameOverState : public GameState {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     sf::Sprite background;
     sf::Sprite _restartButton;
     sf::Sprite _mainMenuButton;

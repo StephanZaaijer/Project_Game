@@ -12,7 +12,7 @@
 
 class PauseState : public GameState {
 private:
-	GameDataReference game_data;
+	GameDataReference gameData;
 	sf::Sprite background;
     sf::RectangleShape DarkFade;
 	sf::Sprite _playButton;

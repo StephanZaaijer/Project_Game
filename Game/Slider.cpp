@@ -1,8 +1,8 @@
 #include "Slider.hpp"
 #include "Exceptions.hpp"
 
-Slider::Slider(GameDataReference game_data, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor) :
-	game_data(game_data),
+Slider::Slider(GameDataReference gameData, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor) :
+	gameData(gameData),
 	slider_point(location),
     length(par_length+1),
     horizontal(horizontal)
@@ -28,8 +28,8 @@ Slider::Slider(GameDataReference game_data, sf::Vector2f location, int par_lengt
 
 
 void Slider::handleInput() {
-	if (game_data->input.IsRectangleClicked(slider, sf::Mouse::Left, game_data->window)) {
-		sf::Vector2f mouse = game_data->input.GetMousePosition(game_data->window);
+	if (gameData->input.IsRectangleClicked(slider, sf::Mouse::Left, gameData->window)) {
+		sf::Vector2f mouse = gameData->input.GetMousePosition(gameData->window);
 		if (horizontal) {
 			slider_block.setPosition({ mouse.x, slider_point.y });
 		}
@@ -40,8 +40,8 @@ void Slider::handleInput() {
 }
 
 void Slider::Draw() {
-	game_data->window.draw(slider);
-	game_data->window.draw(slider_block);
+	gameData->window.draw(slider);
+	gameData->window.draw(slider_block);
 }
 
 sf::RectangleShape& Slider::get_slider_block() {

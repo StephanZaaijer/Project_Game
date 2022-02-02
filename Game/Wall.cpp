@@ -5,14 +5,14 @@
 #include <random>
 
 Wall::Wall(GameDataReference data):
-    game_data (std::move(data))
+    gameData (std::move(data))
 {
     left_boundary.setPosition(0.0, 0.0);
-    left_boundary.setSize( {SCREEN_WIDTH/6.0f, SCREEN_HEIGHT} );
+    left_boundary.setSize( {ScreenWidth/6.0f, SCREEN_HEIGHT} );
     left_boundary.setFillColor( sf::Color::Black );
 
-    right_boundary.setPosition(SCREEN_WIDTH/6.0f * 5.0f, 0.0);
-    right_boundary.setSize( {(SCREEN_WIDTH/6.0f), SCREEN_HEIGHT} );
+    right_boundary.setPosition(ScreenWidth/6.0f * 5.0f, 0.0);
+    right_boundary.setSize( {(ScreenWidth/6.0f), SCREEN_HEIGHT} );
     right_boundary.setFillColor( sf::Color::Black );
 }
 
@@ -36,7 +36,7 @@ void Wall::generate_Wall(float x_position, float start_y_offset){
     wall_obstacles tmp;
     tmp.wall.setSize(sf::Vector2f(WALL_WIDTH, WALL_HEIGHT));
     tmp.wall.setPosition(x_position - tmp.wall.getSize().x / 2 ,start_y_offset - tmp.wall.getSize().y);
-    tmp.wall.setFillColor(game_data->json.Get_WallColor());
+    tmp.wall.setFillColor(gameData->json.Get_WallColor());
     tmp.contains_obstacles = false;
     walls.push_back(tmp);
 }
@@ -46,17 +46,17 @@ void Wall::spawn_Wall(float start_y_offset){
     int random = rand() % 4 + 1;
 
     if (random == 1){
-        generate_Wall(SCREEN_WIDTH / 2.0f, start_y_offset);
+        generate_Wall(ScreenWidth / 2.0f, start_y_offset);
     }
     else if (random == 2){
-        generate_Wall( ((SCREEN_WIDTH / 5.0f) * 2) - WALL_WIDTH/4 *3, start_y_offset);
-        generate_Wall(((SCREEN_WIDTH / 5.0f) * 3) + WALL_WIDTH/4 *3, start_y_offset);
+        generate_Wall( ((ScreenWidth / 5.0f) * 2) - WALL_WIDTH/4 *3, start_y_offset);
+        generate_Wall(((ScreenWidth / 5.0f) * 3) + WALL_WIDTH/4 *3, start_y_offset);
     }
     else if (random == 3){
-        generate_Wall(((SCREEN_WIDTH / 5.0f) * 2) - WALL_WIDTH/4 *3, start_y_offset);
+        generate_Wall(((ScreenWidth / 5.0f) * 2) - WALL_WIDTH/4 *3, start_y_offset);
     }
     else{
-        generate_Wall(((SCREEN_WIDTH / 5.0f) * 3) + WALL_WIDTH/4 *3, start_y_offset);
+        generate_Wall(((ScreenWidth / 5.0f) * 3) + WALL_WIDTH/4 *3, start_y_offset);
     }
 }
 
@@ -72,10 +72,10 @@ void Wall::move_Wall(sf::Vector2f move_by){
 
 void Wall::draw_Wall(){
     for(auto & wall : walls){
-        game_data->window.draw(wall.wall);
+        gameData->window.draw(wall.wall);
     }
-    game_data->window.draw(left_boundary);
-    game_data->window.draw(right_boundary);
+    gameData->window.draw(left_boundary);
+    gameData->window.draw(right_boundary);
 }
 
 void Wall::setContainObstacleTrue(int index){

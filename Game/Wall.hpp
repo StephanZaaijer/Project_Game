@@ -14,7 +14,7 @@ struct wall_obstacles{
 
 class Wall {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     std::vector<wall_obstacles> walls;
 
     sf::RectangleShape left_boundary;

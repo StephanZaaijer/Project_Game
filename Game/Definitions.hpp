@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#define SCREEN_WIDTH 1920
+#define ScreenWidth 1920
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
 #define FRAMERATE 60
@@ -81,8 +81,8 @@ enum character_states {
 #define WALL_HEIGHT 750
 #define WALL_WIDTH 50
 #define BORDER_WALL_1_START 0.0
-#define BORDER_WALL_2_START (SCREEN_WIDTH / 6.0f * 5.0f)
-#define BORDER_WALL_WIDTH (SCREEN_WIDTH / 6.0f)
+#define BORDER_WALL_2_START (ScreenWidth / 6.0f * 5.0f)
+#define BORDER_WALL_WIDTH (ScreenWidth / 6.0f)
 
 #define WALL_OBSTACLE_HEIGHT_1 (WALL_HEIGHT / 6.0f)
 #define WALL_OBSTACLE_HEIGHT_2 (WALL_HEIGHT / 2.0f)

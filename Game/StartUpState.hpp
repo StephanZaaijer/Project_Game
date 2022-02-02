@@ -17,7 +17,7 @@
 ///\class StartUpState ///\public GameState
 class StartUpState : public GameState {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     sf::Clock _clock;
     sf::Sprite background;
     sf::Sprite _logo;

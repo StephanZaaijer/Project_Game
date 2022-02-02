@@ -15,7 +15,7 @@
 
 class MainGameState : public GameState{
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     std::unique_ptr<Wall> wall;
     sf::Sprite background;
     sf::Sprite background2;

@@ -13,7 +13,7 @@
 
 class TutorialState:public GameState {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     sf::Sprite tutorial;
     sf::Sprite backButton;
     sf::Sprite background;

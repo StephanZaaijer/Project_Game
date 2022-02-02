@@ -8,7 +8,7 @@
 #include <iostream>
 
 Obstacle_Container::Obstacle_Container(GameDataReference data):
-    game_data (std::move(data))
+    gameData (std::move(data))
 {}
 
 void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
@@ -71,12 +71,12 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
 
     for(auto & Coordinates_Left_Obstacle : Coordinates_Left_Obstacles) {
         if (Wall_Left_Side_obstacles == 1) {
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(game_data, left, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, left, sf::Vector2f(
                     Coordinates_Left_Obstacle.x,
                     Coordinates_Left_Obstacle.y - SPIKE_SIZE/2 ))));
         }
         else if (Wall_Left_Side_obstacles == 2){
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(game_data, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
                     Coordinates_Left_Obstacle.x - 1,
                     Coordinates_Left_Obstacle.y - WALL_OBSTACLE_HEIGHT_1))));
         }
@@ -84,12 +84,12 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
 
     for(auto & Coordinates_Right_Obstacle : Coordinates_Right_Obstacles) {
         if (Wall_right_Side_obstacles == 1) {
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(game_data, right, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, right, sf::Vector2f(
                     Coordinates_Right_Obstacle.x,
                     Coordinates_Right_Obstacle.y - SPIKE_SIZE/2))));
         }
         else if (Wall_right_Side_obstacles == 2){
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(game_data, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
                     Coordinates_Right_Obstacle.x - WALL_WIDTH / 2 ,
                     Coordinates_Right_Obstacle.y - WALL_OBSTACLE_HEIGHT_1))));
         }

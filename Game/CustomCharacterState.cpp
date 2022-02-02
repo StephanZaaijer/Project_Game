@@ -27,7 +27,7 @@ void CustomCharacterState::init() {
     coinsText.setCharacterSize(60);
     coinsText.setFillColor(TEXT_COLOR);
     coinsText.setString("Coins: " + std::to_string(coins));
-    coinsText.setPosition(SCREEN_WIDTH / 1.2f, SCREEN_HEIGHT / 20.0f);
+    coinsText.setPosition(ScreenWidth / 1.2f, SCREEN_HEIGHT / 20.0f);
 
     equippedCharacter.setFont(gameData->assets.getFont("Bauhaus"));
     equippedCharacter.setCharacterSize(30);
@@ -37,7 +37,7 @@ void CustomCharacterState::init() {
      auto tmpRect = equippedCharacter.getLocalBounds();
     equippedCharacter.setOrigin(tmpRect.left + tmpRect.width / 2,
         tmpRect.top + tmpRect.height / 2);
-    equippedCharacter.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 10.0f);
+    equippedCharacter.setPosition(ScreenWidth / 2.0f, SCREEN_HEIGHT / 10.0f);
 
     equippedTheme.setFont(gameData->assets.getFont("Bauhaus"));
     equippedTheme.setCharacterSize(30);
@@ -47,7 +47,7 @@ void CustomCharacterState::init() {
     tmpRect = equippedTheme.getLocalBounds();
     equippedTheme.setOrigin(tmpRect.left + tmpRect.width / 2,
                                 tmpRect.top + tmpRect.height / 2);
-    equippedTheme.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.3f);
+    equippedTheme.setPosition(ScreenWidth / 2.0f, SCREEN_HEIGHT / 2.3f);
 
     counterCharacters = 0;
     character = std::unique_ptr<Character>(new Character(gameData));
@@ -90,32 +90,32 @@ void CustomCharacterState::init() {
 
     character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.CharacterName));
     character->getSprite().setScale(2, 2);
-    character->getSprite().setPosition(SCREEN_WIDTH / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
+    character->getSprite().setPosition(ScreenWidth / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
                                        SCREEN_HEIGHT / 3.0f - (character->getSprite().getGlobalBounds().height));
 
     theme.setTexture(gameData->assets.getTexture(currentTheme.themeName));
     theme.setScale(2, 2);
-    theme.setPosition(SCREEN_WIDTH / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
+    theme.setPosition(ScreenWidth / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
                        SCREEN_HEIGHT / 1.5f - (character->getSprite().getGlobalBounds().height));
 
-    backButton.setPosition(SCREEN_WIDTH / 2.0f - (backButton.getGlobalBounds().width / 2),
+    backButton.setPosition(ScreenWidth / 2.0f - (backButton.getGlobalBounds().width / 2),
                             SCREEN_HEIGHT - (backButton.getGlobalBounds().height * 1.1));
-    buyEquipButton.setPosition(SCREEN_WIDTH / 8.0f * 6.5f - (buyEquipButton.getGlobalBounds().width / 2),
+    buyEquipButton.setPosition(ScreenWidth / 8.0f * 6.5f - (buyEquipButton.getGlobalBounds().width / 2),
                                 SCREEN_HEIGHT / 3.3f - (buyEquipButton.getGlobalBounds().height));
-    randomButtonCharacter.setPosition(SCREEN_WIDTH / 8.0f - (randomButtonCharacter.getGlobalBounds().width / 2),
+    randomButtonCharacter.setPosition(ScreenWidth / 8.0f - (randomButtonCharacter.getGlobalBounds().width / 2),
                                        SCREEN_HEIGHT / 3.0f - (randomButtonCharacter.getGlobalBounds().height));
-    arrowLeftCharacter.setPosition(SCREEN_WIDTH / 3.0f - (arrowLeftCharacter.getGlobalBounds().width / 2),
+    arrowLeftCharacter.setPosition(ScreenWidth / 3.0f - (arrowLeftCharacter.getGlobalBounds().width / 2),
                                     SCREEN_HEIGHT / 3.0f - (arrowLeftCharacter.getGlobalBounds().height));
-    arrowRightCharacter.setPosition(SCREEN_WIDTH / 6.0f * 4.0f - (arrowRightCharacter.getGlobalBounds().width / 2),
+    arrowRightCharacter.setPosition(ScreenWidth / 6.0f * 4.0f - (arrowRightCharacter.getGlobalBounds().width / 2),
                                      SCREEN_HEIGHT / 3.0f - (arrowRightCharacter.getGlobalBounds().height));
 
-    equipButtonTheme.setPosition(SCREEN_WIDTH / 8.0f * 6.5f - (equipButtonTheme.getGlobalBounds().width / 2),
+    equipButtonTheme.setPosition(ScreenWidth / 8.0f * 6.5f - (equipButtonTheme.getGlobalBounds().width / 2),
                                 SCREEN_HEIGHT /1.59f - (equipButtonTheme.getGlobalBounds().height));
-    randomButtonTheme.setPosition(SCREEN_WIDTH / 8.0f - (randomButtonTheme.getGlobalBounds().width / 2),
+    randomButtonTheme.setPosition(ScreenWidth / 8.0f - (randomButtonTheme.getGlobalBounds().width / 2),
                                    SCREEN_HEIGHT / 1.5f - (randomButtonTheme.getGlobalBounds().height));
-    arrowLeftTheme.setPosition(SCREEN_WIDTH / 3.0f - (arrowLeftTheme.getGlobalBounds().width / 2),
+    arrowLeftTheme.setPosition(ScreenWidth / 3.0f - (arrowLeftTheme.getGlobalBounds().width / 2),
                                 SCREEN_HEIGHT / 1.5f - (arrowLeftTheme.getGlobalBounds().height));
-    arrowRightTheme.setPosition(SCREEN_WIDTH / 6.0f * 4.0f - (arrowRightTheme.getGlobalBounds().width / 2),
+    arrowRightTheme.setPosition(ScreenWidth / 6.0f * 4.0f - (arrowRightTheme.getGlobalBounds().width / 2),
                                  SCREEN_HEIGHT / 1.5f - (arrowRightTheme.getGlobalBounds().height));
 }
 

@@ -3,9 +3,9 @@
 #include <utility>
 #include "Definitions.hpp"
 
-Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position):
+Spike::Spike(GameDataReference gameData, Spike_facing facing, sf::Vector2f position):
     Obstacle(identifier::spike),
-    game_data(std::move(game_data)),
+    gameData(std::move(gameData)),
     facing (facing),
     position (position)
 {
@@ -24,14 +24,14 @@ void Spike::spawn(){
         Triangle.setPoint(1, sf::Vector2f{ -SPIKE_SIZE, SPIKE_SIZE/2.0f } );
         Triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
         Triangle.setPosition(position);
-        Triangle.setFillColor(game_data->json.Get_ObstacleColor());
+        Triangle.setFillColor(gameData->json.Get_ObstacleColor());
     }
     else{
         Triangle.setPoint(0, sf::Vector2f{ 0, 0 } );
         Triangle.setPoint(1, sf::Vector2f{ SPIKE_SIZE, SPIKE_SIZE/2.0f } );
         Triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
         Triangle.setPosition(position);
-        Triangle.setFillColor(game_data->json.Get_ObstacleColor());
+        Triangle.setFillColor(gameData->json.Get_ObstacleColor());
     }
 }
 
@@ -40,7 +40,7 @@ void Spike::move(sf::Vector2f move_by){
 }
 
 void Spike::draw() const{
-    game_data -> window.draw(Triangle);
+    gameData -> window.draw(Triangle);
 }
 
 sf::FloatRect Spike::getBounds(){

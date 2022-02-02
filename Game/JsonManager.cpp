@@ -214,7 +214,7 @@ sf::Color JsonManager::string_to_color(const std::string &colorstring) const{
             return color.color_sf;
         }
     }
-    throw unknown_color_exception(colorstring);
+    throw UnknownColorException(colorstring);
 }
 
 std::string JsonManager::color_to_string(const sf::Color &color_sf) const{
@@ -223,7 +223,7 @@ std::string JsonManager::color_to_string(const sf::Color &color_sf) const{
             return color.color_string;
         }
     }
-    throw unknown_color_exception(color_sf);
+    throw UnknownColorException(color_sf);
 }
 
 
@@ -232,12 +232,12 @@ Json::Value JsonManager::Get_Json_from_file() {
 	Json::CharReaderBuilder builder;
 	Inputfile.open(Gamefile);
 	if (!Inputfile.is_open()) {
-		throw open_file_exception(Gamefile);
+		throw OpenFileException(Gamefile);
 	}
 	builder["collectComments"] = true;
 	JSONCPP_STRING errs;
 	if (!parseFromStream(builder, Inputfile, &json_data, &errs)) {
-		throw invalid_json_exception(errs);
+		throw InvalidJsonException(errs);
 	}
 	Inputfile.close();
 	return json_data;
@@ -247,7 +247,7 @@ void JsonManager::Write_Json_to_file() {
 	std::ofstream Outputfile;
 	Outputfile.open(Gamefile);
 	if (!Outputfile.is_open()) {
-		throw open_file_exception(Gamefile);
+		throw OpenFileException(Gamefile);
 	}
 	Outputfile << json_data;
 	Outputfile.close();

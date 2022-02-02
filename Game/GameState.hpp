@@ -18,10 +18,10 @@ public:
     /// @brief
     /// Update function that`s called regularly in the gameloop to update the position of the objects on the screen
     /// \param delta The elapsed time since the last call of the Update function
-    virtual void update( float delta ) = 0;
+    virtual void update() = 0;
     /// Draw function that`s called once every loop to draw the object on the screen
     /// \param delta The elapsed time since the last call of the Update function
-    virtual void draw( float delta ) = 0;
+    virtual void draw() = 0;
     /// @brief
     /// Function that`s called when new state is appended to statemachine on top of the current gamestate
     virtual void pause(){ }

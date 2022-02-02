@@ -4,43 +4,43 @@
 #include <iostream>
 
 MainGameState::MainGameState(GameDataReference data):
-    game_data (std::move(data))
+    gameData (std::move(data))
 {}
 
 void MainGameState::Init(){
-    _jumpSound.setBuffer(game_data->assets.getSoundBuffer("jumpSound"));
-    _pauseSound.setBuffer(game_data->assets.getSoundBuffer("pauseSound"));
-    _gameMusicSound.setBuffer(game_data->assets.getSoundBuffer("gameMusic"));
-    _coinPickup.setBuffer(game_data->assets.getSoundBuffer("coinPickup"));
+    _jumpSound.setBuffer(gameData->assets.getSoundBuffer("jumpSound"));
+    _pauseSound.setBuffer(gameData->assets.getSoundBuffer("pauseSound"));
+    _gameMusicSound.setBuffer(gameData->assets.getSoundBuffer("gameMusic"));
+    _coinPickup.setBuffer(gameData->assets.getSoundBuffer("coinPickup"));
 
 
-    _score.setFont(game_data->assets.getFont("Bauhaus"));
+    _score.setFont(gameData->assets.getFont("Bauhaus"));
     _score.setCharacterSize(40);
     _score.setFillColor(TEXT_COLOR);
 
-    coin_text.setFont(game_data->assets.getFont("Bauhaus"));
+    coin_text.setFont(gameData->assets.getFont("Bauhaus"));
     coin_text.setCharacterSize(40);
     coin_text.setFillColor(TEXT_COLOR);
 
-    _jumpSound.setVolume(game_data->json.Get_Soundvolume());
-    _pauseSound.setVolume(game_data->json.Get_Soundvolume());
-    _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
+    _jumpSound.setVolume(gameData->json.Get_Soundvolume());
+    _pauseSound.setVolume(gameData->json.Get_Soundvolume());
+    _gameMusicSound.setVolume(gameData->json.Get_Musicvolume());
     _gameMusicSound.setLoop(true);
 
-    if(game_data->json.Get_Musicstate()){
+    if(gameData->json.Get_Musicstate()){
         _gameMusicSound.play();
     }
 
-    character = std::unique_ptr<Character>(new Character(game_data));
-    characterinfo = game_data->json.Get_PlayerSprite();
-    game_data->assets.loadTextureFromFile(characterinfo.CharacterName, characterinfo.CharacterFileName);
-    character->getSprite().setTexture( game_data->assets.getTexture(characterinfo.CharacterName) );
+    character = std::unique_ptr<Character>(new Character(gameData));
+    characterinfo = gameData->json.Get_PlayerSprite();
+    gameData->assets.loadTextureFromFile(characterinfo.CharacterName, characterinfo.CharacterFileName);
+    character->getSprite().setTexture( gameData->assets.getTexture(characterinfo.CharacterName) );
 
-    obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(game_data));
-    wall = std::unique_ptr<Wall>(new Wall(game_data));
-    coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(game_data));
-    background.setTexture(game_data->assets.getTexture("BackgroundGround"));
-    background2.setTexture(game_data->assets.getTexture("Background"));
+    obstacles_container =  std::unique_ptr<Obstacle_Container>(new Obstacle_Container(gameData));
+    wall = std::unique_ptr<Wall>(new Wall(gameData));
+    coins_container = std::unique_ptr<Coin_Container>(new Coin_Container(gameData));
+    background.setTexture(gameData->assets.getTexture("BackgroundGround"));
+    background2.setTexture(gameData->assets.getTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     background2.setPosition(0, backGroundOffsetY2);
     wall->spawn_Wall(WALL_HEIGHT);
@@ -53,13 +53,13 @@ void MainGameState::Init(){
 void MainGameState::handleInput() {
     sf::Event event{};
 
-    while (game_data->window.pollEvent(event)) {
+    while (gameData->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
-            game_data->window.close();
+            gameData->window.close();
             break;
         }
-        if (game_data->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate_start) {
-            if(game_data->json.Get_Soundstate()){
+        if (gameData->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate_start) {
+            if(gameData->json.Get_Soundstate()){
                 if(character->getJumpedTwice() && !jumpSoundPlayed) {
                     _jumpSound.play();
                     jumpSoundPlayed = true;
@@ -68,31 +68,31 @@ void MainGameState::handleInput() {
             character->Tap();
             character ->setJumpPressed(true);
         }
-        else if (game_data->input.IsKeyPressed(sf::Keyboard::Escape)) {
-            if (game_data->json.Get_Musicstate()) {
+        else if (gameData->input.IsKeyPressed(sf::Keyboard::Escape)) {
+            if (gameData->json.Get_Musicstate()) {
                 _gameMusicSound.pause();
             }
-            if (game_data->json.Get_Soundstate()) {
+            if (gameData->json.Get_Soundstate()) {
                 _pauseSound.play();
             }
-            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+            gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
         }
         else {
             character ->setJumpPressed(false);
             jumpSoundPlayed = false;
         }
-        if (!game_data->window.hasFocus()) {
-            if(game_data->json.Get_Musicstate()){
+        if (!gameData->window.hasFocus()) {
+            if(gameData->json.Get_Musicstate()){
                 _gameMusicSound.pause();
             }
-            if(game_data->json.Get_Soundstate()){
+            if(gameData->json.Get_Soundstate()){
                 _pauseSound.play();
             }
-            game_data->machine.AddGameState(GameStateReference(new PauseState(game_data)), false);
+            gameData->machine.AddGameState(GameStateReference(new PauseState(gameData)), false);
         }
     }
     if(prevKeystate_start){
-        prevKeystate_start = game_data->input.IsKeyPressed(sf::Keyboard::Space);
+        prevKeystate_start = gameData->input.IsKeyPressed(sf::Keyboard::Space);
     }
 }
 
@@ -113,12 +113,12 @@ void MainGameState::Update( float delta ){
         backGroundOffsetY2 += move_down_by/BACKGROUND_SLIDE;
         background.setPosition(0, backGroundOffsetY);
         background2.setPosition(0, backGroundOffsetY2);
-        if(backGroundOffsetY >= game_data->window.getSize().y){
+        if(backGroundOffsetY >= gameData->window.getSize().y){
             backGroundOffsetY = background2.getGlobalBounds().top - background2.getGlobalBounds().height;
             counter++;
         }
 
-        if(backGroundOffsetY2 >= game_data->window.getSize().y){
+        if(backGroundOffsetY2 >= gameData->window.getSize().y){
             backGroundOffsetY2 = background.getGlobalBounds().top - background.getGlobalBounds().height;
             counter++;
         }
@@ -130,39 +130,39 @@ void MainGameState::Update( float delta ){
 
     switch (counter) {
         case 0:
-            background2.setTexture(game_data->assets.getTexture("Background"));
+            background2.setTexture(gameData->assets.getTexture("Background"));
             break;
 
         case 1:
-            background.setTexture(game_data->assets.getTexture("Background"));
+            background.setTexture(gameData->assets.getTexture("Background"));
             break;
 
         case 3:
-            background.setTexture(game_data->assets.getTexture("BackgroundNoClouds"));
+            background.setTexture(gameData->assets.getTexture("BackgroundNoClouds"));
             break;
 
         case 4:
-            background2.setTexture(game_data->assets.getTexture("BackgroundNoClouds"));
+            background2.setTexture(gameData->assets.getTexture("BackgroundNoClouds"));
             break;
 
         case 5:
-            background.setTexture(game_data->assets.getTexture("SkyToSpaceBackground"));
+            background.setTexture(gameData->assets.getTexture("SkyToSpaceBackground"));
             break;
 
         case 6:
-            background2.setTexture(game_data->assets.getTexture("SpaceBackground"));
+            background2.setTexture(gameData->assets.getTexture("SpaceBackground"));
             break;
 
         case 7:
-            background.setTexture(game_data->assets.getTexture("SpaceBackground"));
+            background.setTexture(gameData->assets.getTexture("SpaceBackground"));
             break;
 
         case 12:
-            background2.setTexture(game_data->assets.getTexture("SpaghettiMonsterBackground"));
+            background2.setTexture(gameData->assets.getTexture("SpaghettiMonsterBackground"));
             break;
 
         case 14:
-            background2.setTexture(game_data->assets.getTexture("SpaceBackground"));
+            background2.setTexture(gameData->assets.getTexture("SpaceBackground"));
             break;
     }
 
@@ -230,34 +230,34 @@ void MainGameState::Update( float delta ){
     coin_text.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20.0f) - coin_text.getGlobalBounds().width,SCREEN_HEIGHT / 20.0f);
 
     if (character->_death){
-        game_data -> score = character -> getScore();
-        game_data -> coins = acquired_coins;
+        gameData -> score = character -> getScore();
+        gameData -> coins = acquired_coins;
         if(_gameMusicSound.getStatus()){
             _gameMusicSound.stop();
         }
-        game_data->machine.AddGameState(GameStateReference(new GameOverState(game_data)), true);
+        gameData->machine.AddGameState(GameStateReference(new GameOverState(gameData)), true);
     }
 }
 
 void MainGameState::Draw( float delta ){
-    game_data -> window.clear();
-    game_data -> window.draw(background);
-    game_data -> window.draw(background2);
+    gameData -> window.clear();
+    gameData -> window.draw(background);
+    gameData -> window.draw(background2);
     wall -> draw_Wall();
     obstacles_container -> draw_Obstacle();
     character->Draw();
     coins_container -> draw();
-    game_data -> window.draw(_score);
-    game_data -> window.draw(coin_text);
-    game_data -> window.display();
+    gameData -> window.draw(_score);
+    gameData -> window.draw(coin_text);
+    gameData -> window.display();
 }
 
 void MainGameState::Resume(){
-    _jumpSound.setVolume(game_data->json.Get_Soundvolume());
-    _pauseSound.setVolume(game_data->json.Get_Soundvolume());
-    _coinPickup.setVolume(game_data->json.Get_Soundvolume());
-    _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
-    if(game_data->json.Get_Musicstate()){
+    _jumpSound.setVolume(gameData->json.Get_Soundvolume());
+    _pauseSound.setVolume(gameData->json.Get_Soundvolume());
+    _coinPickup.setVolume(gameData->json.Get_Soundvolume());
+    _gameMusicSound.setVolume(gameData->json.Get_Musicvolume());
+    if(gameData->json.Get_Musicstate()){
         _gameMusicSound.play();
     }
 }

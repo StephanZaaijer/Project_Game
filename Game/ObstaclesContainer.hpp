@@ -11,7 +11,7 @@
 
 class Obstacle_Container {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     std::vector<std::unique_ptr<Obstacle>> obstacles;
 public:
     Obstacle_Container(GameDataReference data);

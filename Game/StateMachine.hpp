@@ -4,7 +4,13 @@
 #include <memory>
 #include "GameState.hpp"
 #include <stack>
+/// @file
+/// @brief
+/// Project_Game: This is the StateMachine which is handles all gamestatechanges
 
+
+/// @brief
+/// typedefinition so that std::unique_ptr can be called GameStateReference
 typedef std::unique_ptr<GameState> GameStateReference;
 
 

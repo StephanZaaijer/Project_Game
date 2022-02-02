@@ -10,7 +10,8 @@
 /// @brief
 /// Project_Game: AssetManager to read and store textures, fonts and soundbuffers
 
-
+/// @brief
+/// Class that stores all the assets(sf::Textures, sf::SoundBuffers and sf::Fonts)
 class AssetManager {
 public:
     /// @brief

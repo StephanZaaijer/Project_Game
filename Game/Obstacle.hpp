@@ -19,7 +19,7 @@ public:
     virtual void draw() const = 0;
     virtual sf::FloatRect getBounds() = 0;
 
-    virtual sf::Vector2f get_point(const int & index){
+    virtual sf::Vector2f getPoint(const int & index){
         return {};
     }
     virtual Spike_facing getFace(){

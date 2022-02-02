@@ -50,6 +50,6 @@ Spike_facing Spike::getFace() {
     return facing;
 }
 
-sf::Vector2f Spike::get_point(const int &index) {
+sf::Vector2f Spike::getPoint(const int &index) {
     return triangle.getPoint(index);
 }

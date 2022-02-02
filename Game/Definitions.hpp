@@ -57,8 +57,8 @@ enum character_states {
 
 #define CONTROLS_BUTTON_PATH "Assets/ControlsButton.png"
 
-#define MUSIC_BUTTON_GREEN_PATH "Assets/musicButtonGreen.png"
-#define MUSIC_BUTTON_RED_PATH "Assets/musicButtonRed.png"
+#define MUSIC_BUTTON_GREEN_PATH "Assets/MusicButtonGreen.png"
+#define MUSIC_BUTTON_RED_PATH "Assets/MusicButtonRed.png"
 #define SOUND_BUTTON_GREEN_PATH "Assets/SoundButtonGreen.png"
 #define SOUND_BUTTON_RED_PATH "Assets/SoundButtonRed.png"
 #define BACK_BUTTON_PATH "Assets/BackButton.png"
@@ -128,7 +128,7 @@ struct CustomTheme{
 #define SOUND_CLICK_PATH "Assets/click.wav"
 #define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
 #define SOUND_COIN_PICKUP_PATH "Assets/coin.wav"
-#define SOUND_DEATH_PATH "Assets/death.wav"
+#define SOUND_DEATH_PATH "Assets/Death.wav"
 #define SOUND_JUMP_PATH "Assets/jump.wav"
 #define SOUND_PAUSE_PATH "Assets/pause.wav"
 #define SOUND_RESUME_PATH "Assets/resume.wav"

@@ -19,8 +19,8 @@ public:
     /// Function to read sf::Texture from file and store it in the assetmanager. Throws a LoadException if there is an error while opening.
     /// And does nothing when there already is a texture with the same name stored in the assetmanager.
     /// \param name The name that`s used as a key to store and retrieve the sf::Texture from the AssetManager.
-    /// \param Filename The name from which the sf::Texture needs to be loaded.
-    void loadTextureFromFile(const std::string &name, const std::string &Filename);
+    /// \param filename The name from which the sf::Texture needs to be loaded.
+    void loadTextureFromFile(const std::string &name, const std::string &filename);
 
     /// @brief
     /// Function to get sf::Texture that`s stored in the assetmanager.
@@ -36,8 +36,8 @@ public:
     /// Function to read sf::Font from file and store it in the assetmanager. Throws a LoadException if there is an error while opening.
     /// And does nothing when there already is a sf::Font with the same name stored in the assetmanager.
     /// \param name The name that`s used as a key to store and retrieve the sf::Font from the AssetManager
-    /// \param Filename The name from which the sf::Font needs to be loaded
-    void loadFontFromFile(const std::string &name, const std::string &Filename);
+    /// \param filename The name from which the sf::Font needs to be loaded
+    void loadFontFromFile(const std::string &name, const std::string &filename);
 
     /// @brief
     /// Function to get sf::Font that`s stored in the assetmanager.
@@ -53,8 +53,8 @@ public:
     /// Function to read sf::SoundBuffer from file and store it in the assetmanager. Throws a LoadException if there is an error while opening.
     /// And does nothing when there already is a sf::SoundBuffer with the same name stored in the assetmanager.
     /// \param name The name that`s used as a key to store and retrieve the sf::SoundBuffer from the AssetManager
-    /// \param Filename The name from which the sf::SoundBuffer needs to be loaded
-    void loadSoundBufferFromFile(const std::string &name, const std::string &Filename);
+    /// \param filename The name from which the sf::SoundBuffer needs to be loaded
+    void loadSoundBufferFromFile(const std::string &name, const std::string &filename);
 
     /// @brief
     /// Function to get sf::SoundBuffer that`s stored in the assetmanager.

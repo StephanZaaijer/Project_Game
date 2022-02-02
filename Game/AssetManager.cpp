@@ -1,14 +1,14 @@
 #include "AssetManager.hpp"
 #include "Exceptions.hpp"
 
-void AssetManager::loadTextureFromFile(const std::string& name, const std::string& Filename) {
+void AssetManager::loadTextureFromFile(const std::string& name, const std::string& filename) {
     if(textures.count(name)==0){
         sf::Texture temp;
-        if (temp.loadFromFile(Filename)){
+        if (temp.loadFromFile(filename)){
             textures[name]=temp;
         }
         else{
-            throw LoadException("Texture", name, Filename);
+            throw LoadException("Texture", name, filename);
         }
     }
 }
@@ -20,13 +20,13 @@ sf::Texture &AssetManager::getTexture(const std::string &name) {
     throw ReturnException("Texture", name);
 }
 
-void AssetManager::loadFontFromFile(const std::string &name, const std::string &Filename) {
+void AssetManager::loadFontFromFile(const std::string &name, const std::string &filename) {
     if (fonts.count(name) == 0) {
         sf::Font temp;
-        if (temp.loadFromFile(Filename)) {
+        if (temp.loadFromFile(filename)) {
             fonts[name] = temp;
         } else {
-            throw LoadException("Fonts", name, Filename);
+            throw LoadException("Fonts", name, filename);
         }
     }
 }
@@ -38,13 +38,13 @@ sf::Font &AssetManager::getFont(const std::string &name){
     throw ReturnException("Fonts", name);
 }
 
-void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &Filename){
+void AssetManager::loadSoundBufferFromFile(const std::string &name, const std::string &filename){
     if(sounds.count(name)==0) {
         sf::SoundBuffer temp;
-        if (temp.loadFromFile(Filename)) {
+        if (temp.loadFromFile(filename)) {
             sounds[name] = temp;
         } else {
-            throw LoadException("Sounds", name, Filename);
+            throw LoadException("Sounds", name, filename);
         }
     }
 }

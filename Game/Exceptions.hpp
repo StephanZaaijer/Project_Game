@@ -34,8 +34,8 @@ private:
     std::string error;
 
 public:
-    OpenFileException(const std::string &Filename):
-        error("Could open file with filename: '" + Filename + "'")
+    OpenFileException(const std::string &filename):
+        error("Could open file with filename: '" + filename + "'")
     {}
     [[nodiscard]] const char* what() const noexcept override {
         return error.c_str();

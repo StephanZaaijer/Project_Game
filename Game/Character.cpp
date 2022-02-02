@@ -87,80 +87,77 @@ void Character::tap() {
 }
 
 void Character::collideWalls(const std::vector<sf::RectangleShape> & Rects) {
-
-    sf::Vector2f ownpos = characterSprite.getPosition();
-    sf::FloatRect ownhitbox = characterSprite.getGlobalBounds();
-    sf::Vector2f arrownpoints[] = {sf::Vector2f(ownpos.x, ownpos.y),
-                                     sf::Vector2f(ownpos.x + ownhitbox.width, ownpos.y),
-                                     sf::Vector2f(ownpos.x, ownpos.y + ownhitbox.height),
-                                     sf::Vector2f(ownpos.x + ownhitbox.width, ownpos.y + ownhitbox.height)};
-    bool hitbottom = false;
-    bool hittop = false;
+    sf::Vector2f ownPos = characterSprite.getPosition();
+    sf::FloatRect ownHitbox = characterSprite.getGlobalBounds();
+    sf::Vector2f arrOwnPoints[] = {sf::Vector2f(ownPos.x, ownPos.y),
+                                     sf::Vector2f(ownPos.x + ownHitbox.width, ownPos.y),
+                                     sf::Vector2f(ownPos.x, ownPos.y + ownHitbox.height),
+                                     sf::Vector2f(ownPos.x + ownHitbox.width, ownPos.y + ownHitbox.height)};
+    bool hitBottom = false;
+    bool hitTop = false;
     for (const auto &rect: Rects) {
-
-        if (rect.getGlobalBounds().intersects(ownhitbox)) {
-            sf::Vector2f tpos = rect.getPosition();
-            sf::FloatRect thitbox = rect.getGlobalBounds();
-            sf::Vector2f arrtargetpoints[] = {sf::Vector2f(tpos.x, tpos.y),
-                                                sf::Vector2f(tpos.x + thitbox.width, tpos.y),
-                                                sf::Vector2f(tpos.x, tpos.y + thitbox.height),
-                                                sf::Vector2f(tpos.x + thitbox.width, tpos.y + thitbox.height)};
+        if (rect.getGlobalBounds().intersects(ownHitbox)) {
+            sf::Vector2f tPos = rect.getPosition();
+            sf::FloatRect tHitbox = rect.getGlobalBounds();
+            sf::Vector2f arrTargetPoints[] = {sf::Vector2f(tPos.x, tPos.y),
+                                                sf::Vector2f(tPos.x + tHitbox.width, tPos.y),
+                                                sf::Vector2f(tPos.x, tPos.y + tHitbox.height),
+                                                sf::Vector2f(tPos.x + tHitbox.width, tPos.y + tHitbox.height)};
 
             if(velocity.y > 0 && velocity.x < 0){
-                float disttop = arrownpoints[2].y - arrtargetpoints[0].y;
-                float distside = arrtargetpoints[1].x - arrownpoints[2].x;
+                float distTop = arrOwnPoints[2].y - arrTargetPoints[0].y;
+                float distSide = arrTargetPoints[1].x - arrOwnPoints[2].x;
 
-                if(disttop < distside){
-                    hittop = true;
-                    characterSprite.setPosition(ownpos.x , ownpos.y - disttop);
+                if(distTop < distSide){
+                    hitTop = true;
+                    characterSprite.setPosition(ownPos.x , ownPos.y - distTop);
                 }
                 else{
-                    characterSprite.setPosition(ownpos.x + distside, ownpos.y);
+                    characterSprite.setPosition(ownPos.x + distSide, ownPos.y);
                 }
             }
             else if(velocity.y > 0 && velocity.x > 0){
-                float disttop = arrownpoints[3].y - arrtargetpoints[0].y;
-                float distside = arrownpoints[3].x - arrtargetpoints[0].x;
+                float distTop = arrOwnPoints[3].y - arrTargetPoints[0].y;
+                float distSide = arrOwnPoints[3].x - arrTargetPoints[0].x;
 
-                if(disttop < distside){
-                    hittop = true;
-                    characterSprite.setPosition(ownpos.x , ownpos.y - disttop);
+                if(distTop < distSide){
+                    hitTop = true;
+                    characterSprite.setPosition(ownPos.x , ownPos.y - distTop);
                 }
                 else{
-                    characterSprite.setPosition(ownpos.x - distside, ownpos.y);
+                    characterSprite.setPosition(ownPos.x - distSide, ownPos.y);
                 }
             }
             else if(velocity.y < 0 && velocity.x < 0){
-                float distbottom = arrtargetpoints[3].y - arrownpoints[0].y;
-                float distside = arrtargetpoints[3].x - arrownpoints[0].x;
+                float distbottom = arrTargetPoints[3].y - arrOwnPoints[0].y;
+                float distSide = arrTargetPoints[3].x - arrOwnPoints[0].x;
 
-                if(distbottom < distside){
-                    hitbottom = true;
-                    characterSprite.setPosition(ownpos.x , ownpos.y + distbottom);
+                if(distbottom < distSide){
+                    hitBottom = true;
+                    characterSprite.setPosition(ownPos.x , ownPos.y + distbottom);
                 }
                 else{
-                    characterSprite.setPosition(ownpos.x + distside, ownpos.y);
+                    characterSprite.setPosition(ownPos.x + distSide, ownPos.y);
                 }
             }
             else if(velocity.y < 0 && velocity.x > 0){
-                float distbottom = arrtargetpoints[2].y - arrownpoints[1].y;
-                float distside = arrownpoints[1].x - arrtargetpoints[2].x;
+                float distbottom = arrTargetPoints[2].y - arrOwnPoints[1].y;
+                float distSide = arrOwnPoints[1].x - arrTargetPoints[2].x;
 
-                if(distbottom < distside){
-                    hitbottom = true;
-                    characterSprite.setPosition(ownpos.x , ownpos.y + distbottom);
+                if(distbottom < distSide){
+                    hitBottom = true;
+                    characterSprite.setPosition(ownPos.x , ownPos.y + distbottom);
                 }
                 else{
-                    characterSprite.setPosition(ownpos.x - distside, ownpos.y);
+                    characterSprite.setPosition(ownPos.x - distSide, ownPos.y);
                 }
             }
 
-
-            if(hitbottom){
+            if(hitBottom){
                 velocity.y = 0;
                 characterState = Jumping;
             }
-            else if (hittop){
+            else if (hitTop){
                 characterState = Still;
                 resetJumps();
             }
@@ -188,61 +185,60 @@ bool Character::getJumpedTwice() {
 }
 
 bool Character::collideSpike(const std::unique_ptr<Obstacle> &spike) {
-    sf::FloatRect ownhitbox = characterSprite.getGlobalBounds();
+    sf::FloatRect ownHitbox = characterSprite.getGlobalBounds();
 
     if(spike->getFace() == right){
         sf::Vector2f pos = spike->getPosition();
-        sf::Vector2f upperleft = spike->get_point(0) + pos;
-        sf::Vector2f midright  = spike->get_point(1) + pos;
-        sf::Vector2f lowerleft = spike->get_point(2) + pos;
+        sf::Vector2f upperLeft = spike->getPoint(0) + pos;
+        sf::Vector2f midRight  = spike->getPoint(1) + pos;
+        sf::Vector2f lowerLeft = spike->getPoint(2) + pos;
 
-        Line l1(upperleft, midright);
-        Line l2(lowerleft, midright);
-        std::vector<sf::Vector2f> pointsarraytop = l1.getPoints();
-        std::vector<sf::Vector2f> pointsarraybottom = l2.getPoints();
+        Line l1(upperLeft, midRight);
+        Line l2(lowerLeft, midRight);
+        std::vector<sf::Vector2f> pointsArrayTop = l1.getPoints();
+        std::vector<sf::Vector2f> pointsArrayBottom = l2.getPoints();
 
-        auto iterator = std::find_if(pointsarraytop.begin(), pointsarraytop.end(), [&ownhitbox](const sf::Vector2f & v) -> bool{
-            return ownhitbox.contains(v);
+        auto iterator = std::find_if(pointsArrayTop.begin(), pointsArrayTop.end(), [&ownHitbox](const sf::Vector2f & v) -> bool{
+            return ownHitbox.contains(v);
         });
 
-        if(iterator != pointsarraytop.end()){
+        if(iterator != pointsArrayTop.end()){
             return true;
         }
 
-        iterator = std::find_if(pointsarraybottom.begin(), pointsarraybottom.end(), [&ownhitbox](const sf::Vector2f & v) -> bool{
-            return ownhitbox.contains(v);
+        iterator = std::find_if(pointsArrayBottom.begin(), pointsArrayBottom.end(), [&ownHitbox](const sf::Vector2f & v) -> bool{
+            return ownHitbox.contains(v);
         });
 
-        if(iterator != pointsarraybottom.end()){
+        if(iterator != pointsArrayBottom.end()){
             return true;
         }
     }
 
     if(spike->getFace() == left){
         sf::Vector2f pos = spike->getPosition();
-        sf::Vector2f upperright = spike->get_point(0) + pos;
-        sf::Vector2f midleft    = spike->get_point(1) + pos;
-        sf::Vector2f lowerright = spike->get_point(2) + pos;
+        sf::Vector2f upperRight = spike->getPoint(0) + pos;
+        sf::Vector2f midLeft    = spike->getPoint(1) + pos;
+        sf::Vector2f lowerRight = spike->getPoint(2) + pos;
 
-        Line l1(upperright, midleft);
-        Line l2(lowerright, midleft);
-        std::vector<sf::Vector2f> pointsarraytop = l1.getPoints();
-        std::vector<sf::Vector2f> pointsarraybottom = l2.getPoints();
+        Line l1(upperRight, midLeft);
+        Line l2(lowerRight, midLeft);
+        std::vector<sf::Vector2f> pointsArrayTop = l1.getPoints();
+        std::vector<sf::Vector2f> pointsArrayBottom = l2.getPoints();
 
-
-        auto iterator = std::find_if(pointsarraytop.begin(), pointsarraytop.end(), [this](const sf::Vector2f & v) -> bool{
+        auto iterator = std::find_if(pointsArrayTop.begin(), pointsArrayTop.end(), [this](const sf::Vector2f & v) -> bool{
             return characterSprite.getGlobalBounds().contains(v);
         });
 
-        if(iterator != pointsarraytop.end()){
+        if(iterator != pointsArrayTop.end()){
             return true;
         }
 
-        iterator = std::find_if(pointsarraybottom.begin(), pointsarraybottom.end(), [this](const sf::Vector2f & v) -> bool{
+        iterator = std::find_if(pointsArrayBottom.begin(), pointsArrayBottom.end(), [this](const sf::Vector2f & v) -> bool{
             return characterSprite.getGlobalBounds().contains(v);
         });
 
-        if(iterator != pointsarraybottom.end()){
+        if(iterator != pointsArrayBottom.end()){
             return true;
         }
     }

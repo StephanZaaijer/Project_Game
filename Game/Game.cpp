@@ -10,17 +10,17 @@ Game::Game(const int &screenWidth, const int &screenHeight, const std::string &g
 }
 
 void Game::start() {
-    float new_time, frameTime;
-    float current_time = clock.getElapsedTime().asSeconds();
+    float newTime, frameTime;
+    float currentTime = clock.getElapsedTime().asSeconds();
     float accumulator = 0.0;
     while (gameData->window.isOpen()) {
         gameData->machine.processGameStateChanges();
-        new_time = clock.getElapsedTime().asSeconds();
-        frameTime = new_time - current_time;
+        newTime = clock.getElapsedTime().asSeconds();
+        frameTime = newTime - currentTime;
         if (frameTime > 0.25) {
             frameTime = 0.25;
         }
-        current_time = new_time;
+        currentTime = newTime;
         accumulator += frameTime;
 
         while (accumulator >= delta) {

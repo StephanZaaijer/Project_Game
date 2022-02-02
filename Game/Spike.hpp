@@ -24,7 +24,7 @@ public:
     void draw() const override;
     sf::FloatRect getBounds() override;
     Spike_facing getFace() override;
-    sf::Vector2f get_point(const int & index) override;
+    sf::Vector2f getPoint(const int & index) override;
 
 
 };

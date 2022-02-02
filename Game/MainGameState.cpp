@@ -175,7 +175,7 @@ void MainGameState::update(){
         // Obstacle spawn
         for(unsigned int i = 0; i < wall->getWalls().size(); i++) {
             if (!(wall->getWalls()[i].containsObstacles)) {
-                obstaclesContainer->spawn_Obstacle_On_Wall(wall->getWalls()[i].wall);
+                obstaclesContainer->spawnObstacleOnWall(wall->getWalls()[i].wall);
                 wall->setContainObstacleTrue(i);
             }
         }
@@ -244,7 +244,7 @@ void MainGameState::draw(){
     gameData->window.draw(background);
     gameData->window.draw(background2);
     wall->drawWall();
-    obstaclesContainer->draw_Obstacle();
+    obstaclesContainer->drawObstacle();
     character->draw();
     coinsContainer->draw();
     gameData->window.draw(score);

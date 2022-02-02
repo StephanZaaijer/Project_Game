@@ -16,9 +16,9 @@ private:
 public:
     ObstacleContainer(GameDataReference gameData);
     const std::vector<std::unique_ptr<Obstacle>> & getObstacle();
-    void spawn_Obstacle_On_Wall(const sf::RectangleShape& wall);
+    void spawnObstacleOnWall(const sf::RectangleShape& wall);
     void moveObstacle(sf::Vector2f moveBy);
-    void draw_Obstacle();
+    void drawObstacle();
 
 };
 

@@ -7,6 +7,8 @@
 /// @brief
 /// Project_Game: This file contains all error exceptions used throughout the program.
 
+
+/// @brief
 /// This class is used to catch load errors and give a detailed description of the problem.
 class LoadException : public std::exception {
 private:
@@ -31,6 +33,7 @@ public:
     }
 };
 
+/// @brief
 /// This class is used to catch return errors and give a detailed description of the problem.
 class ReturnException : public std::exception {
 private:
@@ -54,6 +57,7 @@ public:
     }
 };
 
+/// @brief
 /// This class is used to file opening errors and give a detailed description of the problem.
 class OpenFileException : public std::exception {
 private:
@@ -76,6 +80,7 @@ public:
     }
 };
 
+/// @brief
 /// This class is used to catch invalid json errors and give a detailed description of the problem.
 class InvalidJsonException : public std::exception {
 private:
@@ -97,6 +102,7 @@ public:
     }
 };
 
+/// @brief
 /// This class is used to catch unknown colors and give a detailed description of the problem.
 class UnknownColorException: public std::exception {
 private:

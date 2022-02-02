@@ -10,6 +10,12 @@
 #include "Game.hpp"
 #include "Character.hpp"
 
+/// @file
+/// @brief
+/// Project_Game: This is the GameOVerState in which you will end up if your character dies.
+
+/// @brief
+/// This class is used to create the GameOverState and all of its contents
 class GameOverState : public GameState {
 private:
     GameDataReference gameData;
@@ -28,10 +34,23 @@ private:
     bool prevButtonState=true;
     bool prevKeyState=true;
 public:
+
+    /// @brief
+    /// This constructor constructs an object of GameOverState
     GameOverState(GameDataReference gameData);
+
+    /// @brief
+    /// This function initializes all of the sounds, volumes, textures, fonts, texts, colors, and positions are set.
     void init() override;
+
+    /// @brief
+    /// In this function all of the input from the user is checked and the corresponding actions are taken.
     void handleInput() override;
+
     void update() override;
+
+    /// @brief
+    /// This function draws all of it's contents onto the screen.
     void draw() override;
 
 

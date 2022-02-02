@@ -27,7 +27,7 @@ public:
 
     /// @brief
     /// Returns vector containing pointers to Obstacle objects.
-    /// \return Returns a std::vector<std::unique_ptr<Obstacle>> obstacles of the container.
+    /// \return Returns the private member obstacles of the type std::vector<std::unique_ptr<Obstacle>>.
     const std::vector<std::unique_ptr<Obstacle>> & getObstacle();
 
     /// @brief

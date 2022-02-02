@@ -26,7 +26,7 @@ public:
 
     /// @brief
     /// Returns vector containing pointers to Coin objects.
-    /// \return Returns a std::vector<std::unique_ptr<Coin>> coins of the container.
+    /// \return Returns the private member coins of the type std::vector<std::unique_ptr<Coin>>.
     std::vector<std::unique_ptr<Coin>> & getCoins();
 
     /// @brief

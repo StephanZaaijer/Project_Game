@@ -60,7 +60,7 @@ void Character::update() {
         position += velocity;
         characterSprite.setPosition(position);
 
-        height += (int(velocity.y) * -1);
+        height += (int(-velocity.y));
     }
     else if ( characterState == Stick ) {
         float fallRate = fallVelocity += GRAVITY / WALL_SLIDE_DELTA;

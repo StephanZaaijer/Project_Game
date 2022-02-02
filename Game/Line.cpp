@@ -6,7 +6,7 @@ Line::Line(const sf::Vector2f &pointA, const sf::Vector2f &pointB):
     B(pointB)
 {}
 
-Formula Line::calculateFormula() const {
+Line::Formula Line::calculateFormula() const {
     float dx = A.x - B.x;
     float dy = A.y - B.y;
 

@@ -22,4 +22,4 @@ private:
 	sf::Vector2f prev_sliderblock_location;
 };
 
-#endif // PROJECT_GAME_SLIDER
+#endif // PROJECT_GAME_SOUNDSLIDER

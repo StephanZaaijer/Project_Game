@@ -18,7 +18,7 @@
 		false,
 		false
 	],
-	"Coins" : 80,
+	"Coins" : 81,
 	"Player" : 
 	{
 		"File" : "Assets/character_3.png",
@@ -50,7 +50,7 @@
 		"Oeps constructor vergeten",
 		"Je weet toch het makkelijker kan he",
 		"Dit kan efficienter",
-		"Tiktiktiktiktiktiktiktiktik",
+		"*tiktiktiktiktiktiktiktiktik*",
 		"Zet death ff uit",
 		"*Corona geluiden*",
 		"Fix ff de hitbox",

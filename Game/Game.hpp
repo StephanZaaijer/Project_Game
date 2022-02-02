@@ -23,6 +23,7 @@ struct GameData {
     JsonManager json = JsonManager(GAME_FILE);
     int score = 0;
     int coins = 0;
+    std::string test = "test";
 };
 
 /// @brief

@@ -6,8 +6,8 @@
 JsonManager::JsonManager(std::string gameFile):
 	gameFile(std::move(gameFile))
 {
-	data = JsonData();
-	getData();
+//    data = JsonData();
+    getData();
 }
 
 void JsonManager::getData() {
@@ -35,7 +35,9 @@ void JsonManager::getData() {
 		jsonData["Coins"].asInt(),
         boughtSkins,
         quotes
-        };
+    };
+    std::cout << "hallo " << std::endl;
+    std::cout << data.coins << std::endl;
 }
 
 bool JsonManager::getSoundState() const {
@@ -59,6 +61,8 @@ int JsonManager::getHighscore() const {
 }
 
 int JsonManager::getCoins() const {
+    std::cout << "4343" << std::endl;
+    std::cout << data.coins << std::endl;
 	return data.coins;
 }
 

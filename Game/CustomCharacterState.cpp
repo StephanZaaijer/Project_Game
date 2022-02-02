@@ -1,11 +1,12 @@
 #include "CustomCharacterState.hpp"
 #include <utility>
+#include <iostream>
 
 CustomCharacterState::CustomCharacterState(GameDataReference gameData) :
     gameData(std::move(gameData))
 {
-    coins = gameData->json.getCoins();
-    skinBought = gameData->json.getBoughtSkins();
+    coins = this->gameData->json.getCoins();
+    skinBought = this->gameData->json.getBoughtSkins();
 }
 
 void CustomCharacterState::init() {

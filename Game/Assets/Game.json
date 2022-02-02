@@ -1,30 +1,30 @@
 {
 	"Audio" : 
 	{
-		"music" : true,
-		"musiclevel" : 83,
-		"Sound" : true,
-		"Soundlevel" : 85
+		"Music" : false,
+		"Musiclevel" : 39,
+		"Sound" : false,
+		"Soundlevel" : 43
 	},
 	"Bought_Skins" : 
 	[
 		true,
-		true,
-		true,
-		true,
-		true,
 		false,
-		true,
 		false,
-		true
+		false,
+		false,
+		false,
+		false,
+		false,
+		false
 	],
-	"coins" : 26,
+	"Coins" : 100,
 	"Player" : 
 	{
 		"File" : "Assets/character_2.png",
 		"ID" : "character_2"
 	},
-	"quotes" :
+	"Quotes" : 
 	[
 		"Franky is our favorite Asian!",
 		"Is this EZ mode?",
@@ -47,15 +47,15 @@
 		"En wat zijn jullie aan het doen?",
 		"Ik ga even ochtend eten"
 	],
-	"Score" :
+	"Score" : 
 	{
-		"highscore" : 186
+		"Highscore" : 186
 	},
 	"Theme" : 
 	{
 		"File" : "Assets/cyan_blue.png",
 		"ID" : "cyan_blue_theme",
-		"obstacleColor" : "Blue",
-		"wallColor" : "Cyan"
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Cyan"
 	}
 }

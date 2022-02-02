@@ -18,6 +18,7 @@ void MainMenuState::init() {
     gameData->assets.loadTextureFromFile("Buy Button", BUY_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("Coin", COIN_PATH);
     gameData->assets.loadTextureFromFile("Customize Button", CUSTOMIZE_BUTTON_PATH);
+    gameData->assets.loadTextureFromFile("Controls Button", CONTROLS_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("Equip Button", EQUIP_BUTTON_PATH);
     gameData->assets.loadTextureFromFile("Green music Button", MUSIC_BUTTON_GREEN_PATH);
     gameData->assets.loadTextureFromFile("Green Sound Button", SOUND_BUTTON_GREEN_PATH);
@@ -32,7 +33,6 @@ void MainMenuState::init() {
     gameData->assets.loadTextureFromFile("SkyToSpaceBackground", BACKGROUND_SKY_TO_SPACE_PATH);
     gameData->assets.loadTextureFromFile("SpaceBackground", SPACE_BACKGROUND_PATH);
     gameData->assets.loadTextureFromFile("SpaghettiMonsterBackground", SPACE_BACKGROUND_SPAGHETTI_MONSTER_PATH);
-    gameData->assets.loadTextureFromFile("Controls Button", CONTROLS_BUTTON_PATH);
 
     gameData->assets.loadFontFromFile("Bauhaus", BAUHAUS_FONT_PATH);
     gameData->assets.loadFontFromFile("8-bit", BIT_FONT_PATH);
@@ -80,7 +80,6 @@ void MainMenuState::init() {
     quote.setPosition(680,110);
     quote.setOrigin(quote.getGlobalBounds().width/2, quote.getLocalBounds().height/2);
     quote.setFillColor(sf::Color(std::rand() % 256, std::rand() % 256, std::rand() % 256));
-
 }
 
 void MainMenuState::handleInput() {

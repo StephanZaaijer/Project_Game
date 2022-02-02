@@ -62,7 +62,12 @@ public:
     /// \return Returns the spikeFacing of spike.
     spikeFacing getFace() override;
 
-    //TODO: write doxygen
+    /// @brief
+    /// Get the position of a point.
+    /// @details
+    /// The returned point is a local coordinate of the shape.
+    /// \param index The index of the point you want to extract starting from 0.
+    /// \return Position of the index-th point of the object.
     sf::Vector2f getPoint(const int & index) override;
 
 };

@@ -14,7 +14,7 @@ void StateMachine::ProcessGameStateChanges() {
     if (removing and !gamestates.empty()) {
         gamestates.pop();
         if (!gamestates.empty()) {
-            gamestates.top()->Resume();
+            gamestates.top()->resume();
         }
         removing = false;
     }
@@ -28,7 +28,7 @@ void StateMachine::ProcessGameStateChanges() {
             }
         }
         gamestates.push(std::move(new_state));
-        gamestates.top()->Init();
+        gamestates.top()->init();
         adding=false;
     }
 }

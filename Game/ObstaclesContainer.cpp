@@ -7,8 +7,8 @@
 
 #include <iostream>
 
-Obstacle_Container::Obstacle_Container(GameDataReference data):
-    game_data (std::move(data))
+Obstacle_Container::Obstacle_Container(GameDataReference gameData):
+    gameData (std::move(gameData))
 {}
 
 void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
@@ -71,12 +71,12 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
 
     for(auto & Coordinates_Left_Obstacle : Coordinates_Left_Obstacles) {
         if (Wall_Left_Side_obstacles == 1) {
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(game_data, left, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, left, sf::Vector2f(
                     Coordinates_Left_Obstacle.x,
                     Coordinates_Left_Obstacle.y - SPIKE_SIZE/2 ))));
         }
         else if (Wall_Left_Side_obstacles == 2){
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(game_data, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
                     Coordinates_Left_Obstacle.x - 1,
                     Coordinates_Left_Obstacle.y - WALL_OBSTACLE_HEIGHT_1))));
         }
@@ -84,21 +84,21 @@ void Obstacle_Container::spawn_Obstacle_On_Wall(const sf::RectangleShape& wall){
 
     for(auto & Coordinates_Right_Obstacle : Coordinates_Right_Obstacles) {
         if (Wall_right_Side_obstacles == 1) {
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(game_data, right, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Spike(gameData, right, sf::Vector2f(
                     Coordinates_Right_Obstacle.x,
                     Coordinates_Right_Obstacle.y - SPIKE_SIZE/2))));
         }
         else if (Wall_right_Side_obstacles == 2){
-            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(game_data, sf::Vector2f(
+            obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
                     Coordinates_Right_Obstacle.x - WALL_WIDTH / 2 ,
                     Coordinates_Right_Obstacle.y - WALL_OBSTACLE_HEIGHT_1))));
         }
     }
 }
 
-void Obstacle_Container::move_Obstacle(sf::Vector2f move_by){
-    std::for_each(obstacles.begin(),obstacles.end(), [&move_by](std::unique_ptr<Obstacle> &x ){
-        x->move(move_by);
+void Obstacle_Container::move_Obstacle(sf::Vector2f moveBy){
+    std::for_each(obstacles.begin(),obstacles.end(), [&moveBy](std::unique_ptr<Obstacle> &x ){
+        x->move(moveBy);
     });
 
     obstacles.erase(std::remove_if( obstacles.begin(), obstacles.end(), [](std::unique_ptr<Obstacle> & x){

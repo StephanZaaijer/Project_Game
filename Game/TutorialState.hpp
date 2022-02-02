@@ -13,21 +13,21 @@
 
 class TutorialState:public GameState {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     sf::Sprite tutorial;
-    sf::Sprite _backButton;
-    sf::Sprite _background;
-    sf::Sound _clickSound;
+    sf::Sprite backButton;
+    sf::Sprite background;
+    sf::Sound clickSound;
 
-    std::vector<sf::Sprite*> ClickableButtons = { &_backButton};
+    std::vector<sf::Sprite*> clickableButtons = { &backButton};
     bool prevMousestate;
 
 public:
-    TutorialState(GameDataReference data);
-    void Init() override;
-    void HandleInput() override;
-    void Update( float delta ) override;
-    void Draw( float delta ) override;
+    TutorialState(GameDataReference gameData);
+    void init() override;
+    void handleInput() override;
+    void update( float delta ) override;
+    void draw( float delta ) override;
 };
 
 

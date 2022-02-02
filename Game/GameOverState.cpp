@@ -3,107 +3,107 @@
 #include "MainGameState.hpp"
 #include <utility>
 
-GameOverState::GameOverState(GameDataReference data) : game_data(std::move(data)){}
+GameOverState::GameOverState(GameDataReference gameData) : gameData(std::move(gameData)){}
 
-void GameOverState::Init() {
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
-    _deathSound.setBuffer(game_data->assets.GetSoundBuffer("deathSound"));
+void GameOverState::init() {
+    clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
+    deathSound.setBuffer(gameData->assets.getSoundBuffer("deathSound"));
 
-    _clickSound.setVolume(game_data->json.Get_Soundvolume());
-    _deathSound.setVolume(game_data->json.Get_Soundvolume());
+    clickSound.setVolume(gameData->json.getSoundVolume());
+    deathSound.setVolume(gameData->json.getSoundVolume());
 
-    if(game_data->json.Get_Soundstate()){
-        _deathSound.play();
+    if(gameData->json.getSoundState()){
+        deathSound.play();
     }
 
-    _background.setTexture(game_data->assets.GetTexture("Background"));
-    _restartButton.setTexture(game_data->assets.GetTexture("Restart Button"));
-    _mainMenuButton.setTexture(game_data->assets.GetTexture("MainMenu Button"));
+    background.setTexture(gameData->assets.getTexture("Background"));
+    restartButton.setTexture(gameData->assets.getTexture("Restart Button"));
+    mainMenuButton.setTexture(gameData->assets.getTexture("MainMenu Button"));
 
-    _gameOverText.setFont(game_data->assets.GetFont("Bauhaus"));
-    _score.setFont(game_data->assets.GetFont("Bauhaus"));
-    _highscore.setFont( game_data->assets.GetFont("Bauhaus"));
+    gameOverText.setFont(gameData->assets.getFont("Bauhaus"));
+    score.setFont(gameData->assets.getFont("Bauhaus"));
+    highscore.setFont( gameData->assets.getFont("Bauhaus"));
 
-    _restartButton.setPosition(SCREEN_WIDTH - (_restartButton.getGlobalBounds().width * 2.9),
-                               SCREEN_HEIGHT - (_restartButton.getGlobalBounds().height * 1.1));
-    _mainMenuButton.setPosition(SCREEN_WIDTH - (_mainMenuButton.getGlobalBounds().width * 1.9),
-                               SCREEN_HEIGHT - (_mainMenuButton.getGlobalBounds().height * 1.1));
+    restartButton.setPosition(SCREEN_WIDTH - (restartButton.getGlobalBounds().width * 2.9),
+                               SCREEN_HEIGHT - (restartButton.getGlobalBounds().height * 1.1));
+    mainMenuButton.setPosition(SCREEN_WIDTH - (mainMenuButton.getGlobalBounds().width * 1.9),
+                               SCREEN_HEIGHT - (mainMenuButton.getGlobalBounds().height * 1.1));
 
-    _gameOverText.setString("GAMEOVER!");
-    _score.setString("Score: " + std::to_string(game_data -> score));
-    game_data->json.Set_Highscore(game_data -> score);
-    _highscore.setString("Highscore: " + std::to_string(game_data->json.Get_Highscore()));
-    game_data->json.Set_Coins(game_data -> json.Get_Coins() + game_data -> coins);
+    gameOverText.setString("GAMEOVER!");
+    score.setString("Score: " + std::to_string(gameData -> score));
+    gameData->json.setHighscore(gameData -> score);
+    highscore.setString("highscore: " + std::to_string(gameData->json.getHighscore()));
+    gameData->json.setCoins(gameData -> json.getCoins() + gameData -> coins);
 
-    _gameOverText.setCharacterSize(TEXT_TITLE_SIZE);
-    _score.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
-    _highscore.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
+    gameOverText.setCharacterSize(TEXT_TITLE_SIZE);
+    score.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
+    highscore.setCharacterSize(GAME_OVER_SCORE_TEXT_SIZE);
 
-    _gameOverText.setFillColor(TEXT_COLOR);
-    _score.setFillColor(TEXT_COLOR);
-    _highscore.setFillColor(TEXT_COLOR);
+    gameOverText.setFillColor(TEXT_COLOR);
+    score.setFillColor(TEXT_COLOR);
+    highscore.setFillColor(TEXT_COLOR);
 
 
-    auto tmpRect = _gameOverText.getLocalBounds();
-    _gameOverText.setOrigin(tmpRect.left + tmpRect.width/2,tmpRect.top  + tmpRect.height/2);
+    auto tmpRect = gameOverText.getLocalBounds();
+    gameOverText.setOrigin(tmpRect.left + tmpRect.width/2,tmpRect.top  + tmpRect.height/2);
 
-    tmpRect = _score.getLocalBounds();
-    _score.setOrigin(tmpRect.left + tmpRect.width/2,tmpRect.top  + tmpRect.height/2);
+    tmpRect = score.getLocalBounds();
+    score.setOrigin(tmpRect.left + tmpRect.width/2,tmpRect.top  + tmpRect.height/2);
 
-    tmpRect = _highscore.getLocalBounds();
-    _highscore.setOrigin(tmpRect.left + tmpRect.width/2,tmpRect.top  + tmpRect.height/2);
+    tmpRect = highscore.getLocalBounds();
+    highscore.setOrigin(tmpRect.left + tmpRect.width/2,tmpRect.top  + tmpRect.height/2);
 
-    _gameOverText.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 8.0f);
-    _score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 3.0f);
-    _highscore.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f);
+    gameOverText.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 8.0f);
+    score.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 3.0f);
+    highscore.setPosition(SCREEN_WIDTH / 2.0f,SCREEN_HEIGHT / 2.0f);
 }
 
-void GameOverState::HandleInput() {
+void GameOverState::handleInput() {
     sf::Event event{};
-    while (game_data->window.pollEvent(event)) {
+    while (gameData->window.pollEvent(event)) {
         if (sf::Event::Closed == event.type) {
-            game_data->window.close();
+            gameData->window.close();
         }
     }
-    if(game_data->input.IsKeyPressed(sf::Keyboard::Space) and !prevKeystate) {
-        if (game_data->json.Get_Soundstate()) {
-            _deathSound.stop();
-            _clickSound.play();
+    if(gameData->input.isKeyPressed(sf::Keyboard::Space) and !prevKeyState) {
+        if (gameData->json.getSoundState()) {
+            deathSound.stop();
+            clickSound.play();
         }
-        game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
+        gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
     }
-    else if (game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window)) {
+    else if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
         if (!prevButtonState) {
-            if (game_data->input.IsSpriteClicked(_restartButton, sf::Mouse::Left, game_data->window)) {
-                if (game_data->json.Get_Soundstate()) {
-                    _deathSound.stop();
-                    _clickSound.play();
+            if (gameData->input.isSpriteClicked(restartButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->json.getSoundState()) {
+                    deathSound.stop();
+                    clickSound.play();
                 }
-                game_data->machine.AddGameState(GameStateReference(new MainGameState(game_data)), true);
+                gameData->machine.AddGameState(GameStateReference(new MainGameState(gameData)), true);
             }
-            else if (game_data->input.IsSpriteClicked(_mainMenuButton, sf::Mouse::Left, game_data->window)) {
-                if (game_data->json.Get_Soundstate()) {
-                    _clickSound.play();
+            else if (gameData->input.isSpriteClicked(mainMenuButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->json.getSoundState()) {
+                    clickSound.play();
                 }
-                game_data->machine.AddGameState(GameStateReference(new MainMenuState(game_data)), true);
+                gameData->machine.AddGameState(GameStateReference(new MainMenuState(gameData)), true);
             }
         }
     }
-    prevKeystate=game_data->input.IsKeyPressed(sf::Keyboard::Space);
-    prevButtonState=game_data->input.IsButtonPressed(sf::Mouse::Left);
+    prevKeyState=gameData->input.isKeyPressed(sf::Keyboard::Space);
+    prevButtonState=gameData->input.isButtonPressed(sf::Mouse::Left);
 }
 
-void GameOverState::Update(float delta) {
+void GameOverState::update(float delta) {
 }
 
-void GameOverState::Draw(float delta) {
-    game_data->window.clear();
-    game_data->window.draw(_background);
-    game_data->window.draw(_gameOverText);
-    game_data->window.draw(_restartButton);
-    game_data->window.draw(_mainMenuButton);
-    game_data->window.draw(_gameOverText);
-    game_data->window.draw(_score);
-    game_data->window.draw(_highscore);
-    game_data->window.display();
+void GameOverState::draw(float delta) {
+    gameData->window.clear();
+    gameData->window.draw(background);
+    gameData->window.draw(gameOverText);
+    gameData->window.draw(restartButton);
+    gameData->window.draw(mainMenuButton);
+    gameData->window.draw(gameOverText);
+    gameData->window.draw(score);
+    gameData->window.draw(highscore);
+    gameData->window.display();
 }

@@ -4,7 +4,7 @@ CoinContainer::CoinContainer(GameDataReference gameData):
     gameData (std::move(gameData))
 {}
 
-std::vector<std::unique_ptr<Coin>> & CoinContainer::getCoins(){
+std::vector<std::unique_ptr<Coin>> & CoinContainer::getcoins(){
     return coins;
 }
 
@@ -29,9 +29,9 @@ void CoinContainer::spawn(){
     }
 }
 
-void CoinContainer::move(sf::Vector2f move_by){
+void CoinContainer::move(sf::Vector2f moveBy){
     for(auto & Coin : coins){
-        Coin -> move(move_by);
+        Coin -> move(moveBy);
     }
 
     coins.erase(std::remove_if( coins.begin(), coins.end(), [](std::unique_ptr<Coin> & x){

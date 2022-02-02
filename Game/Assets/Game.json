@@ -1,8 +1,8 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
-		"Musiclevel" : 83,
+		"music" : true,
+		"musiclevel" : 83,
 		"Sound" : true,
 		"Soundlevel" : 85
 	},
@@ -18,13 +18,13 @@
 		false,
 		true
 	],
-	"Coins" : 26,
+	"coins" : 26,
 	"Player" : 
 	{
 		"File" : "Assets/character_2.png",
 		"ID" : "character_2"
 	},
-	"Quotes" :
+	"quotes" :
 	[
 		"Franky is our favorite Asian!",
 		"Is this EZ mode?",
@@ -48,13 +48,13 @@
 	],
 	"Score" :
 	{
-		"Highscore" : 186
+		"highscore" : 186
 	},
 	"Theme" : 
 	{
 		"File" : "Assets/cyan_blue.png",
 		"ID" : "cyan_blue_theme",
-		"ObstacleColor" : "Blue",
-		"WallColor" : "Cyan"
+		"obstacleColor" : "Blue",
+		"wallColor" : "Cyan"
 	}
 }

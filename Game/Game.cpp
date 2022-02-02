@@ -2,10 +2,10 @@
 #include "StartUpState.hpp"
 #include "IconArray.hpp"
 
-Game::Game(const int &screen_width, const int &screen_height, const std::string &game_title) {
-    game_data->window.create(sf::VideoMode(screen_width, screen_height), game_title, sf::Style::Close | sf::Style::Titlebar);
-    game_data->window.setIcon(100,100, iconArray2);
-    game_data->machine.AddGameState(GameStateReference(new StartUpState(game_data)));
+Game::Game(const int &screenWidth, const int &screenHeight, const std::string &gameTitle) {
+    gameData->window.create(sf::VideoMode(SCREEN_WIDTH, screenHeight), gameTitle, sf::Style::Close | sf::Style::Titlebar);
+    gameData->window.setIcon(100,100, iconArray2);
+    gameData->machine.AddGameState(GameStateReference(new StartUpState(gameData)));
     start();
 }
 
@@ -13,8 +13,8 @@ void Game::start() {
     float new_time, frameTime;
     float current_time = clock.getElapsedTime().asSeconds();
     float accumulator = 0.0;
-    while (game_data->window.isOpen()) {
-        game_data->machine.ProcessGameStateChanges();
+    while (gameData->window.isOpen()) {
+        gameData->machine.ProcessGameStateChanges();
         new_time = clock.getElapsedTime().asSeconds();
         frameTime = new_time - current_time;
         if (frameTime > 0.25) {
@@ -24,14 +24,14 @@ void Game::start() {
         accumulator += frameTime;
 
         while (accumulator >= delta) {
-            game_data->machine.GetActiveGameState()->HandleInput();
-            game_data->machine.GetActiveGameState()->Update(delta);
+            gameData->machine.GetActiveGameState()->handleInput();
+            gameData->machine.GetActiveGameState()->update();
             accumulator -= delta;
         }
-        game_data->machine.GetActiveGameState()->Draw(accumulator / delta);
+        gameData->machine.GetActiveGameState()->draw();
         sf::sleep(sf::milliseconds(20));
-        game_data->json.Update();
+        gameData->json.update();
     }
-    game_data->json.Direct_write();
+    gameData->json.directWrite();
 }
 

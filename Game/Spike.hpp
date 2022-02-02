@@ -10,17 +10,17 @@
 
 class Spike : public Obstacle {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     sf::ConvexShape Triangle;
 
     Spike_facing facing;
     sf::Vector2f position;
 
 public:
-    Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position);
+    Spike(GameDataReference gameData, Spike_facing facing, sf::Vector2f position);
     sf::Vector2f getPosition() override;
     void spawn() override;
-    void move(sf::Vector2f move_by) override;
+    void move(sf::Vector2f moveBy) override;
     void draw() const override;
     sf::FloatRect getBounds() override;
     Spike_facing getFace() override;

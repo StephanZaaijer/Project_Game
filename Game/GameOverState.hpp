@@ -12,27 +12,27 @@
 
 class GameOverState : public GameState {
 private:
-    GameDataReference game_data;
-    sf::Sprite _background;
-    sf::Sprite _restartButton;
-    sf::Sprite _mainMenuButton;
+    GameDataReference gameData;
+    sf::Sprite background;
+    sf::Sprite restartButton;
+    sf::Sprite mainMenuButton;
 
-    sf::Text _gameOverText;
-    sf::Text _score;
-    sf::Text _highscore;
+    sf::Text gameOverText;
+    sf::Text score;
+    sf::Text highscore;
 
-    sf::Sound _deathSound;
-    sf::Sound _clickSound;
+    sf::Sound deathSound;
+    sf::Sound clickSound;
 
-    std::vector<sf::Sprite*> clickable_buttons = { &_restartButton, &_mainMenuButton };
+    std::vector<sf::Sprite*> clickableButtons = { &restartButton, &mainMenuButton };
     bool prevButtonState=true;
-    bool prevKeystate=true;
+    bool prevKeyState=true;
 public:
-    GameOverState(GameDataReference data);
-    void Init() override;
-    void HandleInput() override;
-    void Update(float delta) override;
-    void Draw(float delta) override;
+    GameOverState(GameDataReference gameData);
+    void init() override;
+    void handleInput() override;
+    void update(float delta) override;
+    void draw(float delta) override;
 
 
 };

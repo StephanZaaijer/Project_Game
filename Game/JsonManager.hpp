@@ -11,63 +11,62 @@ class JsonManager {
 public:
 	struct JsonData {
 		bool Sound;
-		int Soundvolume;
-		bool Music;
-		int Musicvolume;
-		int Highscore;
-		std::string PlayerSpriteID;
-		std::string PlayerSpriteFile;
-        std::string PlayerThemeID;
-        std::string PlayerThemeFile;
-        std::string WallColor;
-        std::string ObstacleColor;
-        int Coins;
-        std::vector<bool> BoughtSkins;
-        std::vector<std::string> Quotes;
+		int soundVolume;
+		bool music;
+		int musicVolume;
+		int highscore;
+		std::string playerSpriteID;
+		std::string playerSpriteFile;
+        std::string playerThemeID;
+        std::string playerThemeFile;
+        std::string wallColor;
+        std::string obstacleColor;
+        int coins;
+        std::vector<bool> boughtSkins;
+        std::vector<std::string> quotes;
 	};
 
-	JsonManager(const std::string &Gamefile);
-	bool Get_Soundstate() const;
-	int Get_Soundvolume() const;
-	bool Get_Musicstate() const;
-	int Get_Musicvolume() const;
-	int Get_Highscore() const;
-    int Get_Coins() const;
-    std::vector<bool> Get_Bought_Skins() const;
-    std::vector<std::string> Get_Quotes() const;
-	CustomCharacter Get_PlayerSprite() const;
-    CustomTheme Get_PlayerTheme() const;
-    sf::Color Get_ObstacleColor() const;
-    sf::Color Get_WallColor() const;
-    void Set_Soundstate(const bool &state);
-	void Set_Soundvolume(const int &volume);
-	void Set_Musicstate(const bool &state);
-	void Set_Musicvolume(const int &volume);
-	void Set_Highscore(const int &highscore);
-	void Set_PlayerSprite(const CustomCharacter& PlayerSprite);
-    void Set_PlayerTheme(const CustomTheme& PlayerTheme);
-    void Set_Coins(const int &coins);
-    void Set_BoughtSkins(const int &index, const bool &value);
-    void Set_Quotes(const int &index, const std::string &Quote);
+	JsonManager(std::string gameFile);
+	bool getSoundState() const;
+	int getSoundVolume() const;
+	bool getMusicState() const;
+	int getMusicVolume() const;
+	int getHighscore() const;
+    int getCoins() const;
+    std::vector<bool> getBoughtSkins() const;
+    std::vector<std::string> getQuotes() const;
+	CustomCharacter getPlayerSprite() const;
+    CustomTheme getPlayerTheme() const;
+    sf::Color getObstacleColor() const;
+    sf::Color getWallColor() const;
+    void setSoundState(const bool &state);
+	void setSoundVolume(const int &volume);
+	void setMusicState(const bool &state);
+	void setMusicVolume(const int &volume);
+	void setHighscore(const int &highscore);
+	void setPlayerSprite(const CustomCharacter& playerSprite);
+    void setPlayerTheme(const CustomTheme& playerTheme);
+    void setCoins(const int &coins);
+    void setBoughtSkins(const int &index, const bool &value);
+    void setQuotes(const int &index, const std::string &quote);
 
-    void Update();
-	void Direct_write();
+    void update();
+	void directWrite();
 
 private:
-	bool start;
-	void Get_data();
+	void getData();
 	JsonData data;
-	Json::Value json_data;
-    sf::Color string_to_color(const std::string &colorstring) const;
-    std::string color_to_string(const sf::Color &color_sf) const;
+	Json::Value jsonData;
+    sf::Color stringToColor(const std::string &colorstring) const;
+    std::string colorToString(const sf::Color &colorSf) const;
 
-    Json::Value Get_Json_from_file();
-	void Write_Json_to_file();
-	std::string Gamefile;
+    Json::Value getJsonFromFile();
+	void writeJsonToFile();
+	std::string gameFile;
 	sf::Clock clock;
-	bool write_out;
+	bool writeOut;
 
-    struct Color{const std::string color_string; const sf::Color color_sf;};
+    struct Color{const std::string color_string; const sf::Color colorSf;};
     const std::vector<Color> colors={{"Black", sf::Color::Black},
                                      {"White", sf::Color::White},
                                      {"Red", sf::Color::Red},

@@ -11,7 +11,7 @@
 
 class Character {
 public:
-    Character(GameDataReference data);
+    Character(GameDataReference gameData);
 
     void draw();
     void update();

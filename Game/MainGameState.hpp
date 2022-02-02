@@ -15,35 +15,35 @@
 
 class MainGameState : public GameState{
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     std::unique_ptr<Wall> wall;
     sf::Sprite background;
     sf::Sprite background2;
-    std::unique_ptr<Obstacle_Container> obstacles_container;
+    std::unique_ptr<Obstacle_Container> obstaclesContainer;
     std::unique_ptr<Character> character;
-    CustomCharacter characterinfo;
-    std::unique_ptr<CoinContainer> coins_container;
-    sf::Text _score;
-    sf::Text coin_text;
-    sf::Sound _jumpSound;
-    sf::Sound _pauseSound;
-    sf::Sound _gameMusicSound;
-    sf::Sound _coinPickup;
+    CustomCharacter characterInfo;
+    std::unique_ptr<CoinContainer> coinsContainer;
+    sf::Text score;
+    sf::Text coinText;
+    sf::Sound jumpSound;
+    sf::Sound pauseSound;
+    sf::Sound gameMusicSound;
+    sf::Sound coinPickup;
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
-    int acquired_coins = 0;
+    int acquiredCoins = 0;
     int counter = 0;
     bool jumpSoundPlayed = false;
-    bool prevKeystate_start=true;
+    bool prevKeystateStart = true;
 
 
 public:
-    MainGameState(GameDataReference data);
-    void Init() override;
-    void HandleInput() override;
-    void Update( float delta ) override;
-    void Draw( float delta ) override;
-    void Resume() override;
+    MainGameState(GameDataReference gameData);
+    void init() override;
+    void handleInput() override;
+    void update() override;
+    void draw() override;
+    void resume() override;
 
 };
 

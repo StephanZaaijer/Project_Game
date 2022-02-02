@@ -4,8 +4,8 @@
 #include <utility>
 #include <random>
 
-Wall::Wall(GameDataReference data):
-    game_data (std::move(data))
+Wall::Wall(GameDataReference gameData):
+    gameData (std::move(gameData))
 {
     left_boundary.setPosition(0.0, 0.0);
     left_boundary.setSize( {SCREEN_WIDTH/6.0f, SCREEN_HEIGHT} );
@@ -36,7 +36,7 @@ void Wall::generate_Wall(float x_position, float start_y_offset){
     wall_obstacles tmp;
     tmp.wall.setSize(sf::Vector2f(WALL_WIDTH, WALL_HEIGHT));
     tmp.wall.setPosition(x_position - tmp.wall.getSize().x / 2 ,start_y_offset - tmp.wall.getSize().y);
-    tmp.wall.setFillColor(game_data->json.Get_WallColor());
+    tmp.wall.setFillColor(gameData->json.getWallColor());
     tmp.contains_obstacles = false;
     walls.push_back(tmp);
 }
@@ -60,9 +60,9 @@ void Wall::spawn_Wall(float start_y_offset){
     }
 }
 
-void Wall::move_Wall(sf::Vector2f move_by){
-    std::for_each(walls.begin(),walls.end(), [&move_by ](wall_obstacles &x ){
-        x.wall.move(move_by);
+void Wall::move_Wall(sf::Vector2f moveBy){
+    std::for_each(walls.begin(),walls.end(), [&moveBy ](wall_obstacles &x ){
+        x.wall.move(moveBy);
     });
 
     walls.erase(std::remove_if(walls.begin(), walls.end(), [](wall_obstacles &x){
@@ -72,10 +72,10 @@ void Wall::move_Wall(sf::Vector2f move_by){
 
 void Wall::draw_Wall(){
     for(auto & wall : walls){
-        game_data->window.draw(wall.wall);
+        gameData->window.draw(wall.wall);
     }
-    game_data->window.draw(left_boundary);
-    game_data->window.draw(right_boundary);
+    gameData->window.draw(left_boundary);
+    gameData->window.draw(right_boundary);
 }
 
 void Wall::setContainObstacleTrue(int index){

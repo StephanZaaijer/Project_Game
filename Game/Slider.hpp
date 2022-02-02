@@ -7,7 +7,7 @@
 class Slider
 {
 protected:
-	GameDataReference game_data;
+	GameDataReference gameData;
 	sf::RectangleShape slider;
 	sf::RectangleShape slider_block;
 	sf::Vector2f slider_point;
@@ -15,9 +15,9 @@ protected:
 	bool horizontal;
 
 public:
-	Slider(GameDataReference game_data, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor);
-	virtual void Draw();
-	void handleinput();
+	Slider(GameDataReference gameData, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor);
+	virtual void draw();
+	void handleInput();
 	virtual void update(){};
 	sf::RectangleShape& get_slider_block();
 

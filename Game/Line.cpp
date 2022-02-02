@@ -23,7 +23,7 @@ std::vector<sf::Vector2f> &Line::getPoints() {
 
     for (int i = 1; i < amount+1; i++) {
         float x = start_x + i;
-        points_array.emplace_back( x, f.get_y_intersection(x) );
+        pointsArray.emplace_back( x, f.getYaxisIntersection(x) );
     }
-    return points_array;
+    return pointsArray;
 }

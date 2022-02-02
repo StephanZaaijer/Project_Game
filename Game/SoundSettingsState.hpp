@@ -9,29 +9,29 @@
 #include "Game.hpp"
 #include "Definitions.hpp"
 #include "Soundslider.hpp"
-#include "Musicslider.hpp"
+#include "musicslider.hpp"
 #include "MainMenuState.hpp"
 
 class SoundSettingsState : public GameState {
 private:
-  sf::Sprite _background;
+  sf::Sprite background;
   sf::RectangleShape DarkFade;
   sf::Sprite _musicButton;
   sf::Sprite _soundButton;
-  sf::Sprite _backButton;
+  sf::Sprite backButton;
   sf::Text _settingsText;
-  std::vector<sf::Sprite*> clickable_buttons = { &_musicButton, &_soundButton, &_backButton };
+  std::vector<sf::Sprite*> clickableButtons = { &_musicButton, &_soundButton, &backButton };
   std::unique_ptr<Soundslider> soundslider;
-  std::unique_ptr<Musicslider> musicslider;
-  sf::Sound _clickSound;
+  std::unique_ptr<musicslider> musicslider;
+  sf::Sound clickSound;
   bool prevMousestate = true;
 
 public:
-  SoundSettingsState(GameDataReference data);
-  void Init() override;
-  void HandleInput() override;
-  void Update(float delta) override;
-  void Draw(float delta) override;
+  SoundSettingsState(GameDataReference gameData);
+  void init() override;
+  void handleInput() override;
+  void update(float delta) override;
+  void draw(float delta) override;
 
 };
 

@@ -12,22 +12,22 @@
 
 class PauseState : public GameState {
 private:
-	GameDataReference game_data;
-	sf::Sprite _background;
+	GameDataReference gameData;
+	sf::Sprite background;
     sf::RectangleShape DarkFade;
 	sf::Sprite _playButton;
 	sf::Sprite _soundsettingsButton;
 	sf::Text _pauseText;
-	std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_soundsettingsButton};
+	std::vector<sf::Sprite*> clickableButtons = { &_playButton, &_soundsettingsButton};
 	sf::Sound _resumeSound;
-	sf::Sound _clickSound;
+	sf::Sound clickSound;
     bool prevMousestate=true;
 public:
-	PauseState(GameDataReference data);
-	void Init() override;
-	void HandleInput() override;
-	void Update(float delta) override;
-	void Draw(float delta) override;
+	PauseState(GameDataReference gameData);
+	void init() override;
+	void handleInput() override;
+	void update(float delta) override;
+	void draw(float delta) override;
 
 };
 

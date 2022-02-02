@@ -17,31 +17,31 @@
 ///\class StartUpState ///\public GameState
 class StartUpState : public GameState {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     sf::Clock _clock;
-    sf::Sprite _background;
+    sf::Sprite background;
     sf::Sprite _logo;
     sf::Sprite _title;
     sf::Sprite _banner;
 
 public:
     ///\brief StartUpState constructor
-    /// \param data
-    StartUpState(GameDataReference data);
+    /// \param gameData
+    StartUpState(GameDataReference gameData);
 
-    ///\brief Init() function
-    void Init() override;
+    ///\brief init() function
+    void init() override;
 
-    ///\brief HandleInput() function
-    void HandleInput() override;
+    ///\brief handleInput() function
+    void handleInput() override;
 
-    ///\brief Update function
+    ///\brief update function
     /// \param delta
-    void Update(float delta) override;
+    void update(float delta) override;
 
-    ///\brief Draw() function
+    ///\brief draw() function
     /// \param delta
-    void Draw(float delta) override;
+    void draw(float delta) override;
 
 };
 

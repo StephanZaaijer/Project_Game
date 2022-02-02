@@ -13,42 +13,47 @@
 
 class CustomCharacterState: public GameState {
 private:
-    GameDataReference game_data;
-    sf::Sprite _backButton;
-    sf::Sprite _arrowRightCharacter;
-    sf::Sprite _arrowLeftCharacter;
-    sf::Sprite _arrowRightTheme;
-    sf::Sprite _arrowLeftTheme;
-    sf::Sprite _background;
-    sf::Sprite _randomButtonCharacter;
-    sf::Sprite _randomButtonTheme;
-    sf::Sprite _theme;
-    sf::Sprite _buyEquipButton;
-    sf::Sprite _equipButtonTheme;
+    GameDataReference gameData;
+    sf::Sprite backButton;
+    sf::Sprite arrowRightCharacter;
+    sf::Sprite arrowLeftCharacter;
+    sf::Sprite arrowRightTheme;
+    sf::Sprite arrowLeftTheme;
+    sf::Sprite background;
+    sf::Sprite randomButtonCharacter;
+    sf::Sprite randomButtonTheme;
+    sf::Sprite theme;
+    sf::Sprite buyEquipButton;
+    sf::Sprite equipButtonTheme;
 
-    sf::Text _equippedCharacter;
-    sf::Text _equippedTheme;
+    sf::Text equippedCharacter;
+    sf::Text equippedTheme;
 
     std::unique_ptr<Character> character;
-    CustomCharacter CurrentCharacter;
-    CustomTheme CurrentTheme;
-    sf::Sound _clickSound;
-    sf::Sound _customClickSound;
-    sf::Text _coins_text;
-    std::vector<bool> skin_bought;
+    CustomCharacter currentCharacter;
+    CustomTheme currentTheme;
+    sf::Sound clickSound;
+    sf::Sound customClickSound;
+    sf::Text coinsText;
+    std::vector<bool> skinBought;
 
-    std::vector<CustomTheme> CustomThemes = {{sf::Color::Black, sf::Color::Red, "black_red_theme" ,BLACK_RED_THEME_PATH},
+    int coins;
+    int counterCharacters;
+    int counterTheme;
+    bool prevMouseState;
+
+    std::vector<CustomTheme> customThemes = {{sf::Color::Black, sf::Color::Red, "black_red_theme" ,BLACK_RED_THEME_PATH},
                                              {sf::Color::Green, sf::Color::Blue, "green_blue_theme", GREEN_BLUE_THEME_PATH},
                                              {sf::Color::Yellow,sf::Color::Black, "yellow_black_theme", YELLOW_BLACK_THEME_PATH },
                                              {sf::Color::Cyan,sf::Color::Blue, "cyan_blue_theme", CYAN_BLUE_THEME_PATH }};
 
-    std::vector<sf::Sprite*> ClickableButtons = { &_arrowRightCharacter, &_arrowLeftCharacter,
-                                                  &_backButton,&_randomButtonCharacter,
-                                                  &_randomButtonTheme, &_arrowLeftTheme,
-                                                  &_arrowRightTheme, &_buyEquipButton,
-                                                  &_equipButtonTheme};
+    std::vector<sf::Sprite*> clickableButtons = { &arrowRightCharacter, &arrowLeftCharacter,
+                                                  &backButton,&randomButtonCharacter,
+                                                  &randomButtonTheme, &arrowLeftTheme,
+                                                  &arrowRightTheme, &buyEquipButton,
+                                                  &equipButtonTheme};
 
-    std::vector<CustomCharacter> CustomCharacters = { {"character", CHARACTER_FRAME_1_FILEPATH},
+    std::vector<CustomCharacter> customCharacters = { {"character", CHARACTER_FRAME_1_FILEPATH},
                                                       {"character_2", CHARACTER_2},
                                                       {"character_3", CHARACTER_3 },
                                                       {"jasper",JASPER},
@@ -57,18 +62,12 @@ private:
                                                       {"franky",FRANKY},
                                                       {"stephan",STEPHAN},
                                                       {"coen",COEN} };
-
-    int coins;
-    int counter_Characters;
-    int counter_Theme;
-    bool prevMousestate;
-
 public:
-    CustomCharacterState(GameDataReference data);
-    void Init() override;
-    void HandleInput() override;
-    void Update(float delta) override;
-    void Draw(float delta) override;
+    CustomCharacterState(GameDataReference gameData);
+    void init() override;
+    void handleInput() override;
+    void update() override;
+    void draw() override;
 };
 
 

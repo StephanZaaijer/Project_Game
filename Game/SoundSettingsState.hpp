@@ -12,6 +12,13 @@
 #include "Soundslider.hpp"
 #include "MainMenuState.hpp"
 
+/// @file
+/// @brief
+/// Project_Game: This is the SoundSettingsState which is called when the clicks the settingsbutton in the mainmenustate
+
+
+/// @brief
+/// This class is used to create the PauseState and all of its contents
 class SoundSettingsState : public GameState {
 private:
   GameDataReference gameData;
@@ -28,11 +35,27 @@ private:
   bool prevMouseState = true;
 
 public:
-  SoundSettingsState(GameDataReference gameData);
-  void init() override;
-  void handleInput() override;
-  void update() override;
-  void draw() override;
+    ///\brief
+    /// This constructor constructs an object of SoundSettingsState
+    /// \param gameData
+    SoundSettingsState(GameDataReference gameData);
+
+    ///\brief
+    /// This function initializes all of the textures and set their positions
+    void init() override;
+
+    /// @brief
+    /// In this function all of the input from the user is checked and the corresponding actions are taken
+    void handleInput() override;
+
+    /// @brief
+    /// This function Checks if the time elapsed is greater then the START_UP_TIME macro and switches states
+    void update() override;
+
+    /// @brief
+    /// This function draws all of it's contents onto the screen
+    void draw() override;
+
 
 };
 

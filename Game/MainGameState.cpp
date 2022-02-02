@@ -206,7 +206,7 @@ void MainGameState::update(){
     });
     coins.erase(it, coins.end());
 
-//     Character Obstacle collision
+    // Character Obstacle collision
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstaclesContainer->getObstacle();
     for(const auto &obstacle : obstacles){
         if(obstacle->getID() == deathwall){

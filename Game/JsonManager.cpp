@@ -3,7 +3,7 @@
 #include <utility>
 #include "Exceptions.hpp"
 
-JsonManager::JsonManager(std::string gameFile):
+JsonManager::JsonManager(const std::string & gameFile):
 	gameFile(std::move(gameFile))
 {
     this->getData();

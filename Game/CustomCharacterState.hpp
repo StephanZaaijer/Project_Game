@@ -71,6 +71,7 @@ public:
 
     /// @brief
     /// This constructor constructs an object of the CustomCharacterState
+    /// \param gameData The game_data of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
     CustomCharacterState(GameDataReference gameData);
 
     /// @brief

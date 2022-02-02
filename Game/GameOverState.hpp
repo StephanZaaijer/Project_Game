@@ -37,6 +37,7 @@ public:
 
     /// @brief
     /// This constructor constructs an object of GameOverState
+    /// \param data The game_data of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
     GameOverState(GameDataReference gameData);
 
     /// @brief

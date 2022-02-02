@@ -118,10 +118,10 @@ public:
 
     /// @brief
     /// Update function that runs every gameloop that checks if the 5 secondclock has passed and the boolean is set if both are true it writes the data to the jsonfile.
-    void Update();
+    void update();
     /// @brief
     /// Update function that runs on closing of the game that checks if the boolean is set if that is the case it writes the data to the jsonfile.
-    void Direct_write();
+    void directWrite();
 
 private:
     struct JsonData {

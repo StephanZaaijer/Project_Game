@@ -25,6 +25,7 @@ void MainGameState::Init(){
     _jumpSound.setVolume(game_data->json.Get_Soundvolume());
     _pauseSound.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setVolume(game_data->json.Get_Musicvolume());
+    _coinPickup.setVolume(game_data->json.Get_Soundvolume());
     _gameMusicSound.setLoop(true);
 
     if(game_data->json.Get_Musicstate()){
@@ -203,7 +204,9 @@ void MainGameState::Update( float delta ){
     });
     std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
         acquired_coins += 1;
-        _coinPickup.play();
+        if(game_data->json.Get_Soundstate()){
+            _coinPickup.play();
+        }
     });
     coins.erase(it, coins.end());
 

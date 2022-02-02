@@ -32,7 +32,7 @@ private:
 
     sf::Text _quote;
 
-    bool prevMousestate = false;
+    bool prevMousestate = true;
 
 public:
     MainMenuState(GameDataReference data);

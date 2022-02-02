@@ -1,16 +1,16 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
-		"Musiclevel" : 39,
-		"Sound" : true,
-		"Soundlevel" : 43
+		"Music" : false,
+		"Musiclevel" : 42,
+		"Sound" : false,
+		"Soundlevel" : 69
 	},
 	"Bought_Skins" : 
 	[
 		true,
 		false,
-		false,
+		true,
 		false,
 		true,
 		false,
@@ -18,11 +18,11 @@
 		false,
 		false
 	],
-	"Coins" : 85,
+	"Coins" : 80,
 	"Player" : 
 	{
-		"File" : "Assets/character.jpg",
-		"ID" : "character"
+		"File" : "Assets/character_3.png",
+		"ID" : "character_3"
 	},
 	"Quotes" : 
 	[
@@ -45,7 +45,18 @@
 		"Wat een kut game!",
 		"Franky ligt waarschijnlijk nog in bed",
 		"En wat zijn jullie aan het doen?",
-		"Ik ga even ochtend eten"
+		"Ik ga even ochtend eten",
+		"Huh?! Groep 6?",
+		"Oeps constructor vergeten",
+		"Je weet toch het makkelijker kan he",
+		"Dit kan efficienter",
+		"Tiktiktiktiktiktiktiktiktik",
+		"Zet death ff uit",
+		"*Corona geluiden*",
+		"Fix ff de hitbox",
+		"Ik zit vast in de muur",
+		"Bus 41",
+		"KUKELEKU"
 	],
 	"Score" : 
 	{
@@ -53,9 +64,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/cyan_blue.png",
-		"ID" : "cyan_blue_theme",
-		"ObstacleColor" : "Blue",
-		"WallColor" : "Cyan"
+		"File" : "Assets/black_red.png",
+		"ID" : "black_red_theme",
+		"ObstacleColor" : "Red",
+		"WallColor" : "Black"
 	}
 }

@@ -211,13 +211,13 @@ void MainGameState::update(){
     for(const auto &obstacle : obstacles){
         if(obstacle->getID() == deathwall){
             if(obstacle->getBounds().intersects(character->GetBounds())){
-                character->death = true;
+//                character->death = true;
             }
         }
         else if(obstacle->getID() == spike){
             if(obstacle->getBounds().intersects(character->GetBounds())){
                 if(character->collideSpike(obstacle)){
-                    character->death = true;
+//                    character->death = true;
                 }
             }
         }

@@ -40,7 +40,7 @@ private:
     sf::Text quote;
 
 
-    bool prevMousestate = true;
+    bool prevMouseState = true;
 
 
 public:

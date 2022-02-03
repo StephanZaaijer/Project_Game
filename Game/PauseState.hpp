@@ -46,6 +46,10 @@ public:
     void handleInput() override;
 
     /// @brief
+    /// resume function that`s called when entering this state when the state on top is removed
+    void resume() override;
+
+    /// @brief
     /// draw function that`s called once every loop to draw the object on the screen
     void draw() override;
 

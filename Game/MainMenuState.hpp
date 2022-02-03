@@ -11,7 +11,7 @@
 #include "StateMachine.hpp"
 #include <vector>
 
-/// @file
+/// @file MainMenuState.hpp
 /// @brief
 /// Project_Game: This is the MainMenuState which is the state you will see after the StartUpState
 
@@ -31,7 +31,7 @@ private:
 
     sf::Sound clickSound;
 
-    std::vector<sf::Sprite*> clickableButtons = { &playButton, &settingsButton, &customButton, &tutorialButton };
+    std::vector<sf::Sprite *> clickableButtons = {&playButton, &settingsButton, &customButton, &tutorialButton};
     std::vector<std::string> quoteVector;
     float scaler = MAIN_MENU_FONT_SIZE_SCALER;
     float fontSize = MAIN_MENU_FONT_SIZE;

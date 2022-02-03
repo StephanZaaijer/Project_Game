@@ -7,8 +7,17 @@
 #include <vector>
 #include "ObstaclesContainer.hpp"
 
+/// @file Wall.hpp
+/// @brief
+/// Project_Game: This wall is used to play the game. It creates the walls shown in the game.
+
+/// @brief
+/// Wall class that creates all walls rendered on the screen
+
 class Wall {
 private:
+    /// @brief
+    /// wallObstacles struct that contains data of walls it contains the sf::RectangleShape and a boolean if it has Obstacles
     struct WallObstacles{
         sf::RectangleShape wall;
         bool containsObstacles = false;
@@ -22,7 +31,7 @@ private:
 public:
     /// @brief
     /// Used to construct container object.
-    /// \param game_data is a shared pointer to the GameDataReference where information of the game is stored
+    /// \param gameData is a shared pointer to the GameDataReference where information of the game is stored
     Wall(GameDataReference gameData);
 
     /// @brief
@@ -71,7 +80,6 @@ public:
 
     /// @brief
     /// Used set the boolean of a specific index.
-    /// @details
     /// \param index is an integer which is used to determine where the value should be changed.
     void setContainObstacleTrue(int index);
 };

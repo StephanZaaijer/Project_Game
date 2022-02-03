@@ -1,5 +1,6 @@
 #ifndef PROJECT_GAME_GAME_HPP
 #define PROJECT_GAME_GAME_HPP
+
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include "InputManager.hpp"
@@ -23,19 +24,23 @@ struct GameData {
     JsonManager json = JsonManager(GAME_FILE);
     int score = 0;
     int coins = 0;
-    std::string test = "test";
 };
 
 /// @brief
-/// Typedefinition to define std::shared_prt<GameData> as GameDataReference
+/// type-definition to define std::shared_prt<GameData> as GameDataReference
 typedef std::shared_ptr<GameData> GameDataReference;
 
+
+/// @brief
+/// Class that creates the window and contains the gameloop
 class Game {
 private:
-    const float delta = 1.0/ FRAMERATE;
+    const float delta = 1.0 / FRAMERATE;
     sf::Clock clock;
     GameDataReference gameData = std::make_shared<GameData>();
+
     void start();
+
 public:
     /// @brief
     /// constructor that creates the window, and loads the StartUpstate into the statemachine.

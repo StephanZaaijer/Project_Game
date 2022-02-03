@@ -12,7 +12,7 @@
 #include "Soundslider.hpp"
 #include "MainMenuState.hpp"
 
-/// @file
+/// @file SoundSettingsState.hpp
 /// @brief
 /// Project_Game: This is the SoundSettingsState which is called when the clicks the settingsbutton in the mainmenustate
 
@@ -21,18 +21,18 @@
 /// This class is used to create the PauseState and all of its contents
 class SoundSettingsState : public GameState {
 private:
-  GameDataReference gameData;
-  sf::Sprite background;
-  sf::RectangleShape darkFade;
-  sf::Sprite musicButton;
-  sf::Sprite soundButton;
-  sf::Sprite backButton;
-  sf::Text settingsText;
-  std::vector<sf::Sprite*> clickableButtons = { &musicButton, &soundButton, &backButton };
-  std::unique_ptr<SoundSlider> soundSlider;
-  std::unique_ptr<MusicSlider> musicSlider;
-  sf::Sound clickSound;
-  bool prevMouseState = true;
+    GameDataReference gameData;
+    sf::Sprite background;
+    sf::RectangleShape darkFade;
+    sf::Sprite musicButton;
+    sf::Sprite soundButton;
+    sf::Sprite backButton;
+    sf::Text settingsText;
+    std::vector<sf::Sprite *> clickableButtons = {&musicButton, &soundButton, &backButton};
+    std::unique_ptr<SoundSlider> soundSlider;
+    std::unique_ptr<MusicSlider> musicSlider;
+    sf::Sound clickSound;
+    bool prevMouseState = true;
 
 public:
     ///\brief
@@ -49,7 +49,7 @@ public:
     void handleInput() override;
 
     /// @brief
-    /// This function Checks if the time elapsed is greater then the START_UP_TIME macro and switches states
+    /// update function that`s called regularly in the gameloop to update the position of the objects on the screen
     void update() override;
 
     /// @brief

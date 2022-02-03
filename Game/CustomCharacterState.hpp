@@ -15,8 +15,9 @@
 /// @brief
 /// Project_Game: CustomCharacterState is used to customize the theme of the game and character skin
 
-
-class CustomCharacterState: public GameState {
+/// @brief
+/// CustomCharacterState is the state where you can costumize your character and colortheme
+class CustomCharacterState : public GameState {
 private:
     GameDataReference gameData;
     sf::Sprite backButton;
@@ -47,31 +48,31 @@ private:
     int counterTheme;
     bool prevMouseState;
 
-    std::vector<CustomTheme> customThemes = {{sf::Color::Black, sf::Color::Red, "black_red_theme" ,BLACK_RED_THEME_PATH},
-                                             {sf::Color::Green, sf::Color::Blue, "green_blue_theme", GREEN_BLUE_THEME_PATH},
-                                             {sf::Color::Yellow,sf::Color::Black, "yellow_black_theme", YELLOW_BLACK_THEME_PATH },
-                                             {sf::Color::Cyan,sf::Color::Blue, "cyan_blue_theme", CYAN_BLUE_THEME_PATH }};
+    std::vector<CustomTheme> customThemes = {{sf::Color::Black,  sf::Color::Red,   "black_red_theme",    BLACK_RED_THEME_PATH},
+                                             {sf::Color::Green,  sf::Color::Blue,  "green_blue_theme",   GREEN_BLUE_THEME_PATH},
+                                             {sf::Color::Yellow, sf::Color::Black, "yellow_black_theme", YELLOW_BLACK_THEME_PATH},
+                                             {sf::Color::Cyan,   sf::Color::Blue,  "cyan_blue_theme",    CYAN_BLUE_THEME_PATH}};
 
-    std::vector<sf::Sprite*> clickableButtons = { &arrowRightCharacter, &arrowLeftCharacter,
-                                                  &backButton,&randomButtonCharacter,
+    std::vector<sf::Sprite *> clickableButtons = {&arrowRightCharacter, &arrowLeftCharacter,
+                                                  &backButton, &randomButtonCharacter,
                                                   &randomButtonTheme, &arrowLeftTheme,
                                                   &arrowRightTheme, &buyEquipButton,
                                                   &equipButtonTheme};
 
-    std::vector<CustomCharacter> customCharacters = { {"character", CHARACTER_FRAME_1_FILEPATH},
-                                                      {"character_2", CHARACTER_2},
-                                                      {"character_3", CHARACTER_3 },
-                                                      {"jasper",JASPER},
-                                                      {"nick",NICK},
-                                                      {"daniel",DANIEL},
-                                                      {"franky",FRANKY},
-                                                      {"stephan",STEPHAN},
-                                                      {"coen",COEN} };
+    std::vector<CustomCharacter> customCharacters = {{"character",   CHARACTER_FRAME_1_FILEPATH},
+                                                     {"character_2", CHARACTER_2},
+                                                     {"character_3", CHARACTER_3},
+                                                     {"jasper",      JASPER},
+                                                     {"nick",        NICK},
+                                                     {"daniel",      DANIEL},
+                                                     {"franky",      FRANKY},
+                                                     {"stephan",     STEPHAN},
+                                                     {"coen",        COEN}};
 public:
 
     /// @brief
     /// This constructor constructs an object of the CustomCharacterState
-    /// \param gameData The game_data of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
+    /// \param gameData The gameData of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
     CustomCharacterState(GameDataReference gameData);
 
     /// @brief

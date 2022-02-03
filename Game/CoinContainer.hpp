@@ -14,20 +14,21 @@
 
 /// @brief
 /// Container class used to store Coin pointers.
-class CoinContainer{
+class CoinContainer {
 private:
     GameDataReference gameData;
     std::vector<std::unique_ptr<Coin>> coins;
 public:
+
     /// @brief
     /// Used to construct container object.
-    /// \param game_data is a shared pointer to the GameDataReference where information of the game is stored
+    /// \param gameData is a shared pointer to the GameDataReference where information of the game is stored
     CoinContainer(GameDataReference gameData);
 
     /// @brief
     /// Returns vector containing pointers to Coin objects.
     /// \return Returns the private member coins of the type std::vector<std::unique_ptr<Coin>>.
-    std::vector<std::unique_ptr<Coin>> & getCoins();
+    std::vector<std::unique_ptr<Coin>> &getCoins();
 
     /// @brief
     /// Used to spawn coin.

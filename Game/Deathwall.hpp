@@ -20,11 +20,12 @@ private:
     sf::RectangleShape deathwall;
     sf::Vector2f position;
 public:
+
     /// @brief
     /// Used to construct deathwall object.
     /// @details
     /// initializes the value of je object with the spawn method.
-    /// \param game_data is a shared pointer to the GameDataReference where information of the game is stored
+    /// \param gameData is a shared pointer to the GameDataReference where information of the game is stored
     /// \param position is a sf::Vector2f which contains a X and Y coordinate and is used to set the position of the deathwall
     Deathwall(GameDataReference gameData, sf::Vector2f position);
 

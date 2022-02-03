@@ -14,7 +14,8 @@
 /// @brief
 /// Project_Game: This character is used to play the game. It controls the character.
 
-
+///@brief
+/// Characterclass to control and show the charactersprite
 class Character {
 public:
 
@@ -22,8 +23,8 @@ public:
     /// This is the constructor to construct an object of Character
     /// @details
     /// This constructor initializes the position, scale and character state of the character.
-    /// \param data The game_data of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
-    Character(GameDataReference data);
+    /// \param gameData The gameData of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
+    Character(GameDataReference gameData);
 
     /// @brief
     /// This function draws the character on the screen
@@ -54,8 +55,8 @@ public:
     /// If the character collides with a side of the wall, it goes into the Stick state.
     /// If the character collides with the top of the wall, it goes into the Still state.
     /// If the character collides with the bottom of the wall, it remains in the Jumping state but with velocity equal to 0, so it falls down instantly.
-    /// \param Rects This is a list of all the rectangles that are currently loaded in.
-    void collideWalls(const std::vector<sf::RectangleShape> &Rects);
+    /// \param rects This is a list of all the rectangles that are currently loaded in.
+    void collideWalls(const std::vector<sf::RectangleShape> &rects);
 
     /// @brief
     /// This function checks if the character collides with a spike
@@ -64,6 +65,7 @@ public:
     /// These are used to getPoints across the Line to see if the characterSprite contains one of them
     /// If it contains a point, it returns true.
     /// \param spike This contains all the Spikes that are currently loaded in.
+    ///
     /// \return boolean for if the character collides or not.
     bool collideSpike(const std::unique_ptr<Obstacle> &spike);
 

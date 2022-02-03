@@ -3,11 +3,11 @@
 
 #include "SFML/Graphics.hpp"
 
-/// @file
+/// @file Line.hpp
 /// @brief
 /// Project_Game: This Line enables us to find intersections with diagonal lines.
 
-///
+/// @brief Line to create a formula between 2 points.
 class Line {
 private:
     /// @brief
@@ -22,6 +22,7 @@ private:
         /// @brief
         /// This function calculates the Y value of a point on the line corresponding to a given X value.
         /// \param x This is the X value of the the point you want to calculate.
+        ///
         /// \return A float value representing the Y value of the point.
         float getYaxisIntersection(const float & x) const{
             float y = (rc * x) + offset;
@@ -31,6 +32,7 @@ private:
         /// @brief
         /// This function calculates the X value of a point on the line corresponding to a given Y value.
         /// \param y This is the Y value of the the point you want to calculate.
+        ///
         /// \return A float value representing the X value of the point.
         float getXaxisIntersection(const float & y) const {
             float x = (y + (offset * -1)) / rc;

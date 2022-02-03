@@ -12,16 +12,17 @@
 
 /// @brief
 /// Coin class which contains information of the coin.
-class Coin{
+class Coin {
 private:
     GameDataReference gameData;
     sf::Sprite coin;
 public:
+
     /// @brief
     /// Used to construct coin object.
     /// @details
     /// Used to construct coin object and initializes the object with a texture and scale
-    /// \param game_data is a shared pointer to the GameDataReference where information of the game is stored
+    /// \param gameData is a shared pointer to the GameDataReference where information of the game is stored
     Coin(GameDataReference gameData);
 
     /// @brief

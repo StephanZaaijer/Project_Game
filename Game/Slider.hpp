@@ -5,7 +5,7 @@
 #include "Game.hpp"
 
 
-///@file
+///@file Slider.hpp
 ///@brief
 /// Project_Game: This is the virtual class Slider
 
@@ -23,16 +23,18 @@ private:
     int sliderMin;
     int sliderMax;
     int ratio;
+
     ///@brief
     /// function to calculate the current percentage of the block in relation to the min and max of the slider
     int getPercentage();
 
 protected:
-	GameDataReference gameData;
+    GameDataReference gameData;
+
     /// @brief
     /// virtual function that needs to be implemented by the subclasse to handle a change in value
     /// \param value the new value that given to the subclasse
-    virtual void updateValue(int value)=0;
+    virtual void updateValue(int value) = 0;
 
     /// @brief
     /// function to change to color of the sliderblock from the subclasse
@@ -48,16 +50,20 @@ public:
     /// \param horizontal boolean that indicates if the slider is horizontal or vertical
     /// \param sliderBlockColor the color that the sliderblock is when the sound on creation
     /// \param startPercentage the start percentage of the sliderblock
-	Slider(GameDataReference gameData, sf::Vector2f location, int length, bool horizontal, sf::Color sliderBlockColor, int startPercentage);
-	///@brief
-	/// virtual function to draw the slider the current implementation draws the slider and it`s sliderblock
+    Slider(GameDataReference gameData, sf::Vector2f location, int length, bool horizontal, sf::Color sliderBlockColor,
+           int startPercentage);
+
+    ///@brief
+    /// virtual function to draw the slider the current implementation draws the slider and it`s sliderblock
     virtual void draw();
+
     /// @brief
     /// handleInput function to move the sliderblock when clicked and calls the updateValue function of it`s subclass with the value calculated by getPercentage
     void handleInput();
 
+    /// @brief
     /// purely virtual function that can be implemented however necessary
-    virtual void update()=0;
+    virtual void update() = 0;
 };
 
 #endif // PROJECT_GAME_SLIDER

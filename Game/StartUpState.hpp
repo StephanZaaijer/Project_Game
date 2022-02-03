@@ -1,8 +1,6 @@
 #ifndef PROJECT_GAME_STARTUPSTATE_HPP
 #define PROJECT_GAME_STARTUPSTATE_HPP
 
-///@file
-
 #include <iostream>
 #include <sstream>
 #include <SFML/Graphics.hpp>
@@ -14,6 +12,7 @@
 #include "MainGameState.hpp"
 #include "CustomCharacterState.hpp"
 
+///@file StartUpState.hpp
 /// @brief
 /// Project_Game: This is the StartUpState which is the first state you will see if the program has started
 
@@ -23,7 +22,6 @@
 class StartUpState : public GameState {
 private:
     GameDataReference gameData;
-    sf::Clock clock;
     sf::Sprite background;
     sf::Sprite logo;
     sf::Sprite title;

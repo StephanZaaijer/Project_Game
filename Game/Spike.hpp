@@ -27,7 +27,7 @@ public:
     /// Used to construct spike object.
     /// @details
     /// Construct and initializes the value of je object with the spawn method.
-    /// \param game_data is a shared pointer to the GameDataReference where information of the game is stored.
+    /// \param gameData is a shared pointer to the GameDataReference where information of the game is stored.
     /// \param facing is used to define which way the spike is facing.
     /// \param position is a sf::Vector2f which contains a X and Y coordinate and is used to set the position of the deathwall.
     Spike(GameDataReference gameData, spikeFacing facing, sf::Vector2f position);
@@ -67,8 +67,9 @@ public:
     /// @details
     /// The returned point is a local coordinate of the shape.
     /// \param index The index of the point you want to extract starting from 0.
+    ///
     /// \return Position of the index-th point of the object.
-    sf::Vector2f getPoint(const int & index) override;
+    sf::Vector2f getPoint(const int &index) override;
 
 };
 

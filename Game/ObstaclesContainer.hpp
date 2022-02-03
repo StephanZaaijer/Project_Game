@@ -22,7 +22,7 @@ private:
 public:
     /// @brief
     /// Used to construct container object.
-    /// \param game_data is a shared pointer to the GameDataReference where information of the game is stored
+    /// \param gameData is a shared pointer to the GameDataReference where information of the game is stored
     ObstacleContainer(GameDataReference gameData);
 
     /// @brief

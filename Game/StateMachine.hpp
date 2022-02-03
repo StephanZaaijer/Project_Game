@@ -4,18 +4,18 @@
 #include <memory>
 #include "GameState.hpp"
 #include <stack>
-/// @file
+/// @file StateMachine.hpp
 /// @brief
-/// Project_Game: This is the StateMachine which is handles all gamestatechanges
+/// Project_Game: This is the StateMachine which is handles all gamestate changes
 
 
 /// @brief
-/// typedefinition so that std::unique_ptr can be called GameStateReference
+/// type-definition so that std::unique_ptr can be called GameStateReference
 typedef std::unique_ptr<GameState> GameStateReference;
 
 
 ///@brief
-///StateMachineclass that handles all state changes
+///StateMachine class that handles all state changes
 class StateMachine {
 private:
     std::stack<GameStateReference> gameStates;
@@ -29,7 +29,8 @@ public:
     /// Function to add a new gamestate if isReplacing is true the state replaces the current state otherwise it is add on top of the current state.
     /// \param newState GameStateReference containing unique_ptr to the gamestate
     /// \param isReplacing boolean that determines if the state is added on top of the current state or if it replaces the current state
-    void addGameState( GameStateReference newState, bool isReplacing = true);
+    void addGameState(GameStateReference newState, bool isReplacing = true);
+
     /// @brief
     /// Remove the current gamestate and continue with the previous one
     void removeGameState();

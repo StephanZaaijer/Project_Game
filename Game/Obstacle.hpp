@@ -14,13 +14,13 @@
 /// Abstract base class for objects that are obstacles.
 class Obstacle {
 private:
-    identifier I;
+    identifier ID;
 
 public:
     /// @brief
     /// Obstacle constructor.
-    /// \param I is an identifier used to identify the deriving object
-    Obstacle(const identifier & I): I(I) {}
+    /// \param ID is an identifier used to identify the deriving object
+    Obstacle(const identifier &ID) : ID(ID) {}
 
     /// @brief
     /// Returns the position of the object.
@@ -55,21 +55,29 @@ public:
     /// \return Returns a sf::Floatrect of the object.
     virtual sf::FloatRect getBounds() = 0;
 
-    // TODO: Write doxygen
-    virtual sf::Vector2f getPoint(const int & index){
+    ///@brief
+    /// Get the position of the point.
+    ///@details
+    ///The returned point is a local coordinate of the shape.
+    /// \param index The index of the point you want to extract from 0.
+    ///
+    /// \return Position of the index-th point of the object.
+    virtual sf::Vector2f getPoint(const int &index) {
         return {};
     }
 
-    // TODO: Write doxygen
-    virtual spikeFacing getFace(){
+    ///@brief
+    ///Returns the spikeFacing of obstacle.
+    ///\return Returns the spikeFacing of obstacle.
+    virtual spikeFacing getFace() {
         return neither;
     }
 
     /// @brief
     /// Returns the identifier of the deriving class to identify the object.
     /// \return Returns the identifier of the object.
-    identifier getID(){
-        return I;
+    identifier getID() {
+        return ID;
     }
 };
 

@@ -90,7 +90,7 @@ void Character::tap() {
     }
 }
 
-void Character::collideWalls(const std::vector<sf::RectangleShape> & Rects) {
+void Character::collideWalls(const std::vector<sf::RectangleShape> & rects) {
     sf::Vector2f ownPos = characterSprite.getPosition();
     sf::FloatRect ownHitbox = characterSprite.getGlobalBounds();
     sf::Vector2f arrOwnPoints[] = {sf::Vector2f(ownPos.x, ownPos.y),
@@ -99,7 +99,7 @@ void Character::collideWalls(const std::vector<sf::RectangleShape> & Rects) {
                                      sf::Vector2f(ownPos.x + ownHitbox.width, ownPos.y + ownHitbox.height)};
     bool hitBottom = false;
     bool hitTop = false;
-    for (const auto &rect: Rects) {
+    for (const auto &rect: rects) {
         if (rect.getGlobalBounds().intersects(ownHitbox)) {
             sf::Vector2f tPos = rect.getPosition();
             sf::FloatRect tHitbox = rect.getGlobalBounds();

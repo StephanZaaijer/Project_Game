@@ -10,7 +10,7 @@
 #include "Game.hpp"
 #include "Character.hpp"
 
-/// @file
+/// @file GameOverState.hpp
 /// @brief
 /// Project_Game: This is the GameOVerState in which you will end up if your character dies.
 
@@ -30,14 +30,14 @@ private:
     sf::Sound deathSound;
     sf::Sound clickSound;
 
-    std::vector<sf::Sprite*> clickableButtons = { &restartButton, &mainMenuButton };
-    bool prevButtonState=true;
-    bool prevKeyState=true;
+    std::vector<sf::Sprite *> clickableButtons = {&restartButton, &mainMenuButton};
+    bool prevButtonState = true;
+    bool prevKeyState = true;
 public:
 
     /// @brief
     /// This constructor constructs an object of GameOverState
-    /// \param data The game_data of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
+    /// \param gameData The gameData of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
     GameOverState(GameDataReference gameData);
 
     /// @brief

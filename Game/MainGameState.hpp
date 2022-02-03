@@ -13,7 +13,7 @@
 #include "Line.hpp"
 #include "CoinContainer.hpp"
 
-/// @file
+/// @file MainGameState.hpp
 /// @brief
 /// Project_Game: MainGameState is the state you're in when you're playing the game.
 
@@ -47,7 +47,7 @@ public:
 
     /// @brief
     /// This constructor constructs an object of the MainGameState class.
-    /// \param gameData The game_data of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
+    /// \param gameData The gameData of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
     MainGameState(GameDataReference gameData);
 
     /// @brief

@@ -1,5 +1,6 @@
 #ifndef PROJECT_GAME_GAME_HPP
 #define PROJECT_GAME_GAME_HPP
+
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include "InputManager.hpp"
@@ -26,22 +27,27 @@ struct GameData {
 };
 
 /// @brief
-/// Typedefinition to define std::shared_prt<GameData> as GameDataReference
+/// type-definition to define std::shared_prt<GameData> as GameDataReference
 typedef std::shared_ptr<GameData> GameDataReference;
 
+
+/// @brief
+/// Class that creates the window and contains the gameloop
 class Game {
 private:
-    const float delta = 1.0/ FRAMERATE;
+    const float delta = 1.0 / FRAMERATE;
     sf::Clock clock;
-    GameDataReference game_data = std::make_shared<GameData>();
+    GameDataReference gameData = std::make_shared<GameData>();
+
     void start();
+
 public:
     /// @brief
     /// constructor that creates the window, and loads the StartUpstate into the statemachine.
-    /// \param screen_width The width of the renderwindow
-    /// \param screen_height The height of the renderwindow
-    /// \param game_title The title of the game shown in the menubar of the window
-    Game(const int &screen_width, const int &screen_height, const std::string &game_title);
+    /// \param screenWidth The width of the renderwindow
+    /// \param screenHeight The height of the renderwindow
+    /// \param gameTitle The title of the game shown in the menubar of the window
+    Game(const int &screenWidth, const int &screenHeight, const std::string &gameTitle);
 };
 
 

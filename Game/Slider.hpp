@@ -4,23 +4,66 @@
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
-class Slider
-{
+
+///@file Slider.hpp
+///@brief
+/// Project_Game: This is the virtual class Slider
+
+
+///@brief
+///Virtual Sliderclass
+
+class Slider {
+private:
+    sf::RectangleShape slider;
+    sf::RectangleShape sliderBlock;
+    sf::Vector2f sliderPoint;
+    int length;
+    bool horizontal;
+    int sliderMin;
+    int sliderMax;
+    int ratio;
+
+    ///@brief
+    /// function to calculate the current percentage of the block in relation to the min and max of the slider
+    int getPercentage();
+
 protected:
-	GameDataReference game_data;
-	sf::RectangleShape slider;
-	sf::RectangleShape slider_block;
-	sf::Vector2f slider_point;
-	int length;
-	bool horizontal;
+    GameDataReference gameData;
+
+    /// @brief
+    /// virtual function that needs to be implemented by the subclasse to handle a change in value
+    /// \param value the new value that given to the subclasse
+    virtual void updateValue(int value) = 0;
+
+    /// @brief
+    /// function to change to color of the sliderblock from the subclasse
+    /// \param newColor the new color of the sliderblock
+    void setSliderBlockColor(sf::Color newColor);
 
 public:
-	Slider(GameDataReference game_data, sf::Vector2f location, int par_length, bool horizontal, sf::Color slidercolor);
-	virtual void Draw();
-	void handleinput();
-	virtual void update(){};
-	sf::RectangleShape& get_slider_block();
+    /// @brief
+    ///constructor that creates the slider, calculates the ratio and set the position of the sliderblock
+    /// \param gameData  GameDataReference used to get the mouselocation and draw to the screen
+    /// \param location sf::Vector2f which indicates where the slider is placed
+    /// \param length integer length of the slider in pixels
+    /// \param horizontal boolean that indicates if the slider is horizontal or vertical
+    /// \param sliderBlockColor the color that the sliderblock is when the sound on creation
+    /// \param startPercentage the start percentage of the sliderblock
+    Slider(GameDataReference gameData, sf::Vector2f location, int length, bool horizontal, sf::Color sliderBlockColor,
+           int startPercentage);
 
+    ///@brief
+    /// virtual function to draw the slider the current implementation draws the slider and it`s sliderblock
+    virtual void draw();
+
+    /// @brief
+    /// handleInput function to move the sliderblock when clicked and calls the updateValue function of it`s subclass with the value calculated by getPercentage
+    void handleInput();
+
+    /// @brief
+    /// purely virtual function that can be implemented however necessary
+    virtual void update() = 0;
 };
 
 #endif // PROJECT_GAME_SLIDER

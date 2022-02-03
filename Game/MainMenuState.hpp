@@ -11,41 +11,63 @@
 #include "StateMachine.hpp"
 #include <vector>
 
+/// @file MainMenuState.hpp
+/// @brief
+/// Project_Game: This is the MainMenuState which is the state you will see after the StartUpState
+
+
+/// @brief
+/// This class is used to create the MainMenuState and all of its contents
 class MainMenuState : public GameState {
 private:
-    GameDataReference game_data;
-    sf::Sprite _background;
-    sf::Sprite _title;
-    sf::Sprite _banner;
-    sf::Sprite _playButton;
-    sf::Sprite _settingsButton;
-    sf::Sprite _customButton;
-    sf::Sprite _tutorialButton;
+    GameDataReference gameData;
+    sf::Sprite background;
+    sf::Sprite title;
+    sf::Sprite banner;
+    sf::Sprite playButton;
+    sf::Sprite settingsButton;
+    sf::Sprite customButton;
+    sf::Sprite tutorialButton;
 
-    sf::Sound _clickSound;
+    sf::Sound clickSound;
 
-    std::vector<sf::Sprite*> clickable_buttons = { &_playButton, &_settingsButton, &_customButton, &_tutorialButton };
+    std::vector<sf::Sprite *> clickableButtons = {&playButton, &settingsButton, &customButton, &tutorialButton};
     std::vector<std::string> quoteVector;
     float scaler = MAIN_MENU_FONT_SIZE_SCALER;
     float fontSize = MAIN_MENU_FONT_SIZE;
     float fontSizeOrigin = MAIN_MENU_FONT_SIZE;
 
-    sf::Text _quote;
+    sf::Text quote;
+
 
     bool prevMousestate = true;
 
+
 public:
-    MainMenuState(GameDataReference data);
+    ///\brief
+    /// This constructor constructs an object of GameOverState
+    /// \param gameData
+    MainMenuState(GameDataReference gameData);
 
-    void Init() override;
+    ///\brief
+    /// This function initializes all of the sounds, textures and set their positions
+    void init() override;
 
-    void HandleInput() override;
+    /// @brief
+    /// In this function all of the input from the user is checked and the corresponding actions are taken
+    void handleInput() override;
 
-    void Update(float delta) override;
+    /// @brief
+    /// This function Checks if the time elapsed is greater then the START_UP_TIME macro and switches states
+    void update() override;
 
-    void Draw(float delta) override;
+    /// @brief
+    /// This function draws all of it's contents onto the screen
+    void draw() override;
 
-    void Resume() override;
+    /// @brief
+    /// This function makes necessary changes to variables when this state is recalled.
+    void resume() override;
 
 };
 

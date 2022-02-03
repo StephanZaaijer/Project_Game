@@ -4,6 +4,10 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+/// @file Definitions.hpp
+/// @brief
+/// Project_Game: This file contains all macro's, and several enum's and structs used for sharing data through the program.
+
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
 #define GAME_TITLE "JUUJUU"
@@ -11,11 +15,15 @@
 #define CHARACTER_START_HEIGHT 800
 #define CHARACTER_SCALE 0.75
 #define JSON_WRITEOUT_TIME 5.0
+
+/// @brief
+/// This enum list contains the character_states in which the character can be in.
 enum character_states {
-	Still,
-	Jumping,
-	Stick
+    Still,
+    Jumping,
+    Stick
 };
+
 #define GRAVITY 0.6f
 #define VELOCITY_Y (-20.0)
 #define VELOCITY_X 8
@@ -24,9 +32,8 @@ enum character_states {
 
 #define TEXT_TITLE_SIZE 200
 #define GAME_OVER_SCORE_TEXT_SIZE 120
-#define START_UP_TIME 0.4
 
-#define SKIN_PRICE 15
+#define SKIN_PRICE 100
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"
 #define CHARACTER_2 "Assets/character_2.png"
 #define CHARACTER_3 "Assets/character_3.png"
@@ -80,7 +87,6 @@ enum character_states {
 #define WALL_HEIGHT 750
 #define WALL_HEIGHT 750
 #define WALL_WIDTH 50
-#define BORDER_WALL_1_START 0.0
 #define BORDER_WALL_2_START (SCREEN_WIDTH / 6.0f * 5.0f)
 #define BORDER_WALL_WIDTH (SCREEN_WIDTH / 6.0f)
 
@@ -97,25 +103,49 @@ enum character_states {
 #define MAIN_MENU_FONT_SIZE 60
 #define MAIN_MENU_FONT_SIZE_SCALER 1
 
-enum Obstacle_objects {Spike_Object};
-enum Spike_facing {left, right, neither};
-enum identifier {spike, deathwall};
-
-
-struct CustomCharacter {
-    std::string CharacterName;
-    std::string CharacterFileName;
-	bool operator==(const CustomCharacter &rhs) const{
-		return (CharacterName == rhs.CharacterName) and (CharacterFileName == rhs.CharacterFileName);
-	}
+/// @brief
+/// This enum spikeFacing list is used to define which way an obstacle is facing
+enum spikeFacing {
+    left, right, neither
 };
 
-struct CustomTheme{
-    sf::Color wall_color;
-    sf::Color object_color;
+/// @brief
+/// This enum identifier list is used to identify an obstacle as a spike or deathwall.
+enum identifier {
+    spike, deathwall
+};
+
+/// @brief
+/// This CustomCharacter struct is used to store character-sprite information.
+/// @details
+/// This struct contains the character name and filename.
+struct CustomCharacter {
+    std::string characterName;
+    std::string characterFileName;
+
+    /// @brief
+    /// This operator== is used to check if the a CustomCharacter is equal to another CustomCharacter.
+    /// This is done by checking their name and filename is.
+    bool operator==(const CustomCharacter &rhs) const {
+        return (characterName == rhs.characterName) and (characterFileName == rhs.characterFileName);
+    }
+};
+
+/// @brief
+/// This CustomTheme struct is used to store information for the game theme.
+/// @details
+/// This struct contains the wallColor, objectColor, themeName and themeFileName.
+/// This is used to initialize the colors of all game elements.
+struct CustomTheme {
+    sf::Color wallColor;
+    sf::Color objectColor;
     std::string themeName;
     std::string themeFileName;
-    bool operator==(const CustomTheme &rhs) const{
+
+    /// @brief
+    /// This operator== is used to determine if the a given theme is equal to another theme.
+    /// This is done by comparing their names and filenames
+    bool operator==(const CustomTheme &rhs) const {
         return (themeName == rhs.themeName) and (themeFileName == rhs.themeFileName);
     }
 };
@@ -129,7 +159,7 @@ struct CustomTheme{
 #define SOUND_CLICK_PATH "Assets/click.wav"
 #define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
 #define SOUND_COIN_PICKUP_PATH "Assets/coin.wav"
-#define SOUND_DEATH_PATH "Assets/death.wav"
+#define SOUND_DEATH_PATH "Assets/Death.wav"
 #define SOUND_JUMP_PATH "Assets/jump.wav"
 #define SOUND_PAUSE_PATH "Assets/pause.wav"
 #define SOUND_RESUME_PATH "Assets/resume.wav"

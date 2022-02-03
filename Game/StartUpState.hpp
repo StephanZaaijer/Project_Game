@@ -1,8 +1,6 @@
 #ifndef PROJECT_GAME_STARTUPSTATE_HPP
 #define PROJECT_GAME_STARTUPSTATE_HPP
 
-///@file
-
 #include <iostream>
 #include <sstream>
 #include <SFML/Graphics.hpp>
@@ -14,34 +12,42 @@
 #include "MainGameState.hpp"
 #include "CustomCharacterState.hpp"
 
-///\class StartUpState ///\public GameState
+///@file StartUpState.hpp
+/// @brief
+/// Project_Game: This is the StartUpState which is the first state you will see if the program has started
+
+
+/// @brief
+/// This class is used to create the StartUpState and all of its contents
 class StartUpState : public GameState {
 private:
-    GameDataReference game_data;
-    sf::Clock _clock;
-    sf::Sprite _background;
-    sf::Sprite _logo;
-    sf::Sprite _title;
-    sf::Sprite _banner;
+    GameDataReference gameData;
+    sf::Sprite background;
+    sf::Sprite logo;
+    sf::Sprite title;
+    sf::Sprite banner;
 
 public:
-    ///\brief StartUpState constructor
-    /// \param data
-    StartUpState(GameDataReference data);
+    ///\brief
+    /// This constructor constructs an object of GameOverState
+    /// \param gameData
+    StartUpState(GameDataReference gameData);
 
-    ///\brief Init() function
-    void Init() override;
+    ///\brief
+    /// This function initializes all of the textures and set their positions
+    void init() override;
 
-    ///\brief HandleInput() function
-    void HandleInput() override;
+    /// @brief
+    /// In this function all of the input from the user is checked and the corresponding actions are taken
+    void handleInput() override;
 
-    ///\brief Update function
-    /// \param delta
-    void Update(float delta) override;
+    /// @brief
+    /// This function switches to the MainMenuState.
+    void update() override;
 
-    ///\brief Draw() function
-    /// \param delta
-    void Draw(float delta) override;
+    /// @brief
+    /// This function draws all of it's contents onto the screen
+    void draw() override;
 
 };
 

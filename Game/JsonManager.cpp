@@ -182,7 +182,7 @@ void JsonManager::setQuotes(const int &index, const std::string &quote){
     writeOut=true;
 }
 
-void JsonManager::directWrite() {
+void JsonManager::write() {
 	if (writeOut) {
 		writeOut = false;
 		writeJsonToFile();

@@ -30,8 +30,7 @@ void Game::start() {
         }
         gameData->machine.getActiveGameState()->draw();
         sf::sleep(sf::milliseconds(20));
-        gameData->json.update();
     }
-    gameData->json.directWrite();
+    gameData->json.write();
 }
 

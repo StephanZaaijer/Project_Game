@@ -333,10 +333,8 @@ void MainGameState::resume() {
     for (auto &i : musicVector) {
         i->setVolume(gameData->json.getMusicVolume());
         tempCounter++;
-        std::cout << tempCounter << " " << soundPlaying << std::endl;
         if (tempCounter == soundPlaying) {
             if (gameData->json.getMusicState()) {
-                std::cout << 't';
                 i->play();
             }
         }

@@ -1,10 +1,10 @@
 {
 	"Audio" : 
 	{
-		"Music" : false,
-		"Musiclevel" : 49,
-		"Sound" : false,
-		"Soundlevel" : 66
+		"Music" : true,
+		"Musiclevel" : 77,
+		"Sound" : true,
+		"Soundlevel" : 81
 	},
 	"Bought_Skins" : 
 	[
@@ -18,7 +18,7 @@
 		false,
 		true
 	],
-	"Coins" : 4,
+	"Coins" : 101,
 	"Player" : 
 	{
 		"File" : "Assets/nick.png",
@@ -61,7 +61,7 @@
 	],
 	"Score" : 
 	{
-		"Highscore" : 186
+		"Highscore" : 193
 	},
 	"Theme" : 
 	{

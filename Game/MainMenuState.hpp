@@ -13,7 +13,7 @@
 
 /// @file
 /// @brief
-/// Project_Game: This is the MainMenuState which is the you will see after the StartUpState
+/// Project_Game: This is the MainMenuState which is the state you will see after the StartUpState
 
 
 /// @brief

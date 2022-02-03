@@ -10,7 +10,7 @@
 
 /// @file Spike.hpp
 /// @brief
-/// Project_Game: Defines a Spike that derives from obstacle
+/// Project_Game: Defines a Spike that derives from obstacle.
 
 /// @brief
 /// Spike class which derives from Obstacle.

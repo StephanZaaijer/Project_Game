@@ -160,12 +160,8 @@ public:
     void setQuotes(const int &index, const std::string &quote);
 
     /// @brief
-    /// Update function that runs every gameloop that checks if the 5 secondclock has passed and the boolean is set if both are true it writes the data to the jsonfile.
-    void update();
-
-    /// @brief
     /// Update function that runs on closing of the game that checks if the boolean is set if that is the case it writes the data to the jsonfile.
-    void directWrite();
+    void write();
 
 private:
     /// @brief
@@ -215,7 +211,6 @@ private:
     void writeJsonToFile();
 
     std::string gameFile;
-    sf::Clock clock;
     bool writeOut;
 
     struct Color {

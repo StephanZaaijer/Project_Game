@@ -16,13 +16,13 @@
 		true,
 		false,
 		false,
-		false
+		true
 	],
-	"Coins" : 95,
+	"Coins" : 4,
 	"Player" : 
 	{
-		"File" : "Assets/character.jpg",
-		"ID" : "character"
+		"File" : "Assets/coen.jpg",
+		"ID" : "coen"
 	},
 	"Quotes" : 
 	[
@@ -64,9 +64,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/green_blue.png",
-		"ID" : "green_blue_theme",
-		"ObstacleColor" : "Blue",
-		"WallColor" : "Green"
+		"File" : "Assets/yellow_black.png",
+		"ID" : "yellow_black_theme",
+		"ObstacleColor" : "Black",
+		"WallColor" : "Yellow"
 	}
 }

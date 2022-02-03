@@ -42,7 +42,7 @@ void MainGameState::init(){
     background2.setTexture(gameData->assets.getTexture("Background"));
     backGroundOffsetY2 = 0 - background.getGlobalBounds().height;
     background2.setPosition(0, backGroundOffsetY2);
-    wall->spawnWall(WALL_HEIGHT);
+    wall->spawnFirstWall(WALL_HEIGHT);
 
     for(unsigned int i = 0; i < wall->getWalls().size(); i++){
         wall->setContainObstacleTrue(i);

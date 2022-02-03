@@ -35,7 +35,12 @@ public:
     /// \return Returns a std::vector<sf::RectangleShape> walls.
     std::vector<sf::RectangleShape> getAllRectangles();
 
-
+    /// @brief
+    /// Used to generate a wall
+    /// @details
+    /// This function generates a wall and adds its to a private member vector
+    /// \param xPosition The x position on the screen to draw the wall
+    /// \param startYoffset The startYoffset is used to draw the walls just above the screen
     void generateWall(float xPosition, float startYoffset);
 
     /// @brief
@@ -45,6 +50,13 @@ public:
     /// Uses time as seed for randomization of spawn location.
     /// \param startYoffset is the value by which to offset the spawn of the wall
     void spawnWall(float startYoffset = 0);
+
+    /// @brief
+    /// Used to spawn the first walls.
+    /// @details
+    /// Spawns the first walls
+    /// \param startYoffset is the value by which to offset the spawn of the wall
+    void spawnFirstWall(float startYoffset = 0);
 
     /// @brief
     /// Used to move every wall object in the container.

@@ -60,6 +60,11 @@ void Wall::spawnWall(float startYoffset){
     }
 }
 
+void Wall::spawnFirstWall(float startYoffset){
+    generateWall( ((SCREEN_WIDTH / 5.0f) * 2) - WALL_WIDTH/4.0f *3.0f, startYoffset);
+    generateWall(((SCREEN_WIDTH / 5.0f) * 3) + WALL_WIDTH/4.0f *3.0f, startYoffset);
+}
+
 void Wall::moveWall(sf::Vector2f moveBy){
     std::for_each(walls.begin(),walls.end(), [&moveBy ](WallObstacles &x ){
         x.wall.move(moveBy);

@@ -72,6 +72,10 @@ public:
     void draw() override;
 
     /// @brief
+    /// This function draws all elements of this state onto the screen, but it doesn't call the window.display() function.
+    void drawNoDisplay();
+
+    /// @brief
     /// This function sets the volume of the sounds and checks if it has to play the game sound.
     void resume() override;
 

@@ -74,7 +74,7 @@ void MainGameState::handleInput() {
             if (gameData->json.getSoundState()) {
                 pauseSound.play();
             }
-            gameData->machine.addGameState(GameStateReference(new PauseState(gameData)), false);
+            gameData->machine.addGameState(GameStateReference(new PauseState(gameData, this)), false);
         }
         else {
             character->setJumpPressed(false);
@@ -87,7 +87,7 @@ void MainGameState::handleInput() {
             if(gameData->json.getSoundState()){
                 pauseSound.play();
             }
-            gameData->machine.addGameState(GameStateReference(new PauseState(gameData)), false);
+            gameData->machine.addGameState(GameStateReference(new PauseState(gameData, this)), false);
         }
     }
     if(prevKeystateStart){
@@ -249,6 +249,18 @@ void MainGameState::draw(){
     gameData->window.draw(score);
     gameData->window.draw(coinText);
     gameData->window.display();
+}
+
+void MainGameState::drawNoDisplay(){
+    gameData->window.clear();
+    gameData->window.draw(background);
+    gameData->window.draw(background2);
+    wall->drawWall();
+    obstaclesContainer->drawObstacle();
+    character->draw();
+    coinsContainer->draw();
+    gameData->window.draw(score);
+    gameData->window.draw(coinText);
 }
 
 void MainGameState::resume(){

@@ -2,8 +2,9 @@
 #include <utility>
 #include "SoundSettingsState.hpp"
 
-PauseState::PauseState(GameDataReference gameData):
-    gameData(std::move(gameData))
+PauseState::PauseState(GameDataReference gameData, MainGameState* mainGameState):
+    gameData(std::move(gameData)),
+    mainGameState(mainGameState)
 {}
 
 void PauseState::init() {
@@ -71,8 +72,7 @@ void PauseState::update() {
 }
 
 void PauseState::draw() {
-    gameData->window.clear();
-    gameData->window.draw(background);
+    mainGameState->drawNoDisplay();
     gameData->window.draw(darkFade);
     gameData->window.draw(playButton);
     gameData->window.draw(soundSettingsButton);

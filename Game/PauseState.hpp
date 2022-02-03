@@ -5,6 +5,7 @@
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "StateMachine.hpp"
+#include "MainGameState.hpp"
 #include "Definitions.hpp"
 #include "AssetManager.hpp"
 #include "Game.hpp"
@@ -20,6 +21,7 @@
 class PauseState : public GameState {
 private:
 	GameDataReference gameData;
+    MainGameState* mainGameState;
 	sf::Sprite background;
     sf::RectangleShape darkFade;
 	sf::Sprite playButton;
@@ -33,7 +35,7 @@ public:
     ///\brief
     /// This constructor constructs an object of PauseState
     /// \param gameData
-	PauseState(GameDataReference gameData);
+	PauseState(GameDataReference gameData, MainGameState* mainGameState);
 	void init() override;
 	void handleInput() override;
 	void update() override;

@@ -165,7 +165,6 @@ void MainGameState::update(){
             break;
     }
 
-
     // spawn walls, obstacles and coins
     if (character->getHeight() > WALL_SPAWN_DISTANT + WALL_HEIGHT){
         // Wall spawn
@@ -222,7 +221,7 @@ void MainGameState::update(){
             }
         }
     }
-    if(character->getPosition().y >SCREEN_HEIGHT){
+    if(character->getPosition().y > SCREEN_HEIGHT){
         death = true;
     }
 

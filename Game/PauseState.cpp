@@ -52,6 +52,8 @@ void PauseState::handleInput() {
                     if (gameData->json.getSoundState()) {
                         resumeSound.play();
                         while (resumeSound.getStatus() == resumeSound.Playing) {}
+                    } else {
+                        sf::sleep(sf::milliseconds(322));
                     }
                     gameData->machine.removeGameState();
                 }

@@ -7,13 +7,12 @@
 #include <vector>
 #include "ObstaclesContainer.hpp"
 
-struct WallObstacles{
-    sf::RectangleShape wall;
-    bool containsObstacles = false;
-};
-
 class Wall {
 private:
+    struct WallObstacles{
+        sf::RectangleShape wall;
+        bool containsObstacles = false;
+    };
     GameDataReference gameData;
     std::vector<WallObstacles> walls;
 

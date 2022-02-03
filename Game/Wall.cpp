@@ -16,7 +16,7 @@ Wall::Wall(GameDataReference gameData):
     rightBoundary.setFillColor( sf::Color::Black );
 }
 
-std::vector<WallObstacles> &Wall::getWalls() {
+std::vector<Wall::WallObstacles> &Wall::getWalls() {
     return walls;
 }
 

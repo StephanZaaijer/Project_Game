@@ -55,7 +55,7 @@ public:
     /// If the character collides with the top of the wall, it goes into the Still state.
     /// If the character collides with the bottom of the wall, it remains in the Jumping state but with velocity equal to 0, so it falls down instantly.
     /// \param Rects This is a list of all the rectangles that are currently loaded in.
-    void collideWalls(const std::vector<sf::RectangleShape> & Rects );
+    void collideWalls(const std::vector<sf::RectangleShape> &Rects);
 
     /// @brief
     /// This function checks if the character collides with a spike
@@ -65,7 +65,7 @@ public:
     /// If it contains a point, it returns true.
     /// \param spike This contains all the Spikes that are currently loaded in.
     /// \return boolean for if the character collides or not.
-    bool collideSpike(const std::unique_ptr<Obstacle> & spike);
+    bool collideSpike(const std::unique_ptr<Obstacle> &spike);
 
     /// @brief
     /// This function sets the character's height to the given value.
@@ -75,7 +75,7 @@ public:
     /// @brief
     /// This function moves the character down by a given offset.
     /// \param y This is the offset by which the character is moved down.
-    void moveDownByOffset(const float & y);
+    void moveDownByOffset(const float &y);
 
     /// @brief
     /// This function resets the jump booleans.
@@ -97,14 +97,24 @@ public:
     void addToScore(int add);
 
     /// @brief
-    /// This function returns the characterSprite as a reference.
-    /// \return The characterSprite of the character.
-    sf::Sprite & getSprite ();
+    /// This function sets the texture of the characterSprite.
+    /// \param texture This is the texture to be set to the characterSprite.
+    void setTexture(const sf::Texture &texture);
+
+    /// @brief
+    /// This function sets the scale of the characterSprite.
+    /// \param scale This is the scale to be set to the characterSprite.
+    void setScale(const float &scale);
+
+    /// @brief
+    /// This function sets the position of the characterSprite.
+    /// \param position This is the position to be set to the characterSprite.
+    void setPosition(const sf::Vector2f &position);
 
     /// @brief
     /// This function returns the characterSprite Global Boundaries.
     /// \return A sf::FloatRect representing the boundaries of the characterSprite.
-    sf::FloatRect GetBounds();
+    sf::FloatRect getGlobalBounds();
 
     /// @brief
     /// This function returns the current position of the character
@@ -118,14 +128,12 @@ public:
     /// @brief
     /// This function returns if the player has jumped twice or not
     /// \return A boolean if the player has jumped twice.
-    bool getJumpedTwice();
-
-    bool death = false;
+    bool getJumpedTwice() const;
 
 private:
     GameDataReference gameData;
     sf::Sprite characterSprite;
-    sf::Vector2f velocity = {VELOCITY_X,0};
+    sf::Vector2f velocity = {VELOCITY_X, 0};
     sf::Vector2f position;
     character_states characterState;
     float fallVelocity = 0;

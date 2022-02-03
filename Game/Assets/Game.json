@@ -2,9 +2,9 @@
 	"Audio" : 
 	{
 		"Music" : false,
-		"Musiclevel" : 42,
+		"Musiclevel" : 49,
 		"Sound" : false,
-		"Soundlevel" : 69
+		"Soundlevel" : 66
 	},
 	"Bought_Skins" : 
 	[
@@ -13,16 +13,16 @@
 		true,
 		false,
 		true,
+		true,
 		false,
 		false,
-		false,
-		false
+		true
 	],
-	"Coins" : 81,
+	"Coins" : 4,
 	"Player" : 
 	{
-		"File" : "Assets/character_3.png",
-		"ID" : "character_3"
+		"File" : "Assets/coen.jpg",
+		"ID" : "coen"
 	},
 	"Quotes" : 
 	[
@@ -64,9 +64,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/black_red.png",
-		"ID" : "black_red_theme",
-		"ObstacleColor" : "Red",
-		"WallColor" : "Black"
+		"File" : "Assets/yellow_black.png",
+		"ID" : "yellow_black_theme",
+		"ObstacleColor" : "Black",
+		"WallColor" : "Yellow"
 	}
 }

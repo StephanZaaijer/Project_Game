@@ -16,7 +16,7 @@ Wall::Wall(GameDataReference gameData):
     rightBoundary.setFillColor( sf::Color::Black );
 }
 
-std::vector<WallObstacles> &Wall::getWalls() {
+std::vector<Wall::WallObstacles> &Wall::getWalls() {
     return walls;
 }
 
@@ -58,6 +58,11 @@ void Wall::spawnWall(float startYoffset){
     else{
         generateWall(((SCREEN_WIDTH / 5.0f) * 3) + WALL_WIDTH/4.0f *3.0f, startYoffset);
     }
+}
+
+void Wall::spawnFirstWall(float startYoffset){
+    generateWall( ((SCREEN_WIDTH / 5.0f) * 2) - WALL_WIDTH/4.0f *3.0f, startYoffset);
+    generateWall(((SCREEN_WIDTH / 5.0f) * 3) + WALL_WIDTH/4.0f *3.0f, startYoffset);
 }
 
 void Wall::moveWall(sf::Vector2f moveBy){

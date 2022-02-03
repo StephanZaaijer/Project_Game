@@ -41,7 +41,7 @@ private:
     int counter = 0;
     bool jumpSoundPlayed = false;
     bool prevKeystateStart = true;
-
+    bool death = false;
 
 public:
 

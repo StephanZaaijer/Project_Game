@@ -90,15 +90,15 @@ void CustomCharacterState::init() {
     }
     currentTheme = customThemes[counterTheme];
 
-    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
-    character->getSprite().setScale(2, 2);
-    character->getSprite().setPosition(SCREEN_WIDTH / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
-                                       SCREEN_HEIGHT / 3.0f - (character->getSprite().getGlobalBounds().height));
+    character->setTexture(gameData->assets.getTexture(currentCharacter.characterName));
+    character->setScale(2);
+    character->setPosition({SCREEN_WIDTH / 2.0f - (character->getGlobalBounds().width / 2),
+                            SCREEN_HEIGHT / 3.0f - (character->getGlobalBounds().height)});
 
     theme.setTexture(gameData->assets.getTexture(currentTheme.themeName));
     theme.setScale(2, 2);
-    theme.setPosition(SCREEN_WIDTH / 2.0f - (character->getSprite().getGlobalBounds().width / 2),
-                       SCREEN_HEIGHT / 1.5f - (character->getSprite().getGlobalBounds().height));
+    theme.setPosition(SCREEN_WIDTH / 2.0f - (character->getGlobalBounds().width / 2),
+                       SCREEN_HEIGHT / 1.5f - (character->getGlobalBounds().height));
 
     backButton.setPosition(SCREEN_WIDTH / 2.0f - (backButton.getGlobalBounds().width / 2),
                             SCREEN_HEIGHT - (backButton.getGlobalBounds().height * 1.1));
@@ -160,7 +160,7 @@ void CustomCharacterState::handleInput() {
                         counterCharacters += 1;
                     }
                     currentCharacter = customCharacters[counterCharacters];
-                    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
+                    character->setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                 }
 
                 if (gameData->input.isSpriteClicked(arrowLeftCharacter, sf::Mouse::Left, gameData->window)) {
@@ -178,7 +178,7 @@ void CustomCharacterState::handleInput() {
                         counterCharacters -= 1;
                     }
                     currentCharacter = customCharacters[counterCharacters];
-                    character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
+                    character->setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                 }
 
                 if (gameData->input.isSpriteClicked(randomButtonCharacter, sf::Mouse::Left, gameData->window)) {
@@ -192,10 +192,11 @@ void CustomCharacterState::handleInput() {
                             counterCharacters = std::rand() % customCharacters.size();
                         }
                         currentCharacter = customCharacters[counterCharacters];
-                        character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
+                        character->setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                         draw();
                         sf::sleep(sf::milliseconds(20 + i * 10));
                     }
+                    gameData->json.setPlayerSprite(currentCharacter);
                 }
 
                 if (gameData->input.isSpriteClicked(buyEquipButton, sf::Mouse::Left, gameData->window)) {
@@ -208,7 +209,7 @@ void CustomCharacterState::handleInput() {
                             coins -= SKIN_PRICE;
                             coinsText.setString("coins: " + std::to_string(coins));
                             skinBought[counterCharacters] = true;
-                            character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
+                            character->setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                             gameData->json.setCoins(coins);
                             gameData->json.setBoughtSkins(counterCharacters, true);
                             equippedCharacter.setString("EQUIPPED");
@@ -216,7 +217,7 @@ void CustomCharacterState::handleInput() {
                         }
                     } else {
                         equippedCharacter.setString("EQUIPPED");
-                        character->getSprite().setTexture(gameData->assets.getTexture(currentCharacter.characterName));
+                        character->setTexture(gameData->assets.getTexture(currentCharacter.characterName));
                         gameData->json.setPlayerSprite(currentCharacter);
                     }
                 }
@@ -263,6 +264,7 @@ void CustomCharacterState::handleInput() {
                         draw();
                         sf::sleep(sf::milliseconds(20 + i * 10));
                     }
+                    gameData->json.setPlayerTheme(currentTheme);
                 }
 
                 if (gameData->input.isSpriteClicked(equipButtonTheme, sf::Mouse::Left, gameData->window)) {

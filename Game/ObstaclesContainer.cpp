@@ -75,7 +75,7 @@ void ObstacleContainer::spawnObstacleOnWall(const sf::RectangleShape& wall){
         else if (wallLeftSideObstacles == 2){
             obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
                     coordinatesLeftObstacle.x - 1,
-                    coordinatesLeftObstacle.y - WALL_OBSTACLE_HEIGHT_1))));
+                    coordinatesLeftObstacle.y - WALL_OBSTACLE_HEIGHT_1 - 1))));
         }
     }
 
@@ -88,7 +88,7 @@ void ObstacleContainer::spawnObstacleOnWall(const sf::RectangleShape& wall){
         else if (wallRightSideObstacles == 2){
             obstacles.push_back(std::unique_ptr<Obstacle>(new Deathwall(gameData, sf::Vector2f(
                     coordinatesRightObstacle.x - WALL_WIDTH / 2.0f ,
-                    coordinatesRightObstacle.y - WALL_OBSTACLE_HEIGHT_1))));
+                    coordinatesRightObstacle.y - WALL_OBSTACLE_HEIGHT_1 - 1))));
         }
     }
 }

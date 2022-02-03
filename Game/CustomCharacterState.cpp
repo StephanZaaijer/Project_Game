@@ -285,8 +285,6 @@ void CustomCharacterState::handleInput() {
     }
 }
 
-void CustomCharacterState::update() {}
-
 void CustomCharacterState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);

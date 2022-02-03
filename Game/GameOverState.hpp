@@ -48,8 +48,6 @@ public:
     /// In this function all of the input from the user is checked and the corresponding actions are taken.
     void handleInput() override;
 
-    void update() override;
-
     /// @brief
     /// This function draws all of it's contents onto the screen.
     void draw() override;

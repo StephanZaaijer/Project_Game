@@ -18,7 +18,6 @@ void PauseState::init() {
     clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
     clickSound.setVolume(gameData->json.getSoundVolume());
 
-    background.setTexture(gameData->assets.getTexture("Background"));
     playButton.setTexture(gameData->assets.getTexture("Play Button"));
     soundSettingsButton.setTexture(gameData->assets.getTexture("Settings Button"));
 
@@ -66,9 +65,6 @@ void PauseState::handleInput() {
         }
     }
     prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
-}
-
-void PauseState::update() {
 }
 
 void PauseState::draw() {

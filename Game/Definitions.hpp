@@ -32,7 +32,6 @@ enum character_states {
 
 #define TEXT_TITLE_SIZE 200
 #define GAME_OVER_SCORE_TEXT_SIZE 120
-#define START_UP_TIME 0.4
 
 #define SKIN_PRICE 15
 #define CHARACTER_FRAME_1_FILEPATH "Assets/character.jpg"

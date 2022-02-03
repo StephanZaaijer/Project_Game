@@ -44,10 +44,6 @@ public:
     void handleInput() override;
 
     /// @brief
-    /// This function Checks if the time elapsed is greater then the START_UP_TIME macro and switches states
-    void update() override;
-
-    /// @brief
     /// This function draws all of it's contents onto the screen
     void draw() override;
 

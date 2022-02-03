@@ -39,7 +39,6 @@ void TutorialState::handleInput() {
         prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
     }
 }
-void TutorialState::update(){}
 
 void TutorialState::draw() {
     gameData->window.clear();

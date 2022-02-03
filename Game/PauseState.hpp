@@ -22,7 +22,6 @@ class PauseState : public GameState {
 private:
 	GameDataReference gameData;
     MainGameState* mainGameState;
-	sf::Sprite background;
     sf::RectangleShape darkFade;
 	sf::Sprite playButton;
 	sf::Sprite soundSettingsButton;
@@ -38,7 +37,6 @@ public:
 	PauseState(GameDataReference gameData, MainGameState* mainGameState);
 	void init() override;
 	void handleInput() override;
-	void update() override;
 	void draw() override;
 
 };

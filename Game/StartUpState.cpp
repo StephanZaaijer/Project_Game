@@ -30,12 +30,6 @@ void StartUpState::handleInput() {
     }
 }
 
-void StartUpState::update() {
-    if (clock.getElapsedTime().asSeconds() > START_UP_TIME) {
-        gameData->machine.addGameState(GameStateReference(new MainMenuState(gameData)), true);
-    }
-}
-
 void StartUpState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);

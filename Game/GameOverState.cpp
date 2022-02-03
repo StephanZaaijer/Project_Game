@@ -93,9 +93,6 @@ void GameOverState::handleInput() {
     prevButtonState=gameData->input.isButtonPressed(sf::Mouse::Left);
 }
 
-void GameOverState::update() {
-}
-
 void GameOverState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);

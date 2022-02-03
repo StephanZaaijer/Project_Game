@@ -84,8 +84,6 @@ public:
     /// This function handles all input in the state.
     void handleInput() override;
 
-    void update() override;
-
     /// @brief
     /// this function draws all elements to the screen
     void draw() override;

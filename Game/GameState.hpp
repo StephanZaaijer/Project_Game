@@ -18,7 +18,7 @@ public:
     /// @brief
     /// update function that`s called regularly in the gameloop to update the position of the objects on the screen
     /// \param delta The elapsed time since the last call of the update function
-    virtual void update() = 0;
+    virtual void update(){ };
     /// draw function that`s called once every loop to draw the object on the screen
     /// \param delta The elapsed time since the last call of the update function
     virtual void draw() = 0;

@@ -1,49 +1,49 @@
 #include "TutorialState.hpp"
 
-TutorialState::TutorialState(GameDataReference data) :
-        game_data(std::move(data)) {}
+TutorialState::TutorialState(GameDataReference gameData) :
+        gameData(std::move(gameData)) {}
 
-void TutorialState::Init(){
-    game_data->assets.loadTextureFromFile("Tutorial", TUTORIAL);
-    game_data->assets.loadSoundBufferFromFile("clickSound", SOUND_CLICK_PATH);
+void TutorialState::init(){
+    gameData->assets.loadTextureFromFile("Tutorial", TUTORIAL);
+    gameData->assets.loadSoundBufferFromFile("clickSound", SOUND_CLICK_PATH);
 
-    tutorial.setTexture(game_data->assets.GetTexture("Tutorial"));
-    _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
-    _background.setTexture(game_data->assets.GetTexture("Background"));
+    tutorial.setTexture(gameData->assets.getTexture("Tutorial"));
+    backButton.setTexture(gameData->assets.getTexture("Back Button"));
+    background.setTexture(gameData->assets.getTexture("Background"));
 
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
-    _clickSound.setVolume(game_data->json.Get_Soundvolume());
+    clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
+    clickSound.setVolume(gameData->json.getSoundVolume());
 
-    _backButton.setPosition(SCREEN_WIDTH / 6.0f * 6 - _backButton.getGlobalBounds().width ,
-                            SCREEN_HEIGHT - (_backButton.getGlobalBounds().height * 1.1));
+    backButton.setPosition(SCREEN_WIDTH / 6.0f * 6 - backButton.getGlobalBounds().width ,
+                            SCREEN_HEIGHT - (backButton.getGlobalBounds().height * 1.1));
     tutorial.setPosition(400,100);
     tutorial.setScale(1,1);
 }
 
-void TutorialState::HandleInput() {
+void TutorialState::handleInput() {
     sf::Event event{};
-    while (game_data->window.pollEvent(event)) {
+    while (gameData->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            game_data->window.close();
+            gameData->window.close();
         }
-        if (game_data->input.ChangeMouseWhenHoveringOverButton(ClickableButtons, game_data->window)) {
-            if (!prevMousestate) {
-                if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)) {
-                    if (game_data->json.Get_Soundstate()) {
-                        _clickSound.play();
+        if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+            if (!prevMouseState) {
+                if (gameData->input.isSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
+                    if (gameData->json.getSoundState()) {
+                        clickSound.play();
                     }
-                    game_data->machine.RemoveGameState();
+                    gameData->machine.removeGameState();
                 }
             }
         }
-        prevMousestate = game_data->input.IsButtonPressed(sf::Mouse::Left);
+        prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
     }
 }
-void TutorialState::Update(float delta){}
-void TutorialState::Draw(float delta) {
-    game_data->window.clear();
-    game_data->window.draw(_background);
-    game_data->window.draw(tutorial);
-    game_data->window.draw(_backButton);
-    game_data->window.display();
+
+void TutorialState::draw() {
+    gameData->window.clear();
+    gameData->window.draw(background);
+    gameData->window.draw(tutorial);
+    gameData->window.draw(backButton);
+    gameData->window.display();
 }

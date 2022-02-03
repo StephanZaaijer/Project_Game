@@ -2,68 +2,37 @@
 #include "Exceptions.hpp"
 #include <iostream>
 
-Musicslider::Musicslider(GameDataReference game_data, sf::Vector2f slider_location, int length, bool horizontal, sf::Color slidercolor_on, sf::Color slidercolor_off, sf::Vector2f Textlocation, int fontsize) :
-	Slider(game_data, slider_location, length, horizontal, slidercolor_on),
-	slidercolor_on(slidercolor_on),
-	slidercolor_off(slidercolor_off)
+MusicSlider::MusicSlider(GameDataReference gameData, sf::Vector2f sliderLocation, int length, bool horizontal, sf::Color sliderBlockColorOn, sf::Color sliderBlockColorOff, sf::Vector2f textLocation, int fontSize) :
+        Slider(gameData, sliderLocation, length, horizontal, sliderBlockColorOn, gameData->json.getMusicVolume()),
+        sliderBlockColorOn(sliderBlockColorOn),
+        sliderBlockColorOff(sliderBlockColorOff)
 {
-	prev_state = game_data->json.Get_Musicstate();
-	if (!prev_state) {
-		slider_block.setFillColor(slidercolor_off);
-	}
-	if (horizontal) {
-		slider_min = slider_location.x;
-		slider_max = slider_location.x + length;
-		ratio = ((slider_max - slider_min) / 100);
-		prev_sliderblock_location = { slider_location.x + length - (game_data->json.Get_Musicvolume()) * ratio, slider_location.y };
-	}
-	else {
-		slider_min = slider_location.y;
-		slider_max = slider_location.y + length;
-		ratio = ((slider_max - slider_min) / 100);
-		prev_sliderblock_location = { slider_location.x, slider_location.y + length - (game_data->json.Get_Musicvolume()) * ratio };
-
-	}
-	slider_block.setPosition(prev_sliderblock_location);
-	level.setFont(game_data->assets.GetFont("Bauhaus"));
-	level.setPosition(Textlocation);
-	level.setCharacterSize(fontsize);
-	level.setString(std::to_string(game_data->json.Get_Musicvolume()));
-	level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
+    if (gameData->json.getMusicState()) {
+        setSliderBlockColor(sliderBlockColorOn);
+    } else {
+        setSliderBlockColor(sliderBlockColorOff);
+    }
+    level.setFont(gameData->assets.getFont("Bauhaus"));
+    level.setPosition(textLocation);
+    level.setCharacterSize(fontSize);
+    level.setString(std::to_string(gameData->json.getMusicVolume()));
+    level.setOrigin({level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2});
 }
 
-void Musicslider::update() {
-	if (game_data->json.Get_Musicstate() and !prev_state) {
-		slider_block.setFillColor(slidercolor_on);
-		prev_state = true;
-	}
-	else if (!game_data->json.Get_Musicstate() and prev_state) {
-		slider_block.setFillColor(slidercolor_off);
-		prev_state = false;
-	}
-	if (prev_sliderblock_location != slider_block.getPosition()){
-		if (horizontal) {
-			game_data->json.Set_Musicstate(true);
-			int temp = slider_block.getPosition().x;
-			int current_level = 100 - (temp - slider_point.x)/ratio;
-			level.setString(std::to_string(current_level));
-			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
-			game_data->json.Set_Musicvolume(current_level);
-		}
-		else {
-			game_data->json.Set_Musicstate(true);
-			int temp = slider_block.getPosition().y;
-			int current_level = 100 - (temp - slider_point.y) / ratio;
-			level.setString(std::to_string(current_level));
-			level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
-			game_data->json.Set_Musicvolume(current_level);
-		}
-		prev_sliderblock_location = slider_block.getPosition();
-	}
+void MusicSlider::update() {
+    if (gameData->json.getMusicState()) {
+        setSliderBlockColor(sliderBlockColorOn);
+    } else {
+        setSliderBlockColor(sliderBlockColorOff);
+    }
+}
+void MusicSlider::updateValue(int value) {
+    gameData->json.setMusicVolume(value);
+    level.setString(std::to_string(value));
+    level.setOrigin({ level.getGlobalBounds().width / 2, level.getGlobalBounds().height / 2 });
 }
 
-void Musicslider::Draw() {
-	game_data->window.draw(slider);
-	game_data->window.draw(slider_block);
-	game_data->window.draw(level);
+void MusicSlider::draw() {
+    Slider::draw();
+    gameData->window.draw(level);
 }

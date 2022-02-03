@@ -1,38 +1,38 @@
 #include "StateMachine.hpp"
 
-void StateMachine::AddGameState(GameStateReference newState, bool isReplacing) {
+void StateMachine::addGameState(GameStateReference newState_, bool isReplacing) {
     adding = true;
     replacing = isReplacing;
-    new_state = std::move(newState);
+    newState = std::move(newState_);
 }
 
-void StateMachine::RemoveGameState() {
+void StateMachine::removeGameState() {
     removing = true;
 }
 
-void StateMachine::ProcessGameStateChanges() {
-    if (removing and !gamestates.empty()) {
-        gamestates.pop();
-        if (!gamestates.empty()) {
-            gamestates.top()->Resume();
+void StateMachine::processGameStateChanges() {
+    if (removing and !gameStates.empty()) {
+        gameStates.pop();
+        if (!gameStates.empty()) {
+            gameStates.top()->resume();
         }
         removing = false;
     }
     if (adding){
-        if(!gamestates.empty()){
+        if(!gameStates.empty()){
             if(replacing){
-                gamestates.pop();
+                gameStates.pop();
             }
             else{
-                gamestates.top()->Pause();
+                gameStates.top()->pause();
             }
         }
-        gamestates.push(std::move(new_state));
-        gamestates.top()->Init();
+        gameStates.push(std::move(newState));
+        gameStates.top()->init();
         adding=false;
     }
 }
 
-GameStateReference &StateMachine::GetActiveGameState() {
-    return gamestates.top();
+GameStateReference &StateMachine::getActiveGameState() {
+    return gameStates.top();
 }

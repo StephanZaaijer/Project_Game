@@ -10,29 +10,47 @@
 #include "Game.hpp"
 #include "Character.hpp"
 
+/// @file GameOverState.hpp
+/// @brief
+/// Project_Game: This is the GameOVerState in which you will end up if your character dies.
+
+/// @brief
+/// This class is used to create the GameOverState and all of its contents
 class GameOverState : public GameState {
 private:
-    GameDataReference game_data;
-    sf::Sprite _background;
-    sf::Sprite _restartButton;
-    sf::Sprite _mainMenuButton;
+    GameDataReference gameData;
+    sf::Sprite background;
+    sf::Sprite restartButton;
+    sf::Sprite mainMenuButton;
 
-    sf::Text _gameOverText;
-    sf::Text _score;
-    sf::Text _highscore;
+    sf::Text gameOverText;
+    sf::Text score;
+    sf::Text highscore;
 
-    sf::Sound _deathSound;
-    sf::Sound _clickSound;
+    sf::Sound deathSound;
+    sf::Sound clickSound;
 
-    std::vector<sf::Sprite*> clickable_buttons = { &_restartButton, &_mainMenuButton };
-    bool prevButtonState=true;
-    bool prevKeystate=true;
+    std::vector<sf::Sprite *> clickableButtons = {&restartButton, &mainMenuButton};
+    bool prevButtonState = true;
+    bool prevKeyState = true;
 public:
-    GameOverState(GameDataReference data);
-    void Init() override;
-    void HandleInput() override;
-    void Update(float delta) override;
-    void Draw(float delta) override;
+
+    /// @brief
+    /// This constructor constructs an object of GameOverState
+    /// \param gameData The gameData of a state, which contains the StateMachine, window, AssetManager, InputManager and JsonManager.
+    GameOverState(GameDataReference gameData);
+
+    /// @brief
+    /// This function initializes all of the sounds, volumes, textures, fonts, texts, colors, and positions are set.
+    void init() override;
+
+    /// @brief
+    /// In this function all of the input from the user is checked and the corresponding actions are taken.
+    void handleInput() override;
+
+    /// @brief
+    /// This function draws all of it's contents onto the screen.
+    void draw() override;
 
 
 };

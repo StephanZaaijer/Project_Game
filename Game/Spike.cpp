@@ -1,11 +1,10 @@
 #include "Spike.hpp"
-#include <iostream>
 #include <utility>
 #include "Definitions.hpp"
 
-Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f position):
+Spike::Spike(GameDataReference gameData, spikeFacing facing, sf::Vector2f position):
     Obstacle(identifier::spike),
-    game_data(std::move(game_data)),
+    gameData(std::move(gameData)),
     facing (facing),
     position (position)
 {
@@ -13,44 +12,44 @@ Spike::Spike(GameDataReference game_data, Spike_facing facing, sf::Vector2f posi
 }
 
 sf::Vector2f Spike::getPosition(){
-    return Triangle.getPosition();
+    return triangle.getPosition();
 }
 
 void Spike::spawn(){
-    Triangle.setPointCount(3);
+    triangle.setPointCount(3);
 
     if(facing == left){
-        Triangle.setPoint(0, sf::Vector2f{ 0, 0 } );
-        Triangle.setPoint(1, sf::Vector2f{ -SPIKE_SIZE, SPIKE_SIZE/2.0f } );
-        Triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
-        Triangle.setPosition(position);
-        Triangle.setFillColor(game_data->json.Get_ObstacleColor());
+        triangle.setPoint(0, sf::Vector2f{ 0, 0 } );
+        triangle.setPoint(1, sf::Vector2f{ -SPIKE_SIZE, SPIKE_SIZE/2.0f } );
+        triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
+        triangle.setPosition(position);
+        triangle.setFillColor(gameData->json.getObstacleColor());
     }
     else{
-        Triangle.setPoint(0, sf::Vector2f{ 0, 0 } );
-        Triangle.setPoint(1, sf::Vector2f{ SPIKE_SIZE, SPIKE_SIZE/2.0f } );
-        Triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
-        Triangle.setPosition(position);
-        Triangle.setFillColor(game_data->json.Get_ObstacleColor());
+        triangle.setPoint(0, sf::Vector2f{ 0, 0 } );
+        triangle.setPoint(1, sf::Vector2f{ SPIKE_SIZE, SPIKE_SIZE/2.0f } );
+        triangle.setPoint(2, sf::Vector2f{ 0, SPIKE_SIZE } );
+        triangle.setPosition(position);
+        triangle.setFillColor(gameData->json.getObstacleColor());
     }
 }
 
-void Spike::move(sf::Vector2f move_by){
-    Triangle.move(move_by);
+void Spike::move(sf::Vector2f moveBy){
+    triangle.move(moveBy);
 }
 
 void Spike::draw() const{
-    game_data -> window.draw(Triangle);
+    gameData->window.draw(triangle);
 }
 
 sf::FloatRect Spike::getBounds(){
-    return Triangle.getGlobalBounds();
+    return triangle.getGlobalBounds();
 }
 
-Spike_facing Spike::getFace() {
+spikeFacing Spike::getFace() {
     return facing;
 }
 
-sf::Vector2f Spike::get_point(const int &index) {
-    return Triangle.getPoint(index);
+sf::Vector2f Spike::getPoint(const int &index) {
+    return triangle.getPoint(index);
 }

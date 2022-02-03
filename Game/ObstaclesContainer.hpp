@@ -9,16 +9,45 @@
 #include "Spike.hpp"
 #include "Deathwall.hpp"
 
-class Obstacle_Container {
+/// @file CoinContainer.hpp
+/// @brief
+/// Project_Game: Defines an Obstacle container
+
+/// @brief
+/// Container class used to store Obstacle pointers.
+class ObstacleContainer {
 private:
-    GameDataReference game_data;
+    GameDataReference gameData;
     std::vector<std::unique_ptr<Obstacle>> obstacles;
 public:
-    Obstacle_Container(GameDataReference data);
+    /// @brief
+    /// Used to construct container object.
+    /// \param gameData is a shared pointer to the GameDataReference where information of the game is stored
+    ObstacleContainer(GameDataReference gameData);
+
+    /// @brief
+    /// Returns vector containing pointers to Obstacle objects.
+    /// \return Returns the private member obstacles of the type std::vector<std::unique_ptr<Obstacle>>.
     const std::vector<std::unique_ptr<Obstacle>> & getObstacle();
-    void spawn_Obstacle_On_Wall(const sf::RectangleShape& wall);
-    void move_Obstacle(sf::Vector2f move_by);
-    void draw_Obstacle();
+
+    /// @brief
+    /// Used to spawn obstacles on a wall.
+    /// @details
+    /// Randomizes and spawns obstacles on the wall given as parameter.
+    /// Uses time as seed for randomization of spawn location and obstacles.
+    /// \param wall is a reference to a sf::RectangleShape within the class Wall
+    void spawnObstacleOnWall(const sf::RectangleShape& wall);
+
+    /// @brief
+    /// Used to move every obstacle object in the container.
+    /// @details
+    /// Used to move every obstacle object in the container by an offset given in the parameter.
+    /// \param moveBy is a sf::Vector2f which contains a X and Y coordinate.
+    void moveObstacle(sf::Vector2f moveBy);
+
+    /// @brief
+    /// Used to draw every obstacle object in the container.
+    void drawObstacle();
 
 };
 

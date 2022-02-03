@@ -1102,7 +1102,7 @@ public:
   bool strictRoot_;
   bool allowDroppedNullPlaceholders_;
   bool allowNumericKeys_;
-  bool allowSingleQuotes_;
+  bool allowSinglequotes_;
   bool failIfExtra_;
   bool rejectDupKeys_;
   bool allowSpecialFloats_;
@@ -1181,7 +1181,7 @@ private:
   bool readCStyleComment(bool* containsNewLineResult);
   bool readCppStyleComment();
   bool readString();
-  bool readStringSingleQuote();
+  bool readStringSinglequote();
   bool readNumber(bool checkInf);
   bool readValue();
   bool readObject(Token& token);
@@ -1409,9 +1409,9 @@ bool OurReader::readToken(Token& token) {
     ok = readString();
     break;
   case '\'':
-    if (features_.allowSingleQuotes_) {
+    if (features_.allowSinglequotes_) {
       token.type_ = tokenString;
-      ok = readStringSingleQuote();
+      ok = readStringSinglequote();
     } else {
       // If we don't allow single quotes, this is a failure case.
       ok = false;
@@ -1662,7 +1662,7 @@ bool OurReader::readString() {
   return c == '"';
 }
 
-bool OurReader::readStringSingleQuote() {
+bool OurReader::readStringSinglequote() {
   Char c = 0;
   while (current_ != end_) {
     c = getNextChar();
@@ -2126,7 +2126,7 @@ CharReader* CharReaderBuilder::newCharReader() const {
   features.allowDroppedNullPlaceholders_ =
       settings_["allowDroppedNullPlaceholders"].asBool();
   features.allowNumericKeys_ = settings_["allowNumericKeys"].asBool();
-  features.allowSingleQuotes_ = settings_["allowSingleQuotes"].asBool();
+  features.allowSinglequotes_ = settings_["allowSinglequotes"].asBool();
 
   // Stack limit is always a size_t, so we get this as an unsigned int
   // regardless of it we have 64-bit integer support enabled.
@@ -2146,7 +2146,7 @@ bool CharReaderBuilder::validate(Json::Value* invalid) const {
       "strictRoot",
       "allowDroppedNullPlaceholders",
       "allowNumericKeys",
-      "allowSingleQuotes",
+      "allowSinglequotes",
       "stackLimit",
       "failIfExtra",
       "rejectDupKeys",
@@ -2176,7 +2176,7 @@ void CharReaderBuilder::strictMode(Json::Value* settings) {
   (*settings)["strictRoot"] = true;
   (*settings)["allowDroppedNullPlaceholders"] = false;
   (*settings)["allowNumericKeys"] = false;
-  (*settings)["allowSingleQuotes"] = false;
+  (*settings)["allowSinglequotes"] = false;
   (*settings)["stackLimit"] = 1000;
   (*settings)["failIfExtra"] = true;
   (*settings)["rejectDupKeys"] = true;
@@ -2193,7 +2193,7 @@ void CharReaderBuilder::setDefaults(Json::Value* settings) {
   (*settings)["strictRoot"] = false;
   (*settings)["allowDroppedNullPlaceholders"] = false;
   (*settings)["allowNumericKeys"] = false;
-  (*settings)["allowSingleQuotes"] = false;
+  (*settings)["allowSinglequotes"] = false;
   (*settings)["stackLimit"] = 1000;
   (*settings)["failIfExtra"] = false;
   (*settings)["rejectDupKeys"] = false;
@@ -4334,7 +4334,7 @@ static void appendHex(String& result, unsigned ch) {
   result.append("\\u").append(toHex16Bit(ch));
 }
 
-static String valueToQuotedStringN(const char* value, size_t length,
+static String valueToquotedStringN(const char* value, size_t length,
                                    bool emitUTF8 = false) {
   if (value == nullptr)
     return "";
@@ -4411,8 +4411,8 @@ static String valueToQuotedStringN(const char* value, size_t length,
   return result;
 }
 
-String valueToQuotedString(const char* value) {
-  return valueToQuotedStringN(value, strlen(value));
+String valueToquotedString(const char* value) {
+  return valueToquotedStringN(value, strlen(value));
 }
 
 // Class Writer
@@ -4461,7 +4461,7 @@ void FastWriter::writeValue(const Value& value) {
     char const* end;
     bool ok = value.getString(&str, &end);
     if (ok)
-      document_ += valueToQuotedStringN(str, static_cast<size_t>(end - str));
+      document_ += valueToquotedStringN(str, static_cast<size_t>(end - str));
     break;
   }
   case booleanValue:
@@ -4484,7 +4484,7 @@ void FastWriter::writeValue(const Value& value) {
       const String& name = *it;
       if (it != members.begin())
         document_ += ',';
-      document_ += valueToQuotedStringN(name.data(), name.length());
+      document_ += valueToquotedStringN(name.data(), name.length());
       document_ += yamlCompatibilityEnabled_ ? ": " : ":";
       writeValue(value[name]);
     }
@@ -4529,7 +4529,7 @@ void StyledWriter::writeValue(const Value& value) {
     char const* end;
     bool ok = value.getString(&str, &end);
     if (ok)
-      pushValue(valueToQuotedStringN(str, static_cast<size_t>(end - str)));
+      pushValue(valueToquotedStringN(str, static_cast<size_t>(end - str)));
     else
       pushValue("");
     break;
@@ -4552,7 +4552,7 @@ void StyledWriter::writeValue(const Value& value) {
         const String& name = *it;
         const Value& childValue = value[name];
         writeCommentBeforeValue(childValue);
-        writeWithIndent(valueToQuotedString(name.c_str()));
+        writeWithIndent(valueToquotedString(name.c_str()));
         document_ += " : ";
         writeValue(childValue);
         if (++it == members.end()) {
@@ -4747,7 +4747,7 @@ void StyledStreamWriter::writeValue(const Value& value) {
     char const* end;
     bool ok = value.getString(&str, &end);
     if (ok)
-      pushValue(valueToQuotedStringN(str, static_cast<size_t>(end - str)));
+      pushValue(valueToquotedStringN(str, static_cast<size_t>(end - str)));
     else
       pushValue("");
     break;
@@ -4770,7 +4770,7 @@ void StyledStreamWriter::writeValue(const Value& value) {
         const String& name = *it;
         const Value& childValue = value[name];
         writeCommentBeforeValue(childValue);
-        writeWithIndent(valueToQuotedString(name.c_str()));
+        writeWithIndent(valueToquotedString(name.c_str()));
         *document_ << " : ";
         writeValue(childValue);
         if (++it == members.end()) {
@@ -5022,7 +5022,7 @@ void BuiltStyledStreamWriter::writeValue(Value const& value) {
     bool ok = value.getString(&str, &end);
     if (ok)
       pushValue(
-          valueToQuotedStringN(str, static_cast<size_t>(end - str), emitUTF8_));
+          valueToquotedStringN(str, static_cast<size_t>(end - str), emitUTF8_));
     else
       pushValue("");
     break;
@@ -5046,7 +5046,7 @@ void BuiltStyledStreamWriter::writeValue(Value const& value) {
         Value const& childValue = value[name];
         writeCommentBeforeValue(childValue);
         writeWithIndent(
-            valueToQuotedStringN(name.data(), name.length(), emitUTF8_));
+            valueToquotedStringN(name.data(), name.length(), emitUTF8_));
         *sout_ << colonSymbol_;
         writeValue(childValue);
         if (++it == members.end()) {

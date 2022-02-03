@@ -1,28 +1,28 @@
 {
 	"Audio" : 
 	{
-		"Music" : true,
-		"Musiclevel" : 83,
-		"Sound" : true,
-		"Soundlevel" : 85
+		"Music" : false,
+		"Musiclevel" : 49,
+		"Sound" : false,
+		"Soundlevel" : 66
 	},
 	"Bought_Skins" : 
 	[
 		true,
-		true,
-		true,
-		true,
+		false,
 		true,
 		false,
 		true,
+		true,
+		false,
 		false,
 		true
 	],
-	"Coins" : 26,
+	"Coins" : 4,
 	"Player" : 
 	{
-		"File" : "Assets/character_2.png",
-		"ID" : "character_2"
+		"File" : "Assets/nick.png",
+		"ID" : "nick"
 	},
 	"Quotes" : 
 	[
@@ -44,7 +44,20 @@
 		"Teams?",
 		"Wat een kut game!",
 		"Franky ligt waarschijnlijk nog in bed",
-		"En wat zijn jullie aan het doen?"
+		"En wat zijn jullie aan het doen?",
+		"Ik ga even ochtend eten",
+		"Huh?! Groep 6?",
+		"Oeps constructor vergeten",
+		"Je weet toch het makkelijker kan he",
+		"Dit kan efficienter",
+		"*tiktiktiktiktiktiktiktiktik*",
+		"Zet death ff uit",
+		"*Corona geluiden*",
+		"Fix ff de hitbox",
+		"Ik zit vast in de muur",
+		"Bus 41",
+		"KUKELEKU",
+		"BlaBlaBLa *kuch* BlaBlaBla"
 	],
 	"Score" : 
 	{

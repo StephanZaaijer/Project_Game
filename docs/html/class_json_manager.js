@@ -1,0 +1,28 @@
+var class_json_manager =
+[
+    [ "JsonManager", "class_json_manager.html#ae64e39ada75a343a1c0705728af15d8e", null ],
+    [ "directWrite", "class_json_manager.html#a281c97a9eb4602841d0a64d1873d66b8", null ],
+    [ "getBoughtSkins", "class_json_manager.html#a88c5c0e29bc6240b4ec1d4c1efd33e26", null ],
+    [ "getCoins", "class_json_manager.html#a1ff261e65154fffe2718427e906adfd5", null ],
+    [ "getHighscore", "class_json_manager.html#ab0dfdf05364b71f64fc999248e15d3c7", null ],
+    [ "getMusicState", "class_json_manager.html#ad38e161e66f62e8cd33dd6d018503741", null ],
+    [ "getMusicVolume", "class_json_manager.html#a7000fe2539554459fe7623aad8df6241", null ],
+    [ "getObstacleColor", "class_json_manager.html#ad007b10f127cedf2b3947369ff785596", null ],
+    [ "getPlayerSprite", "class_json_manager.html#a1422a37724bb0d245444a269d1b69262", null ],
+    [ "getPlayerTheme", "class_json_manager.html#a6e2456b88bd8c5a1b3f478eededbb5b5", null ],
+    [ "getQuotes", "class_json_manager.html#ad1e2d598b1d0edfc09a859af5081fc3a", null ],
+    [ "getSoundState", "class_json_manager.html#a15dd924ad7a375e20810fa106fe91290", null ],
+    [ "getSoundVolume", "class_json_manager.html#a646c921ebb0e92e7ca974e8d200bf5f7", null ],
+    [ "getWallColor", "class_json_manager.html#a012f5000b3e2bd15c61407274170ca1b", null ],
+    [ "setBoughtSkins", "class_json_manager.html#a52afbbe202fa870044982ba4c3863b28", null ],
+    [ "setCoins", "class_json_manager.html#a23e3a6ff44737e10fe0591ad38d29267", null ],
+    [ "setHighscore", "class_json_manager.html#a9d5b5be1f0cc9b99205cda2a7f6ad3d2", null ],
+    [ "setMusicState", "class_json_manager.html#abe7bc48aacb4e7adddb2749c74a81d79", null ],
+    [ "setMusicVolume", "class_json_manager.html#aeb42acb5504b71413a9dc1a370bba0ca", null ],
+    [ "setPlayerSprite", "class_json_manager.html#a2402ede8af675921d65f882682c32a52", null ],
+    [ "setPlayerTheme", "class_json_manager.html#ac40d223808fa2d74b4216a26b32bd8b4", null ],
+    [ "setQuotes", "class_json_manager.html#afb8a55b4a1e6092f552f35e8fec34566", null ],
+    [ "setSoundState", "class_json_manager.html#a3ae2bcae07c8d389144c44e6807d3b4b", null ],
+    [ "setSoundVolume", "class_json_manager.html#a6307ef747e12bf56866649d9ab027d76", null ],
+    [ "update", "class_json_manager.html#af257c9345b448176a5df756a3ef415fb", null ]
+];

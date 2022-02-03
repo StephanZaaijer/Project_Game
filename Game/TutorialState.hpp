@@ -11,23 +11,40 @@
 #include "GameState.hpp"
 #include "Character.hpp"
 
-class TutorialState:public GameState {
-private:
-    GameDataReference game_data;
-    sf::Sprite tutorial;
-    sf::Sprite _backButton;
-    sf::Sprite _background;
-    sf::Sound _clickSound;
+/// @file TutorialState.hpp
+/// @brief
+/// Project_Game: TutorialState to explain game controls
 
-    std::vector<sf::Sprite*> ClickableButtons = { &_backButton};
-    bool prevMousestate;
+/// @brief
+/// This class is used to create the TutorialState and all of its contents
+class TutorialState : public GameState {
+private:
+    GameDataReference gameData;
+    sf::Sprite tutorial;
+    sf::Sprite backButton;
+    sf::Sprite background;
+    sf::Sound clickSound;
+
+    std::vector<sf::Sprite *> clickableButtons = {&backButton};
+    bool prevMouseState;
 
 public:
-    TutorialState(GameDataReference data);
-    void Init() override;
-    void HandleInput() override;
-    void Update( float delta ) override;
-    void Draw( float delta ) override;
+    ///\brief
+    /// This constructor constructs an object of TutorialState
+    /// \param gameData GameDataReference to communicate with the assetmanager etc.
+    TutorialState(GameDataReference gameData);
+
+    /// @brief
+    /// init function that`s called first time when state is active in the statemachine
+    void init() override;
+
+    /// @brief
+    /// handleInput function that`s called regularly in the gameloop to handle userinput
+    void handleInput() override;
+
+    ///@brief
+    /// draw function that`s called once every loop to draw the object on the screen
+    void draw() override;
 };
 
 

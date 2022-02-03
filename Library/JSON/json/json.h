@@ -486,7 +486,7 @@ public:
    */
   static Features strictMode();
 
-  /** \brief Initialize the configuration like JsonConfig::allFeatures;
+  /** \brief initialize the configuration like JsonConfig::allFeatures;
    */
   Features();
 
@@ -1055,7 +1055,7 @@ public:
   bool removeMember(const char* key, Value* removed);
   /** \brief Remove the named map member.
    *
-   *  Update 'removed' iff removed.
+   *  update 'removed' iff removed.
    *  \param key may contain embedded nulls.
    *  \return true iff removed (no exceptions)
    */
@@ -1065,7 +1065,7 @@ public:
   /** \brief Remove the indexed array element.
    *
    *  O(n) expensive operations.
-   *  Update 'removed' iff removed.
+   *  update 'removed' iff removed.
    *  \return true if removed (no exceptions)
    */
   bool removeIndex(ArrayIndex index, Value* removed);
@@ -1782,7 +1782,7 @@ public:
    *     StreamWriterBuilder.)
    * - `"allowNumericKeys": false or true`
    *   - true if numeric object keys are allowed.
-   * - `"allowSingleQuotes": false or true`
+   * - `"allowSinglequotes": false or true`
    *   - true if '' are allowed for strings (both keys and values)
    * - `"stackLimit": integer`
    *   - Exceeding stackLimit (recursive depth of `readValue()`) will cause an
@@ -2241,7 +2241,7 @@ String JSON_API valueToString(
     double value, unsigned int precision = Value::defaultRealPrecision,
     PrecisionType precisionType = PrecisionType::significantDigits);
 String JSON_API valueToString(bool value);
-String JSON_API valueToQuotedString(const char* value);
+String JSON_API valueToquotedString(const char* value);
 
 /// \brief Output using the StyledStreamWriter.
 /// \see Json::operator>>()

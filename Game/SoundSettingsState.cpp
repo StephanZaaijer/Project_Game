@@ -1,110 +1,111 @@
 #include "SoundSettingsState.hpp"
 #include <utility>
 
-SoundSettingsState::SoundSettingsState(GameDataReference data): game_data(std::move(data)) {}
+SoundSettingsState::SoundSettingsState(GameDataReference gameData) : gameData(std::move(gameData)) {}
 
+void SoundSettingsState::init() {
+    darkFade.setSize(sf::Vector2f(gameData->window.getSize()));
+    darkFade.setPosition(0, 0);
+    darkFade.setFillColor(sf::Color(0, 0, 0, 120));
 
-void SoundSettingsState::Init() {
-    DarkFade.setSize(sf::Vector2f(game_data->window.getSize()));
-    DarkFade.setPosition(0, 0);
-    DarkFade.setFillColor(sf::Color(0, 0, 0, 120));
+    clickSound.setBuffer(gameData->assets.getSoundBuffer("clickSound"));
+    clickSound.setVolume(gameData->json.getSoundVolume());
+    background.setTexture(gameData->assets.getTexture("Background"));
+    backButton.setTexture(gameData->assets.getTexture("Back Button"));
+    musicButton.setTexture(gameData->assets.getTexture("Green music Button"));
+    soundButton.setTexture(gameData->assets.getTexture("Green Sound Button"));
+    settingsText.setFont(gameData->assets.getFont("Bauhaus"));
+    settingsText.setString("SETTINGS");
+    settingsText.setCharacterSize(TEXT_TITLE_SIZE);
+    settingsText.setFillColor(TEXT_COLOR);
 
-    _clickSound.setBuffer(game_data->assets.GetSoundBuffer("clickSound"));
-    _clickSound.setVolume(game_data->json.Get_Soundvolume());
-    _background.setTexture(game_data->assets.GetTexture("Background"));
-    _backButton.setTexture(game_data->assets.GetTexture("Back Button"));
-    _musicButton.setTexture(game_data->assets.GetTexture("Green Music Button"));
-    _soundButton.setTexture(game_data->assets.GetTexture("Green Sound Button"));
-    _settingsText.setFont(game_data->assets.GetFont("Bauhaus"));
-    _settingsText.setString("SETTINGS");
-    _settingsText.setCharacterSize(TEXT_TITLE_SIZE);
-    _settingsText.setFillColor(TEXT_COLOR);
-
-    auto tmpRect = _settingsText.getLocalBounds();
-    _settingsText.setOrigin(tmpRect.left + tmpRect.width / 2,
+    auto tmpRect = settingsText.getLocalBounds();
+    settingsText.setOrigin(tmpRect.left + tmpRect.width / 2,
         tmpRect.top + tmpRect.height / 2);
 
-    game_data->json.Get_Musicstate() ? _musicButton.setTexture(game_data->assets.GetTexture("Green Music Button")) : _musicButton.setTexture(
-        game_data->assets.GetTexture("Red Music Button"));
+    gameData->json.getMusicState() ? musicButton.setTexture(gameData->assets.getTexture("Green music Button")) : musicButton.setTexture(
+        gameData->assets.getTexture("Red music Button"));
 
-    game_data->json.Get_Soundstate() ? _soundButton.setTexture(game_data->assets.GetTexture("Green Sound Button")) : _soundButton.setTexture(
-        game_data->assets.GetTexture("Red Sound Button"));
+    gameData->json.getSoundState() ? soundButton.setTexture(gameData->assets.getTexture("Green Sound Button")) : soundButton.setTexture(
+        gameData->assets.getTexture("Red Sound Button"));
 
-    _settingsText.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 8.0f);
-    _backButton.setPosition(SCREEN_WIDTH / 2.0f - (_backButton.getGlobalBounds().width / 2),
-        SCREEN_HEIGHT - (_backButton.getGlobalBounds().height * 1.1));
-
-
-    _musicButton.setOrigin({ _musicButton.getGlobalBounds().width / 2, _musicButton.getGlobalBounds().height / 2 });
-    _soundButton.setOrigin({ _soundButton.getGlobalBounds().width / 2, _soundButton.getGlobalBounds().height / 2 });
+    settingsText.setPosition(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 8.0f);
+    backButton.setPosition(SCREEN_WIDTH / 2.0f - (backButton.getGlobalBounds().width / 2),
+        SCREEN_HEIGHT - (backButton.getGlobalBounds().height * 1.1));
 
 
-    _musicButton.setPosition(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 3.0f);
-    _soundButton.setPosition(SCREEN_WIDTH / 3.0f, SCREEN_HEIGHT / 3.0f);
+    musicButton.setOrigin({ musicButton.getGlobalBounds().width / 2, musicButton.getGlobalBounds().height / 2 });
+    soundButton.setOrigin({ soundButton.getGlobalBounds().width / 2, soundButton.getGlobalBounds().height / 2 });
 
-    soundslider = std::unique_ptr<Soundslider>(new Soundslider(game_data, { SCREEN_WIDTH / 3.0f, SCREEN_HEIGHT / 2.0f }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3.0f - 125, SCREEN_HEIGHT / 2.0f + 150 }, TEXT_TITLE_SIZE * 0.5));
-    musicslider = std::unique_ptr<Musicslider>(new Musicslider(game_data, { SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 2.0f }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3.0f *2 + 125, SCREEN_HEIGHT / 2.0f + 150 }, TEXT_TITLE_SIZE * 0.5));
+
+    musicButton.setPosition(SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 3.0f);
+    soundButton.setPosition(SCREEN_WIDTH / 3.0f, SCREEN_HEIGHT / 3.0f);
+
+    musicSlider = std::unique_ptr<MusicSlider>(new MusicSlider(gameData, { SCREEN_WIDTH / 3.0f * 2.0f, SCREEN_HEIGHT / 2.0f }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3.0f *2 + 125, SCREEN_HEIGHT / 2.0f + 150 }, TEXT_TITLE_SIZE * 0.5));
+    soundSlider = std::unique_ptr<SoundSlider>(new SoundSlider(gameData, { SCREEN_WIDTH / 3.0f, SCREEN_HEIGHT / 2.0f }, 300, false, sf::Color::Green, { 255, 0, 0, 100 }, { SCREEN_WIDTH / 3.0f - 125, SCREEN_HEIGHT / 2.0f + 150 }, TEXT_TITLE_SIZE * 0.5));
 }
 
-void SoundSettingsState::HandleInput() {
+void SoundSettingsState::handleInput() {
     sf::Event event{};
-    while (game_data->window.pollEvent(event)) {
+    while (gameData->window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            game_data->window.close();
+            gameData->window.close();
         }
     }
-    if (game_data->input.ChangeMouseWhenHoveringOverButton(clickable_buttons, game_data->window)) {
-        if(!prevMousestate) {
-            if (game_data->input.IsSpriteClicked(_backButton, sf::Mouse::Left, game_data->window)) {
-                if (game_data->json.Get_Soundstate()) {
-                    _clickSound.play();
+    if (gameData->input.changeMouseWhenHoveringOverButton(clickableButtons, gameData->window)) {
+        if(!prevMouseState) {
+            if (gameData->input.isSpriteClicked(backButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->json.getSoundState()) {
+                    clickSound.play();
                 }
-                game_data->machine.RemoveGameState();
-            } else if (game_data->input.IsSpriteClicked(_musicButton, sf::Mouse::Left, game_data->window)) {
-                if (game_data->json.Get_Soundstate()) {
-                    _clickSound.play();
+                gameData->machine.removeGameState();
+            } else if (gameData->input.isSpriteClicked(musicButton, sf::Mouse::Left, gameData->window)) {
+                if (gameData->json.getSoundState()) {
+                    clickSound.play();
                 }
-                game_data->json.Set_Musicstate(!game_data->json.Get_Musicstate());
-            } else if (game_data->input.IsSpriteClicked(_soundButton, sf::Mouse::Left, game_data->window)) {
-                if (!game_data->json.Get_Soundstate()) {
-                    _clickSound.play();
+                gameData->json.setMusicState(!gameData->json.getMusicState());
+            } else if (gameData->input.isSpriteClicked(soundButton, sf::Mouse::Left, gameData->window)) {
+                if (!gameData->json.getSoundState()) {
+                    clickSound.play();
                 }
-                game_data->json.Set_Soundstate(!game_data->json.Get_Soundstate());
+                gameData->json.setSoundState(!gameData->json.getSoundState());
             }
         }
     }
-    prevMousestate = game_data->input.IsButtonPressed(sf::Mouse::Left);
-    soundslider->handleinput();
-    musicslider->handleinput();
+    prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
+    soundSlider->handleInput();
+    musicSlider->handleInput();
 }
-void SoundSettingsState::Update(float delta) {
-    _clickSound.setVolume(game_data->json.Get_Soundvolume());
-    soundslider->update();
-    musicslider->update();
-    if (game_data->json.Get_Musicstate()) {
-        _musicButton.setTexture(game_data->assets.GetTexture("Green Music Button"));
+
+
+void SoundSettingsState::update() {
+    clickSound.setVolume(gameData->json.getSoundVolume());
+    soundSlider->update();
+    musicSlider->update();
+    if (gameData->json.getMusicState()) {
+        musicButton.setTexture(gameData->assets.getTexture("Green music Button"));
     }
     else {
-        _musicButton.setTexture(game_data->assets.GetTexture("Red Music Button"));
+        musicButton.setTexture(gameData->assets.getTexture("Red music Button"));
     }
-    if (game_data->json.Get_Soundstate()) {
-        _soundButton.setTexture(game_data->assets.GetTexture("Green Sound Button"));
+    if (gameData->json.getSoundState()) {
+        soundButton.setTexture(gameData->assets.getTexture("Green Sound Button"));
     }
     else {
-        _soundButton.setTexture(
-            game_data->assets.GetTexture("Red Sound Button"));
+        soundButton.setTexture(
+            gameData->assets.getTexture("Red Sound Button"));
     }
 }
 
-void SoundSettingsState::Draw(float delta) {
-    game_data->window.clear();
-    game_data->window.draw(_background);
-    game_data->window.draw(DarkFade);
-    soundslider->Draw();
-    musicslider->Draw();
-    game_data->window.draw(_musicButton);
-    game_data->window.draw(_soundButton);
-    game_data->window.draw(_backButton);
-    game_data->window.draw(_settingsText);
-    game_data->window.display();
+void SoundSettingsState::draw() {
+    gameData->window.clear();
+    gameData->window.draw(background);
+    gameData->window.draw(darkFade);
+    soundSlider->draw();
+    musicSlider->draw();
+    gameData->window.draw(musicButton);
+    gameData->window.draw(soundButton);
+    gameData->window.draw(backButton);
+    gameData->window.draw(settingsText);
+    gameData->window.display();
 }

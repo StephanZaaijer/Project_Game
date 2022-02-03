@@ -3,252 +3,251 @@
 #include <utility>
 #include "Exceptions.hpp"
 
-JsonManager::JsonManager(const std::string &Gamefile):
-	Gamefile(std::move(Gamefile))
+JsonManager::JsonManager(const std::string & gameFile):
+	gameFile(std::move(gameFile))
 {
-	data = JsonData();
-	Get_data();
+    this->getData();
 }
 
-void JsonManager::Get_data() {
-	json_data = Get_Json_from_file();
-    std::vector<bool> Bought_Skins;
-    for( const auto& skin : json_data["Bought_Skins"]){
-        Bought_Skins.push_back(skin.asBool());
+void JsonManager::getData() {
+	jsonData = getJsonFromFile();
+    std::vector<bool> boughtSkins;
+    for( const auto& skin : jsonData["Bought_Skins"]){
+        boughtSkins.push_back(skin.asBool());
     }
-    std::vector<std::string> Quotes;
-    for( const auto& quote : json_data["Quotes"]){
-        Quotes.push_back(quote.asString());
+    std::vector<std::string> quotes;
+    for( const auto& quote : jsonData["Quotes"]){
+        quotes.push_back(quote.asString());
     }
     data = {
-		json_data["Audio"]["Sound"].asBool(),
-		json_data["Audio"]["Soundlevel"].asInt(),
-		json_data["Audio"]["Music"].asBool(),
-		json_data["Audio"]["Musiclevel"].asInt(),
-		json_data["Score"]["Highscore"].asInt(),
-		json_data["Player"]["ID"].asString(),
-		json_data["Player"]["File"].asString(),
-        json_data["Theme"]["ID"].asString(),
-        json_data["Theme"]["File"].asString(),
-        json_data["Theme"]["WallColor"].asString(),
-        json_data["Theme"]["ObstacleColor"].asString(),
-		json_data["Coins"].asInt(),
-        Bought_Skins,
-        Quotes
-        };
+		jsonData["Audio"]["Sound"].asBool(),
+		jsonData["Audio"]["Soundlevel"].asInt(),
+		jsonData["Audio"]["Music"].asBool(),
+		jsonData["Audio"]["Musiclevel"].asInt(),
+		jsonData["Score"]["Highscore"].asInt(),
+		jsonData["Player"]["ID"].asString(),
+		jsonData["Player"]["File"].asString(),
+        jsonData["Theme"]["ID"].asString(),
+        jsonData["Theme"]["File"].asString(),
+        jsonData["Theme"]["WallColor"].asString(),
+        jsonData["Theme"]["ObstacleColor"].asString(),
+		jsonData["Coins"].asInt(),
+        boughtSkins,
+        quotes
+    };
 }
 
-bool JsonManager::Get_Soundstate() const {
-	return data.Sound;
+bool JsonManager::getSoundState() const {
+	return data.sound;
 }
 
-int JsonManager::Get_Soundvolume() const {
-	return data.Soundvolume;
+int JsonManager::getSoundVolume() const {
+	return data.soundVolume;
 }
 
-bool JsonManager::Get_Musicstate() const {
-	return data.Music;
+bool JsonManager::getMusicState() const {
+	return data.music;
 }
 
-int JsonManager::Get_Musicvolume() const {
-	return data.Musicvolume;
+int JsonManager::getMusicVolume() const {
+	return data.musicVolume;
 }
 
-int JsonManager::Get_Highscore() const {
-	return data.Highscore;
+int JsonManager::getHighscore() const {
+	return data.highscore;
 }
 
-int JsonManager::Get_Coins() const {
-	return data.Coins;
+int JsonManager::getCoins() const {
+	return data.coins;
 }
 
-CustomCharacter JsonManager::Get_PlayerSprite() const {
-	return { data.PlayerSpriteID, data.PlayerSpriteFile };
+CustomCharacter JsonManager::getPlayerSprite() const {
+	return { data.playerSpriteID, data.playerSpriteFile };
 }
-CustomTheme JsonManager::Get_PlayerTheme() const {
-    return {string_to_color(data.WallColor), string_to_color(data.ObstacleColor), data.PlayerThemeID, data.PlayerThemeFile };
-}
-
-sf::Color JsonManager::Get_ObstacleColor() const {
-    return string_to_color(data.ObstacleColor);
+CustomTheme JsonManager::getPlayerTheme() const {
+    return {stringToColor(data.wallColor), stringToColor(data.obstacleColor), data.playerThemeID, data.playerThemeFile };
 }
 
-sf::Color JsonManager::Get_WallColor() const {
-    return string_to_color(data.WallColor);
+sf::Color JsonManager::getObstacleColor() const {
+    return stringToColor(data.obstacleColor);
 }
 
-std::vector<bool> JsonManager::Get_Bought_Skins() const{
-    return data.BoughtSkins;
+sf::Color JsonManager::getWallColor() const {
+    return stringToColor(data.wallColor);
 }
 
-std::vector<std::string> JsonManager::Get_Quotes() const{
-    return data.Quotes;
+std::vector<bool> JsonManager::getBoughtSkins() const{
+    return data.boughtSkins;
 }
 
-void JsonManager::Set_Soundstate(const bool &state) {
-	if (state == data.Sound) {
+std::vector<std::string> JsonManager::getQuotes() const{
+    return data.quotes;
+}
+
+void JsonManager::setSoundState(const bool &state) {
+	if (state == data.sound) {
 		return;
 	}
-	data.Sound = state;
-	json_data["Audio"]["Sound"] = state;
+	data.sound = state;
+	jsonData["Audio"]["Sound"] = state;
 	clock.restart();
-	write_out = true;
+	writeOut = true;
 }
-void JsonManager::Set_Soundvolume(const int &volume) {
-	if (volume == data.Soundvolume) {
+void JsonManager::setSoundVolume(const int &volume) {
+	if (volume == data.soundVolume) {
 		return;
 	}
-	data.Sound = volume!=0;
-	json_data["Audio"]["Sound"] = volume != 0;
-	data.Soundvolume = volume;
-	json_data["Audio"]["Soundlevel"] = volume;
+	data.sound = volume!=0;
+	jsonData["Audio"]["Sound"] = volume != 0;
+	data.soundVolume = volume;
+	jsonData["Audio"]["Soundlevel"] = volume;
 	clock.restart();
-	write_out = true;
+	writeOut = true;
 }
-void JsonManager::Set_Musicstate(const bool &state) {
-	if (state == data.Music) {
+void JsonManager::setMusicState(const bool &state) {
+	if (state == data.music) {
 		return;
 	}
-	data.Music = state;
-	json_data["Audio"]["Music"] = state;
+	data.music = state;
+	jsonData["Audio"]["Music"] = state;
 	clock.restart();
-	write_out = true;
+	writeOut = true;
 }
-void JsonManager::Set_Musicvolume(const int &volume) {
-	if (volume == data.Musicvolume) {
+void JsonManager::setMusicVolume(const int &volume) {
+	if (volume == data.musicVolume) {
 		return;
 	}
-	data.Music = volume != 0;
-	json_data["Audio"]["Music"] = volume != 0;
-	data.Musicvolume = volume;
-	json_data["Audio"]["Musiclevel"] = volume;
+	data.music = volume != 0;
+	jsonData["Audio"]["Music"] = volume != 0;
+	data.musicVolume = volume;
+	jsonData["Audio"]["Musiclevel"] = volume;
 	clock.restart();
-	write_out = true;
+	writeOut = true;
 }
-void JsonManager::Set_Highscore(const int &highscore) {
-	if (highscore <= data.Highscore) {
+void JsonManager::setHighscore(const int &highscore) {
+	if (highscore <= data.highscore) {
 		return;
 	}
-	data.Highscore = highscore;
-	json_data["Score"]["Highscore"] = highscore;
+	data.highscore = highscore;
+	jsonData["Score"]["Highscore"] = highscore;
 	clock.restart();
-	write_out = true;
+	writeOut = true;
 }
 
-void JsonManager::Set_PlayerSprite(const CustomCharacter& PlayerSprite) {
-	if (PlayerSprite.CharacterName == data.PlayerSpriteID) {
+void JsonManager::setPlayerSprite(const CustomCharacter& playerSprite) {
+	if (playerSprite.characterName == data.playerSpriteID) {
 		return;
 	}
-	data.PlayerSpriteID = PlayerSprite.CharacterName;
-	data.PlayerSpriteFile = PlayerSprite.CharacterFileName;
-	json_data["Player"]["ID"] = PlayerSprite.CharacterName;
-	json_data["Player"]["File"] = PlayerSprite.CharacterFileName;
+	data.playerSpriteID = playerSprite.characterName;
+	data.playerSpriteFile = playerSprite.characterFileName;
+	jsonData["Player"]["ID"] = playerSprite.characterName;
+	jsonData["Player"]["File"] = playerSprite.characterFileName;
 	clock.restart();
-	write_out = true;
+	writeOut = true;
 }
 
-void JsonManager::Set_PlayerTheme(const CustomTheme& PlayerTheme) {
-    if (PlayerTheme.themeName == data.PlayerThemeID) {
+void JsonManager::setPlayerTheme(const CustomTheme& playerTheme) {
+    if (playerTheme.themeName == data.playerThemeID) {
         return;
     }
-    data.PlayerThemeID = PlayerTheme.themeName;
-    data.PlayerThemeFile = PlayerTheme.themeFileName;
-    data.WallColor = color_to_string(PlayerTheme.wall_color);
-    data.ObstacleColor = color_to_string(PlayerTheme.object_color);
-    json_data["Theme"]["ID"] = PlayerTheme.themeName;
-    json_data["Theme"]["File"]= PlayerTheme.themeFileName;
-    json_data["Theme"]["WallColor"]= color_to_string(PlayerTheme.wall_color);
-    json_data["Theme"]["ObstacleColor"] = color_to_string(PlayerTheme.object_color);
+    data.playerThemeID = playerTheme.themeName;
+    data.playerThemeFile = playerTheme.themeFileName;
+    data.wallColor = colorToString(playerTheme.wallColor);
+    data.obstacleColor = colorToString(playerTheme.objectColor);
+    jsonData["Theme"]["ID"] = playerTheme.themeName;
+    jsonData["Theme"]["File"]= playerTheme.themeFileName;
+    jsonData["Theme"]["WallColor"]= colorToString(playerTheme.wallColor);
+    jsonData["Theme"]["ObstacleColor"] = colorToString(playerTheme.objectColor);
     clock.restart();
-    write_out = true;
+    writeOut = true;
 }
 
-void JsonManager::Set_Coins(const int &coins){
-	if (coins == data.Coins) {
+void JsonManager::setCoins(const int &coins){
+	if (coins == data.coins) {
 		return;
 	}
-	data.Coins = coins;
-	json_data["Coins"] = coins;
+	data.coins = coins;
+	jsonData["Coins"] = coins;
 	clock.restart();
-	write_out = true;
+	writeOut = true;
 }
 
-void JsonManager::Set_BoughtSkins(const int &index, const bool &value) {
-    if(data.BoughtSkins[index]==value){
+void JsonManager::setBoughtSkins(const int &index, const bool &value) {
+    if(data.boughtSkins[index]==value){
         return;
     }
-    data.BoughtSkins[index] = value;
-    json_data["Bought_Skins"][index] = value;
+    data.boughtSkins[index] = value;
+    jsonData["Bought_Skins"][index] = value;
     clock.restart();
-    write_out = true;
+    writeOut = true;
 }
 
-void JsonManager::Set_Quotes(const int &index, const std::string &Quote){
-    if(data.Quotes[index]==Quote){
+void JsonManager::setQuotes(const int &index, const std::string &quote){
+    if(data.quotes[index]==quote){
         return;
     }
-    data.Quotes[index]=Quote;
-    json_data["Quotes"][index]=Quote;
+    data.quotes[index]=quote;
+    jsonData["Quotes"][index]=quote;
     clock.restart();
-    write_out=true;
+    writeOut=true;
 }
 
-void JsonManager::Update() {
-	if (write_out and clock.getElapsedTime().asSeconds() >= JSON_WRITEOUT_TIME) {
-		write_out = false;
-		Write_Json_to_file();
+void JsonManager::update() {
+	if (writeOut and clock.getElapsedTime().asSeconds() >= JSON_WRITEOUT_TIME) {
+		writeOut = false;
+		writeJsonToFile();
 	}
 }
 
-void JsonManager::Direct_write() {
-	if (write_out) {
-		write_out = false;
-		Write_Json_to_file();
+void JsonManager::directWrite() {
+	if (writeOut) {
+		writeOut = false;
+		writeJsonToFile();
 	}
 }
 
 
-sf::Color JsonManager::string_to_color(const std::string &colorstring) const{
+sf::Color JsonManager::stringToColor(const std::string &colorString) const{
     for(const auto &color: colors){
-        if(color.color_string==colorstring){
-            return color.color_sf;
+        if(color.colorString==colorString){
+            return color.colorSf;
         }
     }
-    throw unknown_color_exception(colorstring);
+    throw UnknownColorException(colorString);
 }
 
-std::string JsonManager::color_to_string(const sf::Color &color_sf) const{
+std::string JsonManager::colorToString(const sf::Color &colorSf) const{
     for(const auto &color: colors){
-        if(color.color_sf == color_sf){
-            return color.color_string;
+        if(color.colorSf == colorSf){
+            return color.colorString;
         }
     }
-    throw unknown_color_exception(color_sf);
+    throw UnknownColorException(colorSf);
 }
 
 
-Json::Value JsonManager::Get_Json_from_file() {
-	std::ifstream Inputfile;
+Json::Value JsonManager::getJsonFromFile() {
+	std::ifstream inputFile;
 	Json::CharReaderBuilder builder;
-	Inputfile.open(Gamefile);
-	if (!Inputfile.is_open()) {
-		throw open_file_exception(Gamefile);
+	inputFile.open(gameFile);
+	if (!inputFile.is_open()) {
+		throw OpenFileException(gameFile);
 	}
 	builder["collectComments"] = true;
 	JSONCPP_STRING errs;
-	if (!parseFromStream(builder, Inputfile, &json_data, &errs)) {
-		throw invalid_json_exception(errs);
+	if (!parseFromStream(builder, inputFile, &jsonData, &errs)) {
+		throw InvalidJsonException(errs);
 	}
-	Inputfile.close();
-	return json_data;
+	inputFile.close();
+	return jsonData;
 }
 
-void JsonManager::Write_Json_to_file() {
-	std::ofstream Outputfile;
-	Outputfile.open(Gamefile);
-	if (!Outputfile.is_open()) {
-		throw open_file_exception(Gamefile);
+void JsonManager::writeJsonToFile() {
+	std::ofstream outputFile;
+	outputFile.open(gameFile);
+	if (!outputFile.is_open()) {
+		throw OpenFileException(gameFile);
 	}
-	Outputfile << json_data;
-	Outputfile.close();
+	outputFile << jsonData;
+	outputFile.close();
 }

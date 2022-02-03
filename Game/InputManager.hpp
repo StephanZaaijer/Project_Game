@@ -55,8 +55,7 @@ public:
     /// \param window The window of which you want to get the cursor position from.
     ///
     /// \return A boolean for if the given rectangle was clicked or not.
-    bool
-    isRectangleClicked(const sf::RectangleShape &rectangle, const sf::Mouse::Button &button, sf::RenderWindow &window);
+    bool isRectangleClicked(const sf::RectangleShape &rectangle, const sf::Mouse::Button &button, sf::RenderWindow &window);
 
     /// @brief
     /// This function checks if the current mouse position is inside a sprite.

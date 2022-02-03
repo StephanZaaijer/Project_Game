@@ -33,12 +33,19 @@ private:
     sf::Text coinText;
     sf::Sound jumpSound;
     sf::Sound pauseSound;
-    sf::Sound gameMusicSound;
     sf::Sound coinPickup;
+    sf::Sound gameMusicSound1;
+    sf::Sound gameMusicSound2;
+    sf::Sound gameMusicSound3;
+    sf::Sound gameMusicSound4;
+    sf::Sound gameMusicSound5;
+    std::vector<sf::Sound*> musicVector = {&gameMusicSound1, &gameMusicSound2, &gameMusicSound3, &gameMusicSound4, &gameMusicSound5};
+
     float backGroundOffsetY = 0;
     float backGroundOffsetY2;
     int acquiredCoins = 0;
     int counter = 0;
+    int soundPlaying;
     bool jumpSoundPlayed = false;
     bool prevKeystateStart = true;
     bool death = false;

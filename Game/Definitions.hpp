@@ -163,6 +163,11 @@ struct CustomTheme {
 #define SOUND_JUMP_PATH "Assets/jump.wav"
 #define SOUND_PAUSE_PATH "Assets/pause.wav"
 #define SOUND_RESUME_PATH "Assets/resume.wav"
+#define MUSIC_GAME_STATE1_PATH "Assets/gameMusicState1.wav"
+#define MUSIC_GAME_STATE2_PATH "Assets/gameMusicState2.wav"
+#define MUSIC_GAME_STATE3_PATH "Assets/gameMusicState3.wav"
+#define MUSIC_GAME_STATE4_PATH "Assets/gameMusicState4.wav"
+#define MUSIC_GAME_STATE5_PATH "Assets/gameMusicState5.wav"
 
 
 #endif //PROJECT_GAME_DEFINITIONS_HPP

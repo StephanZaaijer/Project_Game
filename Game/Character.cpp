@@ -40,11 +40,19 @@ void Character::resetJumps(){
     jumpedTwice = false;
 }
 
-sf::Sprite & Character::getSprite() {
-    return characterSprite;
+void Character::setTexture(const sf::Texture& texture){
+    characterSprite.setTexture(texture);
 }
 
-sf::FloatRect Character::GetBounds() {
+void Character::setScale(const float& scale) {
+    characterSprite.setScale(scale, scale);
+}
+
+void Character::setPosition(const sf::Vector2f& newPosition){
+    characterSprite.setPosition(newPosition);
+}
+
+sf::FloatRect Character::getGlobalBounds() {
     return characterSprite.getGlobalBounds();
 }
 
@@ -66,10 +74,6 @@ void Character::update() {
         float fallRate = fallVelocity += GRAVITY / WALL_SLIDE_DELTA;
         moveDownByOffset(fallRate);
         height -= int(fallRate);
-    }
-
-    if(characterSprite.getPosition().y >SCREEN_HEIGHT){
-        death = true;
     }
 }
 
@@ -175,13 +179,12 @@ void  Character::setJumpPressed(bool set) {
     isJumpPressed = set;
 }
 
-bool Character::getJumpedTwice() {
+bool Character::getJumpedTwice() const {
     if(jumpedTwice){
         return false;
     } else{
         return true;
     }
-
 }
 
 bool Character::collideSpike(const std::unique_ptr<Obstacle> &spike) {

@@ -33,7 +33,7 @@ void MainGameState::init(){
     character = std::unique_ptr<Character>(new Character(gameData));
     characterInfo = gameData->json.getPlayerSprite();
     gameData->assets.loadTextureFromFile(characterInfo.characterName, characterInfo.characterFileName);
-    character->getSprite().setTexture( gameData->assets.getTexture(characterInfo.characterName) );
+    character->setTexture( gameData->assets.getTexture(characterInfo.characterName) );
 
     obstaclesContainer =  std::unique_ptr<ObstacleContainer>(new ObstacleContainer(gameData));
     wall = std::unique_ptr<Wall>(new Wall(gameData));
@@ -198,7 +198,7 @@ void MainGameState::update(){
     // Character Coin collision
     std::vector<std::unique_ptr<Coin>> &coins = coinsContainer->getCoins();
     auto it = std::remove_if(coins.begin(),coins.end(),[this](std::unique_ptr<Coin> & coin){
-        return (coin->getBounds().intersects(character->GetBounds()));
+        return (coin->getBounds().intersects(character->getGlobalBounds()));
     });
     std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
         acquiredCoins += 1;
@@ -210,17 +210,20 @@ void MainGameState::update(){
     const std::vector<std::unique_ptr<Obstacle>> & obstacles = obstaclesContainer->getObstacle();
     for(const auto &obstacle : obstacles){
         if(obstacle->getID() == deathwall){
-            if(obstacle->getBounds().intersects(character->GetBounds())){
-                character->death = true;
+            if(obstacle->getBounds().intersects(character->getGlobalBounds())){
+                death = true;
             }
         }
         else if(obstacle->getID() == spike){
-            if(obstacle->getBounds().intersects(character->GetBounds())){
+            if(obstacle->getBounds().intersects(character->getGlobalBounds())){
                 if(character->collideSpike(obstacle)){
-                    character->death = true;
+                    death = true;
                 }
             }
         }
+    }
+    if(character->getPosition().y >SCREEN_HEIGHT){
+        death = true;
     }
 
     score.setString("Score: " + std::to_string(character->getScore()));
@@ -228,7 +231,7 @@ void MainGameState::update(){
     coinText.setString("coins: " + std::to_string(acquiredCoins));
     coinText.setPosition(BORDER_WALL_2_START - (SCREEN_HEIGHT / 20.0f) - coinText.getGlobalBounds().width,SCREEN_HEIGHT / 20.0f);
 
-    if (character->death){
+    if (death){
         gameData->score = character->getScore();
         gameData->coins = acquiredCoins;
         if(gameMusicSound.getStatus()){

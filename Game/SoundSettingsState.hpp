@@ -34,6 +34,7 @@ private:
     sf::Sound clickSound;
     bool prevMouseState = true;
 
+
 public:
     ///\brief
     /// This constructor constructs an object of SoundSettingsState

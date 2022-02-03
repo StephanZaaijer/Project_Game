@@ -39,7 +39,9 @@ private:
 
     sf::Text quote;
 
-    bool prevMouseState = false;
+
+    bool prevMousestate = true;
+
 
 public:
     ///\brief

@@ -21,8 +21,8 @@
 	"Coins" : 4,
 	"Player" : 
 	{
-		"File" : "Assets/coen.jpg",
-		"ID" : "coen"
+		"File" : "Assets/nick.png",
+		"ID" : "nick"
 	},
 	"Quotes" : 
 	[
@@ -56,7 +56,8 @@
 		"Fix ff de hitbox",
 		"Ik zit vast in de muur",
 		"Bus 41",
-		"KUKELEKU"
+		"KUKELEKU",
+		"BlaBlaBLa *kuch* BlaBlaBla"
 	],
 	"Score" : 
 	{
@@ -64,9 +65,9 @@
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/yellow_black.png",
-		"ID" : "yellow_black_theme",
-		"ObstacleColor" : "Black",
-		"WallColor" : "Yellow"
+		"File" : "Assets/black_red.png",
+		"ID" : "black_red_theme",
+		"ObstacleColor" : "Red",
+		"WallColor" : "Black"
 	}
 }

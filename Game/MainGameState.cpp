@@ -201,7 +201,7 @@ void MainGameState::update(){
     });
     std::for_each(it, coins.end(), [this](std::unique_ptr<Coin> & coin){
         acquiredCoins += 1;
-        if(gameData->json.getSoundstate()){
+        if(gameData->json.getSoundState()){
            coinPickup.play();
         }
 

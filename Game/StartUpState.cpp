@@ -30,6 +30,10 @@ void StartUpState::handleInput() {
     }
 }
 
+void StartUpState::update() {
+    gameData->machine.addGameState(GameStateReference(new MainMenuState(gameData)), true);
+}
+
 void StartUpState::draw() {
     gameData->window.clear();
     gameData->window.draw(background);

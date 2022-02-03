@@ -44,6 +44,10 @@ public:
     void handleInput() override;
 
     /// @brief
+    /// This function switches to the MainMenuState.
+    void update() override;
+
+    /// @brief
     /// This function draws all of it's contents onto the screen
     void draw() override;
 

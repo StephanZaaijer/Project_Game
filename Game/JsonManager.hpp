@@ -215,7 +215,6 @@ private:
     void writeJsonToFile();
 
     std::string gameFile;
-    sf::Clock clock;
     bool writeOut;
 
     struct Color {

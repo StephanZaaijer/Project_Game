@@ -90,7 +90,6 @@ void JsonManager::setSoundState(const bool &state) {
 	}
 	data.sound = state;
 	jsonData["Audio"]["Sound"] = state;
-	clock.restart();
 	writeOut = true;
 }
 void JsonManager::setSoundVolume(const int &volume) {
@@ -101,7 +100,6 @@ void JsonManager::setSoundVolume(const int &volume) {
 	jsonData["Audio"]["Sound"] = volume != 0;
 	data.soundVolume = volume;
 	jsonData["Audio"]["Soundlevel"] = volume;
-	clock.restart();
 	writeOut = true;
 }
 void JsonManager::setMusicState(const bool &state) {
@@ -110,7 +108,6 @@ void JsonManager::setMusicState(const bool &state) {
 	}
 	data.music = state;
 	jsonData["Audio"]["Music"] = state;
-	clock.restart();
 	writeOut = true;
 }
 void JsonManager::setMusicVolume(const int &volume) {
@@ -121,7 +118,6 @@ void JsonManager::setMusicVolume(const int &volume) {
 	jsonData["Audio"]["Music"] = volume != 0;
 	data.musicVolume = volume;
 	jsonData["Audio"]["Musiclevel"] = volume;
-	clock.restart();
 	writeOut = true;
 }
 void JsonManager::setHighscore(const int &highscore) {
@@ -130,7 +126,6 @@ void JsonManager::setHighscore(const int &highscore) {
 	}
 	data.highscore = highscore;
 	jsonData["Score"]["Highscore"] = highscore;
-	clock.restart();
 	writeOut = true;
 }
 
@@ -142,7 +137,6 @@ void JsonManager::setPlayerSprite(const CustomCharacter& playerSprite) {
 	data.playerSpriteFile = playerSprite.characterFileName;
 	jsonData["Player"]["ID"] = playerSprite.characterName;
 	jsonData["Player"]["File"] = playerSprite.characterFileName;
-	clock.restart();
 	writeOut = true;
 }
 
@@ -158,7 +152,6 @@ void JsonManager::setPlayerTheme(const CustomTheme& playerTheme) {
     jsonData["Theme"]["File"]= playerTheme.themeFileName;
     jsonData["Theme"]["WallColor"]= colorToString(playerTheme.wallColor);
     jsonData["Theme"]["ObstacleColor"] = colorToString(playerTheme.objectColor);
-    clock.restart();
     writeOut = true;
 }
 
@@ -168,7 +161,6 @@ void JsonManager::setCoins(const int &coins){
 	}
 	data.coins = coins;
 	jsonData["Coins"] = coins;
-	clock.restart();
 	writeOut = true;
 }
 
@@ -178,7 +170,6 @@ void JsonManager::setBoughtSkins(const int &index, const bool &value) {
     }
     data.boughtSkins[index] = value;
     jsonData["Bought_Skins"][index] = value;
-    clock.restart();
     writeOut = true;
 }
 
@@ -188,15 +179,7 @@ void JsonManager::setQuotes(const int &index, const std::string &quote){
     }
     data.quotes[index]=quote;
     jsonData["Quotes"][index]=quote;
-    clock.restart();
     writeOut=true;
-}
-
-void JsonManager::update() {
-	if (writeOut and clock.getElapsedTime().asSeconds() >= JSON_WRITEOUT_TIME) {
-		writeOut = false;
-		writeJsonToFile();
-	}
 }
 
 void JsonManager::directWrite() {

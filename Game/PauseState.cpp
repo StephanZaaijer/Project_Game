@@ -69,6 +69,11 @@ void PauseState::handleInput() {
     prevMouseState = gameData->input.isButtonPressed(sf::Mouse::Left);
 }
 
+void PauseState::resume(){
+    resumeSound.setVolume(gameData->json.getSoundVolume());
+    clickSound.setVolume(gameData->json.getSoundVolume());
+}
+
 void PauseState::draw() {
     mainGameState->drawNoDisplay();
     gameData->window.draw(darkFade);

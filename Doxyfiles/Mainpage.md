@@ -1,4 +1,5 @@
-<center><img src="../../Game/Assets/JuuJuuBanner.png" alt="JuuJuu"></center>
+<center><img src="../JuuJuuBanner.png" alt="JuuJuu"></center>
+
 <h2>Author:</h2>
 
 * [Coen Cuppen](https:://www.github.com/coencuppen)

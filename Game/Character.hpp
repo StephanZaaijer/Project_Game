@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <vector>
 #include "Line.hpp"
 #include "Obstacle.hpp"
 #include "Definitions.hpp"
@@ -80,6 +81,15 @@ public:
     void moveDownByOffset(const float &y);
 
     /// @brief
+    /// This function moves te particles down by a given offset.
+    /// \param y this is the offset by which the particles are moved down.
+    void moveDownParticles(const float &y);
+
+    /// @brief
+    /// This function creates a particle.
+    void generateParticle();
+
+    /// @brief
     /// This function resets the jump booleans.
     void resetJumps();
 
@@ -138,6 +148,8 @@ private:
     sf::Vector2f velocity = {VELOCITY_X, 0};
     sf::Vector2f position;
     character_states characterState;
+    std::vector<std::unique_ptr<sf::CircleShape>> circles;
+
     float fallVelocity = 0;
     int height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;
     int score = 0;

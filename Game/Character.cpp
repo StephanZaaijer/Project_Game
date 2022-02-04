@@ -19,6 +19,27 @@ void Character::moveDownByOffset(const float & y){
     characterSprite.setPosition(position);
 }
 
+void Character::moveDownParticles(const float & y){
+    std::for_each(circles.begin(), circles.end(), [&y](const std::unique_ptr<sf::CircleShape> & c){
+        sf::Vector2f pos = c->getPosition();
+        c->setPosition(pos.x, pos.y+y);
+    });
+}
+
+void Character::generateParticle() {
+    circles.emplace_back(new sf::CircleShape(30));
+    std::unique_ptr<sf::CircleShape> & c = circles[circles.size()-1];
+
+    sf::Color circleCol     = gameData->json.getWallColor();
+    circleCol.a             = PARTICLE_OPACITY;
+    sf::Vector2f pos        = characterSprite.getPosition();
+
+    c->setScale( 1, 1 );
+    c->setFillColor(circleCol);
+    c->setOrigin({c->getGlobalBounds().width/2, c->getGlobalBounds().height/2});
+    c->setPosition( pos.x+characterSprite.getGlobalBounds().width/2, pos.y+characterSprite.getGlobalBounds().height);
+}
+
 int Character::getHeight() const {
     return height;
 }
@@ -40,7 +61,7 @@ void Character::resetJumps(){
     jumpedTwice = false;
 }
 
-void Character::setTexture(const sf::Texture& texture){
+void Character::setTexture(const sf::Texture& texture) {
     characterSprite.setTexture(texture);
 }
 
@@ -48,7 +69,7 @@ void Character::setScale(const float& scale) {
     characterSprite.setScale(scale, scale);
 }
 
-void Character::setPosition(const sf::Vector2f& newPosition){
+void Character::setPosition(const sf::Vector2f& newPosition) {
     characterSprite.setPosition(newPosition);
 }
 
@@ -58,6 +79,9 @@ sf::FloatRect Character::getGlobalBounds() {
 
 void Character::draw() {
     gameData->window.draw(characterSprite);
+    std::for_each(circles.begin(), circles.end(), [this](const std::unique_ptr<sf::CircleShape> & c){
+        gameData->window.draw(*c);
+    });
 }
 
 void Character::update() {
@@ -75,6 +99,13 @@ void Character::update() {
         moveDownByOffset(fallRate);
         height -= int(fallRate);
     }
+    std::for_each(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c){
+        c->setScale(c->getScale().x - JUMP_ANIMATION_DOWNSIZE, c->getScale().y - JUMP_ANIMATION_DOWNSIZE);
+    });
+
+    circles.erase(std::remove_if(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c) -> bool{
+        return c->getScale().x <= 0;
+    }), circles.end());
 }
 
 void Character::tap() {
@@ -85,6 +116,8 @@ void Character::tap() {
         else{
             jumpedOnce = true;
         }
+
+        generateParticle();
         characterState = Jumping;
         velocity.y = VELOCITY_Y;
     }

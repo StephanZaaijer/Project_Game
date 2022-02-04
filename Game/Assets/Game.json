@@ -4,7 +4,7 @@
 		"Music" : true,
 		"Musiclevel" : 77,
 		"Sound" : true,
-		"Soundlevel" : 81
+		"Soundlevel" : 58
 	},
 	"Bought_Skins" : 
 	[
@@ -18,7 +18,7 @@
 		false,
 		true
 	],
-	"Coins" : 101,
+	"Coins" : 139,
 	"Player" : 
 	{
 		"File" : "Assets/nick.png",
@@ -61,13 +61,13 @@
 	],
 	"Score" : 
 	{
-		"Highscore" : 193
+		"Highscore" : 1014
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/black_red.png",
-		"ID" : "black_red_theme",
-		"ObstacleColor" : "Red",
-		"WallColor" : "Black"
+		"File" : "Assets/green_blue.png",
+		"ID" : "green_blue_theme",
+		"ObstacleColor" : "Blue",
+		"WallColor" : "Green"
 	}
 }

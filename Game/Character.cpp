@@ -17,7 +17,9 @@ void Character::moveDownByOffset(const float & y){
     position = characterSprite.getPosition();
     position.y += y;
     characterSprite.setPosition(position);
+}
 
+void Character::moveDownParticles(const float & y){
     std::for_each(circles.begin(), circles.end(), [&y](const std::unique_ptr<sf::CircleShape> & c){
         sf::Vector2f pos = c->getPosition();
         c->setPosition(pos.x, pos.y+y);
@@ -64,7 +66,6 @@ sf::FloatRect Character::getGlobalBounds() {
 void Character::draw() {
     gameData->window.draw(characterSprite);
     std::for_each(circles.begin(), circles.end(), [this](const std::unique_ptr<sf::CircleShape> & c){
-        c->setFillColor(sf::Color::Green);
         gameData->window.draw(*c);
     });
 }
@@ -85,11 +86,11 @@ void Character::update() {
         height -= int(fallRate);
     }
     std::for_each(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c){
-        c->setRadius(c->getRadius() - JUMP_ANIMATION_DOWNSIZE);
+        c->setScale(c->getScale().x - JUMP_ANIMATION_DOWNSIZE, c->getScale().y - JUMP_ANIMATION_DOWNSIZE);
     });
 
     circles.erase(std::remove_if(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c) -> bool{
-        return c->getRadius() <= 0;
+        return c->getScale().x <= 0;
     }), circles.end());
 }
 
@@ -102,17 +103,19 @@ void Character::tap() {
             jumpedOnce = true;
         }
 
-
         circles.emplace_back(new sf::CircleShape(30));
 
-        sf::Color circleCol = gameData->json.getWallColor();
-        circleCol.a = 100;
+        sf::Color jsonCol   = gameData->json.getWallColor();
+        sf::Color circleCol = {jsonCol.r, jsonCol.g, jsonCol.b, 100};
 
-        sf::FloatRect f  = characterSprite.getGlobalBounds();
+        sf::FloatRect fCircle  = circles[circles.size()-1]->getGlobalBounds();
+        sf::FloatRect fPlayer  = characterSprite.getGlobalBounds();
         sf::Vector2f pos = characterSprite.getPosition();
 
+        circles[circles.size()-1]->setScale( 1, 1 );
         circles[circles.size()-1]->setFillColor(circleCol);
-        circles[circles.size()-1]->setPosition( pos.x+f.width/2, pos.y+f.height);
+        circles[circles.size()-1]->setOrigin({fCircle.width/2, fCircle.height/2});
+        circles[circles.size()-1]->setPosition( pos.x+fPlayer.width/2, pos.y+fPlayer.height);
 
         characterState = Jumping;
         velocity.y = VELOCITY_Y;

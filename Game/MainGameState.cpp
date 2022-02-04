@@ -135,6 +135,7 @@ void MainGameState::update() {
 
         obstaclesContainer->moveObstacle(sf::Vector2f(0, moveDownBy));
         character->moveDownByOffset(moveDownBy);
+        character->moveDownParticles(moveDownBy);
     }
 
 

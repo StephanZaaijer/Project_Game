@@ -81,6 +81,11 @@ public:
     void moveDownByOffset(const float &y);
 
     /// @brief
+    /// This function moves te particles down by a given offset.
+    /// \param y this is the offset by which the particles are moved down.
+    void moveDownParticles(const float &y);
+
+    /// @brief
     /// This function resets the jump booleans.
     void resetJumps();
 

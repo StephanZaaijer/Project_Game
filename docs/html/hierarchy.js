@@ -6,7 +6,7 @@ var hierarchy =
     [ "CoinContainer", "class_coin_container.html", null ],
     [ "CustomCharacter", "struct_custom_character.html", null ],
     [ "CustomTheme", "struct_custom_theme.html", null ],
-    [ "std::exception", null, [
+    [ "exception", null, [
       [ "InvalidJsonException", "class_invalid_json_exception.html", null ],
       [ "LoadException", "class_load_exception.html", null ],
       [ "OpenFileException", "class_open_file_exception.html", null ],

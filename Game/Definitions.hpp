@@ -14,7 +14,7 @@
 #define FRAMERATE 60
 #define CHARACTER_START_HEIGHT 800
 #define CHARACTER_SCALE 0.75
-#define JUMP_ANIMATION_DOWNSIZE 0.1 // the amount of decrease in radius of the jumping effect.
+#define JUMP_ANIMATION_DOWNSIZE 1 // the amount of decrease in radius of the jumping effect.
 
 /// @brief
 /// This enum list contains the character_states in which the character can be in.

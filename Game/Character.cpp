@@ -17,6 +17,11 @@ void Character::moveDownByOffset(const float & y){
     position = characterSprite.getPosition();
     position.y += y;
     characterSprite.setPosition(position);
+
+    std::for_each(circles.begin(), circles.end(), [&y](const std::unique_ptr<sf::CircleShape> & c){
+        sf::Vector2f pos = c->getPosition();
+        c->setPosition(pos.x, pos.y+y);
+    });
 }
 
 int Character::getHeight() const {
@@ -58,12 +63,10 @@ sf::FloatRect Character::getGlobalBounds() {
 
 void Character::draw() {
     gameData->window.draw(characterSprite);
-//    for(auto &c : circles){
-//        gameData->window.draw(*c);
-//    }
-//    std::for_each(circles.begin(), circles.end(), [this](const std::unique_ptr<sf::CircleShape> & c){
-//        this->gameData->window.draw(*c);
-//    });
+    std::for_each(circles.begin(), circles.end(), [this](const std::unique_ptr<sf::CircleShape> & c){
+        c->setFillColor(sf::Color::Green);
+        gameData->window.draw(*c);
+    });
 }
 
 void Character::update() {
@@ -81,13 +84,13 @@ void Character::update() {
         moveDownByOffset(fallRate);
         height -= int(fallRate);
     }
-//    std::for_each(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c){
-//        c->setRadius(c->getRadius() - JUMP_ANIMATION_DOWNSIZE);
-//    });
-//
-//    circles.erase(std::remove_if(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c) -> bool{
-//        return c->getRadius() <= 0;
-//    }), circles.end());
+    std::for_each(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c){
+        c->setRadius(c->getRadius() - JUMP_ANIMATION_DOWNSIZE);
+    });
+
+    circles.erase(std::remove_if(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c) -> bool{
+        return c->getRadius() <= 0;
+    }), circles.end());
 }
 
 void Character::tap() {
@@ -99,9 +102,17 @@ void Character::tap() {
             jumpedOnce = true;
         }
 
-//        auto circle = std::unique_ptr<sf::CircleShape>();
-        circles.emplace_back(new sf::CircleShape(10));
-        std::cout << circles.size() << "\n";
+
+        circles.emplace_back(new sf::CircleShape(30));
+
+        sf::Color circleCol = gameData->json.getWallColor();
+        circleCol.a = 100;
+
+        sf::FloatRect f  = characterSprite.getGlobalBounds();
+        sf::Vector2f pos = characterSprite.getPosition();
+
+        circles[circles.size()-1]->setFillColor(circleCol);
+        circles[circles.size()-1]->setPosition( pos.x+f.width/2, pos.y+f.height);
 
         characterState = Jumping;
         velocity.y = VELOCITY_Y;

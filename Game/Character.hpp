@@ -139,7 +139,7 @@ private:
     sf::Vector2f velocity = {VELOCITY_X, 0};
     sf::Vector2f position;
     character_states characterState;
-    std::vector<std::unique_ptr<sf::CircleShape>&> circles;
+    std::vector<std::unique_ptr<sf::CircleShape>> circles;
 
     float fallVelocity = 0;
     int height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;

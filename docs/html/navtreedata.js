@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Project_Game", "index.html", [
+  [ "Juujuu (Project game)", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -53,7 +53,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_asset_manager_8cpp.html",
-"class_input_manager.html#a606634b416b5116d167e109fac12c148"
+"class_game_state.html#ac872d748df12ac36d7a42a191997e4f7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

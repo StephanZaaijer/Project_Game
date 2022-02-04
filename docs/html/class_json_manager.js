@@ -1,7 +1,6 @@
 var class_json_manager =
 [
     [ "JsonManager", "class_json_manager.html#ae64e39ada75a343a1c0705728af15d8e", null ],
-    [ "directWrite", "class_json_manager.html#a281c97a9eb4602841d0a64d1873d66b8", null ],
     [ "getBoughtSkins", "class_json_manager.html#a88c5c0e29bc6240b4ec1d4c1efd33e26", null ],
     [ "getCoins", "class_json_manager.html#a1ff261e65154fffe2718427e906adfd5", null ],
     [ "getHighscore", "class_json_manager.html#ab0dfdf05364b71f64fc999248e15d3c7", null ],
@@ -24,5 +23,5 @@ var class_json_manager =
     [ "setQuotes", "class_json_manager.html#afb8a55b4a1e6092f552f35e8fec34566", null ],
     [ "setSoundState", "class_json_manager.html#a3ae2bcae07c8d389144c44e6807d3b4b", null ],
     [ "setSoundVolume", "class_json_manager.html#a6307ef747e12bf56866649d9ab027d76", null ],
-    [ "update", "class_json_manager.html#af257c9345b448176a5df756a3ef415fb", null ]
+    [ "write", "class_json_manager.html#a5886d4774f7aba4248ade9b85c11f54f", null ]
 ];

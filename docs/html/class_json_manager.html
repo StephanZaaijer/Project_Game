@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Project_Game: JsonManager Class Reference</title>
+<title>Juujuu (Project game): JsonManager Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,8 +24,9 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Project_Game<span id="projectnumber">&#160;v1.2.0</span>
+   <div id="projectname">Juujuu (Project game)<span id="projectnumber">&#160;v1.2.0</span>
    </div>
   </td>
  </tr>
@@ -166,12 +167,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afb8a55b4a1e6092f552f35e8fec34566"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_json_manager.html#afb8a55b4a1e6092f552f35e8fec34566">setQuotes</a> (const int &amp;index, const std::string &amp;quote)</td></tr>
 <tr class="memdesc:afb8a55b4a1e6092f552f35e8fec34566"><td class="mdescLeft">&#160;</td><td class="mdescRight">function that changes a index of the list of quotes in the jsonfile, only changes the value if the value is unequal to the previous value  <a href="class_json_manager.html#afb8a55b4a1e6092f552f35e8fec34566">More...</a><br /></td></tr>
 <tr class="separator:afb8a55b4a1e6092f552f35e8fec34566"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af257c9345b448176a5df756a3ef415fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_json_manager.html#af257c9345b448176a5df756a3ef415fb">update</a> ()</td></tr>
-<tr class="memdesc:af257c9345b448176a5df756a3ef415fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update function that runs every gameloop that checks if the 5 secondclock has passed and the boolean is set if both are true it writes the data to the jsonfile.  <a href="class_json_manager.html#af257c9345b448176a5df756a3ef415fb">More...</a><br /></td></tr>
-<tr class="separator:af257c9345b448176a5df756a3ef415fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a281c97a9eb4602841d0a64d1873d66b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_json_manager.html#a281c97a9eb4602841d0a64d1873d66b8">directWrite</a> ()</td></tr>
-<tr class="memdesc:a281c97a9eb4602841d0a64d1873d66b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update function that runs on closing of the game that checks if the boolean is set if that is the case it writes the data to the jsonfile.  <a href="class_json_manager.html#a281c97a9eb4602841d0a64d1873d66b8">More...</a><br /></td></tr>
-<tr class="separator:a281c97a9eb4602841d0a64d1873d66b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5886d4774f7aba4248ade9b85c11f54f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_json_manager.html#a5886d4774f7aba4248ade9b85c11f54f">write</a> ()</td></tr>
+<tr class="memdesc:a5886d4774f7aba4248ade9b85c11f54f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update function that runs on closing of the game that checks if the boolean is set if that is the case it writes the data to the jsonfile.  <a href="class_json_manager.html#a5886d4774f7aba4248ade9b85c11f54f">More...</a><br /></td></tr>
+<tr class="separator:a5886d4774f7aba4248ade9b85c11f54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="class_json_manager.html" title="JsonManager class used to read from and write to the Jsonfile.">JsonManager</a> class used to read from and write to the Jsonfile. </p>
@@ -203,25 +201,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a281c97a9eb4602841d0a64d1873d66b8" name="a281c97a9eb4602841d0a64d1873d66b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a281c97a9eb4602841d0a64d1873d66b8">&#9670;&nbsp;</a></span>directWrite()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void JsonManager::directWrite </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Update function that runs on closing of the game that checks if the boolean is set if that is the case it writes the data to the jsonfile. </p>
-
-</div>
-</div>
 <a id="a88c5c0e29bc6240b4ec1d4c1efd33e26" name="a88c5c0e29bc6240b4ec1d4c1efd33e26"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a88c5c0e29bc6240b4ec1d4c1efd33e26">&#9670;&nbsp;</a></span>getBoughtSkins()</h2>
 
@@ -744,14 +723,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af257c9345b448176a5df756a3ef415fb" name="af257c9345b448176a5df756a3ef415fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af257c9345b448176a5df756a3ef415fb">&#9670;&nbsp;</a></span>update()</h2>
+<a id="a5886d4774f7aba4248ade9b85c11f54f" name="a5886d4774f7aba4248ade9b85c11f54f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5886d4774f7aba4248ade9b85c11f54f">&#9670;&nbsp;</a></span>write()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void JsonManager::update </td>
+          <td class="memname">void JsonManager::write </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -759,7 +738,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Update function that runs every gameloop that checks if the 5 secondclock has passed and the boolean is set if both are true it writes the data to the jsonfile. </p>
+<p>Update function that runs on closing of the game that checks if the boolean is set if that is the case it writes the data to the jsonfile. </p>
 
 </div>
 </div>

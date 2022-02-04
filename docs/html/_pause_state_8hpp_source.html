@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Project_Game: Game/PauseState.hpp Source File</title>
+<title>Juujuu (Project game): Game/PauseState.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,8 +24,9 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign">
-   <div id="projectname">Project_Game<span id="projectnumber">&#160;v1.2.0</span>
+   <div id="projectname">Juujuu (Project game)<span id="projectnumber">&#160;v1.2.0</span>
    </div>
   </td>
  </tr>
@@ -119,11 +120,13 @@ $(document).ready(function(){initNavTree('_pause_state_8hpp_source.html',''); in
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_pause_state.html#a3a24401f313979accfed740dd7089307">handleInput</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_pause_state.html#af720cd23613e9036ce68db8ffd128686">draw</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_pause_state.html#aa3f8d0b7365fb4ae30f42b371db65642">resume</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif </span><span class="comment">//PROJECT_GAME_PAUSESTATE_HPP</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_pause_state.html#af720cd23613e9036ce68db8ffd128686">draw</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif </span><span class="comment">//PROJECT_GAME_PAUSESTATE_HPP</span></div>
 <div class="ttc" id="a_asset_manager_8hpp_html"><div class="ttname"><a href="_asset_manager_8hpp.html">AssetManager.hpp</a></div><div class="ttdoc">Project_Game: AssetManager to read and store textures, fonts and soundbuffers.</div></div>
 <div class="ttc" id="a_definitions_8hpp_html"><div class="ttname"><a href="_definitions_8hpp.html">Definitions.hpp</a></div><div class="ttdoc">Project_Game: This file contains all macro's, and several enum's and structs used for sharing data th...</div></div>
 <div class="ttc" id="a_game_8hpp_html"><div class="ttname"><a href="_game_8hpp.html">Game.hpp</a></div><div class="ttdoc">Project_Game: Game class that constructs all the machines, the window and contains the gameloop.</div></div>
@@ -137,7 +140,8 @@ $(document).ready(function(){initNavTree('_pause_state_8hpp_source.html',''); in
 <div class="ttc" id="aclass_pause_state_html_a3a24401f313979accfed740dd7089307"><div class="ttname"><a href="class_pause_state.html#a3a24401f313979accfed740dd7089307">PauseState::handleInput</a></div><div class="ttdeci">void handleInput() override</div><div class="ttdoc">handleInput function that`s called regularly in the gameloop to handle userinput</div><div class="ttdef"><b>Definition:</b> PauseState.cpp:43</div></div>
 <div class="ttc" id="aclass_pause_state_html_a799014db76d67888f8e07dcbec79babd"><div class="ttname"><a href="class_pause_state.html#a799014db76d67888f8e07dcbec79babd">PauseState::init</a></div><div class="ttdeci">void init() override</div><div class="ttdoc">init function that`s called first time when state is active in the statemachine</div><div class="ttdef"><b>Definition:</b> PauseState.cpp:10</div></div>
 <div class="ttc" id="aclass_pause_state_html_a881bcf4616460a07a202fc3bf59921ca"><div class="ttname"><a href="class_pause_state.html#a881bcf4616460a07a202fc3bf59921ca">PauseState::PauseState</a></div><div class="ttdeci">PauseState(GameDataReference gameData, MainGameState *mainGameState)</div><div class="ttdoc">This constructor constructs an object of PauseState.</div><div class="ttdef"><b>Definition:</b> PauseState.cpp:5</div></div>
-<div class="ttc" id="aclass_pause_state_html_af720cd23613e9036ce68db8ffd128686"><div class="ttname"><a href="class_pause_state.html#af720cd23613e9036ce68db8ffd128686">PauseState::draw</a></div><div class="ttdeci">void draw() override</div><div class="ttdoc">draw function that`s called once every loop to draw the object on the screen</div><div class="ttdef"><b>Definition:</b> PauseState.cpp:72</div></div>
+<div class="ttc" id="aclass_pause_state_html_aa3f8d0b7365fb4ae30f42b371db65642"><div class="ttname"><a href="class_pause_state.html#aa3f8d0b7365fb4ae30f42b371db65642">PauseState::resume</a></div><div class="ttdeci">void resume() override</div><div class="ttdoc">resume function that`s called when entering this state when the state on top is removed</div><div class="ttdef"><b>Definition:</b> PauseState.cpp:72</div></div>
+<div class="ttc" id="aclass_pause_state_html_af720cd23613e9036ce68db8ffd128686"><div class="ttname"><a href="class_pause_state.html#af720cd23613e9036ce68db8ffd128686">PauseState::draw</a></div><div class="ttdeci">void draw() override</div><div class="ttdoc">draw function that`s called once every loop to draw the object on the screen</div><div class="ttdef"><b>Definition:</b> PauseState.cpp:77</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

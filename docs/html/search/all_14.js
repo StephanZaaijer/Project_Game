@@ -12,5 +12,6 @@ var searchData=
   ['wall_5fwidth_9',['WALL_WIDTH',['../_definitions_8hpp.html#ac5e5046fabb50b3d89c179d32661cc7f',1,'Definitions.hpp']]],
   ['wallcolor_10',['wallColor',['../struct_custom_theme.html#a4ad2adefc9ad067a95945ea270ceb7a3',1,'CustomTheme']]],
   ['what_11',['what',['../class_load_exception.html#ac6cbdae1b928c4410c3bd09768b3fb91',1,'LoadException::what()'],['../class_return_exception.html#a5ca902f344f6ee0da067faea6b25ea74',1,'ReturnException::what()'],['../class_open_file_exception.html#a013e660159bd3a30285340d72ff07032',1,'OpenFileException::what()'],['../class_invalid_json_exception.html#a55aef936bef8ec1c099fa0e49a2fa3a0',1,'InvalidJsonException::what()'],['../class_unknown_color_exception.html#ab9c7eea258100608289201dd977b390b',1,'UnknownColorException::what()']]],
-  ['window_12',['window',['../struct_game_data.html#ad3ebf49a95d78b14047b92b20d39b810',1,'GameData']]]
+  ['window_12',['window',['../struct_game_data.html#ad3ebf49a95d78b14047b92b20d39b810',1,'GameData']]],
+  ['write_13',['write',['../class_json_manager.html#a5886d4774f7aba4248ade9b85c11f54f',1,'JsonManager']]]
 ];

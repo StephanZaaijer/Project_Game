@@ -34,6 +34,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.ACCES_TOKEN_STEPHAN_ZAAIJER }}
+          branch: gh_pages
 
 
 

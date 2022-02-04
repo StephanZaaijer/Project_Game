@@ -2,27 +2,27 @@
 	"Audio" : 
 	{
 		"Music" : true,
-		"Musiclevel" : 77,
+		"Musiclevel" : 69,
 		"Sound" : true,
-		"Soundlevel" : 58
+		"Soundlevel" : 13
 	},
 	"Bought_Skins" : 
 	[
 		true,
-		false,
-		true,
-		false,
 		true,
 		true,
 		false,
+		true,
+		true,
+		true,
 		false,
 		true
 	],
-	"Coins" : 139,
+	"Coins" : 110,
 	"Player" : 
 	{
-		"File" : "Assets/nick.png",
-		"ID" : "nick"
+		"File" : "Assets/franky.png",
+		"ID" : "franky"
 	},
 	"Quotes" : 
 	[
@@ -57,17 +57,18 @@
 		"Ik zit vast in de muur",
 		"Bus 41",
 		"KUKELEKU",
-		"BlaBlaBLa *kuch* BlaBlaBla"
+		"BlaBlaBLa *kuch* BlaBlaBla",
+		"JUUJUU Nummer 1"
 	],
 	"Score" : 
 	{
-		"Highscore" : 1014
+		"Highscore" : 192
 	},
 	"Theme" : 
 	{
-		"File" : "Assets/green_blue.png",
-		"ID" : "green_blue_theme",
-		"ObstacleColor" : "Blue",
-		"WallColor" : "Green"
+		"File" : "Assets/black_red.png",
+		"ID" : "black_red_theme",
+		"ObstacleColor" : "Red",
+		"WallColor" : "Black"
 	}
 }

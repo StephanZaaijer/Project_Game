@@ -6,5 +6,6 @@ var searchData=
   ['jsonmanager_3',['JsonManager',['../class_json_manager.html',1,'JsonManager'],['../class_json_manager.html#ae64e39ada75a343a1c0705728af15d8e',1,'JsonManager::JsonManager()']]],
   ['jsonmanager_2ecpp_4',['JsonManager.cpp',['../_json_manager_8cpp.html',1,'']]],
   ['jsonmanager_2ehpp_5',['JsonManager.hpp',['../_json_manager_8hpp.html',1,'']]],
-  ['jumping_6',['Jumping',['../_definitions_8hpp.html#af7a5118c27225bfce4e72dbf1946a327a64ad551bddf3bf25a2a9d0f8834c21ab',1,'Definitions.hpp']]]
+  ['jumping_6',['Jumping',['../_definitions_8hpp.html#af7a5118c27225bfce4e72dbf1946a327a64ad551bddf3bf25a2a9d0f8834c21ab',1,'Definitions.hpp']]],
+  ['juujuu_20_28project_20game_29_7',['Juujuu (Project game)',['../index.html',1,'']]]
 ];

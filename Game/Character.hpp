@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <vector>
 #include "Line.hpp"
 #include "Obstacle.hpp"
 #include "Definitions.hpp"
@@ -138,6 +139,8 @@ private:
     sf::Vector2f velocity = {VELOCITY_X, 0};
     sf::Vector2f position;
     character_states characterState;
+    std::vector<std::unique_ptr<sf::CircleShape>&> circles;
+
     float fallVelocity = 0;
     int height = SCREEN_HEIGHT - CHARACTER_START_HEIGHT;
     int score = 0;

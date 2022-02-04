@@ -58,6 +58,12 @@ sf::FloatRect Character::getGlobalBounds() {
 
 void Character::draw() {
     gameData->window.draw(characterSprite);
+//    for(auto &c : circles){
+//        gameData->window.draw(*c);
+//    }
+//    std::for_each(circles.begin(), circles.end(), [this](const std::unique_ptr<sf::CircleShape> & c){
+//        this->gameData->window.draw(*c);
+//    });
 }
 
 void Character::update() {
@@ -75,6 +81,13 @@ void Character::update() {
         moveDownByOffset(fallRate);
         height -= int(fallRate);
     }
+//    std::for_each(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c){
+//        c->setRadius(c->getRadius() - JUMP_ANIMATION_DOWNSIZE);
+//    });
+//
+//    circles.erase(std::remove_if(circles.begin(), circles.end(), [](std::unique_ptr<sf::CircleShape> & c) -> bool{
+//        return c->getRadius() <= 0;
+//    }), circles.end());
 }
 
 void Character::tap() {
@@ -85,6 +98,11 @@ void Character::tap() {
         else{
             jumpedOnce = true;
         }
+
+//        auto circle = std::unique_ptr<sf::CircleShape>();
+        circles.emplace_back(new sf::CircleShape(10));
+        std::cout << circles.size() << "\n";
+
         characterState = Jumping;
         velocity.y = VELOCITY_Y;
     }

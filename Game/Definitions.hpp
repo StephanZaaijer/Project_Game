@@ -14,7 +14,7 @@
 #define FRAMERATE 60
 #define CHARACTER_START_HEIGHT 800
 #define CHARACTER_SCALE 0.75
-#define JSON_WRITEOUT_TIME 5.0
+#define JUMP_ANIMATION_DOWNSIZE 0.1 // the amount of decrease in radius of the jumping effect.
 
 /// @brief
 /// This enum list contains the character_states in which the character can be in.
@@ -26,7 +26,7 @@ enum character_states {
 
 #define GRAVITY 0.6f
 #define VELOCITY_Y (-20.0)
-#define VELOCITY_X 8
+#define VELOCITY_X 8.5
 
 #define TEXT_COLOR { 59, 3, 31}
 
@@ -155,7 +155,6 @@ struct CustomTheme {
 #define CYAN_BLUE_THEME_PATH "Assets/cyan_blue.png"
 #define YELLOW_BLACK_THEME_PATH "Assets/yellow_black.png"
 
-#define MUSIC_GAME_PATH "Assets/gameMusic.wav"
 #define SOUND_CLICK_PATH "Assets/click.wav"
 #define SOUND_CLICK_CUSTOM_PATH "Assets/clickCustom.wav"
 #define SOUND_COIN_PICKUP_PATH "Assets/coin.wav"

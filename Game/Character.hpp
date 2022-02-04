@@ -86,6 +86,10 @@ public:
     void moveDownParticles(const float &y);
 
     /// @brief
+    /// This function creates a particle.
+    void generateParticle();
+
+    /// @brief
     /// This function resets the jump booleans.
     void resetJumps();
 

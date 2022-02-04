@@ -26,6 +26,20 @@ void Character::moveDownParticles(const float & y){
     });
 }
 
+void Character::generateParticle() {
+    circles.emplace_back(new sf::CircleShape(30));
+    std::unique_ptr<sf::CircleShape> & c = circles[circles.size()-1];
+
+    sf::Color circleCol     = gameData->json.getWallColor();
+    circleCol.a             = PARTICLE_OPACITY;
+    sf::Vector2f pos        = characterSprite.getPosition();
+
+    c->setScale( 1, 1 );
+    c->setFillColor(circleCol);
+    c->setOrigin({c->getGlobalBounds().width/2, c->getGlobalBounds().height/2});
+    c->setPosition( pos.x+characterSprite.getGlobalBounds().width/2, pos.y+characterSprite.getGlobalBounds().height);
+}
+
 int Character::getHeight() const {
     return height;
 }
@@ -47,7 +61,7 @@ void Character::resetJumps(){
     jumpedTwice = false;
 }
 
-void Character::setTexture(const sf::Texture& texture){
+void Character::setTexture(const sf::Texture& texture) {
     characterSprite.setTexture(texture);
 }
 
@@ -55,7 +69,7 @@ void Character::setScale(const float& scale) {
     characterSprite.setScale(scale, scale);
 }
 
-void Character::setPosition(const sf::Vector2f& newPosition){
+void Character::setPosition(const sf::Vector2f& newPosition) {
     characterSprite.setPosition(newPosition);
 }
 
@@ -103,20 +117,7 @@ void Character::tap() {
             jumpedOnce = true;
         }
 
-        circles.emplace_back(new sf::CircleShape(30));
-
-        sf::Color jsonCol   = gameData->json.getWallColor();
-        sf::Color circleCol = {jsonCol.r, jsonCol.g, jsonCol.b, 100};
-
-        sf::FloatRect fCircle  = circles[circles.size()-1]->getGlobalBounds();
-        sf::FloatRect fPlayer  = characterSprite.getGlobalBounds();
-        sf::Vector2f pos = characterSprite.getPosition();
-
-        circles[circles.size()-1]->setScale( 1, 1 );
-        circles[circles.size()-1]->setFillColor(circleCol);
-        circles[circles.size()-1]->setOrigin({fCircle.width/2, fCircle.height/2});
-        circles[circles.size()-1]->setPosition( pos.x+fPlayer.width/2, pos.y+fPlayer.height);
-
+        generateParticle();
         characterState = Jumping;
         velocity.y = VELOCITY_Y;
     }

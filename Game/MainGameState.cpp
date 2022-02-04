@@ -209,6 +209,16 @@ void MainGameState::update() {
             }
             break;
 
+        case 13:
+            if (gameMusicSound4.getStatus() == gameMusicSound4.Stopped) {
+                if (gameMusicSound5.getStatus() == gameMusicSound5.Stopped) {
+                    if (gameData->json.getMusicState()) {
+                        gameMusicSound5.play();
+                    }
+                }
+            }
+            break;
+
         case 14:
             background2.setTexture(gameData->assets.getTexture("SpaceBackground"));
             gameMusicSound5.setLoop(false);

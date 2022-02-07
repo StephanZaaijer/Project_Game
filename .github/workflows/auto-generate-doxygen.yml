@@ -1,26 +1,31 @@
-# Publish GitHub workflow artifacts tutorial example
-name: Publish GitHub Actions Artifacts Example
+name: Auto generatate doxygen
 
 on:
   push:
-    branches: [ main ]
+    branches: main
+    paths:
+      - 'Game/'
+      - 'Doxyfiles'
+      
   workflow_dispatch:
 jobs:
        
-  archive-build-artifacts:
+  generate-doxygen:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
       - name: step 1 - Install doxygen
         run: sudo apt-get install doxygen
+      
       - name: step 2 - Run doxygen
-        run: |
-          doxygen Doxyfiles/Doxyfile
+        run: doxygen Doxyfiles/Doxyfile
+      
       - name: Commit files
         id: commit
         run: |
-          git config --local user.email "stephan.zaaijer@student.hu.nl"
-          git config --local user.name "StephanZaaijer"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add --all
           if [-z "$(git status --porcelain)"]; then
             echo "::set-output name=push::false"
@@ -33,7 +38,7 @@ jobs:
         if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.ACCES_TOKEN_STEPHAN_ZAAIJER }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh_pages
           force: true
 

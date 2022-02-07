@@ -36,11 +36,4 @@ jobs:
         shell: bash
       - name: Push changes
         if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh_pages
-          force: true
-
-
-
+        run: git push -f origin gh_pages

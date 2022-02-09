@@ -37,6 +37,7 @@ jobs:
             echo "::set-output name=push::true"
           fi
           git status
+          git branch
         shell: bash
       - name: Push changes
         if: steps.commit.outputs.push == 'true'

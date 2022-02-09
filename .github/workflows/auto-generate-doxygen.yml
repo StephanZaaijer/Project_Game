@@ -40,4 +40,4 @@ jobs:
         shell: bash
       - name: Push changes
         if: steps.commit.outputs.push == 'true'
-        run: git push -f origin gh_pages
+        run: git push

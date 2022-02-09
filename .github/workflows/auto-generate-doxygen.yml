@@ -16,7 +16,10 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: step 1 - Install doxygen
-        run: sudo apt-get install doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get install doxygen
       
       - name: step 2 - Run doxygen
         run: doxygen Doxyfiles/Doxyfile
@@ -27,7 +30,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add --all
-          if [-z "$(git status --porcelain)"]; then
+          if [ -z "$(git status --porcelain)" ]; then
             echo "::set-output name=push::false"
           else
             git commit -m "Updated doxygen" -a

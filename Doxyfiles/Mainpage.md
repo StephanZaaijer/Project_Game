@@ -2,12 +2,12 @@
 
 <h2>Author:</h2>
 
-* [Coen Cuppen](https:://www.github.com/coencuppen)
-* [Daniel Hoegee](https:://www.github.com/Skaniel)
-* [Jasper van de Post](https:://www.github.com/Pink-Shadow)
-* [Ka Long Yang](https:://www.github.com/Kalong98)
-* [Nick Teeuwen](https:://www.github.com/n21twn)
-* [Stephan Zaaijer](https:://www.github.com/StephanZaaijer)
+* [Coen Cuppen](https://www.github.com/coencuppen)
+* [Daniel Hoegee](https://www.github.com/Skaniel)
+* [Jasper van de Post](https://www.github.com/Pink-Shadow)
+* [Ka Long Yang](https://www.github.com/Kalong98)
+* [Nick Teeuwen](https://www.github.com/n21twn)
+* [Stephan Zaaijer](https://www.github.com/StephanZaaijer)
 
 <h2>Version:</h2>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.0 (last modified 04-02-2022)
